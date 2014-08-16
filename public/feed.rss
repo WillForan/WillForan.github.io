@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+  <title>dot slash configure</title>
+  <atom:link href="http://willforan.github.io/feed/" rel="self" type="application/rss+xml" />
+  <link>http://willforan.github.io</link>
+  <description>various configurations</description>
+	<lastBuildDate>Sat, 16 Aug 2014 17:59:53 GMT</lastBuildDate>
+	<language>en</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+
+		<item>
+		<title>A Blog with Punch!</title>
+      <link>http://willforan.github.io/20140816_punch</link>
+      <comments>http://willforan.github.io/20140816_punch/#comments</comments>
+      <pubDate>Sat, 16 Aug 2014 04:00:00 GMT</pubDate>
+      <dc:creator>Will Foran</dc:creator>
+
+      <category><![CDATA[Blog]]></category>
+      <category><![CDATA[Punch]]></category>
+      <category><![CDATA[node.js]]></category>
+
+      <guid isPermaLink="true">http://willforan.github.io/20140816_punch</guid>
+			<description><![CDATA[<h1 id="punch-blog">punch-blog</h1>
+<p><a href="https://github.com/laktek/punch-blog">https://github.com/laktek/punch-blog</a></p>
+<pre><code class="lang-sh">## install
+sudo npm install punch -g
+wget -qO- https://github.com/laktek/punch-blog/archive/master.zip | bsdtar -xvf -
+mv punch-blog-master willforan.github.io
+cd $_ 
+
+## configure
+vim contents/shared.json     \ # change name
+    config.json              \ # comment out 3rd party stuff, change save path
+    templates/_header.mustache # remove about &amp; archive
+
+## create
+mv posts/19* posts/$(date +%F)-firstpost.markdown
+vim $_
+
+## generate
+punch g
+</code></pre>
+<p><img src="http://upload.wikimedia.org/wikipedia/en/1/12/Kool_Aid_Man.jpeg" alt="KoolAidMan"></p>
+]]></description>
+		</item>
+	</channel>
+</rss>

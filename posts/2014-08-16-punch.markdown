@@ -1,0 +1,37 @@
+--- 
+title: A Blog with Punch!
+published: true
+tags:
+- Blog 
+- Punch
+- node.js
+---
+
+ 
+# punch-blog
+
+https://github.com/laktek/punch-blog
+
+```sh
+## install
+sudo npm install punch -g
+wget -qO- https://github.com/laktek/punch-blog/archive/master.zip | bsdtar -xvf -
+mv punch-blog-master willforan.github.io
+cd $_ 
+
+## configure
+vim contents/shared.json     \ # change name
+    config.json              \ # comment out 3rd party stuff, change save path
+    templates/_header.mustache # remove about & archive
+
+## create
+mv posts/19* posts/$(date +%F)-firstpost.markdown
+vim $_
+
+## generate
+punch g
+```
+
+
+![KoolAidMan](http://upload.wikimedia.org/wikipedia/en/1/12/Kool_Aid_Man.jpeg)
+

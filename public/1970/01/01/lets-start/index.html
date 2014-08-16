@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+				<title>My Blog</title>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+				<link rel="stylesheet" type="text/css" media="screen" href="/css/main-1397710744000.css"> 
+        <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+
+				<!-- fonts -->
+				<script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script><script>  WebFont.load({"google":{"families":["Source Code Pro:400,700","Source Sans Pro:400,700,400italic","Titillium+Web:400,600"]}}  );</script>
+				
+				<script type='text/javascript'>  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-xxxxxx-x']);  _gaq.push(['_trackPageview']);   (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+				<header>
+					<h1><a href="/">My Blog</a></h1>
+				</header>
+
+				<nav role="main_nav">
+        <ul>
+          <li><a id="home" class="link_with_icon  " href="/"><span role="icon" aria-hidden="true" class="icon-home"></span><span role="title">Home</span></a></li>
+          <li><a id="about" class="link_with_icon " href="/about"><span role="icon" aria-hidden="true" class="icon-user"></span><span role="title">About</span></a></li>
+          <li><a id="archive" class="link_with_icon " href="/archive"><span role="icon" aria-hidden="true" class="icon-book"></span><span role="title">Archive</span></a></li>
+        </ul>
+      </nav>
+
+<div id="main-content">
+	<article class="hentry"> 
+		<h2 class="entry-title">Let's Start!</h2>
+    <time class="updated" datetime="1970-01-01T05:00:00.000Z" pubdate>01 January 1970</time>
+
+		<div class="entry-content">
+			<p>Thanks for trying out Punch blog. You start writing editing this post itself. Just go to <code>posts/</code> directory and you will find a file named <code>1970-01-01-lets-start.markdown</code>. Rename it with today&#39;s date and your post title. Then open it, delete this post and start writing your own.</p>
+<p>Before we go any further, here&#39;s cute picture of a cat to cheer you up :)</p>
+<p><img src="/img/cat.jpg" alt="cat"></p>
+<p>At the top of this file, you will find a YAML front matter block (similar to <a href="https://github.com/mojombo/jekyll">Jekyll</a>). You can define any variable you want to use in templates. Punch will look for the following variables when generating the site - <code>title</code>, <code>published</code> and <code>tags</code>.</p>
+<p>You can set any blog specific settings under the section <code>blog</code> in the <code>config.json</code>. Default blog settings can be found <a href="https://github.com/laktek/punch-blog-content-handler">here</a>. Apart from the default settings, there are two custom settngs for this project, which define the number of posts (<code>homepage_posts</code>) and paragraphs (<code>teaser_length</code>) to show in homepage. Here are the default <code>blog</code> section from <code>config.json</code>.</p>
+<pre><code class="lang-javascript">    &quot;blog&quot;: {
+        &quot;posts_dir&quot;: &quot;posts&quot;,
+        &quot;post_format&quot;: &quot;markdown&quot;,    
+        &quot;post_url&quot;: &quot;/{year}/{month}/{date}/{title}&quot;,
+        &quot;teaser_length&quot;: 2,
+        &quot;homepage_posts&quot;: 10,
+
+        &quot;archive_urls&quot;: {
+            &quot;all&quot;: &quot;/archive&quot;,
+            &quot;year&quot;: &quot;/{year}&quot;,
+            &quot;year_month&quot;: &quot;/{year}/{month}&quot;,
+            &quot;year_month_date&quot;: &quot;/{year}/{month}/{date}&quot;,
+            &quot;tag&quot;: &quot;/tag/{tag}&quot;
+        }
+    }
+</code></pre>
+<p>Punch-blog uses <a href="http://prismjs.com/">Prism.js</a> for automatic syntax highlighting. There are several other nifty features like that on Punch-blog. Here&#39;s a full list: </p>
+<ul>
+<li>Preview posts, as you write them.</li>
+<li>Easily publish to Amazon S3.</li>
+<li>Pretty URLs for permalinks (no .html, configurable).</li>
+<li>Responsive, customizable theme based on <a href="html5boilerplate.com">HTML5Boilerplate</a> &amp; <a href="https://github.com/malarkey/320andup/">320andup framework</a>.</li>
+<li>Load fonts from multiple sources with <a href="https://github.com/typekit/webfontloader">WebFonts Loader</a>.</li>
+<li>Easily configure Google Analytics, Tweet button &amp; Disqus comments.</li>
+<li>Highlighting the current page link.</li>
+<li>Post archives by tags.</li>
+<li>Post archives by year, month or date.</li>
+<li>Write posts using GitHub flavored Markdown.</li>
+<li>Client-side code highlighting with Prism.js</li>
+<li>Published/draft states.</li>
+<li>Automatically minifies and bundles JavaScript/CSS.</li>
+<li>RSS feed </li>
+<li>Sitemap.xml</li>
+</ul>
+<p>Also, you can use any other features available in Punch.</p>
+<ul>
+<li>Manage other pages with Punch&#39;s default content handler.</li>
+<li>Extend the behavior by writing your own helpers.</li>
+</ul>
+<p>This is so sexy and awesome right? Yes, just like the Gangnam style:</p>
+<iframe width="560" height="315" src="http://www.youtube.com/embed/9bZkp7q19f0" frameborder="0" allowfullscreen></iframe> 
+
+
+<p>Happy Blogging!</p>
+
+		</div>
+
+		<aside role="meta">
+			<div role="tags">
+				<span role="icon" aria-hidden="true" class="icon-tag"></span><span>Tags:</span></span>
+					<a href="/tag/punch">Punch</a>&nbsp;
+					<a href="/tag/blog">Blog</a>&nbsp;
+					<a href="/tag/life">Life</a>&nbsp;
+			</div>
+
+			<div role="social_media">
+				<a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-size="medium" data-via="myname">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+			</div>
+		</aside>
+
+		<div id="disqus_block">
+			<div id="disqus_thread"></div><script type="text/javascript">  var disqus_shortname = 'my-name';  (function() {   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;   dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);  })();</script>
+		</div>
+
+	</article>
+</div>
+		
+    
+				<footer>
+				©2014 My Blog
+				</footer>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
+	<script src="/js/all-1397710744000.js"></script> 
+    </body>
+</html>
