@@ -13,7 +13,7 @@
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-				<link rel="stylesheet" type="text/css" media="screen" href="/css/main-1397710744000.css"> 
+				<link rel="stylesheet" type="text/css" media="screen" href="/css/main-1408222949000.css"> 
         <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
 
 				<!-- fonts -->
@@ -40,23 +40,17 @@
 
 		<ul class="filters"> 
 				<li><a href="/2014" class="">2014</a></li>
-				<li><a href="/1970" class="">1970</a></li>
 		</ul>
 
 		<h3>By Tag</h3>
 		<ul class="filters">
-				<li><a href="/tag/blog"  class="">Blog</a></li>
+				<li><a href="/tag/node.js"  class="current">node.js</a></li>
 				<li><a href="/tag/punch"  class="">Punch</a></li>
-				<li><a href="/tag/node.js"  class="">node.js</a></li>
-				<li><a href="/tag/life"  class="current">Life</a></li>
+				<li><a href="/tag/blog"  class="">Blog</a></li>
 		</ul>
 
 		<div class="posts" role="archive">
 			<ul>
-				<li>
-					<a href="&#x2F;19700101_lets-start">Let's Start!</a>
-					<time class="updated" datetime="Thu Jan 01 1970 00:00:00 GMT-0500 (EST)" pubdate>01 January 1970</time>
-				</li>
 			</ul>
 		</div>
 
@@ -68,6 +62,6 @@
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.2.min.js"><\/script>')</script>
-	<script src="/js/all-1397710744000.js"></script> 
+	<script src="/js/all-1408222949000.js"></script> 
     </body>
 </html>
