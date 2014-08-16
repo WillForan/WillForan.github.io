@@ -25,8 +25,8 @@
 	"blog": {
 		"posts_dir": "posts",
 		"post_format": "markdown",	
-		"post_url": "/{year}/{month}/{date}/{title}",
-		"teaser_length": 2,
+		"post_url": "/{year}{month}{date}_{title}",
+		"teaser_length": 1,
 		"homepage_posts": 10,
 
 		"archive_urls": {
@@ -59,9 +59,8 @@
 	},
 
 	"sitemap_generator": {
-		"url_root": "http://www.myblog.com"	
+		"url_root": "http://willforan.github.io/"	
 	},
-
 	"publish" : {
 		"strategy" : "s3", 
 		"options" : {

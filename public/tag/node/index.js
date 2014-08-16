@@ -40,13 +40,15 @@
 
 		<ul class="filters"> 
 				<li><a href="/2014" class="">2014</a></li>
+				<li><a href="/1970" class="">1970</a></li>
 		</ul>
 
 		<h3>By Tag</h3>
 		<ul class="filters">
-				<li><a href="/tag/node.js"  class="current">node.js</a></li>
-				<li><a href="/tag/punch"  class="">Punch</a></li>
 				<li><a href="/tag/blog"  class="">Blog</a></li>
+				<li><a href="/tag/punch"  class="">Punch</a></li>
+				<li><a href="/tag/node.js"  class="current">node.js</a></li>
+				<li><a href="/tag/life"  class="">Life</a></li>
 		</ul>
 
 		<div class="posts" role="archive">
