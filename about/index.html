@@ -13,8 +13,22 @@
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-				<link rel="stylesheet" type="text/css" media="screen" href="/css/main-1408222949000.css"> 
+				<link rel="stylesheet" type="text/css" media="screen" href="/css/main-1408233559000.css"> 
         <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
+        <!-- prism syntax highlighting has limited language support  -->
+        <!--
+            <script src="/js/vendor/prism.js"></script>
+         -->
+
+        <!-- highlight.js has many more languages 
+             but there is some ugly shadow issue?
+
+        <link rel="stylesheet" href="/css/zenburn.css">
+        <link rel="stylesheet" href="templates/css/atelier-forest.dark.css">
+         -->
+        <link rel="stylesheet" href="/css/monokai.css">
+        <script src="/js/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
 
 				<!-- fonts -->
 				<script src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script><script>  WebFont.load({"google":{"families":["Source Code Pro:400,700","Source Sans Pro:400,700,400italic","Titillium+Web:400,600"]}}  );</script>

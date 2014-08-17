@@ -13,15 +13,15 @@
   <atom:link href="http://willforan.github.io/feed/" rel="self" type="application/rss+xml" />
   <link>http://willforan.github.io</link>
   <description>various configurations</description>
-	<lastBuildDate>Sat, 16 Aug 2014 21:02:29 GMT</lastBuildDate>
+	<lastBuildDate>Sat, 16 Aug 2014 22:52:01 GMT</lastBuildDate>
 	<language>en</language>
 	<sy:updatePeriod>hourly</sy:updatePeriod>
 	<sy:updateFrequency>1</sy:updateFrequency>
 
 		<item>
 		<title>A Blog with Punch!</title>
-      <link>http://willforan.github.io/20140816_punch</link>
-      <comments>http://willforan.github.io/20140816_punch/#comments</comments>
+      <link>http://willforan.github.io/posts/20140816_punch</link>
+      <comments>http://willforan.github.io/posts/20140816_punch/#comments</comments>
       <pubDate>Sat, 16 Aug 2014 04:00:00 GMT</pubDate>
       <dc:creator>Will Foran</dc:creator>
 
@@ -29,10 +29,10 @@
       <category><![CDATA[Punch]]></category>
       <category><![CDATA[node.js]]></category>
 
-      <guid isPermaLink="true">http://willforan.github.io/20140816_punch</guid>
+      <guid isPermaLink="true">http://willforan.github.io/posts/20140816_punch</guid>
 			<description><![CDATA[<h1 id="punch-blog">punch-blog</h1>
 <p><a href="https://github.com/laktek/punch-blog">https://github.com/laktek/punch-blog</a></p>
-<pre><code class="lang-sh">## install
+<pre><code class="language-bash">## install
 sudo npm install punch -g
 wget -qO- https://github.com/laktek/punch-blog/archive/master.zip | bsdtar -xvf -
 mv punch-blog-master willforan.github.io

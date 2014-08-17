@@ -9,7 +9,6 @@
 
 	"bundles": {
 		"/js/all.js": [
-			"/js/vendor/prism.js",		
 			"/js/plugins.js",
 			"/js/main.js"
 		],
@@ -25,15 +24,15 @@
 	"blog": {
 		"posts_dir": "posts",
 		"post_format": "markdown",	
-		"post_url": "/{year}{month}{date}_{title}",
+		"post_url": "/posts/{year}{month}{date}_{title}",
 		"teaser_length": 1,
 		"homepage_posts": 10,
 
 		"archive_urls": {
 			"all": "/archive",
-			"year": "/{year}",
-			"year_month": "/{year}/{month}",
-			"year_month_date": "/{year}/{month}/{date}",
+			"year": "/archive/{year}",
+			"year_month": "/archive/{year}/{month}",
+			"year_month_date": "/archive/{year}/{month}/{date}",
 			"tag": "/tag/{tag}"
 		}
 	},

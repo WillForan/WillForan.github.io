@@ -12,7 +12,7 @@ tags:
 
 https://github.com/laktek/punch-blog
 
-```sh
+```bash
 ## install
 sudo npm install punch -g
 wget -qO- https://github.com/laktek/punch-blog/archive/master.zip | bsdtar -xvf -
