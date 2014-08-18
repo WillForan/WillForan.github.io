@@ -1,0 +1,36 @@
+--- 
+title: Win 7 network issues workaround: Dual Boot into extended partitions
+published: false
+tags:
+- dualboot
+- AV linux
+- parition
+---
+
+# Interesting bit
+
+## Problem
+Max primary partitions on an MRB-based partition scheme is 4. I needed 5.
+
+## Story
+Gateway PC from Best Buy has a factory default Windows 7 install with 3 partitions: Gateway, recovery, Windows. I need 2 more partitions for a dual boot (`swap` and at the very least `root`). Swap should be optional, but [AV Linux's](http://www.bandshed.net/AVLinux.html) install protested. At the time of the install, I wasn't sure if
+
+ 1. AVLinux+grub would setup hd0,3 Windows boot correctly
+ 1. grub could boot from an extended partion
+ 1. grub could boot from ext4 (no /boot parition)
+ 
+## Solution
+
+I made a logical partition from half of what was allocated Windows. I put a 1Gb swap extended partition at the end, and set the rest as an ext4 extended partition. I pointed the AV Linux install at these 2 partitions and everything worked first go around!
+
+# The real story
+A family member's Gateway PC has a terrible connectivity experience. Online speed tests are reasonable (8Mbps up;3 down, 2ms ping) but browsing is excruciatingly slow times out often. The computer is connected wirelessly to an xfinity modem+router. Connection issues persist when the browser is pointed to `10.0.0.1`. Ultimately, I decided to set him up with a dual boot. I used the debian derived AV Linux because he does a lot of video editing. 
+
+
+## Attempts
+
+  1. A USB wireless dongle was just hanging out. That solved the problem for a day.
+  1. Factory reset Windows,new host name. No change!
+  1. Connectivity is find on a live cd; setup a dual boot.
+
+I still have no idea why the network is garbage on Windows.
