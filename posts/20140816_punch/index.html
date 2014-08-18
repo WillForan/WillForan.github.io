@@ -21,12 +21,11 @@
          -->
 
         <!-- highlight.js has many more languages 
-             but there is some ugly shadow issue?
 
-        <link rel="stylesheet" href="/css/zenburn.css">
-        <link rel="stylesheet" href="templates/css/atelier-forest.dark.css">
-         -->
+        <link rel="stylesheet" href="/css/atelier-forest.dark.css">
         <link rel="stylesheet" href="/css/monokai.css">
+         -->
+        <link rel="stylesheet" href="/css/zenburn.css">
         <script src="/js/highlight.pack.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
 
@@ -63,23 +62,40 @@
 		<div class="entry-content">
 			<h1 id="punch-blog">punch-blog</h1>
 <p><a href="https://github.com/laktek/punch-blog">https://github.com/laktek/punch-blog</a></p>
-<pre><code class="language-bash">## install
-sudo npm install punch -g
+<pre><code class="language-bash">## start
+mkdir willforan.github.io
+cd $_
+
+## download
 wget -qO- https://github.com/laktek/punch-blog/archive/master.zip | bsdtar -xvf -
-mv punch-blog-master willforan.github.io
+mv punch-blog-master punch
 cd $_ 
+npm install
 
 ## configure
 vim contents/shared.json     \ # change name
-    config.json              \ # comment out 3rd party stuff, change save path
+    config.json              \ # comment out 3rd party stuff, change save path to ../
     templates/_header.mustache # remove about &amp; archive
+
+# I also switched to highlight.js for more language support
+# and changed punch.js to use &#39;langauge-&#39; instead of &#39;lang-&#39; 
+# all changes are:
+# https://github.com/WillForan/WillForan.github.io/tree/
 
 ## create
 mv posts/19* posts/$(date +%F)-firstpost.markdown
 vim $_
 
-## generate
-punch g
+## generate and view
+alias punch=&quot;$(pwd)/node_modules/punch/bin/punch&quot;
+punch g &amp;&amp; punch s
+
+## push it all to github
+cd ..
+git add --all * # i didn&#39;t really do this :)
+git commit -m init
+git remote add origin git@github.com:WillForan/WillForan.github.io.git
+git push
 </code></pre>
 <p><img src="http://upload.wikimedia.org/wikipedia/en/1/12/Kool_Aid_Man.jpeg" alt="KoolAidMan"></p>
 

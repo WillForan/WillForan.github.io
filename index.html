@@ -21,12 +21,11 @@
          -->
 
         <!-- highlight.js has many more languages 
-             but there is some ugly shadow issue?
 
-        <link rel="stylesheet" href="/css/zenburn.css">
-        <link rel="stylesheet" href="templates/css/atelier-forest.dark.css">
-         -->
+        <link rel="stylesheet" href="/css/atelier-forest.dark.css">
         <link rel="stylesheet" href="/css/monokai.css">
+         -->
+        <link rel="stylesheet" href="/css/zenburn.css">
         <script src="/js/highlight.pack.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
 

@@ -2,8 +2,8 @@
 title: A Blog with Punch!
 published: true
 tags:
-- Blog 
-- Punch
+- blog 
+- punch
 - node.js
 ---
 
@@ -12,24 +12,50 @@ tags:
 
 https://github.com/laktek/punch-blog
 
+is "simple" node.js static blog generator that supports markdown and looks elegant and minimal. It is easy to deploy on github pages.
+
+# mods
+ * remove footer, disqus, twitter, home page nav, teaser
+ * change source highlighter from `prism` to `highlight.js`
+ * set output directory to `..` to track output and input with github pages.
+
+## install proc
+
 ```bash
-## install
-sudo npm install punch -g
+## start
+mkdir willforan.github.io
+cd $_
+
+## download
 wget -qO- https://github.com/laktek/punch-blog/archive/master.zip | bsdtar -xvf -
-mv punch-blog-master willforan.github.io
+mv punch-blog-master punch
 cd $_ 
+npm install
 
 ## configure
 vim contents/shared.json     \ # change name
-    config.json              \ # comment out 3rd party stuff, change save path
+    config.json              \ # comment out 3rd party stuff, change save path to ../
     templates/_header.mustache # remove about & archive
+
+# I also switched to highlight.js for more language support
+# and changed punch.js to use 'langauge-' instead of 'lang-' 
+# all changes are:
+# https://github.com/WillForan/WillForan.github.io/tree/
 
 ## create
 mv posts/19* posts/$(date +%F)-firstpost.markdown
 vim $_
 
-## generate
-punch g
+## generate and view
+alias punch="$(pwd)/node_modules/punch/bin/punch"
+punch g && punch s
+
+## push it all to github
+cd ..
+git add --all * # i didn't really do this :)
+git commit -m init
+git remote add origin git@github.com:WillForan/WillForan.github.io.git
+git push
 ```
 
 
