@@ -1,0 +1,13 @@
+@require(file_df,title)
+<html> <head>
+   <title>@title</title>
+   <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <h1>@title</h1>
+    <ul>
+    @for i,f in file_df.iterrows():
+        <li><a href="@f['uri']">@f['date'] - @f['title']</a></li>
+    </ul>
+  </body>
+</html>

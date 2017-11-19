@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Static Generator for Org Files</title>
+<!-- 2017-11-18 Sat 22:57 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body class="container">
+<div id="content">
+<h1 class="title">Static Generator for Org Files</h1>
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Motivation</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>Org-mode babel is the coolest thing!
+</li>
+<li>I have a lot of git repos for one off experiments.
+</li>
+<li>I don't know how to make literate programming work for me
+</li>
+</ul>
+
+<p>
+If I make it easy to export org-babel, I can use it to reduce friction on one off projects and test out ways to implement literate programming
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Notes</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">Usage</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+run <code>make</code> to read through <code>reports/*.org</code> and export to <code>html/</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">org mode</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li><code>#+OPTIONS: _:{} ^:{}</code> so <code>_</code> doesn't subscript. Can still use <code>_{}</code> like<sub>this</sub>
+</li>
+<li><code>#+OPTIONS: toc:nil num:nil</code> to remove table of contents and header numbering
+</li>
+<li><code>C-c C-e # html</code> for an org-&gt;html template
+</li>
+<li><code>C-c .</code> to insert the date
+</li>
+<li><code>C-c C-v t</code> to tangle files from source blocks with <code>:tangel file</code> in the header
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">Todos</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li>add tangled file and link from <code>src_blocks</code> a la <a href="https://stackoverflow.com/questions/38857751/show-tangled-file-name-in-org-mode-code-block-export">this</a> stack overflow QA.
+</li>
+<li>code highlighting
+</li>
+<li>add a todo/idea page
+</li>
+<li>use <code>file_df.mt</code> and <code>file_df.date</code> to annotate updated pages. maybe use creation time to make sure it wasn't just the file-system that was updated
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4">Aside</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+The small python script &#x2014; <code>make_index.py</code> &#x2014; made within this document could be replaced by a <code>Makefile</code> and a few bash/perl/python one liners.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Code</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The python and html template code to export org-files and render <code>index.html</code> is all tangled within this org file.
+</p>
+
+<p>
+This is awkward. For this document to be meaningful, it is the only way these files should be edited.
+</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">find title and date</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>date can be in the file as <code>#+DATE:.*yyyy-mm-dd</code> or could be the modification time of the file
+</li>
+<li>title <code>#+TITLE:.*</code> or the name of the file
+</li>
+<li>we want to (re-)export files that have an out-of-date export file, so keep modification time info of source org file
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">find all pages</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+We're creating a py file in <code>../src</code>, but running this from an org file in the directory we expect all the files to already be in.
+<code>../reports</code> will work for a file launched in either location. All is lost if we run the code outside of the directory it lives.
+</p>
+
+<p>
+We use the function above to pull out info on the file
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="font-weight: bold;">from</span> tabulate <span style="font-weight: bold;">import</span> tabulate
+tabulate(file_df.head(n=5),headers=<span style="font-style: italic;">"keys"</span>, tablefmt=<span style="font-style: italic;">"orgtbl"</span>,showindex=<span style="font-weight: bold; text-decoration: underline;">False</span>)
+</pre>
+</div>
+
+<table class="table table-striped table-bordered table-condensed"
+         style="width: auto;">
+
+
+<colgroup>
+<col  class="right">
+
+<col  class="left">
+
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="right">date</th>
+<th scope="col" class="left">f</th>
+<th scope="col" class="left">mt</th>
+<th scope="col" class="left">title</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="right">2017-11-18</td>
+<td class="left">make_index.org</td>
+<td class="left">2017-11-18 19:47:22.007319</td>
+<td class="left">make_index</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3">export pages</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+This is a weird place to be. This text (and code) is written using org-mode within emacs. 
+The actual instructions are run inside python.  
+</p>
+
+<p>
+We need to use python to get back into an emacs lisp environment to export to html.
+</p>
+
+<p>
+Conveniently, there's a tool for this: <a href="https://github.com/nhoffman/org-export">org-export</a>!
+</p>
+<div class="org-src-container">
+
+<pre class="src src-bash">org-export html --infile xxx.org --outfile yyy.html --bootstrap
+</pre>
+</div>
+
+<p>
+So from python, we'll call a bash script that runs emacs. 
+Meanwhile, the instructions to do all of this are written in emacs. Literate programming is hard.
+</p>
+</div>
+
+<div id="outline-container-sec-3-3-1" class="outline-4">
+<h4 id="sec-3-3-1">bonuses</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<ul class="org-ul">
+<li>include css (<code>--bootstrap</code>) without much work
+</li>
+<li>have more control in the name of the final output html file (<code>--outname</code>).
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3-2" class="outline-4">
+<h4 id="sec-3-3-2">org-export configuration</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<p>
+By default <code>org-export</code> builds <code>ess</code> and <code>org</code> from git. This was failing. 
+I removed these two from <code>org-export-html.el:cli-el-get-setup</code>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4">create the index</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+The index page links to all the exported org files.
+</p>
+
+<p>
+We'll use a template engine &#x2014; <a href="https://bitbucket.org/akorn/wheezy.template">wheezy.template</a> because it was linked <a href="https://wiki.python.org/moin/Templating">here</a> &#x2014; to wrap generate the index page.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-html">@require(file_df,title)
+&lt;<span style="font-weight: bold;">html</span>&gt; &lt;<span style="font-weight: bold;">head</span>&gt;
+   &lt;<span style="font-weight: bold;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">@title</span>&lt;/<span style="font-weight: bold;">title</span>&gt;
+   &lt;<span style="font-weight: bold;">link</span> <span style="font-weight: bold; font-style: italic;">rel</span>=<span style="font-style: italic;">"stylesheet"</span> <span style="font-weight: bold; font-style: italic;">type</span>=<span style="font-style: italic;">"text/css"</span> <span style="font-weight: bold; font-style: italic;">href</span>=<span style="font-style: italic;">"style.css"</span> /&gt;
+  &lt;/<span style="font-weight: bold;">head</span>&gt;
+  &lt;<span style="font-weight: bold;">body</span>&gt;
+    &lt;<span style="font-weight: bold;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">@title</span>&lt;/<span style="font-weight: bold;">h1</span>&gt;
+    &lt;<span style="font-weight: bold;">ul</span>&gt;
+    @for i,f in file_df.iterrows():
+        &lt;<span style="font-weight: bold;">li</span>&gt;&lt;<span style="font-weight: bold;">a</span> <span style="font-weight: bold; font-style: italic;">href</span>=<span style="font-style: italic;">"@f['uri']"</span>&gt;@f['date'] - @f['title']&lt;/<span style="font-weight: bold;">a</span>&gt;&lt;/<span style="font-weight: bold;">li</span>&gt;
+    &lt;/<span style="font-weight: bold;">ul</span>&gt;
+  &lt;/<span style="font-weight: bold;">body</span>&gt;
+&lt;/<span style="font-weight: bold;">html</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2017-11-18</p>
+<p class="date">Created: 2017-11-18 Sat 22:57</p>
+<p class="creator"></p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
