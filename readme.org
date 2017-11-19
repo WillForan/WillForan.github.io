@@ -197,16 +197,18 @@ Meanwhile, the instructions to do all of this are written in emacs. Literate pro
       <h1>@title</h1>
       <ul>
       @for i,f in file_df.iterrows():
-          <li><a href="@f['uri']">@f['date'] - @f['title']</a></li>
+          <li><a href="@f['uri']"><time>@f['date']</time> @f['title']</a></li>
       </ul>
     </body>
   </html>
 #+END_SRC
 
 #+BEGIN_SRC css :tangle ../style.css :exports none
-body { font-family: mono;}
+body { font-family: mono; font-weight: bold;}
 h1 { font-size: larger;}
 ul { list-style: none;} 
+time {color: grey;}
+a  {text-decoration: none}
 #+END_SRC
 
 #+BEGIN_SRC python :tangle ../src/make_index.py :session :results none :exports none

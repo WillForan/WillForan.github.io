@@ -7,7 +7,7 @@
     <h1>@title</h1>
     <ul>
     @for i,f in file_df.iterrows():
-        <li><a href="@f['uri']">@f['date'] - @f['title']</a></li>
+        <li><a href="@f['uri']"><time>@f['date']</time> @f['title']</a></li>
     </ul>
   </body>
 </html>

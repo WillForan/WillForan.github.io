@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Static Generator for Org Files</title>
-<!-- 2017-11-18 Sat 22:57 -->
+<!-- 2017-11-18 Sat 23:16 -->
 <meta  charset="utf-8">
 <meta  name="generator" content="Org-mode">
 <style type="text/css">
@@ -139,8 +139,20 @@ for the JavaScript code in this tag.
 
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1">Motivation</h2>
+<h2 id="sec-1">What</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+This is a repo to generate html for github pages from org mode files. 
+</p>
+
+<p>
+The file you are reading is both the readme and an individual "report" (linked into <code>reports/</code>) accessible from the generated index.
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">Motivation</h3>
+<div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>Org-mode babel is the coolest thing!
 </li>
@@ -155,6 +167,7 @@ If I make it easy to export org-babel, I can use it to reduce friction on one of
 </p>
 </div>
 </div>
+</div>
 
 
 <div id="outline-container-sec-2" class="outline-2">
@@ -166,6 +179,15 @@ If I make it easy to export org-babel, I can use it to reduce friction on one of
 <p>
 run <code>make</code> to read through <code>reports/*.org</code> and export to <code>html/</code>
 </p>
+</div>
+
+<div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1">this file</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+run tangle from <code>reports/</code> directory not top level. relative links work much better there.
+</p>
+</div>
 </div>
 </div>
 
@@ -360,7 +382,7 @@ We'll use a template engine &#x2014; <a href="https://bitbucket.org/akorn/wheezy
     &lt;<span style="font-weight: bold;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">@title</span>&lt;/<span style="font-weight: bold;">h1</span>&gt;
     &lt;<span style="font-weight: bold;">ul</span>&gt;
     @for i,f in file_df.iterrows():
-        &lt;<span style="font-weight: bold;">li</span>&gt;&lt;<span style="font-weight: bold;">a</span> <span style="font-weight: bold; font-style: italic;">href</span>=<span style="font-style: italic;">"@f['uri']"</span>&gt;@f['date'] - @f['title']&lt;/<span style="font-weight: bold;">a</span>&gt;&lt;/<span style="font-weight: bold;">li</span>&gt;
+        &lt;<span style="font-weight: bold;">li</span>&gt;&lt;<span style="font-weight: bold;">a</span> <span style="font-weight: bold; font-style: italic;">href</span>=<span style="font-style: italic;">"@f['uri']"</span>&gt;&lt;<span style="font-weight: bold;">time</span>&gt;@f['date']&lt;/<span style="font-weight: bold;">time</span>&gt; @f['title']&lt;/<span style="font-weight: bold;">a</span>&gt;&lt;/<span style="font-weight: bold;">li</span>&gt;
     &lt;/<span style="font-weight: bold;">ul</span>&gt;
   &lt;/<span style="font-weight: bold;">body</span>&gt;
 &lt;/<span style="font-weight: bold;">html</span>&gt;
@@ -372,7 +394,7 @@ We'll use a template engine &#x2014; <a href="https://bitbucket.org/akorn/wheezy
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2017-11-18</p>
-<p class="date">Created: 2017-11-18 Sat 22:57</p>
+<p class="date">Created: 2017-11-18 Sat 23:16</p>
 <p class="creator"></p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
