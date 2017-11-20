@@ -1,1 +1,229 @@
-../readme.org
+#+TITLE:Static Generator for Org Files
+#+DATE: 2017-11-18
+#+OPTIONS: _:{} ^:{} toc:nil num:nil
+#+CREATOR: 
+
+
+* What
+This is a repo to generate html for github pages from org mode files. 
+
+The file you are reading is both the readme and an individual "report" (linked into ~reports/~) accessible from the generated index.
+
+**  Motivation
+ - Org-mode babel is the coolest thing!
+ - I have a lot of git repos for one off experiments.
+ - I don't know how to make literate programming work for me
+   
+If I make it easy to export org-babel, I can use it to reduce friction on one off projects and test out ways to implement literate programming
+
+
+* Notes
+
+** Usage
+run ~make~ to read through ~reports/*.org~ and export to ~html/~
+
+*** this file
+run tangle from ~reports/~ directory not top level. relative links work much better there.
+
+** org mode
+   * ~#+OPTIONS: _:{} ^:{}~ so ~_~ doesn't subscript. Can still use ~_{}~ like_{this}
+   * ~#+OPTIONS: toc:nil num:nil~ to remove table of contents and header numbering
+   * ~C-c C-e # html~ for an org->html template
+   * ~C-c .~ to insert the date
+   * ~C-c C-v t~ to tangle files from source blocks with ~:tangel file~ in the header
+** Todos
+ * add tangled file and link from ~src_blocks~ a la [[https://stackoverflow.com/questions/38857751/show-tangled-file-name-in-org-mode-code-block-export][this]] stack overflow QA.
+ * code highlighting
+ * add a todo/idea page
+ * use ~file_df.mt~ and ~file_df.date~ to annotate updated pages. maybe use creation time to make sure it wasn't just the file-system that was updated
+
+** Aside
+  The small python script --- ~make_index.py~ --- made within this document could be replaced by a ~Makefile~ and a few bash/perl/python one liners.
+
+* Code 
+ The python and html template code to export org-files and render ~index.html~ is all tangled within this org file.
+
+ This is awkward. For this document to be meaningful, it is the only way these files should be edited.
+
+** find title and date
+   - date can be in the file as ~#+DATE:.*yyyy-mm-dd~ or could be the modification time of the file
+   - title ~#+TITLE:.*~ or the name of the file
+   - we want to (re-)export files that have an out-of-date export file, so keep modification time info of source org file
+
+ #+BEGIN_SRC python :tangle ../src/make_index.py :session :results none :exports none
+   #!/usr/bin/env python3
+   
+   # DO NOT EDIT OUTSIDE OF ORG-MODE FILE
+   # this file is tangled from ../reports/make_index.org
+   import os
+   import glob
+   import datetime
+   import re
+   import pprint
+   
+   # we need to be in the correct directory. always start at script directory
+   thisdir=os.path.dirname(__file__)
+   if not thisdir: thisdir='./'
+   os.chdir(thisdir)
+   
+
+   # regexp for things we want to pull from org-file:
+   #  date and title
+   redict = {'date':
+              re.compile('^#\+DATE:.*(\d{4}-\d{2}-\d{2})'),
+             'title': re.compile('^#\+TITLE: ?(.*)')}
+
+   def file_stat(f):
+       if not os.path.isfile(f):
+            return({'f': f,'mt': None})
+       fstat = os.stat(f)
+       mt = datetime.datetime.fromtimestamp(
+             fstat.st_mtime)
+       return({'f': f,'mt': mt})
+
+   def file_info(f):
+       txtinfo = {}
+       with open(f) as fp:
+            for l in fp:
+                # collect which of date and title we haven't
+                # yet set in txtinfo
+                need = [ k
+                            for k in redict.keys()
+                            if not txtinfo.get(k) ]
+                # if we have both, we're done
+                if len(need) == 0:
+                    break
+
+                # otherwise search for the ones we need
+                for k in need:
+                    m = redict[k].match(l)
+                    if m:
+                        txtinfo[k] = m.group(1)
+
+       if not txtinfo.get('title'):
+           txtinfo['title']= re.sub('(.md|.org)$','', os.path.basename(f))
+           # .replace('_',' '))
+
+       return(txtinfo)
+
+ #+END_SRC
+
+** find all pages
+  We're creating a py file in ~../src~, but running this from an org file in the directory we expect all the files to already be in.
+  ~../reports~ will work for a file launched in either location. All is lost if we run the code outside of the directory it lives.
+  
+ We use the function above to pull out info on the file
+#+BEGIN_SRC python :tangle ../src/make_index.py :session :results none :exports none
+  # ### find all the files we want to use as reports
+  import pandas
+  # editing org file we are in ../reports, as file we are in ../src
+  os.chdir('../reports')
+  filelist = [ {**file_stat(f), **file_info(f)} for f in glob.glob('*.org') ]
+  # reverse sort by date
+  filelist = sorted(filelist,key=lambda x: x['date'],reverse=True)
+  # as a dataframe
+  file_df = pandas.DataFrame(filelist)
+#+END_SRC
+
+#+BEGIN_SRC python :session :results raw  :exports both
+from tabulate import tabulate
+tabulate(file_df.head(n=5),headers="keys", tablefmt="orgtbl",showindex=False)
+#+END_SRC
+
+#+RESULTS:
+|       date | f              | mt                         | title      |
+|------------+----------------+----------------------------+------------|
+| 2017-11-18 | make_index.org | 2017-11-18 19:47:22.007319 | make_index |
+
+** export pages 
+
+This is a weird place to be. This text (and code) is written using org-mode within emacs. 
+The actual instructions are run inside python.  
+
+We need to use python to get back into an emacs lisp environment to export to html.
+
+Conveniently, there's a tool for this: [[https://github.com/nhoffman/org-export][org-export]]!
+#+BEGIN_SRC bash :exports code :results none
+org-export html --infile xxx.org --outfile yyy.html --bootstrap
+#+END_SRC
+
+So from python, we'll call a bash script that runs emacs. 
+Meanwhile, the instructions to do all of this are written in emacs. Literate programming is hard.
+
+*** bonuses
+  - include css (~--bootstrap~) without much work
+  - have more control in the name of the final output html file (~--outname~).
+
+*** org-export configuration
+    By default ~org-export~ builds ~ess~ and ~org~ from git. This was failing. 
+    I removed these two from ~org-export-html.el:cli-el-get-setup~
+
+#+BEGIN_SRC python :tangle ../src/make_index.py :session :results none :exports none
+  # build a list of exported files and their export (modification) date
+  # build those that need it
+  def export_info(file_df):
+    file_df['export_to'] = [ '../html/%s.html'%t for t in file_df['title'] ]
+    file_df['export_date'] =  [ file_stat(f)['mt'] for f in file_df['export_to'] ]
+    return(file_df)
+
+  from subprocess import call
+  # update dataframe with export vars
+  file_df = export_info(file_df)
+  # find None (!= to self) or out-of-date
+  need_update = file_df.query('export_date != export_date or export_date < mt')
+
+  for i,n in need_update.iterrows():
+      call(['org-export','html','--infile',n['f'],'--outfile',n['export_to'],'--bootstrap' ])
+
+  # update again, see if everything exported
+  file_df = export_info(file_df)
+  need_update = file_df.query('export_date != export_date or export_date < mt')
+  if len(need_update) != 0:
+      print("some files failed to update: %s!"%(",".join(need_update['title'])))
+
+#+END_SRC
+
+** create the index 
+   The index page links to all the exported org files.
+
+   We'll use a template engine --- [[https://bitbucket.org/akorn/wheezy.template][wheezy.template]] because it was linked [[https://wiki.python.org/moin/Templating][here]] --- to wrap generate the index page.
+#+BEGIN_SRC html :tangle ../src/index.tmp
+  @require(file_df,title)
+  <html> <head>
+     <title>@title</title>
+     <link rel="stylesheet" type="text/css" href="style.css" />
+    </head>
+    <body>
+      <h1>@title</h1>
+      <ul>
+      @for i,f in file_df.iterrows():
+          <li><a href="@f['uri']"><time>@f['date']</time> @f['title']</a></li>
+      </ul>
+    </body>
+  </html>
+#+END_SRC
+
+#+BEGIN_SRC css :tangle ../style.css :exports none
+body { font-family: mono; font-weight: bold;}
+h1 { font-size: larger;}
+ul { list-style: none;} 
+time {color: grey;}
+a  {text-decoration: none}
+#+END_SRC
+
+#+BEGIN_SRC python :tangle ../src/make_index.py :session :results none :exports none
+# export_to is relative to this script. should be relative to index.html
+# remove '../'
+file_df['uri'] = [ re.sub('^\.\./','',x) for x in file_df['export_to'] ]
+# index template
+from wheezy.template.engine import Engine
+from wheezy.template.ext.core import CoreExtension
+from wheezy.template.loader import FileLoader
+engine = Engine(loader=FileLoader(['../src/']), extensions=[CoreExtension()])
+template = engine.get_template('index.tmp')
+# write it out
+index_str = template.render({'file_df': file_df,'title': 'WF log'})
+with open('../index.html','w') as indexf:
+    indexf.write(index_str)
+
+#+END_SRC

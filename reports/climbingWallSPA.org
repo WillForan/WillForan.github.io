@@ -1,0 +1,128 @@
+#+TITLE:Climbing Wall Route Annotation SPA
+#+DATE:<2017-11-19 Sun>
+#+OPTIONS: toc:nil num:nil
+#+CREATOR:
+
+* What
+  The Climbing Wall (TCW) has routes densily packed through different areas.
+ To track our effort, we 1) identify the route and 2) annotate our progress.
+ 
+** identify
+   Some routes have names. Most routes have the setter's initials. All routes have a color and grading (VB-V9).
+   Colors are repeated in different areas and occasionally within in an area, but the combined area, color, and difficulty should uniquely identify each route.
+   
+** annotate
+   We might care about
+- fun factor (e.g. stars)
+- precieved difficultly (within grade): easy,expected,hard
+- flashed/onsite, completed, in-progress (% done?), skipped
+- last attempt (day + % complete)
+  
+* Code
+
+** The html for the SPA only calls javascript (which among other things, inserts the svg
+ #+BEGIN_SRC html :tangle index.html :exports code
+<html>
+<head>
+<title> TCW Route Tracker </title>
+<script src="https://unpkg.com/vue"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<style>
+ul { list-decoration: none}
+.grade-select >li { display: inline-block; text-align:center}
+.color-buttons>li { 
+  display: inline-block;
+  width: 20px;
+  height:20px;
+  margin-right: 10;
+  border: solid black 2px;
+  cursor: pointer; }
+</style>
+</head>
+<body> 
+<!-- vue -->
+<div id="route_specification">
+<ul class="color-buttons">
+  <li v-for="c in colors" v-bind:style="{ background: c}" v-on:click="selectColor" v-bind:title="c" >  </li>
+</ul>
+<ul class="grade-select">
+ <li v-for="g in grades"><input type="radio" name="grade" value={{g}} /><br> {{g}} </li>
+</ul>
+</div>
+
+<!-- d3 select area -->
+<script src="climbarea.js"> </script>
+</body>
+</html>
+ #+END_SRC
+ 
+** selecting areas
+   We want to click an area. This depends on the svg floor plan loaded later.
+ #+BEGIN_SRC javascript :tangle climbarea.js :exports code
+ // setup
+var svgdiv = d3.select("body").append("div");
+svgdiv.attr("id","climbingAreas")
+//svgdiv.style("width", 400)
+
+var svg;
+var clickable;
+
+function reset_color() {
+  clickable.each( function() {
+      d3.select(this).style('fill','green')  
+  })
+}
+
+function select_area() {
+ reset_color()
+ area = d3.select(this)
+ area.style('fill','red')
+ name = area.attr('id').match(/area_(.*)/)[1]
+ console.log(name)
+}
+
+#+END_SRC
+
+** inserting svg and area clicks
+   The floor plan for the boldering area has already been created as an svg.
+ ~rect~ and ~path~ svg elements define areas that will contain routes and have an ID starting with ~area_~.
+#+BEGIN_SRC javascript :tangle climbarea.js :exports code
+ 
+// inject svg, define clickable
+d3.xml("outline.svg", function(error, documentFragment) {
+        if (error) {console.log(error); return;}
+        
+        svgdiv.node().appendChild(
+             documentFragment.getElementsByTagName("svg")[0]
+        );
+
+        svg = svgdiv.select("svg")
+
+        allpaths = svg.selectAll('path,rect')
+
+        clickable = allpaths.filter(function() {
+             id=d3.select(this).attr('id')
+             return( id !== null && id.match(/area/) !== null ) 
+        })
+           
+        clickable.each( function() {
+              p=d3.select(this)
+              p.style('cursor','pointer')
+              p.on('click',select_area)
+        })
+    });
+ #+END_SRC
+
+** color and difficulty
+   color selection is built with vue
+#+BEGIN_SRC javascript :tangle climbarea.js :exports code
+var color= new Vue({
+ el:"#route_specification",
+ data: { colors: ['blue','orange','red','pink','black','yellow','white','strip','rainbow'],
+        grades: ['B',0,1,2,3,4,5,6,7,8] },
+ methods: {
+   selectColor: function() {console.log(this)}
+ }
+})
+
+#+END_SRC

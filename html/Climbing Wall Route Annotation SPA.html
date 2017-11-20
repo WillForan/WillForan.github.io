@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Climbing Wall Route Annotation SPA</title>
+<!-- 2017-11-19 Sun 21:44 -->
+<meta  charset="utf-8">
+<meta  name="generator" content="Org-mode">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body class="container">
+<div id="content">
+<h1 class="title">Climbing Wall Route Annotation SPA</h1>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">What</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+ The Climbing Wall (TCW) has routes densily packed through different areas.
+To track our effort, we 1) identify the route and 2) annotate our progress.
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">identify</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Some routes have names. Most routes have the setter's initials. All routes have a color and grading (VB-V9).
+Colors are repeated in different areas and occasionally within in an area, but the combined area, color, and difficulty should uniquely identify each route.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">annotate</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+We might care about
+</p>
+<ul class="org-ul">
+<li>fun factor (e.g. stars)
+</li>
+<li>precieved difficultly (within grade): easy,expected,hard
+</li>
+<li>flashed/onsite, completed, in-progress (% done?), skipped
+</li>
+<li>last attempt (day + % complete)
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Code</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">The html for the SPA only calls javascript (which among other things, inserts the svg</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="font-weight: bold;">html</span>&gt;
+&lt;<span style="font-weight: bold;">head</span>&gt;
+&lt;<span style="font-weight: bold;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;"> TCW Route Tracker </span>&lt;/<span style="font-weight: bold;">title</span>&gt;
+&lt;<span style="font-weight: bold;">script</span> <span style="font-weight: bold; font-style: italic;">src</span>=<span style="font-style: italic;">"https://unpkg.com/vue"</span>&gt;&lt;/<span style="font-weight: bold;">script</span>&gt;
+&lt;<span style="font-weight: bold;">script</span> <span style="font-weight: bold; font-style: italic;">src</span>=<span style="font-style: italic;">"https://d3js.org/d3.v4.min.js"</span>&gt;&lt;/<span style="font-weight: bold;">script</span>&gt;
+&lt;<span style="font-weight: bold;">style</span>&gt;
+ul { list-decoration: none}
+.grade-select &gt;li { display: inline-block; text-align:center}
+.color-buttons&gt;li { 
+  display: inline-block;
+  width: 20px;
+  height:20px;
+  margin-right: 10;
+  border: solid black 2px;
+  cursor: pointer; }
+&lt;/<span style="font-weight: bold;">style</span>&gt;
+&lt;/<span style="font-weight: bold;">head</span>&gt;
+&lt;<span style="font-weight: bold;">body</span>&gt; 
+<span style="font-weight: bold; font-style: italic;">&lt;!-- </span><span style="font-weight: bold; font-style: italic;">vue </span><span style="font-weight: bold; font-style: italic;">--&gt;</span>
+&lt;<span style="font-weight: bold;">div</span> <span style="font-weight: bold; font-style: italic;">id</span>=<span style="font-style: italic;">"route_specification"</span>&gt;
+&lt;<span style="font-weight: bold;">ul</span> <span style="font-weight: bold; font-style: italic;">class</span>=<span style="font-style: italic;">"color-buttons"</span>&gt;
+  &lt;<span style="font-weight: bold;">li</span> <span style="font-weight: bold; font-style: italic;">v-for</span>=<span style="font-style: italic;">"c in colors"</span> <span style="font-weight: bold;">v-bind</span>:<span style="font-weight: bold; font-style: italic;">style</span>=<span style="font-style: italic;">"{ background: c}"</span> <span style="font-weight: bold;">v-on</span>:<span style="font-weight: bold; font-style: italic;">click</span>=<span style="font-style: italic;">"selectColor"</span> <span style="font-weight: bold;">v-bind</span>:<span style="font-weight: bold; font-style: italic;">title</span>=<span style="font-style: italic;">"c"</span> &gt;  &lt;/<span style="font-weight: bold;">li</span>&gt;
+&lt;/<span style="font-weight: bold;">ul</span>&gt;
+&lt;<span style="font-weight: bold;">ul</span> <span style="font-weight: bold; font-style: italic;">class</span>=<span style="font-style: italic;">"grade-select"</span>&gt;
+ &lt;<span style="font-weight: bold;">li</span> <span style="font-weight: bold; font-style: italic;">v-for</span>=<span style="font-style: italic;">"g in grades"</span>&gt;&lt;<span style="font-weight: bold;">input</span> <span style="font-weight: bold; font-style: italic;">type</span>=<span style="font-style: italic;">"radio"</span> <span style="font-weight: bold; font-style: italic;">name</span>=<span style="font-style: italic;">"grade"</span> value={{g}} /&gt;&lt;<span style="font-weight: bold;">br</span>&gt; {{g}} &lt;/<span style="font-weight: bold;">li</span>&gt;
+&lt;/<span style="font-weight: bold;">ul</span>&gt;
+&lt;/<span style="font-weight: bold;">div</span>&gt;
+
+<span style="font-weight: bold; font-style: italic;">&lt;!-- </span><span style="font-weight: bold; font-style: italic;">d3 select area </span><span style="font-weight: bold; font-style: italic;">--&gt;</span>
+&lt;<span style="font-weight: bold;">script</span> <span style="font-weight: bold; font-style: italic;">src</span>=<span style="font-style: italic;">"climbarea.js"</span>&gt; &lt;/<span style="font-weight: bold;">script</span>&gt;
+&lt;/<span style="font-weight: bold;">body</span>&gt;
+&lt;/<span style="font-weight: bold;">html</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">selecting areas</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+We want to click an area. This depends on the svg floor plan loaded later.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript"> <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">setup</span>
+<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">svgdiv</span> = d3.select(<span style="font-style: italic;">"body"</span>).append(<span style="font-style: italic;">"div"</span>);
+svgdiv.attr(<span style="font-style: italic;">"id"</span>,<span style="font-style: italic;">"climbingAreas"</span>)
+<span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">svgdiv.style("width", 400)</span>
+
+<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">svg</span>;
+<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">clickable</span>;
+
+<span style="font-weight: bold;">function</span> <span style="font-weight: bold;">reset_color</span>() {
+  clickable.each( <span style="font-weight: bold;">function</span>() {
+      d3.select(<span style="font-weight: bold; text-decoration: underline;">this</span>).style(<span style="font-style: italic;">'fill'</span>,<span style="font-style: italic;">'green'</span>)  
+  })
+}
+
+<span style="font-weight: bold;">function</span> <span style="font-weight: bold;">select_area</span>() {
+ reset_color()
+ area = d3.select(<span style="font-weight: bold; text-decoration: underline;">this</span>)
+ area.style(<span style="font-style: italic;">'fill'</span>,<span style="font-style: italic;">'red'</span>)
+ name = area.attr(<span style="font-style: italic;">'id'</span>).match(<span style="font-style: italic;">/area_(.*)/</span>)[1]
+ console.log(name)
+}
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">inserting svg and area clicks</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+  The floor plan for the boldering area has already been created as an svg.
+<code>rect</code> and <code>path</code> svg elements define areas that will contain routes and have an ID starting with <code>area_</code>.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript"><span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">inject svg, define clickable</span>
+d3.xml(<span style="font-style: italic;">"outline.svg"</span>, <span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">error</span>, <span style="font-weight: bold; font-style: italic;">documentFragment</span>) {
+        <span style="font-weight: bold;">if</span> (error) {console.log(error); <span style="font-weight: bold;">return</span>;}
+
+        svgdiv.node().appendChild(
+             documentFragment.getElementsByTagName(<span style="font-style: italic;">"svg"</span>)[0]
+        );
+
+        svg = svgdiv.select(<span style="font-style: italic;">"svg"</span>)
+
+        allpaths = svg.selectAll(<span style="font-style: italic;">'path,rect'</span>)
+
+        clickable = allpaths.filter(<span style="font-weight: bold;">function</span>() {
+             id=d3.select(<span style="font-weight: bold; text-decoration: underline;">this</span>).attr(<span style="font-style: italic;">'id'</span>)
+             <span style="font-weight: bold;">return</span>( id !== <span style="font-weight: bold; text-decoration: underline;">null</span> &amp;&amp; id.match(<span style="font-style: italic;">/area/</span>) !== <span style="font-weight: bold; text-decoration: underline;">null</span> ) 
+        })
+
+        clickable.each( <span style="font-weight: bold;">function</span>() {
+              p=d3.select(<span style="font-weight: bold; text-decoration: underline;">this</span>)
+              p.style(<span style="font-style: italic;">'cursor'</span>,<span style="font-style: italic;">'pointer'</span>)
+              p.on(<span style="font-style: italic;">'click'</span>,select_area)
+        })
+    });
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4">color and difficulty</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+color selection is built with vue
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript"><span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">color</span>= <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Vue</span>({
+ el:<span style="font-style: italic;">"#route_specification"</span>,
+ data: { colors: [<span style="font-style: italic;">'blue'</span>,<span style="font-style: italic;">'orange'</span>,<span style="font-style: italic;">'red'</span>,<span style="font-style: italic;">'pink'</span>,<span style="font-style: italic;">'black'</span>,<span style="font-style: italic;">'yellow'</span>,<span style="font-style: italic;">'white'</span>,<span style="font-style: italic;">'strip'</span>,<span style="font-style: italic;">'rainbow'</span>],
+        grades: [<span style="font-style: italic;">'B'</span>,0,1,2,3,4,5,6,7,8] },
+ methods: {
+   <span style="font-weight: bold;">selectColor</span>: <span style="font-weight: bold;">function</span>() {console.log(<span style="font-weight: bold; text-decoration: underline;">this</span>)}
+ }
+})
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2017-11-19 Sun&gt;</span></span></p>
+<p class="date">Created: 2017-11-19 Sun 21:44</p>
+<p class="creator"></p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
