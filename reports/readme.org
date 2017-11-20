@@ -198,6 +198,7 @@ Meanwhile, the instructions to do all of this are written in emacs. Literate pro
       <ul>
       @for i,f in file_df.iterrows():
           <li><a href="@f['uri']"><time>@f['date']</time> @f['title']</a></li>
+      @end
       </ul>
     </body>
   </html>
