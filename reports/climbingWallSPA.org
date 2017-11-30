@@ -17,7 +17,20 @@
 - precieved difficultly (within grade): easy,expected,hard
 - flashed/onsite, completed, in-progress (% done?), skipped
 - last attempt (day + % complete)
-  
+
+** limitation's of org-mode tangle
+   - line number error messages mean nothing
+   - quick edits are hard, collaboration is near impossible
+
+* Log
+ - <2017-11-20 Mon> - color,grade+half,area model<->view connected - 1h
+ - <2017-11-29 Wed> - python api (bottle+tinydb), ajax submit, list routes
+
+*** TODO user
+*** TODO different locations
+*** TODO location summary 
+*** TODO add edit: notes, rate, name, setter, set_date
+*** TODO remove routes/reset wall
 * Code
 
 ** The html for the SPA only calls javascript (which among other things, inserts the svg
@@ -43,11 +56,30 @@ ul { list-decoration: none}
 <!-- vue -->
 <div id="route_specification">
 <ul class="color-buttons">
-  <li v-for="c in colors" v-bind:style="{ background: c}" v-on:click="selectColor" v-bind:title="c" >  </li>
+  <li v-for="c in options.color" v-bind:style="{ background: c}" @click="current.color = c" v-bind:title="c" >  </li>
 </ul>
 <ul class="grade-select">
- <li v-for="g in grades"><input type="radio" name="grade" value={{g}} /><br> {{g}} </li>
+ <li v-for="g in options.grade"><input type="radio" name="grade" :value="g" v-model="current.grade_full" /><br/> {{g}} </li>
+ <li><input type="checkbox" name="plus_half" v-model="current.plus_half" /> <br /> +1/2?</li>
 </ul>
+
+
+
+<div id="climbingAreas"> </div>
+
+<div id="current" v-show="current.area && current.color && current.grade_full">
+ <select v-model="current.status"><option v-for="s in options.status" >{{s}}</option></select>
+ {{current.color}} {{grade_combined()}} in {{current.area}} <br />
+ <button v-on:click="addCurrent()">Add me</button>
+</div>
+
+<div id="list">
+ <ul class="route_list"> 
+   <li v-for="r in allroutes"> <span v-on:click="setCurrent(r.color,r.grade,r.area)" class="info">{{r.area}} {{r.color}} {{r.grade}} </span> ({{r.climber}} {{r.status}} @ {{r.timestamp}} ) </li>
+ </ul>
+</div>
+
+
 </div>
 
 <!-- d3 select area -->
@@ -56,13 +88,109 @@ ul { list-decoration: none}
 </html>
  #+END_SRC
  
+** model-view
+*** model
+    what do we want to track, what color, grade, and status options are allowed
+ #+BEGIN_SRC javascript :tangle climbarea.js :exports code
+ var model = 
+  {'current': 
+    {'color': null, 'grade': null, 'setter': null,
+     'area': null,
+     'set_date': null,
+     'name': null, 'status': null, 'rate': null,
+     'note': null,
+     'location': 'TCW_boulder',
+     'climber': 'WF'
+    },
+   'options': {
+     'status': ['on-sight','completed','peiced','75%','50%','25%','started','skipped'],
+     'color':  ['blue','orange','red','pink','black','yellow','white','strip','rainbow'],
+     'grade':  ['B',0,1,2,3,4,5,6,7,8] 
+   },
+   'allroutes': []
+  }
+ 
+ #+END_SRC
+
+*** View (and send)
+   Vue does the heaving lifting. define two functions
+    - grade_combined to change B to -1 and add the half grade
+    - addCurrent to send away the selection+status
+#+BEGIN_SRC javascript :tangle climbarea.js :exports code
+sendaway = function(data) {
+     //console.log('sending',data)
+     var x = new XMLHttpRequest()
+     x.open('POST','/add',true)
+     x.setRequestHeader("Content-type","application/json")
+     x.send(data)
+}
+getRouteList = function(location,onready){
+     var x = new XMLHttpRequest()
+     x.onreadystatechange = function() {
+       if (this.readyState == 4 && this.status == 200){
+           onready(JSON.parse(x.response))
+       }
+     }
+     x.open('GET','http://localhost:8080/list/'+location,true)
+     //x.setRequestHeader("Content-type","application/json") // overrideMimeType
+     x.send()
+}
+
+var vueControler = new Vue({
+ el:"#route_specification",
+ data: model, 
+ methods: {
+   grade_combined: function(){
+     return (this.current.grade_full == 'B' ? -1 : this.current.grade_full) + (this.current.plus_half ? .5 : 0) 
+   },
+   setCurrent: function(color,grade,area){
+    console.log(color,grade,area)
+    this.current.color = color
+    this.current.area = area
+    // todo: color area on svg?
+    
+    // grade_full is without the .5, and B if -1
+    if(grade == "-1"){
+      this.current.grade_full == "B"
+    }else {   
+      this.current.grade_full = Math.floor(grade)
+    }
+    this.current.plus_half = grade != Math.floor(grade)
+   },
+   addCurrent: function(){
+     this.current.grade = this.grade_combined()
+     data = JSON.stringify(this.current)
+     sendaway(data)
+   },
+   updateList: function(d){
+    var self = this
+    console.log(d)
+    self.allroutes = d 
+    // clean up: unixtimestamp to iso date
+    for(var i=0;i<this.allroutes.length; i++){
+      if( ! self.allroutes[i]['timestamp'] ) { continue }
+      var d = new Date(self.allroutes[i]['timestamp'] * 1000)
+      self.allroutes[i]['timestamp'] = d.toISOString()
+    }
+   }
+  },
+ mounted: function(){
+     var self=this
+     getRouteList(this.current.location, this.updateList) 
+ }
+})
+
+
+#+END_SRC
+ 
 ** selecting areas
    We want to click an area. This depends on the svg floor plan loaded later.
  #+BEGIN_SRC javascript :tangle climbarea.js :exports code
  // setup
-var svgdiv = d3.select("body").append("div");
-svgdiv.attr("id","climbingAreas")
-//svgdiv.style("width", 400)
+//var svgdiv = d3.select("body").append("div");
+//svgdiv.attr("id","climbingAreas")
+var svgdiv = d3.select("div#climbingAreas");
+
 
 var svg;
 var clickable;
@@ -78,6 +206,7 @@ function select_area() {
  area = d3.select(this)
  area.style('fill','red')
  name = area.attr('id').match(/area_(.*)/)[1]
+ model.current.area = name
  console.log(name)
 }
 
@@ -98,6 +227,10 @@ d3.xml("outline.svg", function(error, documentFragment) {
 
         svg = svgdiv.select("svg")
 
+        // shrink 
+        svg.attr("width", "400")
+        svg.attr("height", "150")
+
         allpaths = svg.selectAll('path,rect')
 
         clickable = allpaths.filter(function() {
@@ -113,16 +246,61 @@ d3.xml("outline.svg", function(error, documentFragment) {
     });
  #+END_SRC
 
-** color and difficulty
-   color selection is built with vue
-#+BEGIN_SRC javascript :tangle climbarea.js :exports code
-var color= new Vue({
- el:"#route_specification",
- data: { colors: ['blue','orange','red','pink','black','yellow','white','strip','rainbow'],
-        grades: ['B',0,1,2,3,4,5,6,7,8] },
- methods: {
-   selectColor: function() {console.log(this)}
- }
-})
+** Server
+We want to log this persistent. It'd be cool to compare to others too. First lets just get recording working.
+http://localhost:8080/index.html
 
-#+END_SRC
+*** testing the server
+ #+BEGIN_SRC bash :exports code  :exports code :results none
+data='{"color": "red", "grade": 3, 
+     "area": "45",
+     "status": "completed", "rate": 4,
+     "note": "fun",
+     "location": "TCW_boulder",
+     "climber": "WF"
+    }'
+http POST http://localhost:8080/add Content-type:application/json <<<"$data" 
+ #+END_SRC
+
+*** quick API
+    Written with bottle. Statically serving other files.
+ #+BEGIN_SRC python :session web :exports code :tangle serve.py :tangle-mode (identity #o755)
+   #!/usr/bin/env python3
+   from bottle import route, run, post, static_file, request, response
+   from tinydb import TinyDB, Query
+   import datetime
+   import json
+
+   db = TinyDB('/tmp/tcw.json')
+
+   @route('/add',method='POST')
+   def add():
+       data = request.json
+       data['timestamp'] = datetime.datetime.now().timestamp()
+       print(data)
+       db.insert(data)
+
+   @route('/list/<location>')
+   def list(location="TCW_boulder"):
+       q = Query()
+       r = db.search(q.location == location)
+       response.content_type = 'application/json'
+       return json.dumps(r)
+
+
+   @route('/<filename>')
+   def static_f(filename):
+       return(static_file(filename, root="./"))
+
+
+   @route('/')
+   def root():
+      return static_f('index.html')
+
+
+   run(host='localhost',port=8080)
+
+
+ #+END_SRC
+
+ #+RESULTS:

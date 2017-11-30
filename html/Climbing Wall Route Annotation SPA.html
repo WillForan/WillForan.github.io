@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Climbing Wall Route Annotation SPA</title>
-<!-- 2017-11-19 Sun 21:44 -->
+<!-- 2017-11-29 Wed 22:21 -->
 <meta  charset="utf-8">
 <meta  name="generator" content="Org-mode">
 <style type="text/css">
@@ -174,14 +174,53 @@ We might care about
 </ul>
 </div>
 </div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">limitation's of org-mode tangle</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>line number error messages mean nothing
+</li>
+<li>quick edits are hard, collaboration is near impossible
+</li>
+</ul>
+</div>
+</div>
 </div>
 
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2">Code</h2>
+<h2 id="sec-2">Log</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1">The html for the SPA only calls javascript (which among other things, inserts the svg</h3>
-<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li><span class="timestamp-wrapper"><span class="timestamp">&lt;2017-11-20 Mon&gt;</span></span> - color,grade+half,area model&lt;-&gt;view connected - 1h
+</li>
+<li><span class="timestamp-wrapper"><span class="timestamp">&lt;2017-11-29 Wed&gt;</span></span> - python api (bottle+tinydb), ajax submit, list routes
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-2-0-1" class="outline-4">
+<h4 id="sec-2-0-1"><span class="todo TODO">TODO</span> user</h4>
+</div>
+<div id="outline-container-sec-2-0-2" class="outline-4">
+<h4 id="sec-2-0-2"><span class="todo TODO">TODO</span> different locations</h4>
+</div>
+<div id="outline-container-sec-2-0-3" class="outline-4">
+<h4 id="sec-2-0-3"><span class="todo TODO">TODO</span> location summary</h4>
+</div>
+<div id="outline-container-sec-2-0-4" class="outline-4">
+<h4 id="sec-2-0-4"><span class="todo TODO">TODO</span> add edit: notes, rate, name, setter, set<sub>date</sub></h4>
+</div>
+<div id="outline-container-sec-2-0-5" class="outline-4">
+<h4 id="sec-2-0-5"><span class="todo TODO">TODO</span> remove routes/reset wall</h4>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Code</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">The html for the SPA only calls javascript (which among other things, inserts the svg</h3>
+<div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 
 <pre class="src src-html">&lt;<span style="font-weight: bold;">html</span>&gt;
@@ -205,11 +244,30 @@ ul { list-decoration: none}
 <span style="font-weight: bold; font-style: italic;">&lt;!-- </span><span style="font-weight: bold; font-style: italic;">vue </span><span style="font-weight: bold; font-style: italic;">--&gt;</span>
 &lt;<span style="font-weight: bold;">div</span> <span style="font-weight: bold; font-style: italic;">id</span>=<span style="font-style: italic;">"route_specification"</span>&gt;
 &lt;<span style="font-weight: bold;">ul</span> <span style="font-weight: bold; font-style: italic;">class</span>=<span style="font-style: italic;">"color-buttons"</span>&gt;
-  &lt;<span style="font-weight: bold;">li</span> <span style="font-weight: bold; font-style: italic;">v-for</span>=<span style="font-style: italic;">"c in colors"</span> <span style="font-weight: bold;">v-bind</span>:<span style="font-weight: bold; font-style: italic;">style</span>=<span style="font-style: italic;">"{ background: c}"</span> <span style="font-weight: bold;">v-on</span>:<span style="font-weight: bold; font-style: italic;">click</span>=<span style="font-style: italic;">"selectColor"</span> <span style="font-weight: bold;">v-bind</span>:<span style="font-weight: bold; font-style: italic;">title</span>=<span style="font-style: italic;">"c"</span> &gt;  &lt;/<span style="font-weight: bold;">li</span>&gt;
+  &lt;<span style="font-weight: bold;">li</span> <span style="font-weight: bold; font-style: italic;">v-for</span>=<span style="font-style: italic;">"c in options.color"</span> <span style="font-weight: bold;">v-bind</span>:<span style="font-weight: bold; font-style: italic;">style</span>=<span style="font-style: italic;">"{ background: c}"</span> @click=<span style="font-style: italic;">"current.color = c"</span> <span style="font-weight: bold;">v-bind</span>:<span style="font-weight: bold; font-style: italic;">title</span>=<span style="font-style: italic;">"c"</span> &gt;  &lt;/<span style="font-weight: bold;">li</span>&gt;
 &lt;/<span style="font-weight: bold;">ul</span>&gt;
 &lt;<span style="font-weight: bold;">ul</span> <span style="font-weight: bold; font-style: italic;">class</span>=<span style="font-style: italic;">"grade-select"</span>&gt;
- &lt;<span style="font-weight: bold;">li</span> <span style="font-weight: bold; font-style: italic;">v-for</span>=<span style="font-style: italic;">"g in grades"</span>&gt;&lt;<span style="font-weight: bold;">input</span> <span style="font-weight: bold; font-style: italic;">type</span>=<span style="font-style: italic;">"radio"</span> <span style="font-weight: bold; font-style: italic;">name</span>=<span style="font-style: italic;">"grade"</span> value={{g}} /&gt;&lt;<span style="font-weight: bold;">br</span>&gt; {{g}} &lt;/<span style="font-weight: bold;">li</span>&gt;
+ &lt;<span style="font-weight: bold;">li</span> <span style="font-weight: bold; font-style: italic;">v-for</span>=<span style="font-style: italic;">"g in options.grade"</span>&gt;&lt;<span style="font-weight: bold;">input</span> <span style="font-weight: bold; font-style: italic;">type</span>=<span style="font-style: italic;">"radio"</span> <span style="font-weight: bold; font-style: italic;">name</span>=<span style="font-style: italic;">"grade"</span> :value=<span style="font-style: italic;">"g"</span> <span style="font-weight: bold; font-style: italic;">v-model</span>=<span style="font-style: italic;">"current.grade_full"</span> /&gt;&lt;<span style="font-weight: bold;">br</span>/&gt; {{g}} &lt;/<span style="font-weight: bold;">li</span>&gt;
+ &lt;<span style="font-weight: bold;">li</span>&gt;&lt;<span style="font-weight: bold;">input</span> <span style="font-weight: bold; font-style: italic;">type</span>=<span style="font-style: italic;">"checkbox"</span> <span style="font-weight: bold; font-style: italic;">name</span>=<span style="font-style: italic;">"plus_half"</span> <span style="font-weight: bold; font-style: italic;">v-model</span>=<span style="font-style: italic;">"current.plus_half"</span> /&gt; &lt;<span style="font-weight: bold;">br</span> /&gt; +1/2?&lt;/<span style="font-weight: bold;">li</span>&gt;
 &lt;/<span style="font-weight: bold;">ul</span>&gt;
+
+
+
+&lt;<span style="font-weight: bold;">div</span> <span style="font-weight: bold; font-style: italic;">id</span>=<span style="font-style: italic;">"climbingAreas"</span>&gt; &lt;/<span style="font-weight: bold;">div</span>&gt;
+
+&lt;<span style="font-weight: bold;">div</span> <span style="font-weight: bold; font-style: italic;">id</span>=<span style="font-style: italic;">"current"</span> <span style="font-weight: bold; font-style: italic;">v-show</span>=<span style="font-style: italic;">"current.area &amp;&amp; current.color &amp;&amp; current.grade_full"</span>&gt;
+ &lt;<span style="font-weight: bold;">select</span> <span style="font-weight: bold; font-style: italic;">v-model</span>=<span style="font-style: italic;">"current.status"</span>&gt;&lt;<span style="font-weight: bold;">option</span> <span style="font-weight: bold; font-style: italic;">v-for</span>=<span style="font-style: italic;">"s in options.status"</span> &gt;{{s}}&lt;/<span style="font-weight: bold;">option</span>&gt;&lt;/<span style="font-weight: bold;">select</span>&gt;
+ {{current.color}} {{grade_combined()}} in {{current.area}} &lt;<span style="font-weight: bold;">br</span> /&gt;
+ &lt;<span style="font-weight: bold;">button</span> <span style="font-weight: bold;">v-on</span>:<span style="font-weight: bold; font-style: italic;">click</span>=<span style="font-style: italic;">"addCurrent()"</span>&gt;Add me&lt;/<span style="font-weight: bold;">button</span>&gt;
+&lt;/<span style="font-weight: bold;">div</span>&gt;
+
+&lt;<span style="font-weight: bold;">div</span> <span style="font-weight: bold; font-style: italic;">id</span>=<span style="font-style: italic;">"list"</span>&gt;
+ &lt;<span style="font-weight: bold;">ul</span> <span style="font-weight: bold; font-style: italic;">class</span>=<span style="font-style: italic;">"route_list"</span>&gt; 
+   &lt;<span style="font-weight: bold;">li</span> <span style="font-weight: bold; font-style: italic;">v-for</span>=<span style="font-style: italic;">"r in allroutes"</span>&gt; &lt;<span style="font-weight: bold;">span</span> <span style="font-weight: bold;">v-on</span>:<span style="font-weight: bold; font-style: italic;">click</span>=<span style="font-style: italic;">"setCurrent(r.color,r.grade,r.area)"</span> <span style="font-weight: bold; font-style: italic;">class</span>=<span style="font-style: italic;">"info"</span>&gt;{{r.area}} {{r.color}} {{r.grade}} &lt;/<span style="font-weight: bold;">span</span>&gt; ({{r.climber}} {{r.status}} @ {{r.timestamp}} ) &lt;/<span style="font-weight: bold;">li</span>&gt;
+ &lt;/<span style="font-weight: bold;">ul</span>&gt;
+&lt;/<span style="font-weight: bold;">div</span>&gt;
+
+
 &lt;/<span style="font-weight: bold;">div</span>&gt;
 
 <span style="font-weight: bold; font-style: italic;">&lt;!-- </span><span style="font-weight: bold; font-style: italic;">d3 select area </span><span style="font-weight: bold; font-style: italic;">--&gt;</span>
@@ -221,18 +279,134 @@ ul { list-decoration: none}
 </div>
 </div>
 
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2">selecting areas</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">model-view</h3>
+<div class="outline-text-3" id="text-3-2">
+</div><div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1">model</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+what do we want to track, what color, grade, and status options are allowed
+</p>
+<div class="org-src-container">
+
+<pre class="src src-javascript"><span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">model</span> = 
+ {<span style="font-style: italic;">'current'</span>: 
+   {<span style="font-style: italic;">'color'</span>: <span style="font-weight: bold; text-decoration: underline;">null</span>, <span style="font-style: italic;">'grade'</span>: <span style="font-weight: bold; text-decoration: underline;">null</span>, <span style="font-style: italic;">'setter'</span>: <span style="font-weight: bold; text-decoration: underline;">null</span>,
+    <span style="font-style: italic;">'area'</span>: <span style="font-weight: bold; text-decoration: underline;">null</span>,
+    <span style="font-style: italic;">'set_date'</span>: <span style="font-weight: bold; text-decoration: underline;">null</span>,
+    <span style="font-style: italic;">'name'</span>: <span style="font-weight: bold; text-decoration: underline;">null</span>, <span style="font-style: italic;">'status'</span>: <span style="font-weight: bold; text-decoration: underline;">null</span>, <span style="font-style: italic;">'rate'</span>: <span style="font-weight: bold; text-decoration: underline;">null</span>,
+    <span style="font-style: italic;">'note'</span>: <span style="font-weight: bold; text-decoration: underline;">null</span>,
+    <span style="font-style: italic;">'location'</span>: <span style="font-style: italic;">'TCW_boulder'</span>,
+    <span style="font-style: italic;">'climber'</span>: <span style="font-style: italic;">'WF'</span>
+   },
+  <span style="font-style: italic;">'options'</span>: {
+    <span style="font-style: italic;">'status'</span>: [<span style="font-style: italic;">'on-sight'</span>,<span style="font-style: italic;">'completed'</span>,<span style="font-style: italic;">'peiced'</span>,<span style="font-style: italic;">'75%'</span>,<span style="font-style: italic;">'50%'</span>,<span style="font-style: italic;">'25%'</span>,<span style="font-style: italic;">'started'</span>,<span style="font-style: italic;">'skipped'</span>],
+    <span style="font-style: italic;">'color'</span>:  [<span style="font-style: italic;">'blue'</span>,<span style="font-style: italic;">'orange'</span>,<span style="font-style: italic;">'red'</span>,<span style="font-style: italic;">'pink'</span>,<span style="font-style: italic;">'black'</span>,<span style="font-style: italic;">'yellow'</span>,<span style="font-style: italic;">'white'</span>,<span style="font-style: italic;">'strip'</span>,<span style="font-style: italic;">'rainbow'</span>],
+    <span style="font-style: italic;">'grade'</span>:  [<span style="font-style: italic;">'B'</span>,0,1,2,3,4,5,6,7,8] 
+  },
+  <span style="font-style: italic;">'allroutes'</span>: []
+ }
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2-2" class="outline-4">
+<h4 id="sec-3-2-2">View (and send)</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<p>
+Vue does the heaving lifting. define two functions
+</p>
+<ul class="org-ul">
+<li>grade<sub>combined</sub> to change B to -1 and add the half grade
+</li>
+<li>addCurrent to send away the selection+status
+</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-javascript">sendaway = <span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">data</span>) {
+     <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">console.log('sending',data)</span>
+     <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">x</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">XMLHttpRequest</span>()
+     x.open(<span style="font-style: italic;">'POST'</span>,<span style="font-style: italic;">'/add'</span>,<span style="font-weight: bold; text-decoration: underline;">true</span>)
+     x.setRequestHeader(<span style="font-style: italic;">"Content-type"</span>,<span style="font-style: italic;">"application/json"</span>)
+     x.send(data)
+}
+getRouteList = <span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">location</span>,<span style="font-weight: bold; font-style: italic;">onready</span>){
+     <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">x</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">XMLHttpRequest</span>()
+     x.onreadystatechange = <span style="font-weight: bold;">function</span>() {
+       <span style="font-weight: bold;">if</span> (<span style="font-weight: bold; text-decoration: underline;">this</span>.readyState == 4 &amp;&amp; <span style="font-weight: bold; text-decoration: underline;">this</span>.status == 200){
+           onready(JSON.parse(x.response))
+       }
+     }
+     x.open(<span style="font-style: italic;">'GET'</span>,<span style="font-style: italic;">'http://localhost:8080/list/'</span>+location,<span style="font-weight: bold; text-decoration: underline;">true</span>)
+     <span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">x.setRequestHeader("Content-type","application/json") // overrideMimeType</span>
+     x.send()
+}
+
+<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">vueControler</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Vue</span>({
+ el:<span style="font-style: italic;">"#route_specification"</span>,
+ data: model, 
+ methods: {
+   <span style="font-weight: bold;">grade_combined</span>: <span style="font-weight: bold;">function</span>(){
+     <span style="font-weight: bold;">return</span> (<span style="font-weight: bold; text-decoration: underline;">this</span>.current.grade_full == <span style="font-style: italic;">'B'</span> ? -1 : <span style="font-weight: bold; text-decoration: underline;">this</span>.current.grade_full) + (<span style="font-weight: bold; text-decoration: underline;">this</span>.current.plus_half ? .5 : 0) 
+   },
+   <span style="font-weight: bold;">setCurrent</span>: <span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">color</span>,<span style="font-weight: bold; font-style: italic;">grade</span>,<span style="font-weight: bold; font-style: italic;">area</span>){
+    console.log(color,grade,area)
+    <span style="font-weight: bold; text-decoration: underline;">this</span>.current.color = color
+    <span style="font-weight: bold; text-decoration: underline;">this</span>.current.area = area
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">todo: color area on svg?</span>
+
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">grade_full is without the .5, and B if -1</span>
+    <span style="font-weight: bold;">if</span>(grade == <span style="font-style: italic;">"-1"</span>){
+      <span style="font-weight: bold; text-decoration: underline;">this</span>.current.grade_full == <span style="font-style: italic;">"B"</span>
+    }<span style="font-weight: bold;">else</span> {   
+      <span style="font-weight: bold; text-decoration: underline;">this</span>.current.grade_full = Math.floor(grade)
+    }
+    <span style="font-weight: bold; text-decoration: underline;">this</span>.current.plus_half = grade != Math.floor(grade)
+   },
+   <span style="font-weight: bold;">addCurrent</span>: <span style="font-weight: bold;">function</span>(){
+     <span style="font-weight: bold; text-decoration: underline;">this</span>.current.grade = <span style="font-weight: bold; text-decoration: underline;">this</span>.grade_combined()
+     data = JSON.stringify(<span style="font-weight: bold; text-decoration: underline;">this</span>.current)
+     sendaway(data)
+   },
+   <span style="font-weight: bold;">updateList</span>: <span style="font-weight: bold;">function</span>(<span style="font-weight: bold; font-style: italic;">d</span>){
+    <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">self</span> = <span style="font-weight: bold; text-decoration: underline;">this</span>
+    console.log(d)
+    self.allroutes = d 
+    <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">clean up: unixtimestamp to iso date</span>
+    <span style="font-weight: bold;">for</span>(<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">i</span>=0;i&lt;<span style="font-weight: bold; text-decoration: underline;">this</span>.allroutes.length; i++){
+      <span style="font-weight: bold;">if</span>( ! self.allroutes[i][<span style="font-style: italic;">'timestamp'</span>] ) { <span style="font-weight: bold;">continue</span> }
+      <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">d</span> = <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Date</span>(self.allroutes[i][<span style="font-style: italic;">'timestamp'</span>] * 1000)
+      self.allroutes[i][<span style="font-style: italic;">'timestamp'</span>] = d.toISOString()
+    }
+   }
+  },
+ <span style="font-weight: bold;">mounted</span>: <span style="font-weight: bold;">function</span>(){
+     <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">self</span>=<span style="font-weight: bold; text-decoration: underline;">this</span>
+     getRouteList(<span style="font-weight: bold; text-decoration: underline;">this</span>.current.location, <span style="font-weight: bold; text-decoration: underline;">this</span>.updateList) 
+ }
+})
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3">selecting areas</h3>
+<div class="outline-text-3" id="text-3-3">
 <p>
 We want to click an area. This depends on the svg floor plan loaded later.
 </p>
 <div class="org-src-container">
 
 <pre class="src src-javascript"> <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">setup</span>
-<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">svgdiv</span> = d3.select(<span style="font-style: italic;">"body"</span>).append(<span style="font-style: italic;">"div"</span>);
-svgdiv.attr(<span style="font-style: italic;">"id"</span>,<span style="font-style: italic;">"climbingAreas"</span>)
-<span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">svgdiv.style("width", 400)</span>
+<span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">var svgdiv = d3.select("body").append("div");</span>
+<span style="font-weight: bold; font-style: italic;">//</span><span style="font-weight: bold; font-style: italic;">svgdiv.attr("id","climbingAreas")</span>
+<span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">svgdiv</span> = d3.select(<span style="font-style: italic;">"div#climbingAreas"</span>);
+
 
 <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">svg</span>;
 <span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">clickable</span>;
@@ -248,6 +422,7 @@ svgdiv.attr(<span style="font-style: italic;">"id"</span>,<span style="font-styl
  area = d3.select(<span style="font-weight: bold; text-decoration: underline;">this</span>)
  area.style(<span style="font-style: italic;">'fill'</span>,<span style="font-style: italic;">'red'</span>)
  name = area.attr(<span style="font-style: italic;">'id'</span>).match(<span style="font-style: italic;">/area_(.*)/</span>)[1]
+ model.current.area = name
  console.log(name)
 }
 </pre>
@@ -255,9 +430,9 @@ svgdiv.attr(<span style="font-style: italic;">"id"</span>,<span style="font-styl
 </div>
 </div>
 
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3">inserting svg and area clicks</h3>
-<div class="outline-text-3" id="text-2-3">
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4">inserting svg and area clicks</h3>
+<div class="outline-text-3" id="text-3-4">
 <p>
   The floor plan for the boldering area has already been created as an svg.
 <code>rect</code> and <code>path</code> svg elements define areas that will contain routes and have an ID starting with <code>area_</code>.
@@ -273,6 +448,10 @@ d3.xml(<span style="font-style: italic;">"outline.svg"</span>, <span style="font
         );
 
         svg = svgdiv.select(<span style="font-style: italic;">"svg"</span>)
+
+        <span style="font-weight: bold; font-style: italic;">// </span><span style="font-weight: bold; font-style: italic;">shrink </span>
+        svg.attr(<span style="font-style: italic;">"width"</span>, <span style="font-style: italic;">"400"</span>)
+        svg.attr(<span style="font-style: italic;">"height"</span>, <span style="font-style: italic;">"150"</span>)
 
         allpaths = svg.selectAll(<span style="font-style: italic;">'path,rect'</span>)
 
@@ -292,23 +471,77 @@ d3.xml(<span style="font-style: italic;">"outline.svg"</span>, <span style="font
 </div>
 </div>
 
-<div id="outline-container-sec-2-4" class="outline-3">
-<h3 id="sec-2-4">color and difficulty</h3>
-<div class="outline-text-3" id="text-2-4">
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5">Server</h3>
+<div class="outline-text-3" id="text-3-5">
 <p>
-color selection is built with vue
+We want to log this persistent. It'd be cool to compare to others too. First lets just get recording working.
+<a href="http://localhost:8080/index.html">http://localhost:8080/index.html</a>
+</p>
+</div>
+
+<div id="outline-container-sec-3-5-1" class="outline-4">
+<h4 id="sec-3-5-1">testing the server</h4>
+<div class="outline-text-4" id="text-3-5-1">
+<div class="org-src-container">
+
+<pre class="src src-bash">data='{"color": "red", "grade": 3, 
+     "area": "45",
+     "status": "completed", "rate": 4,
+     "note": "fun",
+     "location": "TCW_boulder",
+     "climber": "WF"
+    }'
+http POST http://localhost:8080/add Content-type:application/json &lt;&lt;&lt;"$data"
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-5-2" class="outline-4">
+<h4 id="sec-3-5-2">quick API</h4>
+<div class="outline-text-4" id="text-3-5-2">
+<p>
+Written with bottle. Statically serving other files.
 </p>
 <div class="org-src-container">
 
-<pre class="src src-javascript"><span style="font-weight: bold;">var</span> <span style="font-weight: bold; font-style: italic;">color</span>= <span style="font-weight: bold;">new</span> <span style="font-weight: bold; text-decoration: underline;">Vue</span>({
- el:<span style="font-style: italic;">"#route_specification"</span>,
- data: { colors: [<span style="font-style: italic;">'blue'</span>,<span style="font-style: italic;">'orange'</span>,<span style="font-style: italic;">'red'</span>,<span style="font-style: italic;">'pink'</span>,<span style="font-style: italic;">'black'</span>,<span style="font-style: italic;">'yellow'</span>,<span style="font-style: italic;">'white'</span>,<span style="font-style: italic;">'strip'</span>,<span style="font-style: italic;">'rainbow'</span>],
-        grades: [<span style="font-style: italic;">'B'</span>,0,1,2,3,4,5,6,7,8] },
- methods: {
-   <span style="font-weight: bold;">selectColor</span>: <span style="font-weight: bold;">function</span>() {console.log(<span style="font-weight: bold; text-decoration: underline;">this</span>)}
- }
-})
+<pre class="src src-python"><span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">!/usr/bin/env python3</span>
+<span style="font-weight: bold;">from</span> bottle <span style="font-weight: bold;">import</span> route, run, post, static_file, request, response
+<span style="font-weight: bold;">from</span> tinydb <span style="font-weight: bold;">import</span> TinyDB, Query
+<span style="font-weight: bold;">import</span> datetime
+<span style="font-weight: bold;">import</span> json
+
+<span style="font-weight: bold; font-style: italic;">db</span> = TinyDB(<span style="font-style: italic;">'/tmp/tcw.json'</span>)
+
+<span style="font-weight: bold; text-decoration: underline;">@route</span>(<span style="font-style: italic;">'/add'</span>,method=<span style="font-style: italic;">'POST'</span>)
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">add</span>():
+    <span style="font-weight: bold; font-style: italic;">data</span> = request.json
+    <span style="font-weight: bold; font-style: italic;">data</span>[<span style="font-style: italic;">'timestamp'</span>] = datetime.datetime.now().timestamp()
+    <span style="font-weight: bold;">print</span>(data)
+    db.insert(data)
+
+<span style="font-weight: bold; text-decoration: underline;">@route</span>(<span style="font-style: italic;">'/list/&lt;location&gt;'</span>)
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">list</span>(location=<span style="font-style: italic;">"TCW_boulder"</span>):
+    <span style="font-weight: bold; font-style: italic;">q</span> = Query()
+    <span style="font-weight: bold; font-style: italic;">r</span> = db.search(q.location == location)
+    <span style="font-weight: bold; font-style: italic;">response.content_type</span> = <span style="font-style: italic;">'application/json'</span>
+    <span style="font-weight: bold;">return</span> json.dumps(r)
+
+
+<span style="font-weight: bold; text-decoration: underline;">@route</span>(<span style="font-style: italic;">'/&lt;filename&gt;'</span>)
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">static_f</span>(filename):
+    <span style="font-weight: bold;">return</span>(static_file(filename, root=<span style="font-style: italic;">"./"</span>))
+
+
+<span style="font-weight: bold; text-decoration: underline;">@route</span>(<span style="font-style: italic;">'/'</span>)
+<span style="font-weight: bold;">def</span> <span style="font-weight: bold;">root</span>():
+   <span style="font-weight: bold;">return</span> static_f(<span style="font-style: italic;">'index.html'</span>)
+
+
+run(host=<span style="font-style: italic;">'localhost'</span>,port=8080)
 </pre>
+</div>
 </div>
 </div>
 </div>
@@ -316,7 +549,7 @@ color selection is built with vue
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2017-11-19 Sun&gt;</span></span></p>
-<p class="date">Created: 2017-11-19 Sun 21:44</p>
+<p class="date">Created: 2017-11-29 Wed 22:21</p>
 <p class="creator"></p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
