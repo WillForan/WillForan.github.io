@@ -21,16 +21,6 @@
 ** limitation's of org-mode tangle
    - line number error messages mean nothing
    - quick edits are hard, collaboration is near impossible
-
-* Log
- - <2017-11-20 Mon> - color,grade+half,area model<->view connected - 1h
- - <2017-11-29 Wed> - python api (bottle+tinydb), ajax submit, list routes
-
-*** TODO user
-*** TODO different locations
-*** TODO location summary 
-*** TODO add edit: notes, rate, name, setter, set_date
-*** TODO remove routes/reset wall
 * Code
 
 ** The html for the SPA only calls javascript (which among other things, inserts the svg
@@ -40,7 +30,85 @@
 <title> TCW Route Tracker </title>
 <script src="https://unpkg.com/vue"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
-<style>
+<link rel="stylesheet" href="style.css"> </style>
+</head>
+<body> 
+<!-- vue -->
+<div id="climbing_spa">
+  <div id="route_specification">
+
+  <!-- to submit: route status and specific info --> 
+    <div id="current" v-show="current.area && current.color && current.grade_full">
+
+     <span class="route_id"> 
+      {{current.color}} {{grade_combined()}} on {{current.area}} 
+     </span>
+     <br />
+     <input type="text" placeholder="setter" v-model="current.setter" size=3 />
+     <input type="text" placeholder="name" v-model="current.name" />
+     <br />
+
+     <select v-model="current.status" >
+      <option value="" disabled selected>status</option>
+      <option v-for="s in options.status" >{{s}}</option>
+     </select>
+
+     <select v-model="current.rate" >
+      <option value="" disabled selected>rate</option>
+      <option v-for="r in options.ratings">{{r}}</option>
+     </select>
+
+     <input type="text" placeholder="notes" v-model="current.note" />
+
+
+     </br>
+     <button v-on:click="addCurrent()">Add</button>
+    </div>
+
+   <!-- 3 piece identification --> 
+   <ul class="color-buttons">
+     <li v-for="c in options.color" v-bind:class="{'box-selected': c == current.color }" v-bind:style="{ background: c}" @click="current.color = c" v-bind:title="c" >
+     </li>
+   </ul>
+   <ul class="grade-select">
+    <li v-for="g in options.grade">
+      <input type="radio" name="grade" :value="g" v-model="current.grade_full" /><br/>
+     {{g}} 
+      </li>
+    <li><input type="checkbox" name="plus_half" v-model="current.plus_half" /> <br /> +1/2?</li>
+   </ul>
+  
+  <div id="climbingAreas"> </div>
+  
+  </div>
+
+  <div id="list">
+   <ul class="route_list"> 
+     <li v-for="r in allroutes"> 
+       <span v-on:click="setCurrent(r.color,r.grade,r.area)" class="info">
+        {{r.area}} {{r.color}} {{r.grade}} 
+       </span> 
+       <span class="person"> 
+        {{r.climber}} {{r.status}} @ {{r.timestamp}}
+       </span>
+    </li>
+   </ul>
+  </div>
+</div>
+
+
+
+<!-- d3 select area -->
+<script src="climbarea.js"> </script>
+</body>
+</html>
+ #+END_SRC
+ 
+ 
+*** style
+#+BEGIN_SRC css :tangle style.css
+/* ul/li setting for color buttons is the only real meaningful css setting 
+ * all other elements will display in a functioning way with css */
 ul { list-decoration: none}
 .grade-select >li { display: inline-block; text-align:center}
 .color-buttons>li { 
@@ -50,62 +118,72 @@ ul { list-decoration: none}
   margin-right: 10;
   border: solid black 2px;
   cursor: pointer; }
-</style>
-</head>
-<body> 
-<!-- vue -->
-<div id="route_specification">
-<ul class="color-buttons">
-  <li v-for="c in options.color" v-bind:style="{ background: c}" @click="current.color = c" v-bind:title="c" >  </li>
-</ul>
-<ul class="grade-select">
- <li v-for="g in options.grade"><input type="radio" name="grade" :value="g" v-model="current.grade_full" /><br/> {{g}} </li>
- <li><input type="checkbox" name="plus_half" v-model="current.plus_half" /> <br /> +1/2?</li>
-</ul>
+.box-selected {
+  border-color: red !important;
+}
 
+/* left side */
+#route_specification {
+ display: inline-block;
+ width: 400px;
+}
 
+#current > span.route_id {
+ display: block;
+}
 
-<div id="climbingAreas"> </div>
-
-<div id="current" v-show="current.area && current.color && current.grade_full">
- <select v-model="current.status"><option v-for="s in options.status" >{{s}}</option></select>
- {{current.color}} {{grade_combined()}} in {{current.area}} <br />
- <button v-on:click="addCurrent()">Add me</button>
-</div>
-
-<div id="list">
- <ul class="route_list"> 
-   <li v-for="r in allroutes"> <span v-on:click="setCurrent(r.color,r.grade,r.area)" class="info">{{r.area}} {{r.color}} {{r.grade}} </span> ({{r.climber}} {{r.status}} @ {{r.timestamp}} ) </li>
- </ul>
-</div>
-
-
-</div>
-
-<!-- d3 select area -->
-<script src="climbarea.js"> </script>
-</body>
-</html>
- #+END_SRC
- 
+/* right side */
+#list {
+  display: inline-block;
+  vertical-align: top
+}
+/* display submited route statuses */
+ul.route_list > li {
+ padding: .2em
+}
+ul.route_list > li > span.info {
+ background-color: lightblue;
+ margin-right: 1em;
+ cursor: pointer;
+ margin-bottom: solid darkblue 1px;
+ border-bottom: dashed black 1px;
+}
+ul.route_list > li > span.info:hover, ul.route_list > li > span.info:active {
+ background-color: lightgreen
+}
+ul.route_list > li > span.person {
+  font-size: 6pt;
+  background-color: gray;
+  border-radius: 5px;
+  border: solid black 1px;
+  padding: .2em;
+}
+#+END_SRC
 ** model-view
 *** model
     what do we want to track, what color, grade, and status options are allowed
  #+BEGIN_SRC javascript :tangle climbarea.js :exports code
+ var empty_route_info = {
+  'color': null, 'grade': null, 
+  'area': null,
+  'set_date': null,
+  'setter': null,
+  'name': null,
+  //status and rate are dropdowns
+  // must be "" instead of null so dropbox selects it
+  'status': "", 
+  'rate': "",
+  'note': null,
+  'location': 'TCW_boulder',
+  'climber': 'WF'
+ }
  var model = 
-  {'current': 
-    {'color': null, 'grade': null, 'setter': null,
-     'area': null,
-     'set_date': null,
-     'name': null, 'status': null, 'rate': null,
-     'note': null,
-     'location': 'TCW_boulder',
-     'climber': 'WF'
-    },
+  {'current': JSON.parse(JSON.stringify(empty_route_info)),
    'options': {
      'status': ['on-sight','completed','peiced','75%','50%','25%','started','skipped'],
      'color':  ['blue','orange','red','pink','black','yellow','white','strip','rainbow'],
-     'grade':  ['B',0,1,2,3,4,5,6,7,8] 
+     'grade':  ['B',0,1,2,3,4,5,6,7,8],
+     'ratings': [1,2,3,4,5]
    },
    'allroutes': []
   }
@@ -131,13 +209,13 @@ getRouteList = function(location,onready){
            onready(JSON.parse(x.response))
        }
      }
-     x.open('GET','http://localhost:8080/list/'+location,true)
+     x.open('GET','/list/'+location,true)
      //x.setRequestHeader("Content-type","application/json") // overrideMimeType
      x.send()
 }
 
 var vueControler = new Vue({
- el:"#route_specification",
+ el:"#climbing_spa",
  data: model, 
  methods: {
    grade_combined: function(){
@@ -147,7 +225,9 @@ var vueControler = new Vue({
     console.log(color,grade,area)
     this.current.color = color
     this.current.area = area
-    // todo: color area on svg?
+    area_id = '#area_' + area
+    // this calls to var and function created later by d3
+    svgdiv.select(area_id).each(select_area)
     
     // grade_full is without the .5, and B if -1
     if(grade == "-1"){
@@ -161,8 +241,21 @@ var vueControler = new Vue({
      this.current.grade = this.grade_combined()
      data = JSON.stringify(this.current)
      sendaway(data)
+     // update view to empyt state
+     // TODO: maybe keep
+     this.updateList()
+     this.reset_current()
    },
-   updateList: function(d){
+   // cannot use until page is loaded because reset color defied later
+   // means we code copy of empty_route_info twice
+   reset_current: function(){
+     this.current = JSON.parse(JSON.stringify(empty_route_info))
+     reset_color()
+   },
+   updateList: function() {
+     getRouteList(this.current.location, this.updateListWithData)
+   },
+   updateListWithData: function(d){
     var self = this
     console.log(d)
     self.allroutes = d 
@@ -175,14 +268,13 @@ var vueControler = new Vue({
    }
   },
  mounted: function(){
-     var self=this
-     getRouteList(this.current.location, this.updateList) 
+     this.updateList()
  }
 })
 
 
 #+END_SRC
- 
+
 ** selecting areas
    We want to click an area. This depends on the svg floor plan loaded later.
  #+BEGIN_SRC javascript :tangle climbarea.js :exports code
@@ -229,7 +321,7 @@ d3.xml("outline.svg", function(error, documentFragment) {
 
         // shrink 
         svg.attr("width", "400")
-        svg.attr("height", "150")
+        svg.attr("height", "250")
 
         allpaths = svg.selectAll('path,rect')
 
@@ -266,12 +358,15 @@ http POST http://localhost:8080/add Content-type:application/json <<<"$data"
     Written with bottle. Statically serving other files.
  #+BEGIN_SRC python :session web :exports code :tangle serve.py :tangle-mode (identity #o755)
    #!/usr/bin/env python3
+   # (elpy-use-ipython)
    from bottle import route, run, post, static_file, request, response
    from tinydb import TinyDB, Query
    import datetime
    import json
+   from climb_summary import climb_summary
 
-   db = TinyDB('/tmp/tcw.json')
+   db = TinyDB('./climbing_status.json')
+
 
    @route('/add',method='POST')
    def add():
@@ -280,6 +375,7 @@ http POST http://localhost:8080/add Content-type:application/json <<<"$data"
        print(data)
        db.insert(data)
 
+   # just list all statuses from a location
    @route('/list/<location>')
    def list(location="TCW_boulder"):
        q = Query()
@@ -287,20 +383,177 @@ http POST http://localhost:8080/add Content-type:application/json <<<"$data"
        response.content_type = 'application/json'
        return json.dumps(r)
 
+   # list summary for a location
+   @route('/summary')
+   @route('/summary/<location>')
+   @route('/summary/<location>/<sortby>')
+   def list(location="TCW_boulder",sortby="cnt"):
+       q = Query()
+       r = db.search(q.location == location)
+       s = climb_summary(r,sortby)
+       response.content_type = 'application/json'
+       return json.dumps(s)
 
+   # specific route information
+   @route('/list/<location>/<area>/<color>/<grade>')
+   @route('/list/<location>/<area>/<color>/<grade>/<sortby>')
+   def list(area,color,grade,location="TCW_boulder",sortby="cnt"):
+       q = Query()
+       r = db.search( (q.location == location) & (q.area == area) & 
+                      (q.grade == grade) & (q.color == color) )
+       s = climb_summary(r,sortby)
+       response.content_type = 'application/json'
+       return json.dumps(s)
+
+
+   # all filenames are static
+   @route('/')
    @route('/<filename>')
-   def static_f(filename):
+   def static_f(filename='index.html'):
        return(static_file(filename, root="./"))
 
 
-   @route('/')
-   def root():
-      return static_f('index.html')
-
-
-   run(host='localhost',port=8080)
+   run(host='0.0.0.0',port=8080)
 
 
  #+END_SRC
+ 
+*** supporting functions
+    this file exists to summarize the list of climbing statuses 
+    the heavy lifting is done by ~try_fill~ which is a bad attempt at merging under specified climbing routes within a status to fully specified routes.
+    no attempt is made to merge non-overlapping partials.
+    set date is still ignored
+**** TODO add set date to ~try_fill~ and friends
+#+BEGIN_SRC python :tangle climb_summary.py
+   from itertools import groupby
+   # helper functions
+   def groupinfo(itera):
+       """
+       :param itera: array iterator of climbing route dicts from groupby
+       :returns: (dict) with summary stats for that group 
+       """
+       a = list(itera)
+
+       # rank calc requries a filter
+       # mabye worth importing numpy
+       ranks = list(filter( lambda x: x is not None, [x.get('rank',None) for x in a]))
+       if len(ranks) > 0:
+           avgrank = sum(ranks)/len(ranks)
+       else:
+           avgrank = None
+
+       d = { 'cnt': len(a),
+             'recent': max([0] + [x.get('timestamp',0) for x in a]),
+             'avgrank': avgrank,
+           }
+       return(d)
+    
+   def climb_summary(r,sortby='cnt'):
+       header=['location','area','color','grade','setter','name']
+       g = groupby(r,lambda x: [x.get(k) for k in header] )
+       # summarise all status into count and recent
+       s = [{'info': k,
+             ,**groupinfo(a),
+             # nfilled is the number of good values we have
+             'nfilled': int(k[header.index('setter')] not in [None, ""]) +
+                        int(k[header.index('name')] not in [None,""])
+             } for k, a in g]
+
+       # break back into array of dict
+       d = [ {
+             # put back info as dict
+             ,**{k: v for k,v in zip(header,x['info'])},
+             # also add any other stats that we computed
+             # skip 'info' 
+             ,**{k: x[k] for k in x if k not in ['info']}
+           } for x in s]
+
+
+       # re-group to merge where setter or name is empty
+       # maybe we should do this will pandas forwardfill fillna 
+       d = fill_idna(d)
+
+
+       # sort
+       s = sorted(d, key=lambda x: x[sortby] )
+      
+       return(d)
+
+   # this is absolutely misguided
+   # for a group of climbing dictionaries
+   # that all have the same loc,area,color, and grade
+   # match setter and name when we can
+   # might do terrible things when have only partial info for more than one climb
+   def try_fill(itera):
+       """
+       example
+       -------
+       itera = [
+       {'nfilled': 2, 'setter': 'ab', 'name': 'xx', 'avgrank': 3, 'cnt': 10, 'recent': 9}, 
+       {'nfilled': 1, 'setter': 'ab', 'name': '', 'avgrank': 1, 'cnt': 2, 'recent': 0},
+       {'nfilled': 1, 'setter': '', 'name': 'xx', 'avgrank': 5, 'cnt': 1, 'recent': 10}]
+       """
+       a_sorted = sorted(itera,key=lambda x: -x.get('nfilled',0))
+
+       matching = ['setter','name']
+
+       # build truth
+       truth = []
+       while a_sorted[0]['nfilled'] >= 2:
+           truth.append( a_sorted.pop(0) )
+       # compare the rest to the truth
+       # add together if matches
+       for ti in range(len(truth)):
+         t = truth[ti]
+         a_keep = []
+         for ai in range(len(a_sorted)):
+             a = a_sorted[ai]
+             nmatches = sum([ int(t.get(i) == a.get(i) and t.get(i) is not None) for i in matching])
+             # if we matched all the good parts of our partially emtpy dict
+             # update truth with this count and remove from a
+             if nmatches == a['nfilled']:
+                 truth[ti]['recent'] = max(t['recent'],a['recent'])
+                 truth[ti]['cnt'] = t['cnt']+a['cnt']
+                 truth[ti]['avgrank'] = (t['cnt']*t['avgrank'] + a['cnt']*a['avgrank'])/truth[ti]['cnt']
+             else:
+                 a_keep.append(ai)
+         a_sorted = [a_sorted[i] for i in a_keep]
+
+       return(truth + a_sorted)
+              
+
+   def fill_idna(d):
+       header = ['location','area','color','grade']
+       g = groupby(d, lambda x: [x.get(h) for h in  header])
+       m = [ {
+              # header as dict
+              ,**{k:v for k,v in zip(header,i)},
+              # and merged (and leftovers) for this id
+              ,**x} 
+           for i, a in g
+           for x in try_fill(a) ]
+       return(m)
+
+#+END_SRC
 
  #+RESULTS:
+
+* Log
+  :LOGBOOK:
+  CLOCK: [2017-12-01 Fri 23:42]--[2017-12-01 Fri 23:48] =>  0:06
+  CLOCK: [2017-12-01 Fri 18:36]--[2017-12-01 Fri 20:37] =>  2:01
+  CLOCK: [2017-11-30 Thu 21:36]--[2017-12-01 Fri 18:35] => 20:59
+  :END:
+ - <2017-11-20 Mon> - color,grade+half,area model<->view connected - 1h
+ - <2017-11-29 Wed> - python api (bottle+tinydb), ajax submit, list routes
+ - <2017-11-30 Thu> - highlight route on list click, reset input on submit
+ - <2017-12-01 Fri> - style, "" instead of null for selection, db summery routes
+
+*** TODO [#B] fix -1=>"B" on span route list click
+*** TODO [#B] user
+*** TODO [#C] different locations
+*** DONE location summary 
+**** TODO [#A] integrate summary with display
+*** DONE add edit: notes, rate, name, setter
+**** TODO [#B] setdate
+*** TODO remove routes/reset wall
