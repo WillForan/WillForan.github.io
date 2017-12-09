@@ -28,24 +28,35 @@
 <html>
 <head>
 <title> TCW Route Tracker </title>
-<script src="https://unpkg.com/vue"></script>
-<script src="https://d3js.org/d3.v4.min.js"></script>
+<!--
+ <script src="https://unpkg.com/vue"></script>
+ <script src="https://d3js.org/d3.v4.min.js"></script>
+-->
+<script src="vue"></script>
+<script src="d3.v4.min.js"></script>
 <link rel="stylesheet" href="style.css"> </style>
 </head>
 <body> 
 <!-- vue -->
 <div id="climbing_spa">
+  <div id="who-are-we">
+  logging as {{current.climber}} <span class="clickable" v-on:click="setClimber(null)">change</span>
+  </div>
   <div id="route_specification">
 
   <!-- to submit: route status and specific info --> 
-    <div id="current" v-show="current.area && current.color && current.grade_full">
+    <span v-on:click="reset_current()" class="clickable" v-show="have_any_current"> x </span>
+    <!--  debug v-if displays
+    all: {{have_all_current}} <br>
+    any: {{have_any_current}} <br>
+    {{current.area  != null }} {{current.color != null }} {{current_grade != null}}
+    <br> current_grade: {{ current_grade }} | {{current.grade_full}} + {{current.plus_half}}
+     -->
 
+    <div id="current" v-show="have_all_current">
      <span class="route_id"> 
       {{current.color}} {{grade_combined()}} on {{current.area}} 
      </span>
-     <br />
-     <input type="text" placeholder="setter" v-model="current.setter" size=3 />
-     <input type="text" placeholder="name" v-model="current.name" />
      <br />
 
      <select v-model="current.status" >
@@ -59,17 +70,41 @@
      </select>
 
      <input type="text" placeholder="notes" v-model="current.note" />
+     <br />
+     <input type="text" placeholder="setter" v-model="current.setter" size=3 />
+     <input type="text" placeholder="00/00" v-model="current.set_date" size=5 />
+     <input type="text" placeholder="name" v-model="current.name" />
 
 
      </br>
-     <button v-on:click="addCurrent()">Add</button>
+     <button v-on:click="addCurrent()" v-show="current.status">Add</button>
     </div>
 
    <!-- 3 piece identification --> 
+
+   <div id="id-current">
+    <select v-model="current.color" >
+        <option value="" disabled selected>color</option>
+        <option v-for="g in options.color" v-bind:style="{color: g}">{{g}}</option>
+    </select>
+
+    <select v-model="current.grade_full" >
+        <option value="" disabled selected>grade</option>
+        <option v-for="g in options.grade">{{g}}</option>
+    </select>
+
+    <input type="checkbox" name="plus_half" v-model="current.plus_half" /> +1/2?
+   </div>
+   
+
+   <!-- "fancier" select
+     -- select grade as as radio buttons
+
    <ul class="color-buttons">
      <li v-for="c in options.color" v-bind:class="{'box-selected': c == current.color }" v-bind:style="{ background: c}" @click="current.color = c" v-bind:title="c" >
      </li>
    </ul>
+
    <ul class="grade-select">
     <li v-for="g in options.grade">
       <input type="radio" name="grade" :value="g" v-model="current.grade_full" /><br/>
@@ -77,22 +112,43 @@
       </li>
     <li><input type="checkbox" name="plus_half" v-model="current.plus_half" /> <br /> +1/2?</li>
    </ul>
+   -->
   
   <div id="climbingAreas"> </div>
   
   </div>
 
   <div id="list">
+
+   <!--  summary list -->
    <ul class="route_list"> 
-     <li v-for="r in allroutes"> 
-       <span v-on:click="setCurrent(r.color,r.grade,r.area)" class="info">
+     <li v-for="r in route_summaries"  v-if="matches_current(r)"> 
+       <span v-on:click="setCurrent(r)" class="info">
         {{r.area}} {{r.color}} {{r.grade}} 
        </span> 
+       <br />
+       <span class="info_minor">
+        {{r.name}} {{r.setter}} {{r.set_date}}
+       </span>
+       <span class="stats"> 
+        | {{r.cnt}} {{r.avgrank}} ( {{r.recent}} )
+       </span>
+    </li>
+   </ul>
+
+   <hr v-show="allroutes.length > 0">
+   <!--  raw list -->
+   <ul class="route_list"> 
+     <li v-for="r in allroutes"> 
+       <span v-on:click="setCurrent(r)" class="info">
+        {{r.area}} {{r.color}} {{r.grade}} 
+       </span>  <br>
        <span class="person"> 
         {{r.climber}} {{r.status}} @ {{r.timestamp}}
        </span>
     </li>
    </ul>
+
   </div>
 </div>
 
@@ -107,9 +163,15 @@
  
 *** style
 #+BEGIN_SRC css :tangle style.css
+.clickable { cursor: pointer;  }
+#current { border: solid black 1px; padding: 5px;}
+#id-current {padding: 1em}
 /* ul/li setting for color buttons is the only real meaningful css setting 
  * all other elements will display in a functioning way with css */
-ul { list-decoration: none}
+ul { 
+ list-style: none;
+}
+
 .grade-select >li { display: inline-block; text-align:center}
 .color-buttons>li { 
   display: inline-block;
@@ -139,7 +201,8 @@ ul { list-decoration: none}
 }
 /* display submited route statuses */
 ul.route_list > li {
- padding: .2em
+ padding: .2em;
+ padding-bottom: 1em;
 }
 ul.route_list > li > span.info {
  background-color: lightblue;
@@ -164,28 +227,31 @@ ul.route_list > li > span.person {
     what do we want to track, what color, grade, and status options are allowed
  #+BEGIN_SRC javascript :tangle climbarea.js :exports code
  var empty_route_info = {
-  'color': null, 'grade': null, 
   'area': null,
   'set_date': null,
   'setter': null,
   'name': null,
   //status and rate are dropdowns
   // must be "" instead of null so dropbox selects it
+  'grade_full': "", 
   'status': "", 
   'rate': "",
+  'color': "", 
   'note': null,
   'location': 'TCW_boulder',
-  'climber': 'WF'
+  'climber': null
  }
  var model = 
   {'current': JSON.parse(JSON.stringify(empty_route_info)),
    'options': {
      'status': ['on-sight','completed','peiced','75%','50%','25%','started','skipped'],
-     'color':  ['blue','orange','red','pink','black','yellow','white','strip','rainbow'],
+     'color':  ['red','orange','yellow','green','blue','pink','black','white','stripped','rainbow','graphic'],
      'grade':  ['B',0,1,2,3,4,5,6,7,8],
      'ratings': [1,2,3,4,5]
    },
-   'allroutes': []
+   // left side lists of routes
+   'allroutes': [],
+   'route_summaries': [],
   }
  
  #+END_SRC
@@ -195,47 +261,118 @@ ul.route_list > li > span.person {
     - grade_combined to change B to -1 and add the half grade
     - addCurrent to send away the selection+status
 #+BEGIN_SRC javascript :tangle climbarea.js :exports code
-sendaway = function(data) {
+function sendaway(data) {
      //console.log('sending',data)
      var x = new XMLHttpRequest()
      x.open('POST','/add',true)
      x.setRequestHeader("Content-type","application/json")
      x.send(data)
 }
-getRouteList = function(location,onready){
+function ajax_update(path,onready){
      var x = new XMLHttpRequest()
      x.onreadystatechange = function() {
        if (this.readyState == 4 && this.status == 200){
            onready(JSON.parse(x.response))
        }
      }
-     x.open('GET','/list/'+location,true)
+     x.open('GET',path,true)
      //x.setRequestHeader("Content-type","application/json") // overrideMimeType
      x.send()
+}
+// format a date field in a list of hashes/dicts
+// from python datetime
+function frmt_date(a,field) {
+    for(var i=0; i < a.length; i++){
+      if( ! a[i][field] ) { continue }
+      var d = new Date(a[i][field] * 1000)
+      a[i][field] = d.toISOString().substr(0,16).replace('T',' ')
+    }
+    return(a)
+}
+
+function isempty(x){ return( x === "" || x == null || x == undefined) }
+// for filtering. return true when not set, or when matches
+function null_or_match(x,m) {
+  if( x !== 0 && isempty(x) ) {
+   return(true)
+  }
+  return(x == m) 
 }
 
 var vueControler = new Vue({
  el:"#climbing_spa",
  data: model, 
- methods: {
-   grade_combined: function(){
-     return (this.current.grade_full == 'B' ? -1 : this.current.grade_full) + (this.current.plus_half ? .5 : 0) 
+ computed: {
+   //current_grade: this.grade_combined
+   current_grade: function(){
+     grade = this.current.grade_full == 'B' ? -1 : parseInt(this.current.grade_full)
+     //console.log('current_grade computed:',this.current.grade_full,grade,isNaN(grade))
+     if(isNaN(grade)){ return(null) }
+     return (grade + (this.current.plus_half ? .5 : 0) )
    },
-   setCurrent: function(color,grade,area){
-    console.log(color,grade,area)
-    this.current.color = color
-    this.current.area = area
-    area_id = '#area_' + area
+   have_any_current: function() {
+      return(!isempty(this.current.area)  ||
+             !isempty(this.current.color) || 
+             !isempty(this.current_grade) )
+   },
+   have_all_current: function() {
+      return(!isempty(this.current.area)  &&
+             !isempty(this.current.color) && 
+             !isempty(this.current_grade) )
+   }
+
+ },
+ methods: {
+   setClimber: function(climber){
+      if(climber === null ){
+          climber =  prompt('Who are you?')
+      }
+      empty_route_info['climber'] = climber
+      this.current.climber = empty_route_info['climber']
+      // set cookie
+      document.cookie = "max-age=31536000"
+      document.cookie = "climber="+ climber
+   },
+   matches_current: function(r){
+
+     //console.log('match current? r:',JSON.stringify(r),' current:',JSON.stringify(this.current))
+     return( null_or_match(this.current.color,r.color) &&
+             null_or_match(this.current_grade,r.grade) &&
+             null_or_match(this.current.area, r.area) )
+ 
+   },
+   grade_combined: function(){
+     return(this.current_grade)
+   },
+   setCurrent: function(r){
+    console.log('setCurrent',JSON.stringify(r))
+    this.current.color = r.color
+    this.current.area = r.area
+    this.current.name = r.name
+    this.current.setter =  r.setter
+    area_id = '#area_' + r.area
     // this calls to var and function created later by d3
     svgdiv.select(area_id).each(select_area)
     
     // grade_full is without the .5, and B if -1
-    if(grade == "-1"){
+    newgrade = parseFloat(r.grade)
+    if(isNaN(newgrade)){newgrade = 0}
+    //console.log('setCurrent grade from->to:',this.current.grade_full, r.grade, newgrade)
+    if( newgrade < 0 ){
       this.current.grade_full == "B"
     }else {   
-      this.current.grade_full = Math.floor(grade)
+      this.current.grade_full = Math.floor(newgrade)
     }
-    this.current.plus_half = grade != Math.floor(grade)
+
+    // update half point checkbox
+    newplushalf=(newgrade != Math.floor(newgrade))
+    //console.log('setCurrent half old,new: ',this.current.plus_half, newplushalf)
+    this.current.plus_half = newplushalf
+    
+    // research all logs of this 
+    listURL = ['list', this.current.location, this.current.area,this.current.color, this.current_grade].join('/')
+    ajax_update('/' + listURL, this.fetchAllstatuses)
+    console.log('updated allroutes', this.allroutes)
    },
    addCurrent: function(){
      this.current.grade = this.grade_combined()
@@ -253,22 +390,37 @@ var vueControler = new Vue({
      reset_color()
    },
    updateList: function() {
-     getRouteList(this.current.location, this.updateListWithData)
+     console.log('update summary')
+     // all routes
+     ajax_update('/summary/'+this.current.location, this.fetchClimbSummaries)
+
+     // all statuses
+     // ajax_update('/list/'+this.current.location, this.fetchAllstatuses)
    },
-   updateListWithData: function(d){
+   /* get data from api server */
+   fetchAllstatuses: function(d){
     var self = this
     console.log(d)
-    self.allroutes = d 
+    self.allroutes = frmt_date(d,'timestamp')
+   },
+   fetchClimbSummaries: function(d){
+    var self = this
+    console.log(d)
     // clean up: unixtimestamp to iso date
-    for(var i=0;i<this.allroutes.length; i++){
-      if( ! self.allroutes[i]['timestamp'] ) { continue }
-      var d = new Date(self.allroutes[i]['timestamp'] * 1000)
-      self.allroutes[i]['timestamp'] = d.toISOString()
-    }
-   }
-  },
+    self.route_summaries = frmt_date(d,'recent')
+   },
+
+ },
  mounted: function(){
+     //console.log('mounting')
      this.updateList()
+     // use cookie or prompt for climber(user)
+     // should match climber=MY_CLIMBING_ID
+     console.log('setting cookie')
+     m=decodeURIComponent(document.cookie).match('climber=([^;]+)')
+     climber=m?m[1]:null
+     this.setClimber(climber)
+     console.log('climber = ',this.current.climber,'; should be:', climber)
  }
 })
 
@@ -397,13 +549,15 @@ http POST http://localhost:8080/add Content-type:application/json <<<"$data"
    # specific route information
    @route('/list/<location>/<area>/<color>/<grade>')
    @route('/list/<location>/<area>/<color>/<grade>/<sortby>')
-   def list(area,color,grade,location="TCW_boulder",sortby="cnt"):
+   def list(location,area,color,grade,sortby="cnt"):
        q = Query()
-       r = db.search( (q.location == location) & (q.area == area) & 
-                      (q.grade == grade) & (q.color == color) )
-       s = climb_summary(r,sortby)
+       r = db.search( (q.location == location) & (q.area == area) &
+                      (q.color == color) & (q.grade == float(grade)) )
        response.content_type = 'application/json'
-       return json.dumps(s)
+       #print('looking for loc "%s" area "%s" color "%s" grade "%s"' % (location, area, color, grade) )
+       #print("found %d" % len(r))
+       #s = climb_summary(r,sortby)
+       return json.dumps(r)
 
 
    # all filenames are static
@@ -417,6 +571,8 @@ http POST http://localhost:8080/add Content-type:application/json <<<"$data"
 
 
  #+END_SRC
+
+ #+RESULTS:
  
 *** supporting functions
     this file exists to summarize the list of climbing statuses 
@@ -499,7 +655,7 @@ http POST http://localhost:8080/add Content-type:application/json <<<"$data"
 
        # build truth
        truth = []
-       while a_sorted[0]['nfilled'] >= 2:
+       while len(a_sorted) >0 and a_sorted[0]['nfilled'] >= 2:
            truth.append( a_sorted.pop(0) )
        # compare the rest to the truth
        # add together if matches
@@ -514,7 +670,22 @@ http POST http://localhost:8080/add Content-type:application/json <<<"$data"
              if nmatches == a['nfilled']:
                  truth[ti]['recent'] = max(t['recent'],a['recent'])
                  truth[ti]['cnt'] = t['cnt']+a['cnt']
-                 truth[ti]['avgrank'] = (t['cnt']*t['avgrank'] + a['cnt']*a['avgrank'])/truth[ti]['cnt']
+
+                 # deal with null avgrank
+                 cnt=1
+                 if t['avgrank']:
+                    tavg = t['cnt']*t['avgrank'] 
+                    cnt = t['cnt']
+                 else:
+                    tavg = 0
+                 if a['avgrank']:
+                    aavg = a['cnt']*a['avgrank'] 
+                    cnt = cnt + t['cnt']
+                 else:
+                    aavg=0
+                 
+                 truth[ti]['avgrank'] = (tavg + aavg)/cnt
+
              else:
                  a_keep.append(ai)
          a_sorted = [a_sorted[i] for i in a_keep]
@@ -533,6 +704,19 @@ http POST http://localhost:8080/add Content-type:application/json <<<"$data"
            for i, a in g
            for x in try_fill(a) ]
        return(m)
+       
+   def to_df_fill(r):
+    df = pd.DataFrame(r).\
+         assign(nrate= lambda x: x.rank is not None).\
+         groupby(['location','area','color','grade']).\
+         aggregate(
+          {'timestamp': 'max',
+           'climber': lambda x: x.size,
+           'rate': 'sum',
+           'nrate': 'sum'
+           })
+            
+    return(df.T.to_dict().values() )
 
 #+END_SRC
 
@@ -548,12 +732,22 @@ http POST http://localhost:8080/add Content-type:application/json <<<"$data"
  - <2017-11-29 Wed> - python api (bottle+tinydb), ajax submit, list routes
  - <2017-11-30 Thu> - highlight route on list click, reset input on submit
  - <2017-12-01 Fri> - style, "" instead of null for selection, db summery routes
+ - <2017-12-02 Sat> - simpler interface, "user"
+ - <2017-12-05 Tue> - add green to colors, textbox for set_date
 
+*** DONE [#A] integrate summary with display
+    :LOGBOOK:
+    CLOCK: [2017-12-02 Sat 09:15]--[2017-12-02 Sat 09:47] =>  0:32
+    :END:
+*** TODO [#A] filter summary color/grade/area
+    :LOGBOOK:
+    CLOCK: [2017-12-02 Sat 10:30]--[2017-12-02 Sat 12:12] =>  1:42
+    CLOCK: [2017-12-02 Sat 09:57]--[2017-12-02 Sat 10:25] =>  0:28
+    :END:
+**** TODO [#B] set_date
 *** TODO [#B] fix -1=>"B" on span route list click
-*** TODO [#B] user
+*** DONE [#B] user
 *** TODO [#C] different locations
 *** DONE location summary 
-**** TODO [#A] integrate summary with display
 *** DONE add edit: notes, rate, name, setter
-**** TODO [#B] setdate
-*** TODO remove routes/reset wall
+*** TODO [#C] remove routes/reset wall
