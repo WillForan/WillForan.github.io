@@ -19,8 +19,25 @@ Much later, I found *geomyidae* linked from suckless tools. By timing coincidenc
   cd geomyidae
   make
   # man ./geomyidae.8 
-  echo [1|test desc|/test.txt|server|70] >> /var/gopher/index.gph
+  echo [0|test desc|/test.txt|server|70] >> /var/gopher/index.gph
   # run server with explict hostname ("server" in links), log everything (31)
   sudo ./geomyidae -d -v 31 -h www.xn--4-cmb.com
   
+#+END_SRC
+
+* Firefox
+  
+~lynx~ can handle ~gopher://~ urls, but firefox is more convenient.
+Overbite has a nice plugin but the no-proxy solution needs a native-client bridge installed manually.
+
+after grabbing https://addons.mozilla.org/en-US/firefox/addon/overbitenx/
+
+#+BEGIN_SRC sh
+git clone https://github.com/classilla/overbitenx.git
+cd overbitenx
+make
+cp onyx ~/bin/ # ~/bin already in path
+mkdir ~/.mozilla/native-messaging-hosts/
+cp EXAMPLE_onyx.json ~/.mozilla/native-messaging-hosts/onyx.json
+vim $_ # correct path to bin
 #+END_SRC

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-03-15 Fri 22:30 -->
+<!-- 2019-03-15 Fri 22:52 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gopher blog</title>
@@ -229,9 +229,9 @@ for the JavaScript code in this tag.
 <div id="content">
 <h1 class="title">Gopher blog</h1>
 
-<div id="outline-container-org0911963" class="outline-2">
-<h2 id="org0911963">Gopher server</h2>
-<div class="outline-text-2" id="text-org0911963">
+<div id="outline-container-org9d45cbd" class="outline-2">
+<h2 id="org9d45cbd">Gopher server</h2>
+<div class="outline-text-2" id="text-org9d45cbd">
 <p>
 I've added a gopher server to mirror content. I can not image it will be used seriously, but it seems important.
 </p>
@@ -242,9 +242,9 @@ Gopher links to raw org text files. github.io gets prettified html.
 </div>
 </div>
 
-<div id="outline-container-orgeee7bd1" class="outline-2">
-<h2 id="orgeee7bd1">Implementation</h2>
-<div class="outline-text-2" id="text-orgeee7bd1">
+<div id="outline-container-org25ab6a4" class="outline-2">
+<h2 id="org25ab6a4">Implementation</h2>
+<div class="outline-text-2" id="text-org25ab6a4">
 <p>
 My first attempt was with <a href="https://github.com/puckipedia/pyGopher">https://github.com/puckipedia/pyGopher</a>. I didn't spend enough time digging for documentation.
 Much later, I found <b>geomyidae</b> linked from suckless tools. By timing coincidence or by man page, it clicked.
@@ -256,7 +256,7 @@ git clone git://r-36.net/geomyidae
 <span style="font-weight: bold;">cd</span> geomyidae
 make
 <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">man ./geomyidae.8 </span>
-<span style="font-weight: bold;">echo</span> [1|test desc|/test.txt|server|70] &gt;&gt; /var/gopher/index.gph
+<span style="font-weight: bold;">echo</span> [0|test desc|/test.txt|server|70] &gt;&gt; /var/gopher/index.gph
 <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">run server with explict hostname ("server" in links), log everything (31)</span>
 sudo ./geomyidae -d -v 31 -h www.xn--4-cmb.com
 
@@ -264,10 +264,35 @@ sudo ./geomyidae -d -v 31 -h www.xn--4-cmb.com
 </div>
 </div>
 </div>
+
+<div id="outline-container-org92dba7b" class="outline-2">
+<h2 id="org92dba7b">Firefox</h2>
+<div class="outline-text-2" id="text-org92dba7b">
+<p>
+<code>lynx</code> can handle <code>gopher://</code> urls, but firefox is more convenient.
+Overbite has a nice plugin but the no-proxy solution needs a native-client bridge installed manually.
+</p>
+
+<p>
+after grabbing <a href="https://addons.mozilla.org/en-US/firefox/addon/overbitenx/">https://addons.mozilla.org/en-US/firefox/addon/overbitenx/</a>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git clone https://github.com/classilla/overbitenx.git
+<span style="font-weight: bold;">cd</span> overbitenx
+make
+cp onyx ~/bin/ <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">~/bin already in path</span>
+mkdir ~/.mozilla/native-messaging-hosts/
+cp EXAMPLE_onyx.json ~/.mozilla/native-messaging-hosts/onyx.json
+vim $<span style="font-weight: bold; font-style: italic;">_</span> <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">correct path to bin</span>
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2019-03-15</p>
-<p class="date">Created: 2019-03-15 Fri 22:30</p>
+<p class="date">Created: 2019-03-15 Fri 22:52</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

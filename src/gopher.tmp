@@ -1,5 +1,5 @@
 @require(file_df)
 WF log
 @for i,f in file_df.iterrows():
-[1|@f['date'] - @f['title']|@f['uri']|server|70]
+[0|@f['date'] - @f['title']|@f['uri']|server|70]
 @end
