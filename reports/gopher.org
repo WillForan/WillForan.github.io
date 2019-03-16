@@ -1,0 +1,26 @@
+#+Title:Gopher blog
+#+DATE: 2019-03-15
+#+OPTIONS: _:{} ^:{} toc:nil num:nil
+#+CREATOR: 
+
+* Gopher server
+I've added a gopher server to mirror content. I can not image it will be used seriously, but it seems important.
+
+Gopher links to raw org text files. github.io gets prettified html.
+
+* Implementation
+
+My first attempt was with https://github.com/puckipedia/pyGopher. I didn't spend enough time digging for documentation.
+Much later, I found *geomyidae* linked from suckless tools. By timing coincidence or by man page, it clicked.
+  
+#+BEGIN_SRC bash
+
+  git clone git://r-36.net/geomyidae
+  cd geomyidae
+  make
+  # man ./geomyidae.8 
+  echo [1|test desc|/test.txt|server|70] >> /var/gopher/index.gph
+  # run server with explict hostname ("server" in links), log everything (31)
+  sudo ./geomyidae -d -v 31 -h www.xn--4-cmb.com
+  
+#+END_SRC

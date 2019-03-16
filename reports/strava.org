@@ -1,0 +1,89 @@
+#+TITLE:Strava Tracked Workouts
+#+DATE: 2017-12-09
+#+OPTIONS: _:{} ^:{} toc:nil num:nil
+#+CREATOR: 
+
+* Viewing Activity
+
+** pulling data
+  Load https://www.strava.com/athlete/training and copy the requestion curl when inspecting network. 
+Code below does not have the cookie ~-H~ param.
+ 
+
+    #+BEGIN_SRC bash :results none 
+    [ ! -d strava ] && mkdir strava
+    for i in {1..20}; do
+        # copy from browser request. missing cookie here
+        curl "https://www.strava.com/athlete/training_activities?keywords=&activity_type=&workout_type=&commute=&private_activities=&trainer=&gear=&new_activity_only=false&page=$i&per_page=20"  > $i.json
+    done
+    #+END_SRC
+
+**  load data
+
+   #+BEGIN_SRC R :session
+     library(jsonlite)
+     library(lubridate)
+     library(dplyr)
+     library(ggplot2)
+     library(cowplot)
+     nasum <- function(x) sum(na.omit(as.numeric(x)))
+
+     dlist <- lapply(Sys.glob('strava/*json'),
+                     function(f) {
+                         fromJSON(f)$models %>%
+                         select(id,type,start_time,
+                                epoch=start_date_local_raw,
+                                distance,moving_time,elapsed_time,
+                                elevation_gain,calories
+                               )
+     })
+     d <- Reduce(rbind,dlist)
+
+     d.year <-
+         d %>%
+         mutate(start_time = with_tz(ymd_hms(start_time),'America/New_York')) %>%
+         filter( start_time > now()-years(1))
+
+     #d.year$type[d.year$type=='Walk'] <- 'Hike'
+     d.clean <- 
+         d.year %>%
+         filter(type %in% c('AlpineSki','NordicSki','Ride','Run','Swim','Hike'))
+
+   #+END_SRC
+
+* plot 
+
+   #+BEGIN_SRC R :session :results output graphics :file strava/summary.png :exports both
+     p.hour  <-
+         ggplot(d.clean) +
+         aes(x=hour(start_time),fill=type) +
+         geom_histogram(bins=24) +
+         labs(x='hour of the day')
+     p.wday  <-
+         ggplot(d.clean) +
+         aes(x=wday(start_time,label=T),fill=type) +
+         geom_histogram(stat='count')+
+         labs(x='day of week')
+
+
+
+     p.type <-
+         d.clean %>%
+         group_by(`type`) %>%
+         summarise(n=n(),
+                   total.dist=nasum(distance),
+                   total.cal = nasum(calories),
+                   avg.cal = mean(calories,na.rm=T),
+                   avg.dist = mean(as.numeric(distance),na.omit=T) ) %>%
+         ggplot() +
+         aes(x=type,color=avg.cal,y=avg.dist,size=n) +
+         geom_point()
+
+     plot_grid(p.hour + theme(legend.position = "top"),
+               p.wday + theme(legend.position = "none"),
+               p.type,
+               nrow=3)
+   #+END_SRC
+
+   #+RESULTS:
+   [[File:strava/summary.png]]

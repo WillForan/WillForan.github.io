@@ -24,9 +24,9 @@ I think there is not a good way to see if something was only partially watched. 
     #+BEGIN_SRC bash
     [ ! -d netflix ] && mkdir netflix
     for i in {1..10}; do
-    curl "https://www.netflix.com/api/shakti/adc049f7/viewingactivity?pg=$i" \
-    -H 'Cookie: memclid=XXXX; SecureNetflixId=XXX; NetflixId=XXXX' \
-        netflix/$i.json
+        curl "https://www.netflix.com/api/shakti/adc049f7/viewingactivity?pg=$i" \
+            -H 'Cookie: memclid=XXXX; SecureNetflixId=XXX; NetflixId=XXXX' \
+            > netflix/$i.json
     done
     #+END_SRC
 
