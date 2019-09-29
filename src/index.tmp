@@ -11,5 +11,12 @@
         <li><a href="@f['uri']"><time>@f['date']</time> @f['title']</a></li>
     @end
     </ul>
+    <h1>External</h1>
+    <ul class="info">
+       <li><a href="https://github.com/WillForan">Github</a></li>
+       <li><a href="https://stackoverflow.com/users/1031776/will">StackOverflow</a></li>
+       <li><a href="https://scholar.google.com/citations?user=PzX6F5oAAAAJ">GoogleScholar</a></li>
+       <li><a href="https://www.strava.com/athletes/15036420">Strava</a></li>
+    </ul>
   </body>
 </html>

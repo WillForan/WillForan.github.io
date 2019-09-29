@@ -1,5 +1,7 @@
 body { font-family: mono; font-weight: bold;}
 h1 { font-size: larger;}
 ul { list-style: none;} 
-time {color: grey;}
-a  {text-decoration: none}
+time { color: grey;}
+a { text-decoration: none;}
+.info li {display: inline-block;}
+.info li:not(:last-child):after { content: ' |';}
