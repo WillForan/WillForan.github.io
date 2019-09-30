@@ -1,4 +1,4 @@
-#+TITLE:Static Generator for Org Files
+#+TITLE: readme: static generator python wrapping org-mode
 #+DATE: 2017-11-18
 #+OPTIONS: _:{} ^:{} toc:nil num:nil
 #+CREATOR: 
@@ -54,7 +54,7 @@ run tangle from ~reports/~ directory not top level. relative links work much bet
    #!/usr/bin/env python3
    
    # DO NOT EDIT OUTSIDE OF ORG-MODE FILE
-   # this file is tangled from ../reports/make_index.org
+   # this file is tangled from readme.org
    import os
    import glob
    import datetime
@@ -99,6 +99,7 @@ run tangle from ~reports/~ directory not top level. relative links work much bet
                     m = redict[k].match(l)
                     if m:
                         txtinfo[k] = m.group(1)
+			print("matched %s => %s" % (k, txtinfo[k]))
 
        if not txtinfo.get('title'):
            txtinfo['title']= re.sub('(.md|.org)$','', os.path.basename(f))
@@ -118,7 +119,8 @@ run tangle from ~reports/~ directory not top level. relative links work much bet
   import pandas
   # editing org file we are in ../reports, as file we are in ../src
   os.chdir('../reports')
-  filelist = [ {**file_stat(f), **file_info(f)} for f in glob.glob('*.org') ]
+  all_org = glob.glob('*.org')
+  filelist = [{**file_stat(f), **file_info(f)} for f in all_org]
   # reverse sort by date
   filelist = sorted(filelist,key=lambda x: x['date'],reverse=True)
   # as a dataframe
@@ -200,6 +202,13 @@ Meanwhile, the instructions to do all of this are written in emacs. Literate pro
           <li><a href="@f['uri']"><time>@f['date']</time> @f['title']</a></li>
       @end
       </ul>
+      <h1>External</h1>
+      <ul class="info">
+         <li><a href="https://github.com/WillForan">Github</a></li>
+         <li><a href="https://stackoverflow.com/users/1031776/will">StackOverflow</a></li>
+         <li><a href="https://scholar.google.com/citations?user=PzX6F5oAAAAJ">GoogleScholar</a></li>
+         <li><a href="https://www.strava.com/athletes/15036420">Strava</a></li>
+      </ul>
     </body>
   </html>
 #+END_SRC
@@ -208,8 +217,10 @@ Meanwhile, the instructions to do all of this are written in emacs. Literate pro
 body { font-family: mono; font-weight: bold;}
 h1 { font-size: larger;}
 ul { list-style: none;} 
-time {color: grey;}
-a  {text-decoration: none}
+time { color: grey;}
+a { text-decoration: none;}
+.info li {display: inline-block;}
+.info li:not(:last-child):after { content: ' |';}
 #+END_SRC
 
 #+BEGIN_SRC python :tangle ../src/make_index.py :session :results none :exports none

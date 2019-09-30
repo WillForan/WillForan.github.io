@@ -1,36 +1,32 @@
 #!/usr/bin/env python3
 
 # DO NOT EDIT OUTSIDE OF ORG-MODE FILE
-# this file is tangled from ../reports/make_index.org
+# this file is tangled from readme.org
 import os
 import glob
 import datetime
 import re
-from subprocess import call
-import pandas
-# import pprint
+import pprint
 
 # we need to be in the correct directory. always start at script directory
-thisdir = os.path.dirname(__file__)
-if not thisdir: thisdir = './'
+thisdir=os.path.dirname(__file__)
+if not thisdir: thisdir='./'
 os.chdir(thisdir)
 
 
 # regexp for things we want to pull from org-file:
 #  date and title
 redict = {'date':
-          re.compile('^#\+DATE:.*(\d{4}-\d{2}-\d{2})'),
+           re.compile('^#\+DATE:.*(\d{4}-\d{2}-\d{2})'),
           'title': re.compile('^#\+TITLE: ?(.*)')}
-
 
 def file_stat(f):
     if not os.path.isfile(f):
-        return({'f': f, 'mt': None})
+         return({'f': f,'mt': None})
     fstat = os.stat(f)
     mt = datetime.datetime.fromtimestamp(
           fstat.st_mtime)
-    return({'f': f, 'mt': mt})
-
+    return({'f': f,'mt': mt})
 
 def file_info(f):
     txtinfo = {}
@@ -58,29 +54,30 @@ def file_info(f):
     return(txtinfo)
 
 # ### find all the files we want to use as reports
+import pandas
 # editing org file we are in ../reports, as file we are in ../src
 os.chdir('../reports')
-filelist = [{**file_stat(f), **file_info(f)} for f in glob.glob('*.org')]
+filelist = [ {**file_stat(f), **file_info(f)} for f in glob.glob('*.org') ]
+print(filelist)
 # reverse sort by date
-filelist = sorted(filelist, key=lambda x: x['date'], reverse=True)
+filelist = sorted(filelist,key=lambda x: x['date'],reverse=True)
 # as a dataframe
 file_df = pandas.DataFrame(filelist)
-
 
 # build a list of exported files and their export (modification) date
 # build those that need it
 def export_info(file_df):
-    file_df['export_to'] = ['../html/%s.html' % t for t in file_df['title']]
-    file_df['export_date'] = [file_stat(f)['mt'] for f in file_df['export_to']]
-    return(file_df)
+  file_df['export_to'] = [ '../html/%s.html'%t for t in file_df['title'] ]
+  file_df['export_date'] =  [ file_stat(f)['mt'] for f in file_df['export_to'] ]
+  return(file_df)
 
-
+from subprocess import call
 # update dataframe with export vars
 file_df = export_info(file_df)
 # find None (!= to self) or out-of-date
 need_update = file_df.query('export_date != export_date or export_date < mt')
 
-for i, n in need_update.iterrows():
+for i,n in need_update.iterrows():
     call(['org-export','html','--infile',n['f'],'--outfile',n['export_to'],'--bootstrap' ])
 
 # update again, see if everything exported
@@ -101,22 +98,4 @@ template = engine.get_template('index.tmp')
 # write it out
 index_str = template.render({'file_df': file_df,'title': 'WF log'})
 with open('../index.html','w') as indexf:
-    indexf.write(index_str)
-
-
-# ## Gopher
-def html_to_goph(x):
-    x = re.sub('(org|html)$', 'txt', x)
-    x = re.sub('html/', '/gopher/', x)
-    return(x)
-
-
-for i, n in need_update.iterrows():
-    call(['cp', n['f'], html_to_goph(n['export_to'])])
-
-file_df['uri'] = ['/' + html_to_goph(x) for x in file_df.f]
-
-template = engine.get_template('gopher.tmp')
-index_str = template.render({'file_df': file_df})
-with open('../gopher/index.gph', 'w') as indexf:
     indexf.write(index_str)
