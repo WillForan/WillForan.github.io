@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-04-04 Sat 15:32 -->
+<!-- 2020-04-04 Sat 21:49 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Risk by email stats</title>
@@ -245,2244 +245,90 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7bbe96d">1. Log</a></li>
-<li><a href="#org58b87da">2. Extract</a></li>
-<li><a href="#orgf8c3d57">3. Stats</a></li>
-<li><a href="#org7f28535">4. Colophon/Appendix</a></li>
+<li><a href="#org55d3c45">1. Log</a></li>
+<li><a href="#org70cd9a6">2. Extract</a></li>
+<li><a href="#orga45c99d">3. Stats</a></li>
+<li><a href="#org65c7a10">4. Colophon/Appendix</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org7bbe96d" class="outline-2">
-<h2 id="org7bbe96d"><span class="section-number-2">1</span> Log</h2>
+<div id="outline-container-org55d3c45" class="outline-2">
+<h2 id="org55d3c45"><span class="section-number-2">1</span> Log</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Copy/pasted from gamesbyemail.com's game log. The page does fetch malformated json to populate the log, but the objects are dense.
 The presented log seems easier to parse.
 The interesting bits to extract are "Attacks", "Defends", "XXX defeated", and "END OF TURN".
 </p>
+</div>
+</div>
 
-<div class="org-src-container">
-<pre class="src src-txt">0.	Start of Game
-1.	Deployed 3 occupying armies to North Africa (1)
-Deployed 2 occupying armies to Alaska (1)
-Deployed 2 occupying armies to Western United States (1)
-Deployed 2 occupying armies to Quebec (1)
-Deployed 1 occupying army to Brazil (1)
-Deployed 1 occupying army to South Africa (1)
-Deployed 1 occupying army to Japan (1)
-Deployed 1 occupying army to Siam (1)
-Deployed 1 occupying army to North Africa (4)
-Deployed 1 occupying army to Egypt (1)
-Deployed 1 occupying army to Japan (2)
-END OF TURN
-2.	Deployed 8 occupying armies to Eastern United States (1)
-Deployed 7 occupying armies to Ontario (1)
-Deployed 1 occupying army to Venezuela (1)
-END OF TURN
-3.	Deployed 1 occupying army to Eastern Australia (1)
-Deployed 1 occupying army to Eastern Australia (2)
-Deployed 1 occupying army to Eastern Australia (3)
-Deployed 1 occupying army to Eastern Australia (4)
-Deployed 1 occupying army to Eastern Australia (5)
-Deployed 1 occupying army to Ukraine (1)
-Deployed 1 occupying army to Southern Europe (1)
-Deployed 1 occupying army to Western Europe (1)
-Deployed 1 occupying army to Great Britain (1)
-Deployed 1 occupying army to Ukraine (2)
-Deployed 1 occupying army to Southern Europe (2)
-Deployed 1 occupying army to Western Europe (2)
-Deployed 1 occupying army to Great Britain (2)
-Deployed 1 occupying army to Ukraine (3)
-Deployed 1 occupying army to Eastern Australia (6)
-Deployed 1 occupying army to Eastern Australia (7)
-Deployed 1 occupying army to Great Britain (3)
-END OF TURN
-4.	Deployed 1 occupying army to Iceland (1)
-Deployed 1 occupying army to Iceland (2)
-Deployed 1 occupying army to Iceland (3)
-Deployed 1 occupying army to Greenland (1)
-Deployed 1 occupying army to Greenland (2)
-Deployed 1 occupying army to Scandinavia (1)
-Deployed 1 occupying army to Scandinavia (2)
-Deployed 1 occupying army to Scandinavia (3)
-Deployed 1 occupying army to Scandinavia (4)
-Deployed 1 occupying army to Greenland (3)
-Deployed 1 occupying army to Greenland (4)
-Deployed 1 occupying army to Iceland (4)
-Deployed 1 occupying army to Iceland (5)
-Deployed 1 occupying army to Alberta (1)
-Deployed 1 occupying army to Alberta (2)
-Deployed 1 occupying army to Alberta (3)
-Deployed 1 occupying army to Iceland (6)
-END OF TURN
-5.	Deployed 17 occupying armies to Argentina (1)
-END OF TURN
-6.	Received 3 regular armies for occupying 9 territories
-Deployed 3 occupying armies to North Africa (5)
-Fortified Egypt (2) with 7 armies from North Africa (8)
-END OF TURN
-7.	Received 3 regular armies for occupying 9 territories
-Deployed 1 occupying army to Venezuela (2)
-Deployed 1 occupying army to Venezuela (3)
-Deployed 1 occupying army to Venezuela (4)
-8.	Venezuela (5) attacks Central America (1) until defeated
-Attacker lost 0 with 5,3,2
-Defender lost 1 with 2
-Central America captured
-9.	Eastern United States (9) attacks Quebec (3) until defeated
-Attacker lost 0 with 6,5,3
-Defender lost 2 with 3,1
-Attacker lost 0 with 6,2,2
-Defender lost 1 with 1
-Quebec captured
-10.	Eastern United States (6) attacks Western United States (3) until defeated
-Attacker lost 2 with 2,2,1
-Defender lost 0 with 6,4
-Attacker lost 1 with 5,4,1
-Defender lost 1 with 5,3
-11.	Ontario (8) attacks Western United States (2) until defeated
-Attacker lost 0 with 6,4,2
-Defender lost 2 with 5,3
-Western United States captured
-12.	Fortified Quebec (3) with 2 armies from Eastern United States (3)
-Josh receives one card
-END OF TURN
-13.	Received 3 regular armies for occupying 8 territories
-Deployed 1 occupying army to Eastern Australia (8)
-Deployed 1 occupying army to Eastern Australia (9)
-Deployed 1 occupying army to Eastern Australia (10)
-14.	Eastern Australia (11) attacks New Guinea (1) until defeated
-Attacker lost 1 with 5,2,1
-Defender lost 0 with 5
-Attacker lost 0 with 6,5,1
-Defender lost 1 with 5
-New Guinea captured
-15.	New Guinea (3) attacks Indonesia (1) with 2 armies
-Attacker lost 1 with 6,2
-Defender lost 0 with 6
-16.	New Guinea (2) attacks Indonesia (1) with 1 army
-Attacker lost 1 with 1
-Defender lost 0 with 5
-17.	Fortified New Guinea (1) with 4 armies from Eastern Australia (7)
-Will receives one card
-END OF TURN
-18.	Received 3 regular armies for occupying 7 territories
-Deployed 1 occupying army to Irkutsk (1)
-Deployed 1 occupying army to Irkutsk (2)
-Deployed 1 occupying army to Irkutsk (3)
-19.	Irkutsk (4) attacks Kamchatka (1) until defeated
-Attacker lost 1 with 4,4,2
-Defender lost 0 with 6
-20.	Irkutsk (3) attacks Kamchatka (1) with 2 armies
-Attacker lost 1 with 3,2
-Defender lost 0 with 3
-21.	Irkutsk (2) attacks Kamchatka (1) with 1 army
-Attacker lost 1 with 4
-Defender lost 0 with 5
-22.	END OF TURN
-23.	Received 3 regular armies for occupying 8 territories
-Deployed 3 occupying armies to Argentina (18)
-24.	Argentina (21) attacks Peru (1) until defeated
-Attacker lost 1 with 2,2,1
-Defender lost 0 with 2
-Attacker lost 0 with 3,2,1
-Defender lost 1 with 2
-Peru captured
-25.	Moved 16 armies from Argentina (17) to Peru (3)
-26.	Peru (19) attacks Venezuela (2) until defeated
-Attacker lost 1 with 6,5,2
-Defender lost 1 with 6,1
-Attacker lost 0 with 6,6,6
-Defender lost 1 with 1
-Venezuela captured
-27.	Moved 14 armies from Peru (15) to Venezuela (3)
-28.	Venezuela (17) attacks Brazil (2) until defeated
-Attacker lost 2 with 2,1,1
-Defender lost 0 with 5,2
-Attacker lost 0 with 5,3,1
-Defender lost 2 with 3,2
-Brazil captured
-29.	Moved 1 army from Venezuela (12) to Brazil (3)
-Moved 1 army from Venezuela (11) to Brazil (4)
-Moved 1 army from Venezuela (10) to Brazil (5)
-Moved 1 army from Venezuela (9) to Brazil (6)
-Jim receives one card
-END OF TURN
-30.	Received 3 regular armies for occupying 6 territories
-Deployed 2 occupying armies to Egypt (9)
-Deployed 1 occupying army to South Africa (2)
-31.	Egypt (11) attacks East Africa (1) with 3 armies
-Attacker lost 0 with 6,3,2
-Defender lost 1 with 4
-East Africa captured
-32.	East Africa (3) attacks Congo (1) with 2 armies
-Attacker lost 1 with 3,2
-Defender lost 0 with 5
-33.	South Africa (3) attacks Congo (1) with 2 armies
-Attacker lost 0 with 4,1
-Defender lost 1 with 2
-Congo captured
-34.	Fortified Egypt (8) with 1 army from East Africa (2)
-Andrew receives one card
-END OF TURN
-35.	Received 3 regular armies for occupying 9 territories
-Deployed 1 occupying army to Central America (3)
-Deployed 1 occupying army to Central America (4)
-Deployed 1 occupying army to Central America (5)
-36.	Ontario (5) attacks Alberta (4) until defeated
-Attacker lost 2 with 6,3,3
-Defender lost 0 with 6,5
-37.	Ontario (3) attacks Alberta (4) with 2 armies
-Attacker lost 2 with 4,3
-Defender lost 0 with 5,3
-38.	Fortified Central America (6) with 2 armies from Western United States (3)
-END OF TURN
-39.	Received 3 regular armies for occupying 9 territories
-Deployed 1 occupying army to Eastern Australia (3)
-Deployed 1 occupying army to Eastern Australia (4)
-Deployed 1 occupying army to Great Britain (4)
-40.	Eastern Australia (5) attacks Western Australia (1) until defeated
-Attacker lost 1 with 3,2,1
-Defender lost 0 with 5
-Attacker lost 1 with 4,2,1
-Defender lost 0 with 4
-41.	Eastern Australia (3) attacks Western Australia (1) with 2 armies
-Attacker lost 1 with 3,1
-Defender lost 0 with 4
-42.	Eastern Australia (2) attacks Western Australia (1) with 1 army
-Attacker lost 1 with 3
-Defender lost 0 with 3
-43.	New Guinea (5) attacks Indonesia (1) until defeated
-Attacker lost 0 with 6,2,1
-Defender lost 1 with 3
-Indonesia captured
-44.	New Guinea (2) attacks Western Australia (1) with 1 army
-Attacker lost 1 with 2
-Defender lost 0 with 2
-45.	Western Europe (3) attacks Northern Europe (1) with 2 armies
-Attacker lost 0 with 5,1
-Defender lost 1 with 3
-Northern Europe captured
-46.	Will receives one card
-END OF TURN
-47.	Received 3 regular armies for occupying 5 territories
-Deployed 1 occupying army to Irkutsk (1)
-Deployed 1 occupying army to Irkutsk (2)
-Deployed 1 occupying army to Irkutsk (3)
-48.	Irkutsk (4) attacks Kamchatka (1) with 3 armies
-Attacker lost 0 with 4,1,1
-Defender lost 1 with 2
-Kamchatka captured
-49.	Alberta (4) attacks Ontario (1) with 3 armies
-Attacker lost 0 with 6,4,2
-Defender lost 1 with 2
-Ontario captured
-50.	Fortified Alberta (1) with 1 army from Ontario (3)
-Ben receives one card
-END OF TURN
-51.	Received 3 regular armies for occupying 10 territories
-Received 2 regular armies for occupying S. America
-Deployed 5 occupying armies to Venezuela (8)
-52.	Venezuela (13) attacks Central America (8) until defeated
-Attacker lost 1 with 5,3,3
-Defender lost 1 with 6,2
-Attacker lost 1 with 4,2,1
-Defender lost 1 with 6,1
-Attacker lost 2 with 2,2,2
-Defender lost 0 with 4,3
-Attacker lost 0 with 6,3,1
-Defender lost 2 with 2,2
-Attacker lost 0 with 4,4,2
-Defender lost 2 with 2,1
-Attacker lost 2 with 3,2,2
-Defender lost 0 with 6,6
-Attacker lost 0 with 6,5,1
-Defender lost 2 with 3,3
-Central America captured
-53.	Brazil (7) attacks North Africa (1) with 1 army
-Attacker lost 1 with 1
-Defender lost 0 with 1
-54.	Brazil (6) attacks North Africa (1) with 1 army
-Attacker lost 1 with 1
-Defender lost 0 with 6
-55.	Brazil (5) attacks North Africa (1) with 1 army
-Attacker lost 0 with 3
-Defender lost 1 with 1
-North Africa captured
-56.	Fortified Venezuela (4) with 2 armies from Central America (3)
-Jim receives one card
-END OF TURN
-57.	Received 3 regular armies for occupying 7 territories
-Deployed 1 occupying army to Egypt (9)
-Deployed 1 occupying army to Egypt (10)
-Deployed 1 occupying army to Egypt (11)
-58.	Egypt (12) attacks North Africa (1) until defeated
-Attacker lost 0 with 6,5,3
-Defender lost 1 with 1
-North Africa captured
-59.	Egypt (9) attacks Middle East (1) until defeated
-Attacker lost 0 with 5,5,5
-Defender lost 1 with 1
-Middle East captured
-60.	Fortified Egypt (6) with 2 armies from Middle East (3)
-Andrew receives one card
-END OF TURN
-61.	Received 3 regular armies for occupying 5 territories
-Deployed 3 occupying armies to Quebec (5)
-62.	Quebec (8) attacks Ontario (2) until defeated
-Attacker lost 1 with 6,5,4
-Defender lost 1 with 6,2
-Attacker lost 0 with 5,3,2
-Defender lost 1 with 4
-Ontario captured
-63.	Ontario (3) attacks Alberta (2) with 2 armies
-Attacker lost 2 with 5,4
-Defender lost 0 with 6,4
-64.	Quebec (4) attacks Greenland (5) until defeated
-Attacker lost 0 with 6,4,3
-Defender lost 2 with 1,1
-Attacker lost 1 with 5,2,2
-Defender lost 1 with 6,1
-65.	Quebec (3) attacks Greenland (2) with 2 armies
-Attacker lost 1 with 6,5
-Defender lost 1 with 6,3
-66.	Quebec (2) attacks Greenland (1) with 1 army
-Attacker lost 1 with 5
-Defender lost 0 with 6
-Josh receives one card
-END OF TURN
-67.	Received 3 regular armies for occupying 11 territories
-Deployed 1 occupying army to Indonesia (3)
-Deployed 1 occupying army to Indonesia (4)
-Deployed 1 occupying army to Madagascar (1)
-68.	Indonesia (5) attacks Western Australia (1) until defeated
-Attacker lost 0 with 6,6,2
-Defender lost 1 with 4
-Western Australia captured
-69.	Fortified Indonesia (2) with 1 army from Western Australia (3)
-Fortified Indonesia (3) with 1 army from Western Australia (2)
-Fortified Western Australia (1) with 1 army from Indonesia (4)
-Fortified Indonesia (3) with 1 army from Western Australia (2)
-Will receives one card
-END OF TURN
-70.	Received 3 regular armies for occupying 6 territories
-Deployed 3 occupying armies to Alberta (2)
-71.	Alberta (5) attacks Ontario (1) with 3 armies
-Attacker lost 0 with 4,4,1
-Defender lost 1 with 3
-Ontario captured
-72.	Ontario (3) attacks Quebec (1) with 2 armies
-Attacker lost 0 with 6,3
-Defender lost 1 with 3
-Quebec captured
-73.	Fortified Iceland (7) with 4 armies from Scandinavia (5)
-Ben receives one card
-END OF TURN
-74.	Received 3 regular armies for occupying 9 territories
-Received 2 regular armies for occupying S. America
-Deployed 5 occupying armies to Central America (1)
-75.	Central America (6) attacks Western United States (1) until defeated
-Attacker lost 0 with 6,4,4
-Defender lost 1 with 2
-Western United States captured
-76.	Western United States (3) attacks Eastern United States (1) with 2 armies
-Attacker lost 1 with 5,4
-Defender lost 0 with 6
-77.	Western United States (2) attacks Eastern United States (1) with 1 army
-Attacker lost 1 with 2
-Defender lost 0 with 5
-78.	Central America (3) attacks Eastern United States (1) with 2 armies
-Attacker lost 0 with 6,3
-Defender lost 1 with 4
-Eastern United States captured
-79.	Fortified Brazil (4) with 1 army from Venezuela (6)
-Jim receives one card
-END OF TURN
-80.	Received 3 regular armies for occupying 9 territories
-Deployed 3 occupying armies to North Africa (3)
-81.	Egypt (8) attacks Southern Europe (3) until defeated
-Attacker lost 2 with 3,2,1
-Defender lost 0 with 4,3
-Attacker lost 1 with 3,3,2
-Defender lost 1 with 5,1
-Attacker lost 1 with 3,3,2
-Defender lost 1 with 5,1
-Attacker lost 0 with 4,4,1
-Defender lost 1 with 3
-Southern Europe captured
-82.	Japan (3) attacks Mongolia (1) with 2 armies
-Attacker lost 0 with 6,1
-Defender lost 1 with 4
-Mongolia captured
-83.	Fortified North Africa (6) with 2 armies from Southern Europe (3)
-Andrew receives one card
-END OF TURN
-84.	Received 3 regular armies for occupying 2 territories
-Deployed 1 occupying army to India (1)
-Deployed 1 occupying army to India (2)
-Deployed 1 occupying army to India (3)
-85.	India (4) attacks China (1) until defeated
-Attacker lost 0 with 5,3,1
-Defender lost 1 with 3
-China captured
-86.	China (3) attacks Afghanistan (1) with 2 armies
-Attacker lost 1 with 5,1
-Defender lost 0 with 6
-87.	China (2) attacks Afghanistan (1) with 1 army
-Attacker lost 1 with 2
-Defender lost 0 with 3
-Josh receives one card
-END OF TURN
-88.	Received 3 regular armies for occupying 11 territories
-Received 2 regular armies for occupying Australia
-Traded Congo (I), Peru (I) and Alaska (I) for 6 regular armies
-Deployed 1 occupying army to Indonesia (4)
-Deployed 1 occupying army to Indonesia (5)
-Deployed 1 occupying army to Indonesia (6)
-Deployed 1 occupying army to Indonesia (7)
-Deployed 1 occupying army to Great Britain (5)
-Deployed 1 occupying army to Northern Europe (2)
-Deployed 1 occupying army to Western Europe (1)
-Deployed 1 occupying army to Afghanistan (1)
-Deployed 1 occupying army to Afghanistan (2)
-Deployed 1 occupying army to Afghanistan (3)
-Deployed 1 occupying army to Afghanistan (4)
-89.	Afghanistan (5) attacks India (1) until defeated
-Attacker lost 0 with 6,3,3
-Defender lost 1 with 1
-India captured
-90.	Moved 1 army from Afghanistan (2) to India (3)
-91.	India (4) attacks China (1) until defeated
-Attacker lost 0 with 6,4,3
-Defender lost 1 with 4
-China captured
-92.	China (3) attacks Ural (1) with 2 armies
-Attacker lost 1 with 5,2
-Defender lost 0 with 6
-93.	China (2) attacks Ural (1) with 1 army
-Attacker lost 1 with 4
-Defender lost 0 with 4
-94.	Ukraine (4) attacks Ural (1) until defeated
-Attacker lost 0 with 5,4,2
-Defender lost 1 with 3
-Ural captured
-Josh defeated, turns over null to Will
-95.	Fortified Ukraine (1) with 1 army from Ural (3)
-Fortified Ukraine (2) with 1 army from Ural (2)
-Will receives one card
-END OF TURN
-96.	Received 3 regular armies for occupying 8 territories
-Deployed 1 occupying army to Alberta (2)
-Deployed 1 occupying army to Alberta (3)
-Deployed 1 occupying army to Alberta (4)
-97.	Alberta (5) attacks Northwest Territory (1) with 3 armies
-Attacker lost 0 with 6,5,1
-Defender lost 1 with 1
-Northwest Territory captured
-98.	Ben receives one card
-END OF TURN
-99.	Received 3 regular armies for occupying 8 territories
-Received 2 regular armies for occupying S. America
-Traded China (I), Siam (I) and Venezuela (I) for 6 regular armies
-Deployed 2 occupying armies to Venezuela (5)
-Deployed 11 occupying armies to Brazil (5)
-100.	Brazil (16) attacks North Africa (8) until defeated
-Attacker lost 1 with 4,3,1
-Defender lost 1 with 6,2
-Attacker lost 1 with 5,1,1
-Defender lost 1 with 3,2
-Attacker lost 2 with 6,3,3
-Defender lost 0 with 6,6
-Attacker lost 2 with 5,4,4
-Defender lost 0 with 6,4
-Attacker lost 0 with 6,3,3
-Defender lost 2 with 2,1
-Attacker lost 1 with 3,3,1
-Defender lost 1 with 4,1
-Attacker lost 2 with 3,1,1
-Defender lost 0 with 4,2
-Attacker lost 1 with 2,2,1
-Defender lost 1 with 5,1
-Attacker lost 0 with 6,4,3
-Defender lost 2 with 2,2
-North Africa captured
-101.	Fortified Brazil (3) with 2 armies from North Africa (3)
-Jim receives one card
-END OF TURN
-102.	Received 3 regular armies for occupying 10 territories
-Traded Brazil (A), Ukraine (C) and Iceland (I) for 10 regular armies
-Deployed 13 occupying armies to Congo (2)
-103.	Congo (15) attacks North Africa (1) until defeated
-Attacker lost 0 with 5,2,1
-Defender lost 1 with 4
-North Africa captured
-104.	Moved 11 armies from Congo (12) to North Africa (3)
-105.	North Africa (14) attacks Brazil (5) until defeated
-Attacker lost 0 with 6,5,4
-Defender lost 2 with 5,1
-Attacker lost 1 with 5,5,4
-Defender lost 1 with 5,1
-Attacker lost 2 with 6,5,4
-Defender lost 0 with 6,6
-Attacker lost 2 with 3,2,2
-Defender lost 0 with 5,4
-Attacker lost 0 with 6,3,2
-Defender lost 2 with 1,1
-Brazil captured
-106.	Moved 5 armies from North Africa (6) to Brazil (3)
-Fortified North Africa (1) with 7 armies from Brazil (8)
-Andrew receives one card
-END OF TURN
-107.	Received 4 regular armies for occupying 14 territories
-Received 2 regular armies for occupying Australia
-Deployed 1 occupying army to Indonesia (8)
-Deployed 1 occupying army to Indonesia (9)
-Deployed 1 occupying army to Madagascar (2)
-Deployed 1 occupying army to Western Europe (2)
-Deployed 1 occupying army to Western Europe (3)
-Deployed 1 occupying army to Western Europe (4)
-108.	Western Europe (5) attacks Southern Europe (1) until defeated
-Attacker lost 0 with 4,3,2
-Defender lost 1 with 3
-Southern Europe captured
-109.	Great Britain (6) attacks Scandinavia (1) with 3 armies
-Attacker lost 1 with 4,2,1
-Defender lost 0 with 4
-110.	Great Britain (5) attacks Scandinavia (1) with 3 armies
-Attacker lost 0 with 6,5,5
-Defender lost 1 with 3
-Scandinavia captured
-111.	Fortified Great Britain (2) with 2 armies from Scandinavia (3)
-Will receives one card
-END OF TURN
-112.	Received 3 regular armies for occupying 8 territories
-Traded Wild, Madagascar (C) and Wild for 10 regular armies
-Deployed 1 occupying army to Northwest Territory (3)
-Deployed 1 occupying army to Northwest Territory (4)
-Deployed 1 occupying army to Northwest Territory (5)
-Deployed 1 occupying army to Northwest Territory (6)
-Deployed 1 occupying army to Alberta (2)
-Deployed 1 occupying army to Alberta (3)
-Deployed 1 occupying army to Alberta (4)
-Deployed 1 occupying army to Alberta (5)
-Deployed 1 occupying army to Alberta (6)
-Deployed 1 occupying army to Alberta (7)
-Deployed 1 occupying army to Alberta (8)
-Deployed 1 occupying army to Alberta (9)
-Deployed 1 occupying army to Alberta (10)
-113.	Northwest Territory (7) attacks Alaska (3) with 3 armies
-Attacker lost 2 with 6,5,3
-Defender lost 0 with 6,5
-114.	Alberta (11) attacks Alaska (3) with 3 armies
-Attacker lost 2 with 5,4,2
-Defender lost 0 with 5,4
-115.	Northwest Territory (5) attacks Alaska (3) with 3 armies
-Attacker lost 0 with 5,4,3
-Defender lost 2 with 3,2
-116.	Northwest Territory (5) attacks Alaska (1) with 3 armies
-Attacker lost 0 with 5,3,1
-Defender lost 1 with 2
-Alaska captured
-117.	Alberta (9) attacks Western United States (1) with 3 armies
-Attacker lost 0 with 6,5,4
-Defender lost 1 with 3
-Western United States captured
-118.	Fortified Western United States (3) with 5 armies from Alberta (6)
-Ben receives one card
-END OF TURN
-119.	Received 3 regular armies for occupying 6 territories
-Deployed 3 occupying armies to Venezuela (7)
-120.	Venezuela (10) attacks Brazil (1) until defeated
-Attacker lost 0 with 6,1,1
-Defender lost 1 with 3
-Brazil captured
-121.	Moved 6 armies from Venezuela (7) to Brazil (3)
-122.	Brazil (9) attacks North Africa (8) until defeated
-Attacker lost 2 with 5,2,1
-Defender lost 0 with 6,4
-Attacker lost 0 with 5,5,4
-Defender lost 2 with 4,4
-Attacker lost 2 with 3,2,1
-Defender lost 0 with 6,6
-Attacker lost 2 with 4,3,2
-Defender lost 0 with 4,3
-123.	Fortified Central America (1) with 1 army from Eastern United States (2)
-Jim receives one card
-END OF TURN
-124.	Received 3 regular armies for occupying 9 territories
-Deployed 3 occupying armies to North Africa (6)
-END OF TURN
-125.	Received 5 regular armies for occupying 16 territories
-Received 2 regular armies for occupying Australia
-Traded South Africa (A), Irkutsk (C) and Mongolia (I) for 10 regular armies
-Deployed 1 occupying army to Indonesia (10)
-Deployed 1 occupying army to Indonesia (11)
-Deployed 1 occupying army to Madagascar (3)
-Deployed 1 occupying army to Madagascar (4)
-Deployed 1 occupying army to China (1)
-Deployed 1 occupying army to Great Britain (4)
-Deployed 1 occupying army to Great Britain (5)
-Deployed 1 occupying army to Great Britain (6)
-Deployed 1 occupying army to Great Britain (7)
-Deployed 1 occupying army to Great Britain (8)
-Deployed 1 occupying army to Great Britain (9)
-Deployed 1 occupying army to Great Britain (10)
-Deployed 1 occupying army to Great Britain (11)
-Deployed 1 occupying army to Great Britain (12)
-Deployed 1 occupying army to Great Britain (13)
-Deployed 1 occupying army to Great Britain (14)
-Deployed 1 occupying army to Great Britain (15)
-126.	Great Britain (16) attacks Iceland (11) until defeated
-Attacker lost 2 with 6,3,3
-Defender lost 0 with 6,4
-Attacker lost 1 with 4,4,1
-Defender lost 1 with 4,3
-Attacker lost 1 with 5,5,3
-Defender lost 1 with 5,4
-Attacker lost 1 with 4,2,1
-Defender lost 1 with 2,2
-Attacker lost 0 with 5,3,2
-Defender lost 2 with 3,2
-Attacker lost 1 with 6,5,1
-Defender lost 1 with 6,4
-Attacker lost 2 with 3,2,2
-Defender lost 0 with 5,2
-Attacker lost 0 with 6,5,3
-Defender lost 2 with 5,1
-Attacker lost 2 with 4,1,1
-Defender lost 0 with 6,4
-Attacker lost 1 with 6,3,1
-Defender lost 1 with 6,1
-Attacker lost 1 with 4,2,1
-Defender lost 1 with 3,2
-Attacker lost 1 with 6,6,1
-Defender lost 0 with 6
-127.	Great Britain (3) attacks Iceland (1) with 2 armies
-Attacker lost 1 with 4,3
-Defender lost 0 with 4
-128.	Indonesia (12) attacks Siam (2) until defeated
-Attacker lost 1 with 5,3,2
-Defender lost 1 with 6,1
-Attacker lost 0 with 6,6,2
-Defender lost 1 with 4
-Siam captured
-129.	Moved 7 armies from Indonesia (8) to Siam (3)
-Moved 1 army from Indonesia (1) to Siam (10)
-Will receives one card
-END OF TURN
-130.	Received 3 regular armies for occupying 10 territories
-Deployed 1 occupying army to Iceland (1)
-Deployed 1 occupying army to Iceland (2)
-Deployed 1 occupying army to Iceland (3)
-131.	Iceland (4) attacks Scandinavia (1) with 3 armies
-Attacker lost 0 with 6,6,4
-Defender lost 1 with 3
-Scandinavia captured
-132.	Western United States (8) attacks Central America (2) with 3 armies
-Attacker lost 0 with 6,5,3
-Defender lost 2 with 3,1
-Central America captured
-133.	Western United States (5) attacks Eastern United States (1) with 3 armies
-Attacker lost 0 with 6,5,4
-Defender lost 1 with 5
-Eastern United States captured
-134.	Fortified Iceland (1) with 2 armies from Scandinavia (3)
-Ben receives one card
-END OF TURN
-135.	Received 3 regular armies for occupying 5 territories
-Received 2 regular armies for occupying S. America
-Deployed 5 occupying armies to Brazil (3)
-136.	Brazil (8) attacks North Africa (9) until defeated
-Attacker lost 1 with 4,3,2
-Defender lost 1 with 4,2
-Attacker lost 0 with 4,4,2
-Defender lost 2 with 2,2
-Attacker lost 0 with 6,3,2
-Defender lost 2 with 4,2
-Attacker lost 0 with 6,6,3
-Defender lost 2 with 4,2
-Attacker lost 0 with 6,5,2
-Defender lost 2 with 5,2
-North Africa captured
-137.	Fortified Venezuela (1) with 1 army from Brazil (4)
-Fortified Venezuela (2) with 1 army from Brazil (3)
-Fortified Venezuela (3) with 1 army from Brazil (2)
-Jim receives one card
-END OF TURN
-138.	Received 3 regular armies for occupying 7 territories
-Deployed 3 occupying armies to Mongolia (2)
-139.	Mongolia (5) attacks Irkutsk (1) with 3 armies
-Attacker lost 1 with 6,4,2
-Defender lost 0 with 6
-140.	Mongolia (4) attacks Irkutsk (1) with 3 armies
-Attacker lost 0 with 6,5,3
-Defender lost 1 with 2
-Irkutsk captured
-141.	Irkutsk (3) attacks Siberia (1) with 2 armies
-Attacker lost 0 with 6,5
-Defender lost 1 with 2
-Siberia captured
-142.	Siberia (2) attacks Ural (1) with 1 army
-Attacker lost 1 with 3
-Defender lost 0 with 4
-Andrew receives one card
-END OF TURN
-143.	Received 5 regular armies for occupying 15 territories
-Received 2 regular armies for occupying Australia
-Deployed 1 occupying army to Siam (9)
-Deployed 1 occupying army to Great Britain (2)
-Deployed 1 occupying army to Great Britain (3)
-Deployed 1 occupying army to Great Britain (4)
-Deployed 1 occupying army to Great Britain (5)
-Deployed 1 occupying army to Great Britain (6)
-Deployed 1 occupying army to Great Britain (7)
-144.	Great Britain (8) attacks Iceland (3) until defeated
-Attacker lost 0 with 6,4,4
-Defender lost 2 with 4,2
-Attacker lost 0 with 4,3,2
-Defender lost 1 with 1
-Iceland captured
-145.	Ukraine (3) attacks Scandinavia (1) with 2 armies
-Attacker lost 0 with 6,6
-Defender lost 1 with 2
-Scandinavia captured
-146.	Iceland (3) attacks Greenland (1) with 2 armies
-Attacker lost 0 with 5,4
-Defender lost 1 with 4
-Greenland captured
-147.	Fortified Iceland (1) with 1 army from Greenland (2)
-Will receives one card
-END OF TURN
-148.	Received 3 regular armies for occupying 9 territories
-Deployed 1 occupying army to Quebec (2)
-Deployed 1 occupying army to Quebec (3)
-Deployed 1 occupying army to Quebec (4)
-149.	Quebec (5) attacks Greenland (1) with 3 armies
-Attacker lost 1 with 3,2,2
-Defender lost 0 with 3
-150.	Quebec (4) attacks Greenland (1) with 3 armies
-Attacker lost 0 with 6,2,1
-Defender lost 1 with 2
-Greenland captured
-151.	Fortified Greenland (3) with 1 army from Northwest Territory (2)
-Ben receives one card
-END OF TURN
-152.	Received 3 regular armies for occupying 6 territories
-Received 2 regular armies for occupying S. America
-Deployed 5 occupying armies to North Africa (3)
-153.	North Africa (8) attacks Western Europe (2) until defeated
-Attacker lost 0 with 5,3,2
-Defender lost 2 with 2,1
-Western Europe captured
-154.	Jim receives one card
-END OF TURN
-155.	Received 3 regular armies for occupying 9 territories
-Deployed 1 occupying army to Siberia (1)
-Deployed 1 occupying army to Siberia (2)
-Deployed 1 occupying army to Siberia (3)
-156.	Siberia (4) attacks Yakutsk (1) with 3 armies
-Attacker lost 0 with 4,3,1
-Defender lost 1 with 3
-Yakutsk captured
-157.	Fortified Siberia (1) with 2 armies from Yakutsk (3)
-Andrew receives one card
-END OF TURN
-158.	Received 5 regular armies for occupying 16 territories
-Received 2 regular armies for occupying Australia
-Deployed 1 occupying army to Great Britain (5)
-Deployed 1 occupying army to Great Britain (6)
-Deployed 1 occupying army to Great Britain (7)
-Deployed 1 occupying army to Iceland (2)
-Deployed 1 occupying army to Iceland (3)
-Deployed 1 occupying army to Iceland (4)
-Deployed 1 occupying army to Iceland (5)
-159.	Iceland (6) attacks Greenland (4) until defeated
-Attacker lost 1 with 6,2,1
-Defender lost 1 with 5,4
-Attacker lost 2 with 3,2,2
-Defender lost 0 with 5,2
-160.	Great Britain (8) attacks Western Europe (3) until defeated
-Attacker lost 0 with 6,4,3
-Defender lost 2 with 5,1
-Attacker lost 0 with 5,1,1
-Defender lost 1 with 2
-Western Europe captured
-161.	Iceland (3) attacks Greenland (3) with 2 armies
-Attacker lost 2 with 2,1
-Defender lost 0 with 2,2
-162.	Fortified Iceland (1) with 1 army from Great Britain (5)
-Fortified Iceland (2) with 1 army from Great Britain (4)
-Fortified Iceland (3) with 1 army from Great Britain (3)
-Fortified Iceland (4) with 1 army from Great Britain (2)
-Will receives one card
-END OF TURN
-163.	Received 3 regular armies for occupying 10 territories
-Received 5 regular armies for occupying N. America
-Traded Kamchatka (I), Alberta (C) and Western Europe (A) for 10 regular armies
-Deployed 1 occupying army to Greenland (3)
-Deployed 1 occupying army to Greenland (4)
-Deployed 1 occupying army to Greenland (5)
-Deployed 1 occupying army to Greenland (6)
-Deployed 1 occupying army to Central America (3)
-Deployed 1 occupying army to Central America (4)
-Deployed 1 occupying army to Central America (5)
-Deployed 1 occupying army to Kamchatka (3)
-Deployed 1 occupying army to Kamchatka (4)
-Deployed 1 occupying army to Kamchatka (5)
-Deployed 1 occupying army to Quebec (1)
-Deployed 1 occupying army to Ontario (1)
-Deployed 1 occupying army to Alberta (1)
-Deployed 1 occupying army to Northwest Territory (1)
-Deployed 1 occupying army to Greenland (7)
-Deployed 1 occupying army to Greenland (8)
-Deployed 1 occupying army to Greenland (9)
-Deployed 1 occupying army to Greenland (10)
-Deployed 2 occupying armies to Kamchatka (6)
-Fortified Alaska (3) with 7 armies from Kamchatka (8)
-END OF TURN
-164.	Received 3 regular armies for occupying 5 territories
-Received 2 regular armies for occupying S. America
-Traded North Africa (C), Afghanistan (C) and India (C) for 8 regular armies
-Deployed 2 occupying armies to North Africa (5)
-Deployed 1 occupying army to Venezuela (4)
-Deployed 1 occupying army to Venezuela (5)
-Deployed 1 occupying army to Venezuela (6)
-Deployed 10 occupying armies to North Africa (7)
-165.	North Africa (17) attacks Egypt (1) until defeated
-Attacker lost 0 with 6,2,2
-Defender lost 1 with 4
-Egypt captured
-166.	North Africa (14) attacks Western Europe (3) until defeated
-Attacker lost 1 with 5,4,2
-Defender lost 1 with 6,1
-Attacker lost 0 with 6,3,1
-Defender lost 2 with 5,1
-Western Europe captured
-167.	North Africa (10) attacks Congo (1) with 1 army
-Attacker lost 1 with 1
-Defender lost 0 with 4
-168.	North Africa (9) attacks East Africa (1) with 1 army
-Attacker lost 0 with 5
-Defender lost 1 with 2
-East Africa captured
-169.	North Africa (8) attacks Congo (1) with 1 army
-Attacker lost 1 with 3
-Defender lost 0 with 3
-170.	North Africa (7) attacks Congo (1) with 1 army
-Attacker lost 1 with 4
-Defender lost 0 with 4
-171.	North Africa (6) attacks Congo (1) with 1 army
-Attacker lost 1 with 5
-Defender lost 0 with 5
-172.	Fortified North Africa (5) with 2 armies from Egypt (3)
-Jim receives one card
-END OF TURN
-173.	Received 3 regular armies for occupying 8 territories
-Traded Quebec (C), Argentina (I) and Indonesia (A) for 10 regular armies
-Deployed 13 occupying armies to Siberia (3)
-174.	Siberia (16) attacks Ural (1) with 3 armies
-Attacker lost 0 with 6,5,1
-Defender lost 1 with 3
-Ural captured
-175.	Ural (3) attacks Afghanistan (1) with 2 armies
-Attacker lost 0 with 6,4
-Defender lost 1 with 5
-Afghanistan captured
-176.	Afghanistan (2) attacks Ukraine (1) with 1 army
-Attacker lost 1 with 1
-Defender lost 0 with 3
-177.	Andrew receives one card
-END OF TURN
-178.	Received 4 regular armies for occupying 14 territories
-Received 2 regular armies for occupying Australia
-Deployed 1 occupying army to Iceland (5)
-Deployed 1 occupying army to Iceland (6)
-Deployed 1 occupying army to Iceland (7)
-Deployed 1 occupying army to Southern Europe (3)
-Deployed 1 occupying army to Southern Europe (4)
-Deployed 1 occupying army to Southern Europe (5)
-Traded Eastern United States (A), Japan (A) and Central America (A) for 4 regular armies
-Deployed 1 occupying army to Iceland (8)
-Deployed 1 occupying army to Iceland (9)
-Deployed 1 occupying army to Iceland (10)
-Deployed 1 occupying army to Iceland (11)
-179.	Iceland (12) attacks Greenland (11) until defeated
-Attacker lost 0 with 6,5,1
-Defender lost 2 with 3,2
-Attacker lost 1 with 4,2,1
-Defender lost 1 with 4,1
-Attacker lost 2 with 4,3,1
-Defender lost 0 with 6,4
-Attacker lost 2 with 1,1,1
-Defender lost 0 with 4,4
-Attacker lost 1 with 6,2,1
-Defender lost 1 with 3,2
-Attacker lost 1 with 4,3,2
-Defender lost 1 with 3,3
-Attacker lost 2 with 6,5,4
-Defender lost 0 with 6,6
-180.	Southern Europe (6) attacks Western Europe (3) until defeated
-Attacker lost 2 with 5,1,1
-Defender lost 0 with 5,3
-Attacker lost 1 with 4,2,2
-Defender lost 1 with 4,1
-181.	Southern Europe (3) attacks Western Europe (2) with 2 armies
-Attacker lost 0 with 6,3
-Defender lost 2 with 4,1
-Western Europe captured
-182.	Fortified Iceland (3) with 1 army from Scandinavia (2)
-Will receives one card
-END OF TURN
-183.	Received 3 regular armies for occupying 10 territories
-Received 5 regular armies for occupying N. America
-Deployed 1 occupying army to Greenland (6)
-Deployed 1 occupying army to Greenland (7)
-Deployed 1 occupying army to Greenland (8)
-Deployed 1 occupying army to Greenland (9)
-Deployed 1 occupying army to Greenland (10)
-Deployed 1 occupying army to Greenland (11)
-Deployed 1 occupying army to Greenland (12)
-Deployed 1 occupying army to Greenland (13)
-184.	Greenland (14) attacks Iceland (4) with 3 armies
-Attacker lost 2 with 5,2,1
-Defender lost 0 with 5,4
-185.	Greenland (12) attacks Iceland (4) with 3 armies
-Attacker lost 1 with 4,3,2
-Defender lost 1 with 5,2
-186.	Greenland (11) attacks Iceland (3) with 3 armies
-Attacker lost 0 with 6,5,1
-Defender lost 2 with 2,1
-187.	Greenland (11) attacks Iceland (1) with 3 armies
-Attacker lost 1 with 4,3,1
-Defender lost 0 with 5
-188.	Greenland (10) attacks Iceland (1) with 3 armies
-Attacker lost 1 with 4,3,2
-Defender lost 0 with 5
-189.	Greenland (9) attacks Iceland (1) with 3 armies
-Attacker lost 1 with 5,4,2
-Defender lost 0 with 6
-190.	Greenland (8) attacks Iceland (1) with 3 armies
-Attacker lost 1 with 4,3,1
-Defender lost 0 with 5
-191.	Greenland (7) attacks Iceland (1) with 3 armies
-Attacker lost 1 with 4,4,2
-Defender lost 0 with 5
-192.	Greenland (6) attacks Iceland (1) with 3 armies
-Attacker lost 1 with 2,1,1
-Defender lost 0 with 2
-193.	Greenland (5) attacks Iceland (1) with 2 armies
-Attacker lost 0 with 6,5
-Defender lost 1 with 3
-Iceland captured
-194.	Fortified Greenland (3) with 1 army from Iceland (2)
-Ben receives one card
-END OF TURN
-195.	Received 3 regular armies for occupying 7 territories
-Received 2 regular armies for occupying S. America
-Deployed 5 occupying armies to North Africa (7)
-196.	North Africa (12) attacks Western Europe (2) until defeated
-Attacker lost 2 with 4,2,1
-Defender lost 0 with 4,4
-Attacker lost 2 with 3,2,2
-Defender lost 0 with 5,5
-Attacker lost 0 with 6,4,2
-Defender lost 2 with 4,1
-Western Europe captured
-197.	North Africa (5) attacks Congo (1) until defeated
-Attacker lost 0 with 6,4,1
-Defender lost 1 with 4
-Congo captured
-198.	Fortified North Africa (2) with 2 armies from Congo (3)
-Jim receives one card
-END OF TURN
-199.	Received 3 regular armies for occupying 9 territories
-Deployed 1 occupying army to Ural (1)
-Deployed 1 occupying army to Ural (2)
-Deployed 1 occupying army to Ural (3)
-200.	Ural (4) attacks Ukraine (1) with 3 armies
-Attacker lost 0 with 5,3,2
-Defender lost 1 with 1
-Ukraine captured
-201.	Ukraine (3) attacks Scandinavia (1) with 2 armies
-Attacker lost 1 with 2,1
-Defender lost 0 with 2
-202.	Ukraine (2) attacks Scandinavia (1) with 1 army
-Attacker lost 1 with 5
-Defender lost 0 with 6
-203.	Andrew receives one card
-END OF TURN
-204.	Received 4 regular armies for occupying 12 territories
-Received 2 regular armies for occupying Australia
-Deployed 1 occupying army to Great Britain (1)
-Deployed 1 occupying army to Great Britain (2)
-Deployed 1 occupying army to Great Britain (3)
-Deployed 1 occupying army to Great Britain (4)
-Deployed 1 occupying army to Great Britain (5)
-Deployed 1 occupying army to Great Britain (6)
-205.	Great Britain (7) attacks Iceland (1) until defeated
-Attacker lost 0 with 5,4,3
-Defender lost 1 with 3
-Iceland captured
-206.	Moved 3 armies from Great Britain (4) to Iceland (3)
-207.	Iceland (6) attacks Greenland (4) until defeated
-Attacker lost 0 with 6,4,2
-Defender lost 2 with 5,1
-Attacker lost 1 with 4,1,1
-Defender lost 1 with 2,1
-Attacker lost 0 with 6,4,2
-Defender lost 1 with 3
-Greenland captured
-208.	Fortified Iceland (2) with 2 armies from Greenland (3)
-Will receives one card
-END OF TURN
-209.	Received 3 regular armies for occupying 9 territories
-Deployed 1 occupying army to Northwest Territory (2)
-Deployed 1 occupying army to Northwest Territory (3)
-Deployed 1 occupying army to Northwest Territory (4)
-210.	Northwest Territory (5) attacks Greenland (1) with 3 armies
-Attacker lost 0 with 6,2,1
-Defender lost 1 with 1
-Greenland captured
-211.	Moved 1 army from Northwest Territory (2) to Greenland (3)
-Fortified Northwest Territory (1) with 6 armies from Alaska (10)
-Ben receives one card
-END OF TURN
-212.	Received 3 regular armies for occupying 9 territories
-Received 2 regular armies for occupying S. America
-Deployed 1 occupying army to Venezuela (7)
-Deployed 1 occupying army to Venezuela (8)
-Deployed 3 occupying armies to Western Europe (3)
-213.	Western Europe (6) attacks Southern Europe (1) until defeated
-Attacker lost 0 with 6,6,4
-Defender lost 1 with 1
-Southern Europe captured
-214.	Moved 2 armies from Western Europe (3) to Southern Europe (3)
-Moved 1 army from Western Europe (1) to Southern Europe (5)
-Moved 1 army from Western Europe (2) to Southern Europe (4)
-215.	Southern Europe (3) attacks Middle East (1) with 1 army
-Attacker lost 1 with 2
-Defender lost 0 with 4
-216.	Southern Europe (2) attacks Middle East (1) with 1 army
-Attacker lost 1 with 2
-Defender lost 0 with 6
-217.	Fortified North Africa (4) with 2 armies from Western Europe (3)
-Jim receives one card
-END OF TURN
-218.	Received 3 regular armies for occupying 10 territories
-Deployed 3 occupying armies to Middle East (1)
-219.	Middle East (4) attacks Southern Europe (1) with 3 armies
-Attacker lost 0 with 5,3,1
-Defender lost 1 with 2
-Southern Europe captured
-220.	Fortified Ural (1) with 4 armies from Siberia (13)
-Fortified Ural (5) with 4 armies from Siberia (9)
-Fortified Ural (9) with 4 armies from Siberia (5)
-Andrew receives one card
-END OF TURN
-221.	Received 4 regular armies for occupying 12 territories
-Received 2 regular armies for occupying Australia
-Deployed 1 occupying army to Northern Europe (3)
-Deployed 1 occupying army to Northern Europe (4)
-Deployed 1 occupying army to Iceland (4)
-Deployed 1 occupying army to Iceland (5)
-Deployed 1 occupying army to Iceland (6)
-Deployed 1 occupying army to Iceland (7)
-222.	Iceland (8) attacks Greenland (4) until defeated
-Attacker lost 1 with 6,4,3
-Defender lost 1 with 6,1
-Attacker lost 2 with 2,2,1
-Defender lost 0 with 4,4
-Attacker lost 1 with 5,3,1
-Defender lost 1 with 5,2
-Attacker lost 2 with 4,4,3
-Defender lost 0 with 6,4
-223.	Iceland (2) attacks Greenland (2) with 1 army
-Attacker lost 1 with 4
-Defender lost 0 with 4,2
-224.	Northern Europe (5) attacks Southern Europe (3) until defeated
-Attacker lost 2 with 4,2,1
-Defender lost 0 with 4,2
-225.	Northern Europe (3) attacks Southern Europe (3) with 2 armies
-Attacker lost 1 with 4,3
-Defender lost 1 with 6,1
-226.	China (2) attacks Afghanistan (1) with 1 army
-Attacker lost 0 with 6
-Defender lost 1 with 2
-Afghanistan captured
-227.	Fortified Scandinavia (1) with 1 army from Northern Europe (2)
-Will receives one card
-END OF TURN
-228.	Received 3 regular armies for occupying 10 territories
-Received 5 regular armies for occupying N. America
-Deployed 1 occupying army to Greenland (2)
-Deployed 1 occupying army to Greenland (3)
-Deployed 1 occupying army to Greenland (4)
-Deployed 1 occupying army to Greenland (5)
-Deployed 1 occupying army to Greenland (6)
-Deployed 1 occupying army to Greenland (7)
-Deployed 1 occupying army to Greenland (8)
-Deployed 1 occupying army to Greenland (9)
-229.	Greenland (10) attacks Iceland (1) with 3 armies
-Attacker lost 1 with 4,3,1
-Defender lost 0 with 6
-230.	Greenland (9) attacks Iceland (1) with 3 armies
-Attacker lost 1 with 3,2,1
-Defender lost 0 with 6
-231.	Greenland (8) attacks Iceland (1) with 3 armies
-Attacker lost 0 with 5,4,1
-Defender lost 1 with 3
-Iceland captured
-232.	Fortified Greenland (5) with 2 armies from Iceland (3)
-Ben receives one card
-END OF TURN
-233.	Received 3 regular armies for occupying 9 territories
-Received 2 regular armies for occupying S. America
-Traded New Guinea (I), Western Australia (A) and Yakutsk (C) for 10 regular armies
-Deployed 15 occupying armies to Venezuela (9)
-234.	Venezuela (24) attacks Central America (6) until defeated
-Attacker lost 1 with 3,2,1
-Defender lost 1 with 5,1
-Attacker lost 1 with 4,3,3
-Defender lost 1 with 4,1
-Attacker lost 0 with 6,4,2
-Defender lost 2 with 4,2
-Attacker lost 1 with 6,5,3
-Defender lost 1 with 6,2
-Attacker lost 1 with 6,2,1
-Defender lost 0 with 6
-Attacker lost 1 with 2,2,1
-Defender lost 0 with 2
-Attacker lost 0 with 5,2,2
-Defender lost 1 with 1
-Central America captured
-235.	Moved 15 armies from Venezuela (16) to Central America (3)
-236.	Central America (18) attacks Eastern United States (3) until defeated
-Attacker lost 1 with 5,5,2
-Defender lost 1 with 6,3
-Attacker lost 1 with 6,4,2
-Defender lost 1 with 6,1
-Attacker lost 1 with 3,2,2
-Defender lost 0 with 5
-Attacker lost 0 with 5,3,1
-Defender lost 1 with 3
-Eastern United States captured
-237.	Eastern United States (3) attacks Western United States (2) with 2 armies
-Attacker lost 0 with 6,5
-Defender lost 2 with 4,1
-Western United States captured
-238.	North Africa (6) attacks Southern Europe (2) with 2 armies
-Attacker lost 2 with 4,2
-Defender lost 0 with 4,2
-239.	Jim receives one card
-END OF TURN
-240.	Received 3 regular armies for occupying 10 territories
-Deployed 1 occupying army to Southern Europe (2)
-Deployed 1 occupying army to Irkutsk (1)
-Deployed 1 occupying army to Mongolia (1)
-241.	Southern Europe (3) attacks Egypt (1) with 2 armies
-Attacker lost 0 with 6,3
-Defender lost 1 with 2
-Egypt captured
-242.	Ural (13) attacks Afghanistan (1) with 3 armies
-Attacker lost 1 with 4,4,1
-Defender lost 0 with 4
-243.	Ural (12) attacks Afghanistan (1) with 3 armies
-Attacker lost 0 with 6,5,2
-Defender lost 1 with 3
-Afghanistan captured
-244.	Afghanistan (3) attacks China (1) with 2 armies
-Attacker lost 1 with 4,2
-Defender lost 0 with 6
-245.	Afghanistan (2) attacks China (1) with 1 army
-Attacker lost 1 with 3
-Defender lost 0 with 6
-246.	Mongolia (2) attacks China (1) with 1 army
-Attacker lost 0 with 5
-Defender lost 1 with 1
-China captured
-247.	Fortified Middle East (1) with 1 army from Egypt (2)
-Andrew receives one card
-END OF TURN
-248.	Received 3 regular armies for occupying 10 territories
-Received 2 regular armies for occupying Australia
-Traded Western United States (A), Northern Europe (A) and Great Britain (A) for 4 regular armies
-Deployed 2 occupying armies to Northern Europe (1)
-Deployed 1 occupying army to Madagascar (5)
-Deployed 1 occupying army to Great Britain (1)
-Deployed 1 occupying army to Great Britain (2)
-Deployed 1 occupying army to Great Britain (3)
-Deployed 1 occupying army to Great Britain (4)
-Deployed 1 occupying army to Great Britain (5)
-Deployed 1 occupying army to Great Britain (6)
-Deployed 1 occupying army to Great Britain (7)
-Deployed 1 occupying army to Great Britain (8)
-249.	Great Britain (9) attacks Western Europe (1) until defeated
-Attacker lost 0 with 6,5,4
-Defender lost 1 with 3
-Western Europe captured
-250.	Great Britain (6) attacks Iceland (1) until defeated
-Attacker lost 0 with 6,6,5
-Defender lost 1 with 2
-Iceland captured
-251.	Will receives one card
-END OF TURN
-252.	Received 3 regular armies for occupying 7 territories
-Deployed 1 occupying army to Quebec (2)
-Deployed 1 occupying army to Quebec (3)
-Deployed 1 occupying army to Quebec (4)
-253.	Quebec (5) attacks Eastern United States (1) with 3 armies
-Attacker lost 0 with 4,3,3
-Defender lost 1 with 2
-Eastern United States captured
-254.	Moved 1 army from Quebec (2) to Eastern United States (3)
-Fortified Alberta (2) with 6 armies from Northwest Territory (7)
-Ben receives one card
-END OF TURN
-255.	Received 3 regular armies for occupying 9 territories
-Received 2 regular armies for occupying S. America
-Deployed 5 occupying armies to North Africa (4)
-256.	North Africa (9) attacks Egypt (1) with 1 army
-Attacker lost 0 with 6
-Defender lost 1 with 3
-Egypt captured
-257.	North Africa (8) attacks Western Europe (3) until defeated
-Attacker lost 1 with 5,3,2
-Defender lost 1 with 5,1
-Attacker lost 1 with 6,5,4
-Defender lost 1 with 6,1
-Attacker lost 0 with 6,5,2
-Defender lost 1 with 4
-Western Europe captured
-258.	Western United States (2) attacks Eastern United States (4) with 1 army
-Attacker lost 1 with 6
-Defender lost 0 with 6,6
-259.	Fortified Venezuela (1) with 11 armies from Central America (12)
-Jim receives one card
-END OF TURN
-260.	Received 4 regular armies for occupying 12 territories
-Traded Eastern Australia (A), Ontario (C) and East Africa (I) for 10 regular armies
-Deployed 14 occupying armies to South Africa (1)
-261.	South Africa (15) attacks Congo (1) with 3 armies
-Attacker lost 0 with 6,5,4
-Defender lost 1 with 1
-Congo captured
-262.	South Africa (12) attacks East Africa (1) until defeated
-Attacker lost 0 with 6,3,2
-Defender lost 1 with 2
-East Africa captured
-263.	East Africa (3) attacks Egypt (1) with 2 armies
-Attacker lost 0 with 4,1
-Defender lost 1 with 2
-Egypt captured
-264.	Congo (3) attacks North Africa (3) with 2 armies
-Attacker lost 0 with 5,2
-Defender lost 2 with 1,1
-265.	Congo (3) attacks North Africa (1) with 2 armies
-Attacker lost 0 with 5,1
-Defender lost 1 with 3
-North Africa captured
-266.	South Africa (9) attacks Madagascar (6) until defeated
-Attacker lost 0 with 6,3,3
-Defender lost 2 with 4,2
-Attacker lost 1 with 6,3,1
-Defender lost 1 with 4,4
-Attacker lost 0 with 5,3,1
-Defender lost 2 with 4,2
-Attacker lost 0 with 4,4,4
-Defender lost 1 with 3
-Madagascar captured
-267.	Moved 4 armies from South Africa (5) to Madagascar (3)
-Fortified East Africa (1) with 6 armies from Madagascar (7)
-Andrew receives one card
-END OF TURN
-268.	Received 3 regular armies for occupying 10 territories
-Received 2 regular armies for occupying Australia
-Deployed 1 occupying army to Scandinavia (2)
-Deployed 1 occupying army to Northern Europe (3)
-Deployed 1 occupying army to Northern Europe (4)
-Deployed 1 occupying army to Northern Europe (5)
-Deployed 1 occupying army to Northern Europe (6)
-269.	Northern Europe (7) attacks Southern Europe (1) until defeated
-Attacker lost 1 with 4,3,2
-Defender lost 0 with 4
-Attacker lost 1 with 5,4,2
-Defender lost 0 with 6
-Attacker lost 0 with 6,5,3
-Defender lost 1 with 3
-Southern Europe captured
-270.	Moved 1 army from Northern Europe (2) to Southern Europe (3)
-271.	Southern Europe (4) attacks Egypt (2) until defeated
-Attacker lost 1 with 5,5,5
-Defender lost 1 with 6,1
-272.	Southern Europe (3) attacks Egypt (1) with 2 armies
-Attacker lost 0 with 6,6
-Defender lost 1 with 3
-Egypt captured
-273.	Scandinavia (3) attacks Ukraine (1) with 2 armies
-Attacker lost 1 with 5,3
-Defender lost 0 with 6
-274.	Siam (10) attacks China (1) until defeated
-Attacker lost 0 with 5,2,1
-Defender lost 1 with 1
-China captured
-275.	Fortified Siam (7) with 1 army from China (3)
-Will receives one card
-END OF TURN
-276.	Received 3 regular armies for occupying 8 territories
-Traded Middle East (I), Egypt (I) and Peru (I) for 6 regular armies
-Deployed 9 occupying armies to Alberta (8)
-277.	Alberta (17) attacks Western United States (1) with 3 armies
-Attacker lost 0 with 5,2,2
-Defender lost 1 with 4
-Western United States captured
-278.	Moved 13 armies from Alberta (14) to Western United States (3)
-279.	Western United States (16) attacks Central America (1) with 3 armies
-Attacker lost 0 with 6,4,4
-Defender lost 1 with 1
-Central America captured
-280.	Moved 12 armies from Western United States (13) to Central America (3)
-Fortified Central America (15) with 3 armies from Eastern United States (4)
-Ben receives one card
-END OF TURN
-281.	Received 3 regular armies for occupying 5 territories
-Received 2 regular armies for occupying S. America
-Traded Northwest Territory (A), Siberia (C) and Alaska (I) for 10 regular armies
-Deployed 1 occupying army to Western Europe (3)
-Deployed 14 occupying armies to Western Europe (4)
-282.	Western Europe (18) attacks North Africa (2) until defeated
-Attacker lost 1 with 6,5,5
-Defender lost 1 with 6,3
-Attacker lost 1 with 2,2,1
-Defender lost 0 with 3
-Attacker lost 0 with 6,2,2
-Defender lost 1 with 2
-North Africa captured
-283.	Moved 12 armies from Western Europe (13) to North Africa (3)
-Moved 1 army from Western Europe (1) to North Africa (15)
-Moved 1 army from Western Europe (2) to North Africa (14)
-Moved 1 army from Western Europe (1) to North Africa (15)
-Moved 1 army from Western Europe (2) to North Africa (14)
-284.	North Africa (13) attacks Egypt (2) with 2 armies
-Attacker lost 2 with 1,1
-Defender lost 0 with 4,4
-285.	Fortified Brazil (1) with 10 armies from North Africa (11)
-Fortified North Africa (1) with 1 army from Brazil (11)
-Fortified North Africa (2) with 1 army from Brazil (10)
-Jim receives one card
-END OF TURN
-286.	Received 4 regular armies for occupying 13 territories
-Deployed 1 occupying army to East Africa (7)
-Deployed 2 occupying armies to East Africa (8)
-Deployed 1 occupying army to Mongolia (1)
-287.	East Africa (10) attacks North Africa (3) until defeated
-Attacker lost 2 with 5,3,1
-Defender lost 0 with 5,3
-Attacker lost 1 with 5,5,2
-Defender lost 1 with 5,2
-Attacker lost 2 with 3,2,1
-Defender lost 0 with 4,3
-Attacker lost 0 with 5,3,2
-Defender lost 2 with 3,1
-North Africa captured
-288.	Moved 1 army from East Africa (2) to North Africa (3)
-Andrew receives one card
-END OF TURN
-289.	Received 4 regular armies for occupying 13 territories
-Received 2 regular armies for occupying Australia
-Deployed 1 occupying army to Iceland (3)
-Deployed 1 occupying army to Iceland (4)
-Deployed 1 occupying army to Iceland (5)
-Deployed 1 occupying army to Iceland (6)
-Deployed 1 occupying army to Iceland (7)
-Deployed 1 occupying army to Iceland (8)
-290.	Iceland (9) attacks Greenland (7) until defeated
-Attacker lost 2 with 5,3,1
-Defender lost 0 with 6,3
-Attacker lost 0 with 3,3,2
-Defender lost 2 with 2,1
-Attacker lost 2 with 4,3,3
-Defender lost 0 with 5,3
-Attacker lost 1 with 5,4,2
-Defender lost 1 with 5,1
-Attacker lost 0 with 5,4,1
-Defender lost 2 with 3,1
-Attacker lost 2 with 5,5,2
-Defender lost 0 with 6,5
-291.	Scandinavia (2) attacks Ukraine (1) with 1 army
-Attacker lost 1 with 2
-Defender lost 0 with 4
-292.	China (2) attacks Afghanistan (1) with 1 army
-Attacker lost 0 with 3
-Defender lost 1 with 1
-Afghanistan captured
-293.	Fortified Iceland (2) with 2 armies from Great Britain (3)
-Will receives one card
-END OF TURN
-294.	Received 3 regular armies for occupying 10 territories
-Received 5 regular armies for occupying N. America
-Deployed 1 occupying army to Greenland (2)
-Deployed 1 occupying army to Greenland (3)
-Deployed 1 occupying army to Greenland (4)
-Deployed 1 occupying army to Greenland (5)
-Deployed 1 occupying army to Kamchatka (1)
-Deployed 1 occupying army to Kamchatka (2)
-Deployed 1 occupying army to Kamchatka (3)
-Deployed 1 occupying army to Kamchatka (4)
-295.	Kamchatka (5) attacks Yakutsk (1) with 3 armies
-Attacker lost 0 with 5,2,1
-Defender lost 1 with 2
-Yakutsk captured
-296.	Fortified Kamchatka (2) with 2 armies from Yakutsk (3)
-Ben receives one card
-END OF TURN
-297.	Received 3 regular armies for occupying 5 territories
-Received 2 regular armies for occupying S. America
-Deployed 5 occupying armies to Venezuela (12)
-298.	Venezuela (17) attacks Central America (18) with 3 armies
-Attacker lost 0 with 4,3,1
-Defender lost 2 with 2,1
-299.	Venezuela (17) attacks Central America (16) with 3 armies
-Attacker lost 1 with 5,5,1
-Defender lost 1 with 5,3
-300.	Brazil (9) attacks North Africa (4) until defeated
-Attacker lost 2 with 6,5,3
-Defender lost 0 with 6,6
-Attacker lost 0 with 6,5,4
-Defender lost 2 with 5,2
-Attacker lost 2 with 6,6,1
-Defender lost 0 with 6,6
-Attacker lost 0 with 6,5,4
-Defender lost 2 with 3,2
-North Africa captured
-301.	Moved 1 army from Brazil (2) to North Africa (3)
-Moved 1 army from Brazil (1) to North Africa (4)
-Fortified Brazil (2) with 2 armies from North Africa (3)
-Jim receives one card
-END OF TURN
-302.	Received 3 regular armies for occupying 11 territories
-Deployed 3 occupying armies to Irkutsk (2)
-303.	Irkutsk (5) attacks Yakutsk (1) with 3 armies
-Attacker lost 0 with 6,4,1
-Defender lost 1 with 5
-Yakutsk captured
-304.	Ural (9) attacks Afghanistan (1) with 3 armies
-Attacker lost 1 with 5,5,4
-Defender lost 0 with 5
-305.	Ural (8) attacks Afghanistan (1) with 3 armies
-Attacker lost 0 with 6,2,1
-Defender lost 1 with 2
-Afghanistan captured
-306.	Moved 4 armies from Ural (5) to Afghanistan (3)
-Fortified Ural (1) with 6 armies from Afghanistan (7)
-Andrew receives one card
-END OF TURN
-307.	Received 4 regular armies for occupying 13 territories
-Received 2 regular armies for occupying Australia
-Traded Congo (I), Siam (I) and Iceland (I) for 6 regular armies
-Deployed 1 occupying army to Iceland (4)
-Deployed 1 occupying army to Iceland (5)
-Deployed 1 occupying army to Iceland (6)
-Deployed 1 occupying army to Iceland (7)
-Deployed 1 occupying army to Iceland (8)
-Deployed 1 occupying army to Iceland (9)
-Deployed 2 occupying armies to Iceland (10)
-Deployed 1 occupying army to Iceland (12)
-Deployed 1 occupying army to Iceland (13)
-Deployed 1 occupying army to Iceland (14)
-Deployed 1 occupying army to Iceland (15)
-Deployed 1 occupying army to Iceland (16)
-Deployed 1 occupying army to Iceland (17)
-308.	Iceland (18) attacks Greenland (6) until defeated
-Attacker lost 2 with 5,3,1
-Defender lost 0 with 6,3
-Attacker lost 2 with 5,2,1
-Defender lost 0 with 5,4
-Attacker lost 2 with 3,2,1
-Defender lost 0 with 3,2
-Attacker lost 0 with 6,4,3
-Defender lost 2 with 4,2
-Attacker lost 0 with 5,4,3
-Defender lost 2 with 2,2
-Attacker lost 1 with 6,1,1
-Defender lost 1 with 5,1
-Attacker lost 1 with 5,2,1
-Defender lost 0 with 5
-Attacker lost 0 with 5,4,1
-Defender lost 1 with 4
-Greenland captured
-309.	Fortified Great Britain (1) with 1 army from Iceland (7)
-Fortified Great Britain (2) with 1 army from Iceland (6)
-Will receives one card
-END OF TURN
-310.	Received 3 regular armies for occupying 9 territories
-Traded Southern Europe (A), Venezuela (I) and Wild for 10 regular armies
-Deployed 13 occupying armies to Ontario (2)
-311.	Ontario (15) attacks Greenland (3) with 3 armies
-Attacker lost 1 with 6,6,1
-Defender lost 1 with 6,2
-312.	Ontario (14) attacks Greenland (2) with 3 armies
-Attacker lost 1 with 3,2,1
-Defender lost 1 with 4,1
-313.	Ontario (13) attacks Greenland (1) with 3 armies
-Attacker lost 0 with 4,1,1
-Defender lost 1 with 2
-Greenland captured
-314.	Moved 9 armies from Ontario (10) to Greenland (3)
-315.	Greenland (12) attacks Iceland (5) with 3 armies
-Attacker lost 2 with 3,1,1
-Defender lost 0 with 4,3
-316.	Greenland (10) attacks Iceland (5) with 3 armies
-Attacker lost 1 with 4,1,1
-Defender lost 1 with 3,2
-317.	Greenland (9) attacks Iceland (4) with 3 armies
-Attacker lost 2 with 5,3,1
-Defender lost 0 with 5,4
-318.	Greenland (7) attacks Iceland (4) with 3 armies
-Attacker lost 0 with 6,6,1
-Defender lost 2 with 3,2
-319.	Greenland (7) attacks Iceland (2) with 3 armies
-Attacker lost 1 with 5,5,2
-Defender lost 1 with 6,1
-320.	Greenland (6) attacks Iceland (1) with 3 armies
-Attacker lost 1 with 5,5,4
-Defender lost 0 with 6
-321.	Greenland (5) attacks Iceland (1) with 3 armies
-Attacker lost 1 with 6,1,1
-Defender lost 0 with 6
-322.	Greenland (4) attacks Iceland (1) with 3 armies
-Attacker lost 1 with 6,3,3
-Defender lost 0 with 6
-323.	Greenland (3) attacks Iceland (1) with 2 armies
-Attacker lost 0 with 5,3
-Defender lost 1 with 4
-Iceland captured
-324.	Ben receives one card
-END OF TURN
-325.	Received 3 regular armies for occupying 6 territories
-Received 2 regular armies for occupying S. America
-Deployed 1 occupying army to Western Europe (3)
-Deployed 1 occupying army to Western Europe (4)
-Deployed 3 occupying armies to Venezuela (16)
-326.	Western Europe (5) attacks Southern Europe (1) with 3 armies
-Attacker lost 1 with 5,5,5
-Defender lost 0 with 5
-327.	Western Europe (4) attacks Southern Europe (1) with 3 armies
-Attacker lost 0 with 6,3,3
-Defender lost 1 with 5
-Southern Europe captured
-328.	Venezuela (19) attacks Central America (15) with 3 armies
-Attacker lost 1 with 6,5,3
-Defender lost 1 with 6,4
-329.	Venezuela (18) attacks Central America (14) with 3 armies
-Attacker lost 1 with 6,3,1
-Defender lost 1 with 5,4
-330.	Venezuela (17) attacks Central America (13) with 3 armies
-Attacker lost 1 with 5,3,2
-Defender lost 1 with 6,1
-331.	Venezuela (16) attacks Central America (12) with 3 armies
-Attacker lost 2 with 4,2,2
-Defender lost 0 with 4,3
-332.	Venezuela (14) attacks Central America (12) with 3 armies
-Attacker lost 2 with 3,1,1
-Defender lost 0 with 4,1
-333.	Jim receives one card
-END OF TURN
-334.	Received 4 regular armies for occupying 13 territories
-Traded China (I), Ukraine (C) and Wild for 10 regular armies
-Deployed 1 occupying army to Ukraine (1)
-Deployed 2 occupying armies to Ukraine (2)
-Deployed 1 occupying army to Ural (7)
-Deployed 1 occupying army to Yakutsk (3)
-Deployed 1 occupying army to Yakutsk (4)
-Deployed 1 occupying army to Yakutsk (5)
-Deployed 1 occupying army to Yakutsk (6)
-Deployed 1 occupying army to Yakutsk (7)
-Deployed 1 occupying army to Yakutsk (8)
-Deployed 1 occupying army to Yakutsk (9)
-Deployed 1 occupying army to Yakutsk (10)
-Deployed 1 occupying army to Ural (8)
-Deployed 1 occupying army to Afghanistan (1)
-Deployed 1 occupying army to Mongolia (2)
-Deployed 1 occupying army to Afghanistan (2)
-335.	Yakutsk (11) attacks Kamchatka (4) with 3 armies
-Attacker lost 1 with 3,2,1
-Defender lost 1 with 2,2
-336.	Yakutsk (10) attacks Kamchatka (3) with 3 armies
-Attacker lost 1 with 4,3,3
-Defender lost 1 with 6,1
-337.	Yakutsk (9) attacks Kamchatka (2) with 3 armies
-Attacker lost 0 with 4,3,2
-Defender lost 2 with 3,1
-Kamchatka captured
-338.	Moved 5 armies from Yakutsk (6) to Kamchatka (3)
-339.	Kamchatka (8) attacks Alaska (4) with 3 armies
-Attacker lost 0 with 6,3,1
-Defender lost 2 with 1,1
-340.	Kamchatka (8) attacks Alaska (2) with 3 armies
-Attacker lost 1 with 5,3,1
-Defender lost 1 with 6,2
-341.	Kamchatka (7) attacks Alaska (1) with 3 armies
-Attacker lost 0 with 6,5,1
-Defender lost 1 with 3
-Alaska captured
-342.	Moved 3 armies from Kamchatka (4) to Alaska (3)
-343.	Alaska (6) attacks Northwest Territory (1) with 3 armies
-Attacker lost 0 with 6,3,2
-Defender lost 1 with 3
-Northwest Territory captured
-344.	Moved 2 armies from Alaska (3) to Northwest Territory (3)
-345.	Northwest Territory (5) attacks Alberta (1) with 3 armies
-Attacker lost 1 with 4,2,1
-Defender lost 0 with 6
-346.	Northwest Territory (4) attacks Alberta (1) with 3 armies
-Attacker lost 0 with 5,5,2
-Defender lost 1 with 4
-Alberta captured
-347.	Ural (9) attacks China (1) with 3 armies
-Attacker lost 1 with 3,2,1
-Defender lost 0 with 5
-348.	Ural (8) attacks China (1) with 3 armies
-Attacker lost 0 with 6,6,3
-Defender lost 1 with 4
-China captured
-349.	Moved 4 armies from Ural (5) to China (3)
-Fortified China (7) with 2 armies from Mongolia (3)
-Andrew receives one card
-END OF TURN
-350.	Received 3 regular armies for occupying 10 territories
-Received 2 regular armies for occupying Australia
-Deployed 1 occupying army to Egypt (2)
-Deployed 1 occupying army to Egypt (3)
-Deployed 1 occupying army to Egypt (4)
-Deployed 1 occupying army to Egypt (5)
-Deployed 1 occupying army to Egypt (6)
-351.	Egypt (7) attacks East Africa (1) until defeated
-Attacker lost 0 with 6,5,3
-Defender lost 1 with 3
-East Africa captured
-352.	Will receives one card
-END OF TURN
-353.	Received 3 regular armies for occupying 7 territories
-Deployed 1 occupying army to Ontario (1)
-Deployed 1 occupying army to Ontario (2)
-Deployed 1 occupying army to Ontario (3)
-354.	Ontario (4) attacks Northwest Territory (1) with 3 armies
-Attacker lost 1 with 6,3,3
-Defender lost 0 with 6
-355.	Ontario (3) attacks Northwest Territory (1) with 2 armies
-Attacker lost 1 with 4,3
-Defender lost 0 with 4
-356.	Iceland (2) attacks Scandinavia (1) with 1 army
-Attacker lost 0 with 4
-Defender lost 1 with 1
-Scandinavia captured
-357.	Ontario (2) attacks Northwest Territory (1) with 1 army
-Attacker lost 1 with 6
-Defender lost 0 with 6
-358.	Ben receives one card
-END OF TURN
-359.	Received 3 regular armies for occupying 7 territories
-Received 2 regular armies for occupying S. America
-Traded Brazil (A), Madagascar (C) and Mongolia (I) for 10 regular armies
-Deployed 2 occupying armies to Brazil (4)
-Deployed 15 occupying armies to Southern Europe (3)
-360.	Southern Europe (18) attacks Ukraine (4) with 3 armies
-Attacker lost 1 with 5,1,1
-Defender lost 1 with 3,1
-361.	Southern Europe (17) attacks Ukraine (3) with 3 armies
-Attacker lost 2 with 2,2,1
-Defender lost 0 with 2,2
-362.	Southern Europe (15) attacks Ukraine (3) with 3 armies
-Attacker lost 0 with 5,5,1
-Defender lost 2 with 1,1
-363.	Southern Europe (15) attacks Ukraine (1) with 1 army
-Attacker lost 1 with 2
-Defender lost 0 with 5
-364.	Southern Europe (14) attacks Ukraine (1) with 1 army
-Attacker lost 1 with 2
-Defender lost 0 with 5
-365.	Southern Europe (13) attacks Ukraine (1) with 1 army
-Attacker lost 0 with 6
-Defender lost 1 with 2
-Ukraine captured
-366.	Southern Europe (12) attacks Middle East (2) with 3 armies
-Attacker lost 0 with 6,3,1
-Defender lost 2 with 5,1
-Middle East captured
-367.	Middle East (3) attacks Egypt (4) with 2 armies
-Attacker lost 1 with 3,2
-Defender lost 1 with 3,1
-368.	Middle East (2) attacks Egypt (3) with 1 army
-Attacker lost 1 with 1
-Defender lost 0 with 3,2
-369.	Southern Europe (9) attacks Egypt (3) with 3 armies
-Attacker lost 0 with 6,5,3
-Defender lost 2 with 3,1
-370.	Southern Europe (9) attacks Egypt (1) with 1 army
-Attacker lost 1 with 4
-Defender lost 0 with 4
-371.	Southern Europe (8) attacks Egypt (1) with 1 army
-Attacker lost 0 with 4
-Defender lost 1 with 1
-Egypt captured
-372.	Moved 6 armies from Southern Europe (7) to Egypt (1)
-Fortified North Africa (1) with 6 armies from Egypt (7)
-Jim receives one card
-END OF TURN
-373.	Received 5 regular armies for occupying 15 territories
-Deployed 1 occupying army to China (9)
-Deployed 1 occupying army to Afghanistan (3)
-Deployed 1 occupying army to Afghanistan (4)
-Deployed 1 occupying army to China (10)
-Deployed 1 occupying army to Afghanistan (5)
-374.	Afghanistan (6) attacks Middle East (1) with 3 armies
-Attacker lost 1 with 6,4,3
-Defender lost 0 with 6
-375.	Afghanistan (5) attacks Middle East (1) with 3 armies
-Attacker lost 1 with 5,3,3
-Defender lost 0 with 5
-376.	Afghanistan (4) attacks Middle East (1) with 3 armies
-Attacker lost 1 with 4,2,2
-Defender lost 0 with 6
-377.	Afghanistan (3) attacks Middle East (1) with 2 armies
-Attacker lost 1 with 2,1
-Defender lost 0 with 6
-378.	Afghanistan (2) attacks Middle East (1) with 1 army
-Attacker lost 0 with 5
-Defender lost 1 with 1
-Middle East captured
-379.	China (11) attacks India (1) with 3 armies
-Attacker lost 1 with 5,1,1
-Defender lost 0 with 6
-380.	China (10) attacks India (1) with 2 armies
-Attacker lost 0 with 6,4
-Defender lost 1 with 5
-India captured
-381.	Moved 7 armies from China (8) to India (2)
-382.	Alberta (3) attacks Ontario (1) with 2 armies
-Attacker lost 0 with 4,4
-Defender lost 1 with 1
-Ontario captured
-383.	Ontario (2) attacks Quebec (1) with 1 army
-Attacker lost 0 with 3
-Defender lost 1 with 1
-Quebec captured
-384.	Andrew receives one card
-END OF TURN
-385.	Received 3 regular armies for occupying 8 territories
-Received 2 regular armies for occupying Australia
-Traded Scandinavia (C), Ural (C) and Alberta (C) for 8 regular armies
-Deployed 1 occupying army to Siam (8)
-Deployed 1 occupying army to Siam (9)
-Deployed 1 occupying army to Siam (10)
-Deployed 1 occupying army to Siam (11)
-Deployed 1 occupying army to Siam (12)
-Deployed 1 occupying army to East Africa (3)
-Deployed 1 occupying army to East Africa (4)
-Deployed 1 occupying army to Northern Europe (1)
-Deployed 1 occupying army to Northern Europe (2)
-Deployed 1 occupying army to East Africa (5)
-Deployed 1 occupying army to East Africa (6)
-Deployed 1 occupying army to East Africa (7)
-Deployed 1 occupying army to East Africa (8)
-386.	East Africa (9) attacks Middle East (1) until defeated
-Attacker lost 1 with 4,2,1
-Defender lost 0 with 4
-Attacker lost 0 with 5,5,2
-Defender lost 1 with 4
-Middle East captured
-387.	Moved 1 army from East Africa (5) to Middle East (3)
-Moved 1 army from East Africa (4) to Middle East (4)
-388.	Middle East (5) attacks India (9) until defeated
-Attacker lost 0 with 6,4,2
-Defender lost 2 with 2,2
-Attacker lost 0 with 6,6,5
-Defender lost 2 with 5,4
-Attacker lost 1 with 6,5,4
-Defender lost 1 with 5,5
-Attacker lost 1 with 5,4,3
-Defender lost 1 with 6,3
-389.	Middle East (3) attacks Afghanistan (1) with 2 armies
-Attacker lost 1 with 4,2
-Defender lost 0 with 5
-390.	Middle East (2) attacks Afghanistan (1) with 1 army
-Attacker lost 0 with 4
-Defender lost 1 with 2
-Afghanistan captured
-391.	Will receives one card
-END OF TURN
-392.	Received 3 regular armies for occupying 6 territories
-Deployed 1 occupying army to Eastern United States (1)
-Deployed 1 occupying army to Eastern United States (2)
-Deployed 1 occupying army to Eastern United States (3)
-393.	Eastern United States (4) attacks Quebec (1) with 3 armies
-Attacker lost 0 with 5,2,2
-Defender lost 1 with 4
-Quebec captured
-394.	Ben receives one card
-END OF TURN
-395.	Received 3 regular armies for occupying 9 territories
-Received 2 regular armies for occupying S. America
-Deployed 1 occupying army to Venezuela (12)
-Deployed 1 occupying army to Venezuela (13)
-Deployed 1 occupying army to North Africa (7)
-Deployed 1 occupying army to North Africa (8)
-Deployed 1 occupying army to North Africa (9)
-396.	Venezuela (14) attacks Central America (12) with 3 armies
-Attacker lost 1 with 6,3,1
-Defender lost 1 with 3,3
-397.	Venezuela (13) attacks Central America (11) with 3 armies
-Attacker lost 0 with 3,2,1
-Defender lost 2 with 2,1
-398.	Venezuela (13) attacks Central America (9) with 3 armies
-Attacker lost 2 with 5,2,1
-Defender lost 0 with 6,2
-399.	North Africa (10) attacks East Africa (3) with 3 armies
-Attacker lost 0 with 6,5,3
-Defender lost 2 with 4,3
-400.	North Africa (10) attacks East Africa (1) with 3 armies
-Attacker lost 1 with 5,5,4
-Defender lost 0 with 6
-401.	North Africa (9) attacks East Africa (1) with 3 armies
-Attacker lost 0 with 5,4,3
-Defender lost 1 with 4
-East Africa captured
-402.	East Africa (3) attacks Congo (1) with 2 armies
-Attacker lost 0 with 6,2
-Defender lost 1 with 5
-Congo captured
-403.	Congo (2) attacks South Africa (1) with 1 army
-Attacker lost 1 with 3
-Defender lost 0 with 3
-404.	Fortified Venezuela (11) with 1 army from Brazil (6)
-Fortified Venezuela (12) with 1 army from Brazil (5)
-Fortified Venezuela (13) with 1 army from Brazil (4)
-Jim receives one card
-END OF TURN
-405.	Received 5 regular armies for occupying 15 territories
-Deployed 5 occupying armies to India (3)
-406.	India (8) attacks Afghanistan (1) with 2 armies
-Attacker lost 0 with 6,6
-Defender lost 1 with 1
-Afghanistan captured
-407.	Moved 5 armies from India (6) to Afghanistan (2)
-Fortified Mongolia (1) with 1 army from Irkutsk (2)
-Andrew receives one card
-END OF TURN
-408.	Received 3 regular armies for occupying 8 territories
-Received 2 regular armies for occupying Australia
-Deployed 1 occupying army to Siam (13)
-Deployed 1 occupying army to Middle East (1)
-Deployed 1 occupying army to Middle East (2)
-Deployed 1 occupying army to Middle East (3)
-Deployed 1 occupying army to Middle East (4)
-409.	Middle East (5) attacks Southern Europe (1) until defeated
-Attacker lost 1 with 3,2,2
-Defender lost 0 with 4
-Attacker lost 0 with 6,5,1
-Defender lost 1 with 5
-Southern Europe captured
-410.	Will receives one card
-END OF TURN
-411.	Received 3 regular armies for occupying 7 territories
-Deployed 1 occupying army to Quebec (3)
-Deployed 1 occupying army to Quebec (4)
-Deployed 1 occupying army to Quebec (5)
-412.	Quebec (6) attacks Ontario (1) with 3 armies
-Attacker lost 0 with 5,2,1
-Defender lost 1 with 1
-Ontario captured
-413.	Moved 1 army from Quebec (3) to Ontario (3)
-Ben receives one card
-END OF TURN
-414.	Received 3 regular armies for occupying 10 territories
-Received 2 regular armies for occupying S. America
-Deployed 5 occupying armies to Congo (1)
-415.	Congo (6) attacks South Africa (1) with 3 armies
-Attacker lost 0 with 5,5,4
-Defender lost 1 with 1
-South Africa captured
-416.	Moved 2 armies from Congo (3) to South Africa (3)
-417.	South Africa (5) attacks Madagascar (1) with 3 armies
-Attacker lost 1 with 4,3,2
-Defender lost 0 with 6
-418.	South Africa (4) attacks Madagascar (1) with 3 armies
-Attacker lost 0 with 6,3,2
-Defender lost 1 with 4
-Madagascar captured
-419.	Venezuela (14) attacks Central America (9) with 3 armies
-Attacker lost 2 with 3,1,1
-Defender lost 0 with 4,4
-420.	Venezuela (12) attacks Central America (9) with 3 armies
-Attacker lost 0 with 5,2,1
-Defender lost 2 with 4,1
-421.	Fortified Venezuela (12) with 2 armies from Brazil (3)
-Jim receives one card
-END OF TURN
-422.	Received 4 regular armies for occupying 13 territories
-Traded Kamchatka (I), Afghanistan (C) and Indonesia (A) for 10 regular armies
-Deployed 1 occupying army to Afghanistan (7)
-Deployed 1 occupying army to Afghanistan (8)
-Deployed 1 occupying army to Afghanistan (9)
-Deployed 2 occupying armies to Afghanistan (10)
-Deployed 1 occupying army to Afghanistan (12)
-Deployed 1 occupying army to Afghanistan (13)
-Deployed 1 occupying army to Afghanistan (14)
-Deployed 1 occupying army to India (1)
-Deployed 1 occupying army to India (2)
-Deployed 1 occupying army to India (3)
-Deployed 1 occupying army to India (4)
-Deployed 1 occupying army to India (5)
-Deployed 1 occupying army to India (6)
-Deployed 1 occupying army to India (7)
-Deployed 1 occupying army to India (8)
-423.	Afghanistan (15) attacks Middle East (1) with 3 armies
-Attacker lost 0 with 5,4,4
-Defender lost 1 with 2
-Middle East captured
-424.	Moved 11 armies from Afghanistan (12) to Middle East (3)
-425.	Middle East (14) attacks Egypt (1) with 3 armies
-Attacker lost 0 with 6,6,6
-Defender lost 1 with 5
-Egypt captured
-426.	Moved 10 armies from Middle East (11) to Egypt (3)
-427.	Egypt (13) attacks North Africa (6) with 3 armies
-Attacker lost 0 with 6,3,3
-Defender lost 2 with 4,2
-428.	Egypt (13) attacks North Africa (4) with 3 armies
-Attacker lost 0 with 6,3,3
-Defender lost 2 with 1,1
-429.	Egypt (13) attacks North Africa (2) with 3 armies
-Attacker lost 0 with 6,5,4
-Defender lost 2 with 2,2
-North Africa captured
-430.	Moved 9 armies from Egypt (10) to North Africa (3)
-431.	North Africa (12) attacks Congo (1) with 3 armies
-Attacker lost 1 with 6,3,3
-Defender lost 0 with 6
-432.	North Africa (11) attacks Congo (1) with 3 armies
-Attacker lost 0 with 6,2,2
-Defender lost 1 with 2
-Congo captured
-433.	Moved 7 armies from North Africa (8) to Congo (3)
-434.	Congo (10) attacks East Africa (1) with 3 armies
-Attacker lost 0 with 6,2,1
-Defender lost 1 with 5
-East Africa captured
-435.	Moved 6 armies from Congo (7) to East Africa (3)
-436.	East Africa (9) attacks Madagascar (3) with 3 armies
-Attacker lost 1 with 4,4,3
-Defender lost 1 with 5,1
-437.	East Africa (8) attacks Madagascar (2) with 3 armies
-Attacker lost 2 with 6,5,5
-Defender lost 0 with 6,5
-438.	East Africa (6) attacks Madagascar (2) with 3 armies
-Attacker lost 0 with 4,3,1
-Defender lost 2 with 2,1
-Madagascar captured
-439.	Moved 2 armies from East Africa (3) to Madagascar (3)
-440.	Madagascar (5) attacks South Africa (1) with 3 armies
-Attacker lost 1 with 5,5,2
-Defender lost 0 with 5
-441.	Madagascar (4) attacks South Africa (1) with 3 armies
-Attacker lost 1 with 2,2,1
-Defender lost 0 with 5
-442.	Madagascar (3) attacks South Africa (1) with 2 armies
-Attacker lost 0 with 5,1
-Defender lost 1 with 2
-South Africa captured
-443.	Andrew receives one card
-END OF TURN
-444.	Received 3 regular armies for occupying 8 territories
-Received 2 regular armies for occupying Australia
-Deployed 1 occupying army to Siam (14)
-Deployed 1 occupying army to Southern Europe (3)
-Deployed 1 occupying army to Southern Europe (4)
-Deployed 1 occupying army to Southern Europe (5)
-Deployed 1 occupying army to Southern Europe (6)
-445.	Southern Europe (7) attacks Middle East (1) until defeated
-Attacker lost 1 with 3,2,1
-Defender lost 0 with 5
-Attacker lost 0 with 5,1,1
-Defender lost 1 with 3
-Middle East captured
-446.	Middle East (3) attacks Egypt (1) with 2 armies
-Attacker lost 1 with 2,2
-Defender lost 0 with 3
-447.	Southern Europe (3) attacks Egypt (1) with 2 armies
-Attacker lost 0 with 4,2
-Defender lost 1 with 1
-Egypt captured
-448.	Fortified Southern Europe (1) with 1 army from Egypt (2)
-Will receives one card
-END OF TURN
-449.	Received 3 regular armies for occupying 8 territories
-Deployed 1 occupying army to Ontario (4)
-Deployed 1 occupying army to Central America (7)
-Deployed 1 occupying army to Ontario (5)
-450.	Ontario (6) attacks Alberta (1) with 3 armies
-Attacker lost 0 with 6,4,1
-Defender lost 1 with 3
-Alberta captured
-451.	Moved 2 armies from Ontario (3) to Alberta (3)
-452.	Alberta (5) attacks Northwest Territory (1) with 3 armies
-Attacker lost 0 with 6,4,3
-Defender lost 1 with 5
-Northwest Territory captured
-453.	Moved 1 army from Alberta (2) to Northwest Territory (3)
-454.	Northwest Territory (4) attacks Alaska (1) with 3 armies
-Attacker lost 0 with 4,4,3
-Defender lost 1 with 2
-Alaska captured
-455.	Fortified Greenland (1) with 1 army from Quebec (2)
-Ben receives one card
-END OF TURN
-456.	Received 3 regular armies for occupying 6 territories
-Received 2 regular armies for occupying S. America
-Traded North Africa (C), Argentina (I) and Central America (A) for 10 regular armies
-Deployed 2 occupying armies to Argentina (1)
-Deployed 1 occupying army to Brazil (1)
-Deployed 14 occupying armies to Brazil (2)
-457.	Venezuela (14) attacks Central America (8) with 3 armies
-Attacker lost 2 with 6,4,1
-Defender lost 0 with 6,4
-458.	Brazil (16) attacks North Africa (1) until defeated
-Attacker lost 1 with 3,2,2
-Defender lost 0 with 4
-Attacker lost 0 with 6,5,4
-Defender lost 1 with 3
-North Africa captured
-459.	Moved 1 army from Brazil (12) to North Africa (3)
-Moved 1 army from Brazil (11) to North Africa (4)
-Moved 1 army from Brazil (12) to North Africa (3)
-Moved 1 army from Brazil (11) to North Africa (4)
-Moved 1 army from Brazil (10) to North Africa (5)
-Moved 1 army from Brazil (9) to North Africa (6)
-460.	North Africa (7) attacks Egypt (1) with 3 armies
-Attacker lost 0 with 4,3,1
-Defender lost 1 with 2
-Egypt captured
-461.	Egypt (3) attacks East Africa (1) with 2 armies
-Attacker lost 1 with 5,4
-Defender lost 0 with 6
-462.	Egypt (2) attacks East Africa (1) with 1 army
-Attacker lost 1 with 1
-Defender lost 0 with 6
-463.	North Africa (4) attacks Congo (1) with 2 armies
-Attacker lost 0 with 6,5
-Defender lost 1 with 1
-Congo captured
-464.	Fortified Brazil (8) with 2 armies from Argentina (3)
-Jim receives one card
-END OF TURN
-465.	Received 4 regular armies for occupying 13 territories
-Deployed 1 occupying army to India (9)
-Deployed 1 occupying army to India (10)
-Deployed 1 occupying army to India (11)
-Deployed 1 occupying army to India (12)
-466.	India (13) attacks Middle East (2) with 3 armies
-Attacker lost 0 with 5,2,1
-Defender lost 2 with 3,1
-Middle East captured
-467.	Moved 9 armies from India (10) to Middle East (3)
-Fortified Madagascar (1) with 1 army from South Africa (2)
-Andrew receives one card
-END OF TURN
-468.	Received 3 regular armies for occupying 8 territories
-Received 2 regular armies for occupying Australia
-Deployed 1 occupying army to Siam (15)
-Deployed 1 occupying army to Great Britain (3)
-Deployed 1 occupying army to Great Britain (4)
-Deployed 1 occupying army to Great Britain (5)
-Deployed 1 occupying army to Great Britain (6)
-469.	Great Britain (7) attacks Iceland (1) until defeated
-Attacker lost 1 with 5,2,2
-Defender lost 0 with 6
-Attacker lost 0 with 6,5,2
-Defender lost 1 with 2
-Iceland captured
-470.	Moved 1 army from Great Britain (3) to Iceland (3)
-Moved 1 army from Great Britain (2) to Iceland (4)
-471.	Iceland (5) attacks Greenland (2) until defeated
-Attacker lost 0 with 6,4,3
-Defender lost 2 with 2,1
-Greenland captured
-472.	Fortified Iceland (2) with 2 armies from Greenland (3)
-Fortified Greenland (1) with 3 armies from Iceland (4)
-Fortified Iceland (1) with 3 armies from Greenland (4)
-Fortified Greenland (1) with 1 army from Iceland (4)
-Fortified Greenland (2) with 1 army from Iceland (3)
-Fortified Greenland (3) with 1 army from Iceland (2)
-Fortified Iceland (1) with 3 armies from Greenland (4)
-Fortified Greenland (1) with 1 army from Iceland (4)
-Will receives one card
-END OF TURN
-473.	Received 3 regular armies for occupying 9 territories
-Traded Irkutsk (C), Quebec (C) and Yakutsk (C) for 8 regular armies
-Deployed 1 occupying army to Alaska (3)
-Deployed 1 occupying army to Alaska (4)
-Deployed 1 occupying army to Quebec (1)
-Deployed 1 occupying army to Quebec (2)
-Deployed 1 occupying army to Quebec (3)
-Deployed 1 occupying army to Quebec (4)
-Deployed 1 occupying army to Quebec (5)
-Deployed 1 occupying army to Quebec (6)
-Deployed 1 occupying army to Quebec (7)
-Deployed 1 occupying army to Quebec (8)
-Deployed 1 occupying army to Quebec (9)
-Deployed 2 occupying armies to Quebec (10)
-474.	Quebec (12) attacks Greenland (2) with 3 armies
-Attacker lost 0 with 6,4,1
-Defender lost 2 with 5,2
-Greenland captured
-475.	Moved 5 armies from Quebec (9) to Greenland (3)
-Ben receives one card
-END OF TURN
-476.	Received 3 regular armies for occupying 9 territories
-Received 2 regular armies for occupying S. America
-Deployed 1 occupying army to Venezuela (12)
-Deployed 1 occupying army to Venezuela (13)
-Deployed 1 occupying army to Ukraine (1)
-Deployed 1 occupying army to Ukraine (2)
-Deployed 1 occupying army to Ukraine (3)
-477.	Ukraine (4) attacks Ural (1) until defeated
-Attacker lost 0 with 6,6,4
-Defender lost 1 with 3
-Ural captured
-478.	Venezuela (14) attacks Central America (8) with 3 armies
-Attacker lost 0 with 5,4,1
-Defender lost 2 with 3,2
-479.	Venezuela (14) attacks Central America (6) with 3 armies
-Attacker lost 2 with 6,5,1
-Defender lost 0 with 6,5
-480.	Fortified North Africa (2) with 1 army from Congo (2)
-Jim receives one card
-END OF TURN
-481.	Received 4 regular armies for occupying 13 territories
-Traded Greenland (C), New Guinea (I) and Northern Europe (A) for 10 regular armies
-Deployed 1 occupying army to Middle East (12)
-Deployed 1 occupying army to Middle East (13)
-Deployed 1 occupying army to Middle East (14)
-Deployed 1 occupying army to Middle East (15)
-Deployed 1 occupying army to Middle East (16)
-Deployed 1 occupying army to Middle East (17)
-Deployed 1 occupying army to Middle East (18)
-Deployed 1 occupying army to Middle East (19)
-Deployed 1 occupying army to Middle East (20)
-Deployed 1 occupying army to India (1)
-Deployed 1 occupying army to China (1)
-Deployed 1 occupying army to Afghanistan (1)
-Deployed 1 occupying army to Middle East (21)
-Deployed 1 occupying army to Middle East (22)
-482.	Middle East (23) attacks Southern Europe (2) with 3 armies
-Attacker lost 1 with 2,2,2
-Defender lost 1 with 3,1
-483.	Middle East (22) attacks Southern Europe (1) with 3 armies
-Attacker lost 0 with 4,2,1
-Defender lost 1 with 2
-Southern Europe captured
-484.	Moved 18 armies from Middle East (19) to Southern Europe (3)
-485.	Southern Europe (21) attacks Northern Europe (3) with 3 armies
-Attacker lost 1 with 3,3,1
-Defender lost 1 with 3,1
-486.	Southern Europe (20) attacks Northern Europe (2) with 3 armies
-Attacker lost 2 with 6,2,1
-Defender lost 0 with 6,4
-487.	Southern Europe (18) attacks Northern Europe (2) with 3 armies
-Attacker lost 0 with 5,5,4
-Defender lost 2 with 3,2
-Northern Europe captured
-488.	Northern Europe (3) attacks Ukraine (1) with 2 armies
-Attacker lost 1 with 4,3
-Defender lost 0 with 4
-489.	Northern Europe (2) attacks Ukraine (1) with 1 army
-Attacker lost 1 with 5
-Defender lost 0 with 6
-490.	Southern Europe (15) attacks Western Europe (1) with 2 armies
-Attacker lost 1 with 5,4
-Defender lost 0 with 5
-491.	Southern Europe (14) attacks Western Europe (1) with 2 armies
-Attacker lost 1 with 2,1
-Defender lost 0 with 3
-492.	Southern Europe (13) attacks Western Europe (1) with 2 armies
-Attacker lost 0 with 5,3
-Defender lost 1 with 1
-Western Europe captured
-493.	Andrew receives one card
-END OF TURN
-494.	Received 3 regular armies for occupying 7 territories
-Received 2 regular armies for occupying Australia
-Traded Eastern United States (A), Western Australia (A) and Great Britain (A) for 4 regular armies
-Deployed 2 occupying armies to Great Britain (1)
-Deployed 1 occupying army to Siam (16)
-Deployed 1 occupying army to Great Britain (3)
-Deployed 1 occupying army to Great Britain (4)
-Deployed 1 occupying army to Great Britain (5)
-Deployed 1 occupying army to Great Britain (6)
-Deployed 1 occupying army to Great Britain (7)
-Deployed 1 occupying army to Great Britain (8)
-Deployed 1 occupying army to Great Britain (9)
-Deployed 1 occupying army to Great Britain (10)
-495.	Great Britain (11) attacks Scandinavia (1) until defeated
-Attacker lost 0 with 6,4,1
-Defender lost 1 with 5
-Scandinavia captured
-496.	Fortified Scandinavia (3) with 7 armies from Great Britain (8)
-Fortified Great Britain (1) with 1 army from Scandinavia (10)
-Will receives one card
-END OF TURN  
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org58b87da" class="outline-2">
-<h2 id="org58b87da"><span class="section-number-2">2</span> Extract</h2>
+<div id="outline-container-org70cd9a6" class="outline-2">
+<h2 id="org70cd9a6"><span class="section-number-2">2</span> Extract</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 "Quick" perl code to extract
 </p>
 <div class="org-src-container">
-<pre class="src src-perl" id="org7c7018a"><span style="font-weight: bold;">use</span> <span style="font-weight: bold; text-decoration: underline;">feature</span> <span style="font-style: italic;">'switch'</span>;
-open <span style="font-weight: bold; text-decoration: underline;">my</span> $<span style="font-weight: bold; font-style: italic;">fh</span>, <span style="font-style: italic;">"&lt;txt/risk_log.txt"</span> or <span style="font-weight: bold;">die</span> <span style="font-style: italic;">"no file"</span>;
+<pre class="src src-perl" id="orgf0057fb"><span style="font-weight: bold;">use</span> <span style="font-weight: bold; text-decoration: underline;">strict</span>;
+<span style="font-weight: bold;">use</span> <span style="font-weight: bold; text-decoration: underline;">experimental</span> <span style="font-style: italic;">'switch'</span>;
+open <span style="font-weight: bold; text-decoration: underline;">my</span> $<span style="font-weight: bold; font-style: italic;">fh</span>, <span style="font-style: italic;">"&lt;"</span>, <span style="font-style: italic;">"txt/risk_log.txt"</span> or <span style="font-weight: bold;">die</span> <span style="font-style: italic;">"no file"</span>;
 <span style="font-weight: bold; text-decoration: underline;">my</span> @<span style="font-weight: bold; font-style: italic; text-decoration: underline;">players</span>=qw<span style="font-style: italic;">/Andrew Josh Will Ben Jim/</span>;
 <span style="font-weight: bold; text-decoration: underline;">my</span> $<span style="font-weight: bold; font-style: italic;">turn</span>=0;
 <span style="font-weight: bold; text-decoration: underline;">my</span> @<span style="font-weight: bold; font-style: italic; text-decoration: underline;">res</span>=();
-<span style="font-weight: bold; text-decoration: underline;">my</span> $<span style="font-weight: bold; font-style: italic;">init</span> = [];
+<span style="font-weight: bold; text-decoration: underline;">my</span> $<span style="font-weight: bold; font-style: italic;">init</span> = {};
 <span style="font-weight: bold; text-decoration: underline;">my</span> $<span style="font-weight: bold; font-style: italic;">adjust</span>= 0;
+<span style="font-weight: bold; text-decoration: underline;">my</span> %<span style="font-weight: bold; font-style: italic; text-decoration: underline;">player_contries</span>=(); <span style="font-weight: bold; font-style: italic;"># track ownership</span>
+<span style="font-weight: bold; text-decoration: underline;">my</span> @<span style="font-weight: bold; font-style: italic; text-decoration: underline;">keys</span> = qw<span style="font-style: italic;">/turn a.player d.player a.country a.n d.country d.n a.lost d.lost status/</span>;
 <span style="font-weight: bold;">while</span>($<span style="font-weight: bold; font-style: italic;">_</span>=&lt;$<span style="font-weight: bold; font-style: italic;">fh</span>&gt;){
   <span style="font-weight: bold; font-style: italic;"># we could only set player when they change turns</span>
   <span style="font-weight: bold; font-style: italic;"># but easier to do each new line</span>
   <span style="font-weight: bold; text-decoration: underline;">my</span> $<span style="font-weight: bold; font-style: italic;">playeridx</span> = ($<span style="font-weight: bold; font-style: italic;">turn</span>-$<span style="font-weight: bold; font-style: italic;">adjust</span>)%($#<span style="font-weight: bold; font-style: italic; text-decoration: underline;">players</span>+1);
   <span style="font-weight: bold; text-decoration: underline;">my</span> $<span style="font-weight: bold; font-style: italic;">player</span> = $<span style="font-weight: bold; font-style: italic;">players</span>[$<span style="font-weight: bold; font-style: italic;">playeridx</span>];
   given ($<span style="font-weight: bold; font-style: italic;">_</span>) {
-   <span style="font-weight: bold; font-style: italic;"># starts like "XXX (nx) attacks YYYY (ny) "</span>
-   <span style="font-weight: bold; font-style: italic;"># rolls include losses</span>
-   when (<span style="font-style: italic;">/([A-Z].+) \((\d+)\) attacks ([A-Z].+) \((\d+)\) /</span>) {
+   when (<span style="font-style: italic;">/Deployed.*to ([A-Z].+) \(/</span>) {
+    <span style="font-weight: bold; font-style: italic;"># initialze who owns what. misses anything never reinforced (abandoned first assingments)</span>
+    <span style="font-weight: bold; font-style: italic;">#print STDERR "on $turn: $1 was ", $player_contries{$1}||"unknown", ", now $player\n";</span>
+    $<span style="font-weight: bold; font-style: italic;">player_contries</span>{$<span style="font-weight: bold; font-style: italic;">1</span>}=$<span style="font-weight: bold; font-style: italic;">player</span>; 
+   } when (<span style="font-style: italic;">/([A-Z].+) \((\d+)\) attacks ([A-Z].+) \((\d+)\) /</span>) {
+    <span style="font-weight: bold; font-style: italic;"># starts like "XXX (nx) attacks YYYY (ny) "</span>
+    <span style="font-weight: bold; font-style: italic;"># rolls include losses</span>
 
     <span style="font-weight: bold; font-style: italic;"># dont update if switch from "until defeted" to "with x"</span>
-    <span style="font-weight: bold;">if</span>(! @$<span style="font-weight: bold; font-style: italic;">init</span> ||            <span style="font-weight: bold; font-style: italic;"># no init</span>
-       $<span style="font-weight: bold; font-style: italic;">init</span>-&gt;[0] != $<span style="font-weight: bold; font-style: italic;">turn</span> || <span style="font-weight: bold; font-style: italic;"># different round</span>
-       $<span style="font-weight: bold; font-style: italic;">init</span>-&gt;[2] != $<span style="font-weight: bold; font-style: italic;">1</span> ||    <span style="font-weight: bold; font-style: italic;"># different attack</span>
-       $<span style="font-weight: bold; font-style: italic;">init</span>-&gt;[4] != $<span style="font-weight: bold; font-style: italic;">3</span>       <span style="font-weight: bold; font-style: italic;"># different defend</span>
+    <span style="font-weight: bold;">if</span>(! %$<span style="font-weight: bold; font-style: italic;">init</span>                      || <span style="font-weight: bold; font-style: italic;"># no init</span>
+       $<span style="font-weight: bold; font-style: italic;">init</span>-&gt;{<span style="font-style: italic;">"turn"</span>}      != $<span style="font-weight: bold; font-style: italic;">turn</span> || <span style="font-weight: bold; font-style: italic;"># different round</span>
+       $<span style="font-weight: bold; font-style: italic;">init</span>-&gt;{<span style="font-style: italic;">"a.country"</span>} != $<span style="font-weight: bold; font-style: italic;">1</span>    || <span style="font-weight: bold; font-style: italic;"># different attack</span>
+       $<span style="font-weight: bold; font-style: italic;">init</span>-&gt;{<span style="font-style: italic;">"d.country"</span>} != $<span style="font-weight: bold; font-style: italic;">3</span>       <span style="font-weight: bold; font-style: italic;"># different defend</span>
     ){ 
-      push @<span style="font-weight: bold; font-style: italic; text-decoration: underline;">res</span>, $<span style="font-weight: bold; font-style: italic;">init</span> <span style="font-weight: bold;">if</span> @$<span style="font-weight: bold; font-style: italic;">init</span>; 
-      $<span style="font-weight: bold; font-style: italic;">init</span> = [$<span style="font-weight: bold; font-style: italic;">turn</span>, $<span style="font-weight: bold; font-style: italic;">player</span>, $<span style="font-weight: bold; font-style: italic;">1</span>, $<span style="font-weight: bold; font-style: italic;">2</span>, $<span style="font-weight: bold; font-style: italic;">3</span>, $<span style="font-weight: bold; font-style: italic;">4</span>, 0, 0, <span style="font-style: italic;">"kept"</span>];
+      <span style="font-weight: bold;">if</span>(%$<span style="font-weight: bold; font-style: italic;">init</span>){
+          print STDERR <span style="font-style: italic;">"gave up and attacked someone new!? @{$init}{@keys} -&gt; $_"</span>;
+          push @<span style="font-weight: bold; font-style: italic; text-decoration: underline;">res</span>, $<span style="font-weight: bold; font-style: italic;">init</span>;
+      }
+      <span style="font-weight: bold; text-decoration: underline;">my</span> $<span style="font-weight: bold; font-style: italic;">adv</span> = $<span style="font-weight: bold; font-style: italic;">player_contries</span>{$<span style="font-weight: bold; font-style: italic;">init</span>-&gt;{<span style="font-style: italic;">"d.country"</span>}};
+      $<span style="font-weight: bold; font-style: italic;">init</span> = {<span style="font-style: italic;">"turn"</span>=&gt;$<span style="font-weight: bold; font-style: italic;">turn</span>,
+               <span style="font-style: italic;">"a.player"</span>=&gt;$<span style="font-weight: bold; font-style: italic;">player</span>, <span style="font-style: italic;">"d.player"</span>=&gt;$<span style="font-weight: bold; font-style: italic;">adv</span>,
+               <span style="font-style: italic;">"a.country"</span>=&gt;$<span style="font-weight: bold; font-style: italic;">1</span>, <span style="font-style: italic;">"a.n"</span>=&gt; $<span style="font-weight: bold; font-style: italic;">2</span>,
+               <span style="font-style: italic;">"d.country"</span>=&gt;$<span style="font-weight: bold; font-style: italic;">3</span>, <span style="font-style: italic;">"d.n"</span> =&gt; $<span style="font-weight: bold; font-style: italic;">4</span>, 
+               <span style="font-style: italic;">"a.lost"</span> =&gt; 0, <span style="font-style: italic;">"d.lost"</span> =&gt; 0,
+               <span style="font-style: italic;">"status"</span>=&gt;<span style="font-style: italic;">"kept"</span>};
+      print STDERR <span style="font-style: italic;">"ERROR: already $init-&gt;{'d.country'}=&gt; $player: @{$init}{@keys}\n"</span> <span style="font-weight: bold;">if</span> $<span style="font-weight: bold; font-style: italic;">adv</span> == $<span style="font-weight: bold; font-style: italic;">player</span>;
+    } <span style="font-weight: bold;">else</span> {
+      print STDERR <span style="font-style: italic;">"until def to 1/2 attackes @{$init}{@keys} -&gt; $_"</span>
     }
    } when (<span style="font-style: italic;">/^Attacker lost (\d+)/</span>) {
-    $<span style="font-weight: bold; font-style: italic;">init</span>-&gt;[6]+=$<span style="font-weight: bold; font-style: italic;">1</span>;
+    $<span style="font-weight: bold; font-style: italic;">init</span>-&gt;{<span style="font-style: italic;">"a.lost"</span>}+=$<span style="font-weight: bold; font-style: italic;">1</span>;
    } when (<span style="font-style: italic;">/^Defender lost (\d+)/</span>) {
-    $<span style="font-weight: bold; font-style: italic;">init</span>-&gt;[7]+=$<span style="font-weight: bold; font-style: italic;">1</span>;
+    $<span style="font-weight: bold; font-style: italic;">init</span>-&gt;{<span style="font-style: italic;">"d.lost"</span>}+=$<span style="font-weight: bold; font-style: italic;">1</span>;
    } when (<span style="font-style: italic;">/captured/</span>){
     <span style="font-weight: bold; font-style: italic;"># event ends with a capture.</span>
     <span style="font-weight: bold; font-style: italic;"># if kept we dont get a new message. but log starts new event</span>
 
-    <span style="font-weight: bold; font-style: italic;"># when event was e.g. reinforcment. don't records anything</span>
-    <span style="font-weight: bold; font-style: italic;">#next unless @$init;</span>
-
     <span style="font-weight: bold; font-style: italic;"># if captured, update to say so (otherwise keep "kept" status)</span>
-    $<span style="font-weight: bold; font-style: italic;">init</span>-&gt;[8] = $&amp;;
-    push @<span style="font-weight: bold; font-style: italic; text-decoration: underline;">res</span>, $<span style="font-weight: bold; font-style: italic;">init</span> <span style="font-weight: bold;">if</span> @$<span style="font-weight: bold; font-style: italic;">init</span>; 
-    $<span style="font-weight: bold; font-style: italic;">init</span> = [];
+    $<span style="font-weight: bold; font-style: italic;">init</span>-&gt;{status} = $&amp;;
+    $<span style="font-weight: bold; font-style: italic;">player_contries</span>{$<span style="font-weight: bold; font-style: italic;">init</span>-&gt;{<span style="font-style: italic;">"d.country"</span>}} = $<span style="font-weight: bold; font-style: italic;">player</span>;
+    print STDERR <span style="font-style: italic;">"changed owernship $init-&gt;{'d.country'} =&gt; $player_contries{$init-&gt;{'d.country'}}: @{$init}{@keys}\n"</span>;
+    push @<span style="font-weight: bold; font-style: italic; text-decoration: underline;">res</span>, $<span style="font-weight: bold; font-style: italic;">init</span> <span style="font-weight: bold;">if</span> %$<span style="font-weight: bold; font-style: italic;">init</span>; 
+    $<span style="font-weight: bold; font-style: italic;">init</span> = {};
   } when(<span style="font-style: italic;">/^(\S+) defeated/</span>) {
     <span style="font-weight: bold; font-style: italic;"># compensate for defeated person</span>
     <span style="font-weight: bold; text-decoration: underline;">my</span> $<span style="font-weight: bold; font-style: italic;">defeated</span>=$<span style="font-weight: bold; font-style: italic;">1</span>;
@@ -2492,25 +338,29 @@ open <span style="font-weight: bold; text-decoration: underline;">my</span> $<sp
     $<span style="font-weight: bold; font-style: italic;">adjust</span> = $<span style="font-weight: bold; font-style: italic;">turn</span>-$<span style="font-weight: bold; font-style: italic;">playeridx</span>+1;
   } when(<span style="font-style: italic;">/END OF TURN/</span>) {
     <span style="font-weight: bold; font-style: italic;"># finally turns are finished</span>
-    push @<span style="font-weight: bold; font-style: italic; text-decoration: underline;">res</span>, $<span style="font-weight: bold; font-style: italic;">init</span> <span style="font-weight: bold;">if</span> @$<span style="font-weight: bold; font-style: italic;">init</span>; 
-    $<span style="font-weight: bold; font-style: italic;">init</span> = [];
+    push @<span style="font-weight: bold; font-style: italic; text-decoration: underline;">res</span>, $<span style="font-weight: bold; font-style: italic;">init</span> <span style="font-weight: bold;">if</span> %$<span style="font-weight: bold; font-style: italic;">init</span>; 
+    print STDERR <span style="font-style: italic;">"no ownership change: @{$init}{@keys}\n"</span>;
+    $<span style="font-weight: bold; font-style: italic;">init</span> = {};
     $<span style="font-weight: bold; font-style: italic;">turn</span>++;
   }
 }
 }
 
 <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">add header</span>
-unshift @<span style="font-weight: bold; font-style: italic; text-decoration: underline;">res</span>, [qw<span style="font-style: italic;">/turn player attacker a_n defender d_n a_lost d_lost status/</span>];
+<span style="font-weight: bold; text-decoration: underline;">my</span> %<span style="font-weight: bold; font-style: italic; text-decoration: underline;">keys</span> = (); $<span style="font-weight: bold; font-style: italic;">keys</span>{$<span style="font-weight: bold; font-style: italic;">_</span>}=$<span style="font-weight: bold; font-style: italic;">_</span> <span style="font-weight: bold;">for</span> (@<span style="font-weight: bold; font-style: italic; text-decoration: underline;">keys</span>);
+unshift @<span style="font-weight: bold; font-style: italic; text-decoration: underline;">res</span>, \%<span style="font-weight: bold; font-style: italic; text-decoration: underline;">keys</span>;
 <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">make it into a table</span>
-join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-style: italic;">"\t"</span>, @$<span style="font-weight: bold; font-style: italic;">_</span>)} @<span style="font-weight: bold; font-style: italic; text-decoration: underline;">res</span>;
+join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-style: italic;">"\t"</span>, @{$<span style="font-weight: bold; font-style: italic;">_</span>}{@<span style="font-weight: bold; font-style: italic; text-decoration: underline;">keys</span>})} @<span style="font-weight: bold; font-style: italic; text-decoration: underline;">res</span>;
 
 </pre>
 </div>
-<table id="org7602306">
+<table id="org4e8a959">
 
 
 <colgroup>
 <col  class="org-right">
+
+<col  class="org-left">
 
 <col  class="org-left">
 
@@ -2531,19 +381,21 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tbody>
 <tr>
 <td class="org-right">turn</td>
-<td class="org-left">player</td>
-<td class="org-left">attacker</td>
-<td class="org-right">a<sub>n</sub></td>
-<td class="org-left">defender</td>
-<td class="org-right">d<sub>n</sub></td>
-<td class="org-right">a<sub>lost</sub></td>
-<td class="org-right">d<sub>lost</sub></td>
+<td class="org-left">a.player</td>
+<td class="org-left">d.player</td>
+<td class="org-left">a.country</td>
+<td class="org-right">a.n</td>
+<td class="org-left">d.country</td>
+<td class="org-right">d.n</td>
+<td class="org-right">a.lost</td>
+<td class="org-right">d.lost</td>
 <td class="org-left">status</td>
 </tr>
 
 <tr>
 <td class="org-right">6</td>
 <td class="org-left">Josh</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Venezuela</td>
 <td class="org-right">5</td>
 <td class="org-left">Central America</td>
@@ -2556,6 +408,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">6</td>
 <td class="org-left">Josh</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Eastern United States</td>
 <td class="org-right">9</td>
 <td class="org-left">Quebec</td>
@@ -2568,6 +421,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">6</td>
 <td class="org-left">Josh</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Eastern United States</td>
 <td class="org-right">6</td>
 <td class="org-left">Western United States</td>
@@ -2580,6 +434,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">7</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Eastern Australia</td>
 <td class="org-right">11</td>
 <td class="org-left">New Guinea</td>
@@ -2592,6 +447,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">7</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">New Guinea</td>
 <td class="org-right">3</td>
 <td class="org-left">Indonesia</td>
@@ -2604,6 +460,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">8</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Irkutsk</td>
 <td class="org-right">4</td>
 <td class="org-left">Kamchatka</td>
@@ -2616,6 +473,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">9</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Argentina</td>
 <td class="org-right">21</td>
 <td class="org-left">Peru</td>
@@ -2628,6 +486,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">9</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Peru</td>
 <td class="org-right">19</td>
 <td class="org-left">Venezuela</td>
@@ -2640,6 +499,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">9</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Venezuela</td>
 <td class="org-right">17</td>
 <td class="org-left">Brazil</td>
@@ -2652,6 +512,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">10</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Egypt</td>
 <td class="org-right">11</td>
 <td class="org-left">East Africa</td>
@@ -2664,6 +525,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">10</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">East Africa</td>
 <td class="org-right">3</td>
 <td class="org-left">Congo</td>
@@ -2676,6 +538,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">11</td>
 <td class="org-left">Josh</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Ontario</td>
 <td class="org-right">5</td>
 <td class="org-left">Alberta</td>
@@ -2688,6 +551,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">12</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Eastern Australia</td>
 <td class="org-right">5</td>
 <td class="org-left">Western Australia</td>
@@ -2700,6 +564,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">12</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">New Guinea</td>
 <td class="org-right">2</td>
 <td class="org-left">Western Australia</td>
@@ -2712,6 +577,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">13</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Irkutsk</td>
 <td class="org-right">4</td>
 <td class="org-left">Kamchatka</td>
@@ -2724,6 +590,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">13</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Alberta</td>
 <td class="org-right">4</td>
 <td class="org-left">Ontario</td>
@@ -2736,6 +603,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">14</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Venezuela</td>
 <td class="org-right">13</td>
 <td class="org-left">Central America</td>
@@ -2748,6 +616,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">14</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Brazil</td>
 <td class="org-right">7</td>
 <td class="org-left">North Africa</td>
@@ -2760,6 +629,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">15</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Egypt</td>
 <td class="org-right">12</td>
 <td class="org-left">North Africa</td>
@@ -2772,6 +642,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">15</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Egypt</td>
 <td class="org-right">9</td>
 <td class="org-left">Middle East</td>
@@ -2784,6 +655,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">16</td>
 <td class="org-left">Josh</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Quebec</td>
 <td class="org-right">8</td>
 <td class="org-left">Ontario</td>
@@ -2796,6 +668,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">16</td>
 <td class="org-left">Josh</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Ontario</td>
 <td class="org-right">3</td>
 <td class="org-left">Alberta</td>
@@ -2808,6 +681,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">17</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Indonesia</td>
 <td class="org-right">5</td>
 <td class="org-left">Western Australia</td>
@@ -2820,6 +694,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">18</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Alberta</td>
 <td class="org-right">5</td>
 <td class="org-left">Ontario</td>
@@ -2832,6 +707,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">18</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Ontario</td>
 <td class="org-right">3</td>
 <td class="org-left">Quebec</td>
@@ -2844,6 +720,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">19</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Central America</td>
 <td class="org-right">6</td>
 <td class="org-left">Western United States</td>
@@ -2856,6 +733,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">19</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Western United States</td>
 <td class="org-right">3</td>
 <td class="org-left">Eastern United States</td>
@@ -2868,6 +746,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">20</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Egypt</td>
 <td class="org-right">8</td>
 <td class="org-left">Southern Europe</td>
@@ -2880,6 +759,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">20</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Japan</td>
 <td class="org-right">3</td>
 <td class="org-left">Mongolia</td>
@@ -2892,6 +772,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">21</td>
 <td class="org-left">Josh</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">India</td>
 <td class="org-right">4</td>
 <td class="org-left">China</td>
@@ -2904,6 +785,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">21</td>
 <td class="org-left">Josh</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">China</td>
 <td class="org-right">3</td>
 <td class="org-left">Afghanistan</td>
@@ -2916,6 +798,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">22</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Afghanistan</td>
 <td class="org-right">5</td>
 <td class="org-left">India</td>
@@ -2928,6 +811,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">22</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">India</td>
 <td class="org-right">4</td>
 <td class="org-left">China</td>
@@ -2940,6 +824,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">22</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">China</td>
 <td class="org-right">3</td>
 <td class="org-left">Ural</td>
@@ -2952,6 +837,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">23</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Alberta</td>
 <td class="org-right">5</td>
 <td class="org-left">Northwest Territory</td>
@@ -2964,6 +850,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">24</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Brazil</td>
 <td class="org-right">16</td>
 <td class="org-left">North Africa</td>
@@ -2976,6 +863,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">25</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Congo</td>
 <td class="org-right">15</td>
 <td class="org-left">North Africa</td>
@@ -2988,6 +876,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">25</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">14</td>
 <td class="org-left">Brazil</td>
@@ -3000,6 +889,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">26</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Western Europe</td>
 <td class="org-right">5</td>
 <td class="org-left">Southern Europe</td>
@@ -3012,6 +902,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">26</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Great Britain</td>
 <td class="org-right">6</td>
 <td class="org-left">Scandinavia</td>
@@ -3024,6 +915,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">27</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Northwest Territory</td>
 <td class="org-right">7</td>
 <td class="org-left">Alaska</td>
@@ -3036,6 +928,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">27</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Alberta</td>
 <td class="org-right">9</td>
 <td class="org-left">Western United States</td>
@@ -3048,6 +941,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">28</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Venezuela</td>
 <td class="org-right">10</td>
 <td class="org-left">Brazil</td>
@@ -3060,6 +954,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">28</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Brazil</td>
 <td class="org-right">9</td>
 <td class="org-left">North Africa</td>
@@ -3072,6 +967,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">30</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Great Britain</td>
 <td class="org-right">16</td>
 <td class="org-left">Iceland</td>
@@ -3084,6 +980,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">31</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Iceland</td>
 <td class="org-right">4</td>
 <td class="org-left">Scandinavia</td>
@@ -3096,6 +993,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">31</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Western United States</td>
 <td class="org-right">8</td>
 <td class="org-left">Central America</td>
@@ -3108,6 +1006,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">31</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Western United States</td>
 <td class="org-right">5</td>
 <td class="org-left">Eastern United States</td>
@@ -3120,6 +1019,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">32</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Brazil</td>
 <td class="org-right">8</td>
 <td class="org-left">North Africa</td>
@@ -3132,6 +1032,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">33</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Mongolia</td>
 <td class="org-right">5</td>
 <td class="org-left">Irkutsk</td>
@@ -3144,6 +1045,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">33</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Irkutsk</td>
 <td class="org-right">3</td>
 <td class="org-left">Siberia</td>
@@ -3156,6 +1058,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">33</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Siberia</td>
 <td class="org-right">2</td>
 <td class="org-left">Ural</td>
@@ -3168,6 +1071,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">34</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Great Britain</td>
 <td class="org-right">8</td>
 <td class="org-left">Iceland</td>
@@ -3180,6 +1084,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">34</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Ukraine</td>
 <td class="org-right">3</td>
 <td class="org-left">Scandinavia</td>
@@ -3192,6 +1097,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">34</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Iceland</td>
 <td class="org-right">3</td>
 <td class="org-left">Greenland</td>
@@ -3204,6 +1110,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">35</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Quebec</td>
 <td class="org-right">5</td>
 <td class="org-left">Greenland</td>
@@ -3216,6 +1123,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">36</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">8</td>
 <td class="org-left">Western Europe</td>
@@ -3228,6 +1136,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">37</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Siberia</td>
 <td class="org-right">4</td>
 <td class="org-left">Yakutsk</td>
@@ -3240,6 +1149,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">38</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Iceland</td>
 <td class="org-right">6</td>
 <td class="org-left">Greenland</td>
@@ -3252,6 +1162,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">38</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Iceland</td>
 <td class="org-right">3</td>
 <td class="org-left">Greenland</td>
@@ -3264,6 +1175,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">40</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">17</td>
 <td class="org-left">Egypt</td>
@@ -3276,6 +1188,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">40</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">14</td>
 <td class="org-left">Western Europe</td>
@@ -3288,6 +1201,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">40</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">10</td>
 <td class="org-left">Congo</td>
@@ -3300,6 +1214,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">40</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">8</td>
 <td class="org-left">Congo</td>
@@ -3312,6 +1227,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">41</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Siberia</td>
 <td class="org-right">16</td>
 <td class="org-left">Ural</td>
@@ -3324,6 +1240,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">41</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Ural</td>
 <td class="org-right">3</td>
 <td class="org-left">Afghanistan</td>
@@ -3336,6 +1253,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">41</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Afghanistan</td>
 <td class="org-right">2</td>
 <td class="org-left">Ukraine</td>
@@ -3348,6 +1266,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">42</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Iceland</td>
 <td class="org-right">12</td>
 <td class="org-left">Greenland</td>
@@ -3360,6 +1279,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">43</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Greenland</td>
 <td class="org-right">14</td>
 <td class="org-left">Iceland</td>
@@ -3372,6 +1292,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">44</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">12</td>
 <td class="org-left">Western Europe</td>
@@ -3384,6 +1305,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">44</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">5</td>
 <td class="org-left">Congo</td>
@@ -3396,6 +1318,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">45</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Ural</td>
 <td class="org-right">4</td>
 <td class="org-left">Ukraine</td>
@@ -3408,6 +1331,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">45</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Ukraine</td>
 <td class="org-right">3</td>
 <td class="org-left">Scandinavia</td>
@@ -3420,6 +1344,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">46</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Great Britain</td>
 <td class="org-right">7</td>
 <td class="org-left">Iceland</td>
@@ -3432,6 +1357,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">46</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Iceland</td>
 <td class="org-right">6</td>
 <td class="org-left">Greenland</td>
@@ -3444,6 +1370,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">47</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Northwest Territory</td>
 <td class="org-right">5</td>
 <td class="org-left">Greenland</td>
@@ -3456,6 +1383,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">48</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Western Europe</td>
 <td class="org-right">6</td>
 <td class="org-left">Southern Europe</td>
@@ -3468,6 +1396,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">48</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Southern Europe</td>
 <td class="org-right">3</td>
 <td class="org-left">Middle East</td>
@@ -3480,6 +1409,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">49</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Middle East</td>
 <td class="org-right">4</td>
 <td class="org-left">Southern Europe</td>
@@ -3492,6 +1422,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">50</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Iceland</td>
 <td class="org-right">8</td>
 <td class="org-left">Greenland</td>
@@ -3504,6 +1435,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">51</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Greenland</td>
 <td class="org-right">10</td>
 <td class="org-left">Iceland</td>
@@ -3516,6 +1448,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">52</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Venezuela</td>
 <td class="org-right">24</td>
 <td class="org-left">Central America</td>
@@ -3528,6 +1461,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">52</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Central America</td>
 <td class="org-right">18</td>
 <td class="org-left">Eastern United States</td>
@@ -3540,6 +1474,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">52</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Eastern United States</td>
 <td class="org-right">3</td>
 <td class="org-left">Western United States</td>
@@ -3552,6 +1487,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">52</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">6</td>
 <td class="org-left">Southern Europe</td>
@@ -3564,6 +1500,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">53</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Southern Europe</td>
 <td class="org-right">3</td>
 <td class="org-left">Egypt</td>
@@ -3576,6 +1513,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">53</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Ural</td>
 <td class="org-right">13</td>
 <td class="org-left">Afghanistan</td>
@@ -3588,6 +1526,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">53</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Afghanistan</td>
 <td class="org-right">3</td>
 <td class="org-left">China</td>
@@ -3600,6 +1539,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">54</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Great Britain</td>
 <td class="org-right">9</td>
 <td class="org-left">Western Europe</td>
@@ -3612,6 +1552,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">54</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Great Britain</td>
 <td class="org-right">6</td>
 <td class="org-left">Iceland</td>
@@ -3624,6 +1565,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">55</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Quebec</td>
 <td class="org-right">5</td>
 <td class="org-left">Eastern United States</td>
@@ -3636,6 +1578,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">56</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">9</td>
 <td class="org-left">Egypt</td>
@@ -3648,6 +1591,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">56</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">8</td>
 <td class="org-left">Western Europe</td>
@@ -3660,6 +1604,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">56</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Western United States</td>
 <td class="org-right">2</td>
 <td class="org-left">Eastern United States</td>
@@ -3672,6 +1617,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">57</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">South Africa</td>
 <td class="org-right">15</td>
 <td class="org-left">Congo</td>
@@ -3684,6 +1630,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">57</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">South Africa</td>
 <td class="org-right">12</td>
 <td class="org-left">East Africa</td>
@@ -3696,6 +1643,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">57</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">East Africa</td>
 <td class="org-right">3</td>
 <td class="org-left">Egypt</td>
@@ -3708,6 +1656,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">57</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Congo</td>
 <td class="org-right">3</td>
 <td class="org-left">North Africa</td>
@@ -3720,6 +1669,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">57</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">South Africa</td>
 <td class="org-right">9</td>
 <td class="org-left">Madagascar</td>
@@ -3732,6 +1682,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">58</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Northern Europe</td>
 <td class="org-right">7</td>
 <td class="org-left">Southern Europe</td>
@@ -3744,6 +1695,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">58</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Southern Europe</td>
 <td class="org-right">4</td>
 <td class="org-left">Egypt</td>
@@ -3756,6 +1708,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">58</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Scandinavia</td>
 <td class="org-right">3</td>
 <td class="org-left">Ukraine</td>
@@ -3768,6 +1721,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">59</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Alberta</td>
 <td class="org-right">17</td>
 <td class="org-left">Western United States</td>
@@ -3780,6 +1734,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">59</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Western United States</td>
 <td class="org-right">16</td>
 <td class="org-left">Central America</td>
@@ -3792,6 +1747,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">60</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Western Europe</td>
 <td class="org-right">18</td>
 <td class="org-left">North Africa</td>
@@ -3804,6 +1760,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">60</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">13</td>
 <td class="org-left">Egypt</td>
@@ -3816,6 +1773,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">61</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">East Africa</td>
 <td class="org-right">10</td>
 <td class="org-left">North Africa</td>
@@ -3828,6 +1786,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">62</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Iceland</td>
 <td class="org-right">9</td>
 <td class="org-left">Greenland</td>
@@ -3840,6 +1799,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">63</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Kamchatka</td>
 <td class="org-right">5</td>
 <td class="org-left">Yakutsk</td>
@@ -3852,6 +1812,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">64</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Venezuela</td>
 <td class="org-right">17</td>
 <td class="org-left">Central America</td>
@@ -3864,6 +1825,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">65</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Irkutsk</td>
 <td class="org-right">5</td>
 <td class="org-left">Yakutsk</td>
@@ -3876,6 +1838,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">65</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Ural</td>
 <td class="org-right">9</td>
 <td class="org-left">Afghanistan</td>
@@ -3888,6 +1851,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">66</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Iceland</td>
 <td class="org-right">18</td>
 <td class="org-left">Greenland</td>
@@ -3900,6 +1864,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">67</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Ontario</td>
 <td class="org-right">15</td>
 <td class="org-left">Greenland</td>
@@ -3912,6 +1877,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">67</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Greenland</td>
 <td class="org-right">12</td>
 <td class="org-left">Iceland</td>
@@ -3924,6 +1890,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">68</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Western Europe</td>
 <td class="org-right">5</td>
 <td class="org-left">Southern Europe</td>
@@ -3936,6 +1903,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">68</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Venezuela</td>
 <td class="org-right">19</td>
 <td class="org-left">Central America</td>
@@ -3948,6 +1916,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">69</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Yakutsk</td>
 <td class="org-right">11</td>
 <td class="org-left">Kamchatka</td>
@@ -3960,6 +1929,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">69</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Kamchatka</td>
 <td class="org-right">8</td>
 <td class="org-left">Alaska</td>
@@ -3972,6 +1942,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">69</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Alaska</td>
 <td class="org-right">6</td>
 <td class="org-left">Northwest Territory</td>
@@ -3984,6 +1955,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">69</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Northwest Territory</td>
 <td class="org-right">5</td>
 <td class="org-left">Alberta</td>
@@ -3996,6 +1968,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">69</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Ural</td>
 <td class="org-right">9</td>
 <td class="org-left">China</td>
@@ -4008,6 +1981,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">70</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Egypt</td>
 <td class="org-right">7</td>
 <td class="org-left">East Africa</td>
@@ -4020,6 +1994,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">71</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Ontario</td>
 <td class="org-right">4</td>
 <td class="org-left">Northwest Territory</td>
@@ -4032,6 +2007,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">71</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Ontario</td>
 <td class="org-right">2</td>
 <td class="org-left">Northwest Territory</td>
@@ -4044,6 +2020,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">72</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Southern Europe</td>
 <td class="org-right">18</td>
 <td class="org-left">Ukraine</td>
@@ -4056,6 +2033,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">72</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Southern Europe</td>
 <td class="org-right">12</td>
 <td class="org-left">Middle East</td>
@@ -4068,6 +2046,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">72</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Middle East</td>
 <td class="org-right">3</td>
 <td class="org-left">Egypt</td>
@@ -4080,6 +2059,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">73</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Afghanistan</td>
 <td class="org-right">6</td>
 <td class="org-left">Middle East</td>
@@ -4092,6 +2072,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">73</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">China</td>
 <td class="org-right">11</td>
 <td class="org-left">India</td>
@@ -4104,6 +2085,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">73</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Alberta</td>
 <td class="org-right">3</td>
 <td class="org-left">Ontario</td>
@@ -4116,6 +2098,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">73</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Ontario</td>
 <td class="org-right">2</td>
 <td class="org-left">Quebec</td>
@@ -4128,6 +2111,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">74</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">East Africa</td>
 <td class="org-right">9</td>
 <td class="org-left">Middle East</td>
@@ -4140,6 +2124,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">74</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Middle East</td>
 <td class="org-right">5</td>
 <td class="org-left">India</td>
@@ -4152,6 +2137,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">75</td>
 <td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Eastern United States</td>
 <td class="org-right">4</td>
 <td class="org-left">Quebec</td>
@@ -4164,6 +2150,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">76</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Venezuela</td>
 <td class="org-right">14</td>
 <td class="org-left">Central America</td>
@@ -4176,6 +2163,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">76</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">East Africa</td>
 <td class="org-right">3</td>
 <td class="org-left">Congo</td>
@@ -4188,6 +2176,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">76</td>
 <td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Congo</td>
 <td class="org-right">2</td>
 <td class="org-left">South Africa</td>
@@ -4200,6 +2189,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">77</td>
 <td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">India</td>
 <td class="org-right">8</td>
 <td class="org-left">Afghanistan</td>
@@ -4212,6 +2202,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">78</td>
 <td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
 <td class="org-left">Middle East</td>
 <td class="org-right">5</td>
 <td class="org-left">Southern Europe</td>
@@ -4220,13 +2211,390 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <td class="org-right">1</td>
 <td class="org-left">captured</td>
 </tr>
+
+<tr>
+<td class="org-right">79</td>
+<td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Quebec</td>
+<td class="org-right">6</td>
+<td class="org-left">Ontario</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">80</td>
+<td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Congo</td>
+<td class="org-right">6</td>
+<td class="org-left">South Africa</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">80</td>
+<td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">South Africa</td>
+<td class="org-right">5</td>
+<td class="org-left">Madagascar</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">80</td>
+<td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">14</td>
+<td class="org-left">Central America</td>
+<td class="org-right">9</td>
+<td class="org-right">2</td>
+<td class="org-right">2</td>
+<td class="org-left">kept</td>
+</tr>
+
+<tr>
+<td class="org-right">81</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Afghanistan</td>
+<td class="org-right">15</td>
+<td class="org-left">Middle East</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">81</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Middle East</td>
+<td class="org-right">14</td>
+<td class="org-left">Egypt</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">81</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Egypt</td>
+<td class="org-right">13</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">6</td>
+<td class="org-right">0</td>
+<td class="org-right">6</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">81</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">12</td>
+<td class="org-left">Congo</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">81</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Congo</td>
+<td class="org-right">10</td>
+<td class="org-left">East Africa</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">81</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">East Africa</td>
+<td class="org-right">9</td>
+<td class="org-left">Madagascar</td>
+<td class="org-right">3</td>
+<td class="org-right">3</td>
+<td class="org-right">3</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">81</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Madagascar</td>
+<td class="org-right">5</td>
+<td class="org-left">South Africa</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">82</td>
+<td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Southern Europe</td>
+<td class="org-right">7</td>
+<td class="org-left">Middle East</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">82</td>
+<td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Middle East</td>
+<td class="org-right">3</td>
+<td class="org-left">Egypt</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">83</td>
+<td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Ontario</td>
+<td class="org-right">6</td>
+<td class="org-left">Alberta</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">83</td>
+<td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Alberta</td>
+<td class="org-right">5</td>
+<td class="org-left">Northwest Territory</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">83</td>
+<td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Northwest Territory</td>
+<td class="org-right">4</td>
+<td class="org-left">Alaska</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">84</td>
+<td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">14</td>
+<td class="org-left">Central America</td>
+<td class="org-right">8</td>
+<td class="org-right">3</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">84</td>
+<td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">7</td>
+<td class="org-left">Egypt</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">84</td>
+<td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Egypt</td>
+<td class="org-right">3</td>
+<td class="org-left">East Africa</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">85</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">India</td>
+<td class="org-right">13</td>
+<td class="org-left">Middle East</td>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">86</td>
+<td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Great Britain</td>
+<td class="org-right">7</td>
+<td class="org-left">Iceland</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">86</td>
+<td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Iceland</td>
+<td class="org-right">5</td>
+<td class="org-left">Greenland</td>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">87</td>
+<td class="org-left">Ben</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Quebec</td>
+<td class="org-right">12</td>
+<td class="org-left">Greenland</td>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">88</td>
+<td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Ukraine</td>
+<td class="org-right">4</td>
+<td class="org-left">Ural</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">88</td>
+<td class="org-left">Jim</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">14</td>
+<td class="org-left">Central America</td>
+<td class="org-right">8</td>
+<td class="org-right">2</td>
+<td class="org-right">2</td>
+<td class="org-left">kept</td>
+</tr>
+
+<tr>
+<td class="org-right">89</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Middle East</td>
+<td class="org-right">23</td>
+<td class="org-left">Southern Europe</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">89</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Southern Europe</td>
+<td class="org-right">21</td>
+<td class="org-left">Northern Europe</td>
+<td class="org-right">3</td>
+<td class="org-right">3</td>
+<td class="org-right">3</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">89</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Northern Europe</td>
+<td class="org-right">3</td>
+<td class="org-left">Ukraine</td>
+<td class="org-right">1</td>
+<td class="org-right">4</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">90</td>
+<td class="org-left">Will</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Great Britain</td>
+<td class="org-right">11</td>
+<td class="org-left">Scandinavia</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-orgf8c3d57" class="outline-2">
-<h2 id="orgf8c3d57"><span class="section-number-2">3</span> Stats</h2>
+<div id="outline-container-orga45c99d" class="outline-2">
+<h2 id="orga45c99d"><span class="section-number-2">3</span> Stats</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 using attack information parsed from the logs.
@@ -4238,14 +2606,23 @@ N.B. The defending player is not currently tracked. Statitics are only for aggre
 </p>
 <div class="org-src-container">
 <pre class="src src-R"><span style="font-weight: bold; text-decoration: underline;">library</span>(dplyr)
- d <span style="font-weight: bold; text-decoration: underline;">%&gt;%</span> 
- group_by(player) <span style="font-weight: bold; text-decoration: underline;">%&gt;%</span>
- summarise(attacks=n(),
-          attack_losses=sum(a_lost),
-          kills=sum(d_lost),
-          win_ratio=length(which(status==<span style="font-style: italic;">'captured'</span>))/n(),
-          avg_attack_disparity=mean(a_n - d_n)) <span style="font-weight: bold; text-decoration: underline;">%&gt;%</span>
- arrange(attacks)
+top_attack <span style="font-weight: bold; text-decoration: underline;">&lt;-</span>
+  d <span style="font-weight: bold; text-decoration: underline;">%&gt;%</span>
+  group_by(a.player, d.player) <span style="font-weight: bold; text-decoration: underline;">%&gt;%</span> tally() <span style="font-weight: bold; text-decoration: underline;">%&gt;%</span>
+  group_by(a.player) <span style="font-weight: bold; text-decoration: underline;">%&gt;%</span> mutate(r=rank(n)) <span style="font-weight: bold; text-decoration: underline;">%&gt;%</span>
+  filter(r&lt;2) <span style="font-weight: bold; text-decoration: underline;">%&gt;%</span> summarize(most.attacked=paste(d.player,collapse=<span style="font-style: italic;">","</span>))
+
+ x <span style="font-weight: bold; text-decoration: underline;">&lt;-</span>
+  d <span style="font-weight: bold; text-decoration: underline;">%&gt;%</span> 
+  group_by(a.player) <span style="font-weight: bold; text-decoration: underline;">%&gt;%</span>
+  summarise(attacks=n(),
+          losses=sum(a.lost),
+          kills=sum(d.lost),
+          win.ratio=length(which(status==<span style="font-style: italic;">'captured'</span>))/n(),
+          avg.attack.disparity=mean(a.n - d.n)) <span style="font-weight: bold; text-decoration: underline;">%&gt;%</span>
+  mutate_at(.funs=<span style="font-weight: bold;">function</span>(x) round(x,2), vars(win.ratio, avg.attack.disparity)) <span style="font-weight: bold; text-decoration: underline;">%&gt;%</span>
+  <span style="font-weight: bold; font-style: italic;">#</span><span style="font-weight: bold; font-style: italic;">inner_join(top_attack) %&gt;%</span>
+  arrange(attacks)
 </pre>
 </div>
 
@@ -4268,12 +2645,12 @@ N.B. The defending player is not currently tracked. Statitics are only for aggre
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-left">player</th>
+<th scope="col" class="org-left">a.player</th>
 <th scope="col" class="org-right">attacks</th>
-<th scope="col" class="org-right">attack<sub>losses</sub></th>
+<th scope="col" class="org-right">losses</th>
 <th scope="col" class="org-right">kills</th>
-<th scope="col" class="org-right">win<sub>ratio</sub></th>
-<th scope="col" class="org-right">avg<sub>attack</sub><sub>disparity</sub></th>
+<th scope="col" class="org-right">win.ratio</th>
+<th scope="col" class="org-right">avg.attack.disparity</th>
 </tr>
 </thead>
 <tbody>
@@ -4282,44 +2659,44 @@ N.B. The defending player is not currently tracked. Statitics are only for aggre
 <td class="org-right">8</td>
 <td class="org-right">15</td>
 <td class="org-right">14</td>
-<td class="org-right">0.625</td>
+<td class="org-right">0.62</td>
 <td class="org-right">3.25</td>
 </tr>
 
 <tr>
 <td class="org-left">Ben</td>
-<td class="org-right">24</td>
+<td class="org-right">29</td>
 <td class="org-right">33</td>
-<td class="org-right">34</td>
-<td class="org-right">0.916666666666667</td>
-<td class="org-right">5.66666666666667</td>
+<td class="org-right">40</td>
+<td class="org-right">0.93</td>
+<td class="org-right">5.62</td>
 </tr>
 
 <tr>
 <td class="org-left">Will</td>
-<td class="org-right">31</td>
-<td class="org-right">79</td>
-<td class="org-right">75</td>
-<td class="org-right">0.935483870967742</td>
-<td class="org-right">3.83870967741935</td>
+<td class="org-right">36</td>
+<td class="org-right">82</td>
+<td class="org-right">81</td>
+<td class="org-right">0.94</td>
+<td class="org-right">4.06</td>
 </tr>
 
 <tr>
 <td class="org-left">Jim</td>
-<td class="org-right">38</td>
-<td class="org-right">85</td>
-<td class="org-right">92</td>
-<td class="org-right">0.789473684210526</td>
-<td class="org-right">7.05263157894737</td>
+<td class="org-right">46</td>
+<td class="org-right">95</td>
+<td class="org-right">102</td>
+<td class="org-right">0.78</td>
+<td class="org-right">6.63</td>
 </tr>
 
 <tr>
 <td class="org-left">Andrew</td>
-<td class="org-right">39</td>
-<td class="org-right">35</td>
-<td class="org-right">57</td>
-<td class="org-right">0.923076923076923</td>
-<td class="org-right">5.51282051282051</td>
+<td class="org-right">50</td>
+<td class="org-right">49</td>
+<td class="org-right">79</td>
+<td class="org-right">0.94</td>
+<td class="org-right">6.62</td>
 </tr>
 </tbody>
 </table>
@@ -4327,8 +2704,8 @@ N.B. The defending player is not currently tracked. Statitics are only for aggre
 </div>
 
 
-<div id="outline-container-org7f28535" class="outline-2">
-<h2 id="org7f28535"><span class="section-number-2">4</span> Colophon/Appendix</h2>
+<div id="outline-container-org65c7a10" class="outline-2">
+<h2 id="org65c7a10"><span class="section-number-2">4</span> Colophon/Appendix</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><code>Perl::Critic</code> + <code>flycheck</code> were helpful in debuging perl code.</li>
@@ -4340,7 +2717,7 @@ N.B. The defending player is not currently tracked. Statitics are only for aggre
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2020-04-04</p>
-<p class="date">Created: 2020-04-04 Sat 15:32</p>
+<p class="date">Created: 2020-04-04 Sat 21:49</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

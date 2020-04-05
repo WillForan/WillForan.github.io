@@ -5,7 +5,7 @@ Copy/pasted from gamesbyemail.com's game log. The page does fetch malformated js
 The presented log seems easier to parse.
 The interesting bits to extract are "Attacks", "Defends", "XXX defeated", and "END OF TURN".
 
-  #+BEGIN_SRC txt :export none :tangle txt/risk_log.txt  
+  #+BEGIN_SRC txt :export none :tangle txt/risk_log.txt  :exports none
 0.	Start of Game
 1.	Deployed 3 occupying armies to North Africa (1)
 Deployed 2 occupying armies to Alaska (1)
@@ -2179,48 +2179,66 @@ END OF TURN
 * Extract
   "Quick" perl code to extract
 #+name: attacks-log
-#+BEGIN_SRC perl :export both :type table
-  use feature 'switch';
-  open my $fh, "<txt/risk_log.txt" or die "no file";
+#+BEGIN_SRC perl :export both :type table :tangle /tmp/riskparse.pl
+  use strict;
+  use experimental 'switch';
+  open my $fh, "<", "txt/risk_log.txt" or die "no file";
   my @players=qw/Andrew Josh Will Ben Jim/;
   my $turn=0;
   my @res=();
-  my $init = [];
+  my $init = {};
   my $adjust= 0;
+  my %player_contries=(); # track ownership
+  my @keys = qw/turn a.player d.player a.country a.n d.country d.n a.lost d.lost status/;
   while($_=<$fh>){
     # we could only set player when they change turns
     # but easier to do each new line
     my $playeridx = ($turn-$adjust)%($#players+1);
     my $player = $players[$playeridx];
     given ($_) {
-     # starts like "XXX (nx) attacks YYYY (ny) "
-     # rolls include losses
-     when (/([A-Z].+) \((\d+)\) attacks ([A-Z].+) \((\d+)\) /) {
+     when (/Deployed.*to ([A-Z].+) \(/) {
+      # initialze who owns what. misses anything never reinforced (abandoned first assingments)
+      #print STDERR "on $turn: $1 was ", $player_contries{$1}||"unknown", ", now $player\n";
+      $player_contries{$1}=$player; 
+     } when (/([A-Z].+) \((\d+)\) attacks ([A-Z].+) \((\d+)\) /) {
+      # starts like "XXX (nx) attacks YYYY (ny) "
+      # rolls include losses
 
       # dont update if switch from "until defeted" to "with x"
-      if(! @$init ||            # no init
-	 $init->[0] != $turn || # different round
-	 $init->[2] != $1 ||    # different attack
-	 $init->[4] != $3       # different defend
+      if(! %$init                      || # no init
+	 $init->{"turn"}      != $turn || # different round
+	 $init->{"a.country"} != $1    || # different attack
+	 $init->{"d.country"} != $3       # different defend
       ){ 
-	push @res, $init if @$init; 
-	$init = [$turn, $player, $1, $2, $3, $4, 0, 0, "kept"];
+        if(%$init){
+	    print STDERR "gave up and attacked someone new!? @{$init}{@keys} -> $_";
+	    push @res, $init;
+	}
+	my $adv = $player_contries{$init->{"d.country"}};
+	$init = {"turn"=>$turn,
+	         "a.player"=>$player, "d.player"=>$adv,
+		 "a.country"=>$1, "a.n"=> $2,
+		 "d.country"=>$3, "d.n" => $4, 
+		 "a.lost" => 0, "d.lost" => 0,
+		 "status"=>"kept"};
+        print STDERR "ERROR: already $init->{'d.country'}=> $player: @{$init}{@keys}\n" if $adv == $player;
+      } else {
+        print STDERR "until def to 1/2 attackes @{$init}{@keys} -> $_"
       }
      } when (/^Attacker lost (\d+)/) {
-      $init->[6]+=$1;
+      $init->{"a.lost"}+=$1;
      } when (/^Defender lost (\d+)/) {
-      $init->[7]+=$1;
+      $init->{"d.lost"}+=$1;
      } when (/captured/){
       # event ends with a capture.
       # if kept we dont get a new message. but log starts new event
 
-      # when event was e.g. reinforcment. don't records anything
-      #next unless @$init;
-
       # if captured, update to say so (otherwise keep "kept" status)
-      $init->[8] = $&;
-      push @res, $init if @$init; 
-      $init = [];
+      $init->{status} = $&;
+      $player_contries{$init->{"d.country"}} = $player;
+      print STDERR "changed owernship $init->{'d.country'} => $player_contries{$init->{'d.country'}}: @{$init}{@keys}\n";
+      push @res, $init if %$init; 
+      $init = {};
     } when(/^(\S+) defeated/) {
       # compensate for defeated person
       my $defeated=$1;
@@ -2230,188 +2248,228 @@ END OF TURN
       $adjust = $turn-$playeridx+1;
     } when(/END OF TURN/) {
       # finally turns are finished
-      push @res, $init if @$init; 
-      $init = [];
+      push @res, $init if %$init; 
+      print STDERR "no ownership change: @{$init}{@keys}\n";
+      $init = {};
       $turn++;
     }
   }
   }
 
   # add header
-  unshift @res, [qw/turn player attacker a_n defender d_n a_lost d_lost status/];
+  my %keys = (); $keys{$_}=$_ for (@keys);
+  unshift @res, \%keys;
   # make it into a table
-  join "\n", map {join("\t", @$_)} @res;
+  join "\n", map {join("\t", @{$_}{@keys})} @res;
 
 #+END_SRC
 #+Name: results-attacks
 #+RESULTS: attacks-log
-| turn | player | attacker              | a_n | defender              | d_n | a_lost | d_lost | status   |
-|    6 | Josh   | Venezuela             |   5 | Central America       |   1 |      0 |      1 | captured |
-|    6 | Josh   | Eastern United States |   9 | Quebec                |   3 |      0 |      3 | captured |
-|    6 | Josh   | Eastern United States |   6 | Western United States |   3 |      3 |      3 | captured |
-|    7 | Will   | Eastern Australia     |  11 | New Guinea            |   1 |      1 |      1 | captured |
-|    7 | Will   | New Guinea            |   3 | Indonesia             |   1 |      2 |      0 | kept     |
-|    8 | Ben    | Irkutsk               |   4 | Kamchatka             |   1 |      3 |      0 | kept     |
-|    9 | Jim    | Argentina             |  21 | Peru                  |   1 |      1 |      1 | captured |
-|    9 | Jim    | Peru                  |  19 | Venezuela             |   2 |      1 |      2 | captured |
-|    9 | Jim    | Venezuela             |  17 | Brazil                |   2 |      2 |      2 | captured |
-|   10 | Andrew | Egypt                 |  11 | East Africa           |   1 |      0 |      1 | captured |
-|   10 | Andrew | East Africa           |   3 | Congo                 |   1 |      1 |      1 | captured |
-|   11 | Josh   | Ontario               |   5 | Alberta               |   4 |      4 |      0 | kept     |
-|   12 | Will   | Eastern Australia     |   5 | Western Australia     |   1 |      4 |      1 | captured |
-|   12 | Will   | New Guinea            |   2 | Western Australia     |   1 |      1 |      1 | captured |
-|   13 | Ben    | Irkutsk               |   4 | Kamchatka             |   1 |      0 |      1 | captured |
-|   13 | Ben    | Alberta               |   4 | Ontario               |   1 |      0 |      1 | captured |
-|   14 | Jim    | Venezuela             |  13 | Central America       |   8 |      6 |      8 | captured |
-|   14 | Jim    | Brazil                |   7 | North Africa          |   1 |      2 |      1 | captured |
-|   15 | Andrew | Egypt                 |  12 | North Africa          |   1 |      0 |      1 | captured |
-|   15 | Andrew | Egypt                 |   9 | Middle East           |   1 |      0 |      1 | captured |
-|   16 | Josh   | Quebec                |   8 | Ontario               |   2 |      1 |      2 | captured |
-|   16 | Josh   | Ontario               |   3 | Alberta               |   2 |      5 |      4 | kept     |
-|   17 | Will   | Indonesia             |   5 | Western Australia     |   1 |      0 |      1 | captured |
-|   18 | Ben    | Alberta               |   5 | Ontario               |   1 |      0 |      1 | captured |
-|   18 | Ben    | Ontario               |   3 | Quebec                |   1 |      0 |      1 | captured |
-|   19 | Jim    | Central America       |   6 | Western United States |   1 |      0 |      1 | captured |
-|   19 | Jim    | Western United States |   3 | Eastern United States |   1 |      2 |      1 | captured |
-|   20 | Andrew | Egypt                 |   8 | Southern Europe       |   3 |      4 |      3 | captured |
-|   20 | Andrew | Japan                 |   3 | Mongolia              |   1 |      0 |      1 | captured |
-|   21 | Josh   | India                 |   4 | China                 |   1 |      0 |      1 | captured |
-|   21 | Josh   | China                 |   3 | Afghanistan           |   1 |      2 |      0 | kept     |
-|   22 | Will   | Afghanistan           |   5 | India                 |   1 |      0 |      1 | captured |
-|   22 | Will   | India                 |   4 | China                 |   1 |      0 |      1 | captured |
-|   22 | Will   | China                 |   3 | Ural                  |   1 |      2 |      1 | captured |
-|   23 | Ben    | Alberta               |   5 | Northwest Territory   |   1 |      0 |      1 | captured |
-|   24 | Jim    | Brazil                |  16 | North Africa          |   8 |     10 |      8 | captured |
-|   25 | Andrew | Congo                 |  15 | North Africa          |   1 |      0 |      1 | captured |
-|   25 | Andrew | North Africa          |  14 | Brazil                |   5 |      5 |      5 | captured |
-|   26 | Will   | Western Europe        |   5 | Southern Europe       |   1 |      0 |      1 | captured |
-|   26 | Will   | Great Britain         |   6 | Scandinavia           |   1 |      1 |      1 | captured |
-|   27 | Ben    | Northwest Territory   |   7 | Alaska                |   3 |      4 |      3 | captured |
-|   27 | Ben    | Alberta               |   9 | Western United States |   1 |      0 |      1 | captured |
-|   28 | Jim    | Venezuela             |  10 | Brazil                |   1 |      0 |      1 | captured |
-|   28 | Jim    | Brazil                |   9 | North Africa          |   8 |      6 |      2 | kept     |
-|   30 | Will   | Great Britain         |  16 | Iceland               |  11 |     15 |     12 | captured |
-|   31 | Ben    | Iceland               |   4 | Scandinavia           |   1 |      0 |      1 | captured |
-|   31 | Ben    | Western United States |   8 | Central America       |   2 |      0 |      2 | captured |
-|   31 | Ben    | Western United States |   5 | Eastern United States |   1 |      0 |      1 | captured |
-|   32 | Jim    | Brazil                |   8 | North Africa          |   9 |      1 |      9 | captured |
-|   33 | Andrew | Mongolia              |   5 | Irkutsk               |   1 |      1 |      1 | captured |
-|   33 | Andrew | Irkutsk               |   3 | Siberia               |   1 |      0 |      1 | captured |
-|   33 | Andrew | Siberia               |   2 | Ural                  |   1 |      1 |      0 | kept     |
-|   34 | Will   | Great Britain         |   8 | Iceland               |   3 |      0 |      3 | captured |
-|   34 | Will   | Ukraine               |   3 | Scandinavia           |   1 |      0 |      1 | captured |
-|   34 | Will   | Iceland               |   3 | Greenland             |   1 |      0 |      1 | captured |
-|   35 | Ben    | Quebec                |   5 | Greenland             |   1 |      1 |      1 | captured |
-|   36 | Jim    | North Africa          |   8 | Western Europe        |   2 |      0 |      2 | captured |
-|   37 | Andrew | Siberia               |   4 | Yakutsk               |   1 |      0 |      1 | captured |
-|   38 | Will   | Iceland               |   6 | Greenland             |   4 |      3 |      4 | captured |
-|   38 | Will   | Iceland               |   3 | Greenland             |   3 |      2 |      0 | kept     |
-|   40 | Jim    | North Africa          |  17 | Egypt                 |   1 |      0 |      1 | captured |
-|   40 | Jim    | North Africa          |  14 | Western Europe        |   3 |      1 |      3 | captured |
-|   40 | Jim    | North Africa          |  10 | Congo                 |   1 |      1 |      1 | captured |
-|   40 | Jim    | North Africa          |   8 | Congo                 |   1 |      3 |      0 | kept     |
-|   41 | Andrew | Siberia               |  16 | Ural                  |   1 |      0 |      1 | captured |
-|   41 | Andrew | Ural                  |   3 | Afghanistan           |   1 |      0 |      1 | captured |
-|   41 | Andrew | Afghanistan           |   2 | Ukraine               |   1 |      1 |      0 | kept     |
-|   42 | Will   | Iceland               |  12 | Greenland             |  11 |     12 |      8 | captured |
-|   43 | Ben    | Greenland             |  14 | Iceland               |   4 |      9 |      4 | captured |
-|   44 | Jim    | North Africa          |  12 | Western Europe        |   2 |      4 |      2 | captured |
-|   44 | Jim    | North Africa          |   5 | Congo                 |   1 |      0 |      1 | captured |
-|   45 | Andrew | Ural                  |   4 | Ukraine               |   1 |      0 |      1 | captured |
-|   45 | Andrew | Ukraine               |   3 | Scandinavia           |   1 |      2 |      0 | kept     |
-|   46 | Will   | Great Britain         |   7 | Iceland               |   1 |      0 |      1 | captured |
-|   46 | Will   | Iceland               |   6 | Greenland             |   4 |      1 |      4 | captured |
-|   47 | Ben    | Northwest Territory   |   5 | Greenland             |   1 |      0 |      1 | captured |
-|   48 | Jim    | Western Europe        |   6 | Southern Europe       |   1 |      0 |      1 | captured |
-|   48 | Jim    | Southern Europe       |   3 | Middle East           |   1 |      2 |      0 | kept     |
-|   49 | Andrew | Middle East           |   4 | Southern Europe       |   1 |      0 |      1 | captured |
-|   50 | Will   | Iceland               |   8 | Greenland             |   4 |     10 |      4 | captured |
-|   51 | Ben    | Greenland             |  10 | Iceland               |   1 |      2 |      1 | captured |
-|   52 | Jim    | Venezuela             |  24 | Central America       |   6 |      5 |      6 | captured |
-|   52 | Jim    | Central America       |  18 | Eastern United States |   3 |      3 |      3 | captured |
-|   52 | Jim    | Eastern United States |   3 | Western United States |   2 |      0 |      2 | captured |
-|   52 | Jim    | North Africa          |   6 | Southern Europe       |   2 |      2 |      0 | kept     |
-|   53 | Andrew | Southern Europe       |   3 | Egypt                 |   1 |      0 |      1 | captured |
-|   53 | Andrew | Ural                  |  13 | Afghanistan           |   1 |      1 |      1 | captured |
-|   53 | Andrew | Afghanistan           |   3 | China                 |   1 |      2 |      1 | captured |
-|   54 | Will   | Great Britain         |   9 | Western Europe        |   1 |      0 |      1 | captured |
-|   54 | Will   | Great Britain         |   6 | Iceland               |   1 |      0 |      1 | captured |
-|   55 | Ben    | Quebec                |   5 | Eastern United States |   1 |      0 |      1 | captured |
-|   56 | Jim    | North Africa          |   9 | Egypt                 |   1 |      0 |      1 | captured |
-|   56 | Jim    | North Africa          |   8 | Western Europe        |   3 |      2 |      3 | captured |
-|   56 | Jim    | Western United States |   2 | Eastern United States |   4 |      1 |      0 | kept     |
-|   57 | Andrew | South Africa          |  15 | Congo                 |   1 |      0 |      1 | captured |
-|   57 | Andrew | South Africa          |  12 | East Africa           |   1 |      0 |      1 | captured |
-|   57 | Andrew | East Africa           |   3 | Egypt                 |   1 |      0 |      1 | captured |
-|   57 | Andrew | Congo                 |   3 | North Africa          |   3 |      0 |      3 | captured |
-|   57 | Andrew | South Africa          |   9 | Madagascar            |   6 |      1 |      6 | captured |
-|   58 | Will   | Northern Europe       |   7 | Southern Europe       |   1 |      2 |      1 | captured |
-|   58 | Will   | Southern Europe       |   4 | Egypt                 |   2 |      1 |      2 | captured |
-|   58 | Will   | Scandinavia           |   3 | Ukraine               |   1 |      1 |      1 | captured |
-|   59 | Ben    | Alberta               |  17 | Western United States |   1 |      0 |      1 | captured |
-|   59 | Ben    | Western United States |  16 | Central America       |   1 |      0 |      1 | captured |
-|   60 | Jim    | Western Europe        |  18 | North Africa          |   2 |      2 |      2 | captured |
-|   60 | Jim    | North Africa          |  13 | Egypt                 |   2 |      2 |      0 | kept     |
-|   61 | Andrew | East Africa           |  10 | North Africa          |   3 |      5 |      3 | captured |
-|   62 | Will   | Iceland               |   9 | Greenland             |   7 |      8 |      6 | captured |
-|   63 | Ben    | Kamchatka             |   5 | Yakutsk               |   1 |      0 |      1 | captured |
-|   64 | Jim    | Venezuela             |  17 | Central America       |  18 |      5 |      7 | captured |
-|   65 | Andrew | Irkutsk               |   5 | Yakutsk               |   1 |      0 |      1 | captured |
-|   65 | Andrew | Ural                  |   9 | Afghanistan           |   1 |      1 |      1 | captured |
-|   66 | Will   | Iceland               |  18 | Greenland             |   6 |      8 |      6 | captured |
-|   67 | Ben    | Ontario               |  15 | Greenland             |   3 |      2 |      3 | captured |
-|   67 | Ben    | Greenland             |  12 | Iceland               |   5 |      9 |      5 | captured |
-|   68 | Jim    | Western Europe        |   5 | Southern Europe       |   1 |      1 |      1 | captured |
-|   68 | Jim    | Venezuela             |  19 | Central America       |  15 |      7 |      3 | kept     |
-|   69 | Andrew | Yakutsk               |  11 | Kamchatka             |   4 |      2 |      4 | captured |
-|   69 | Andrew | Kamchatka             |   8 | Alaska                |   4 |      1 |      4 | captured |
-|   69 | Andrew | Alaska                |   6 | Northwest Territory   |   1 |      0 |      1 | captured |
-|   69 | Andrew | Northwest Territory   |   5 | Alberta               |   1 |      1 |      1 | captured |
-|   69 | Andrew | Ural                  |   9 | China                 |   1 |      1 |      1 | captured |
-|   70 | Will   | Egypt                 |   7 | East Africa           |   1 |      0 |      1 | captured |
-|   71 | Ben    | Ontario               |   4 | Northwest Territory   |   1 |      2 |      1 | captured |
-|   71 | Ben    | Ontario               |   2 | Northwest Territory   |   1 |      1 |      0 | kept     |
-|   72 | Jim    | Southern Europe       |  18 | Ukraine               |   4 |      5 |      4 | captured |
-|   72 | Jim    | Southern Europe       |  12 | Middle East           |   2 |      0 |      2 | captured |
-|   72 | Jim    | Middle East           |   3 | Egypt                 |   4 |      3 |      4 | captured |
-|   73 | Andrew | Afghanistan           |   6 | Middle East           |   1 |      4 |      1 | captured |
-|   73 | Andrew | China                 |  11 | India                 |   1 |      1 |      1 | captured |
-|   73 | Andrew | Alberta               |   3 | Ontario               |   1 |      0 |      1 | captured |
-|   73 | Andrew | Ontario               |   2 | Quebec                |   1 |      0 |      1 | captured |
-|   74 | Will   | East Africa           |   9 | Middle East           |   1 |      1 |      1 | captured |
-|   74 | Will   | Middle East           |   5 | India                 |   9 |      3 |      7 | captured |
-|   75 | Ben    | Eastern United States |   4 | Quebec                |   1 |      0 |      1 | captured |
-|   76 | Jim    | Venezuela             |  14 | Central America       |  12 |      4 |      6 | captured |
-|   76 | Jim    | East Africa           |   3 | Congo                 |   1 |      0 |      1 | captured |
-|   76 | Jim    | Congo                 |   2 | South Africa          |   1 |      1 |      0 | kept     |
-|   77 | Andrew | India                 |   8 | Afghanistan           |   1 |      0 |      1 | captured |
-|   78 | Will   | Middle East           |   5 | Southern Europe       |   1 |      1 |      1 | captured |
+| turn | a.player | d.player | a.country             | a.n | d.country             | d.n | a.lost | d.lost | status   |
+|    6 | Josh     |          | Venezuela             |   5 | Central America       |   1 |      0 |      1 | captured |
+|    6 | Josh     |          | Eastern United States |   9 | Quebec                |   3 |      0 |      3 | captured |
+|    6 | Josh     |          | Eastern United States |   6 | Western United States |   3 |      3 |      3 | captured |
+|    7 | Will     |          | Eastern Australia     |  11 | New Guinea            |   1 |      1 |      1 | captured |
+|    7 | Will     |          | New Guinea            |   3 | Indonesia             |   1 |      2 |      0 | kept     |
+|    8 | Ben      |          | Irkutsk               |   4 | Kamchatka             |   1 |      3 |      0 | kept     |
+|    9 | Jim      |          | Argentina             |  21 | Peru                  |   1 |      1 |      1 | captured |
+|    9 | Jim      |          | Peru                  |  19 | Venezuela             |   2 |      1 |      2 | captured |
+|    9 | Jim      |          | Venezuela             |  17 | Brazil                |   2 |      2 |      2 | captured |
+|   10 | Andrew   |          | Egypt                 |  11 | East Africa           |   1 |      0 |      1 | captured |
+|   10 | Andrew   |          | East Africa           |   3 | Congo                 |   1 |      1 |      1 | captured |
+|   11 | Josh     |          | Ontario               |   5 | Alberta               |   4 |      4 |      0 | kept     |
+|   12 | Will     |          | Eastern Australia     |   5 | Western Australia     |   1 |      4 |      1 | captured |
+|   12 | Will     |          | New Guinea            |   2 | Western Australia     |   1 |      1 |      1 | captured |
+|   13 | Ben      |          | Irkutsk               |   4 | Kamchatka             |   1 |      0 |      1 | captured |
+|   13 | Ben      |          | Alberta               |   4 | Ontario               |   1 |      0 |      1 | captured |
+|   14 | Jim      |          | Venezuela             |  13 | Central America       |   8 |      6 |      8 | captured |
+|   14 | Jim      |          | Brazil                |   7 | North Africa          |   1 |      2 |      1 | captured |
+|   15 | Andrew   |          | Egypt                 |  12 | North Africa          |   1 |      0 |      1 | captured |
+|   15 | Andrew   |          | Egypt                 |   9 | Middle East           |   1 |      0 |      1 | captured |
+|   16 | Josh     |          | Quebec                |   8 | Ontario               |   2 |      1 |      2 | captured |
+|   16 | Josh     |          | Ontario               |   3 | Alberta               |   2 |      5 |      4 | kept     |
+|   17 | Will     |          | Indonesia             |   5 | Western Australia     |   1 |      0 |      1 | captured |
+|   18 | Ben      |          | Alberta               |   5 | Ontario               |   1 |      0 |      1 | captured |
+|   18 | Ben      |          | Ontario               |   3 | Quebec                |   1 |      0 |      1 | captured |
+|   19 | Jim      |          | Central America       |   6 | Western United States |   1 |      0 |      1 | captured |
+|   19 | Jim      |          | Western United States |   3 | Eastern United States |   1 |      2 |      1 | captured |
+|   20 | Andrew   |          | Egypt                 |   8 | Southern Europe       |   3 |      4 |      3 | captured |
+|   20 | Andrew   |          | Japan                 |   3 | Mongolia              |   1 |      0 |      1 | captured |
+|   21 | Josh     |          | India                 |   4 | China                 |   1 |      0 |      1 | captured |
+|   21 | Josh     |          | China                 |   3 | Afghanistan           |   1 |      2 |      0 | kept     |
+|   22 | Will     |          | Afghanistan           |   5 | India                 |   1 |      0 |      1 | captured |
+|   22 | Will     |          | India                 |   4 | China                 |   1 |      0 |      1 | captured |
+|   22 | Will     |          | China                 |   3 | Ural                  |   1 |      2 |      1 | captured |
+|   23 | Ben      |          | Alberta               |   5 | Northwest Territory   |   1 |      0 |      1 | captured |
+|   24 | Jim      |          | Brazil                |  16 | North Africa          |   8 |     10 |      8 | captured |
+|   25 | Andrew   |          | Congo                 |  15 | North Africa          |   1 |      0 |      1 | captured |
+|   25 | Andrew   |          | North Africa          |  14 | Brazil                |   5 |      5 |      5 | captured |
+|   26 | Will     |          | Western Europe        |   5 | Southern Europe       |   1 |      0 |      1 | captured |
+|   26 | Will     |          | Great Britain         |   6 | Scandinavia           |   1 |      1 |      1 | captured |
+|   27 | Ben      |          | Northwest Territory   |   7 | Alaska                |   3 |      4 |      3 | captured |
+|   27 | Ben      |          | Alberta               |   9 | Western United States |   1 |      0 |      1 | captured |
+|   28 | Jim      |          | Venezuela             |  10 | Brazil                |   1 |      0 |      1 | captured |
+|   28 | Jim      |          | Brazil                |   9 | North Africa          |   8 |      6 |      2 | kept     |
+|   30 | Will     |          | Great Britain         |  16 | Iceland               |  11 |     15 |     12 | captured |
+|   31 | Ben      |          | Iceland               |   4 | Scandinavia           |   1 |      0 |      1 | captured |
+|   31 | Ben      |          | Western United States |   8 | Central America       |   2 |      0 |      2 | captured |
+|   31 | Ben      |          | Western United States |   5 | Eastern United States |   1 |      0 |      1 | captured |
+|   32 | Jim      |          | Brazil                |   8 | North Africa          |   9 |      1 |      9 | captured |
+|   33 | Andrew   |          | Mongolia              |   5 | Irkutsk               |   1 |      1 |      1 | captured |
+|   33 | Andrew   |          | Irkutsk               |   3 | Siberia               |   1 |      0 |      1 | captured |
+|   33 | Andrew   |          | Siberia               |   2 | Ural                  |   1 |      1 |      0 | kept     |
+|   34 | Will     |          | Great Britain         |   8 | Iceland               |   3 |      0 |      3 | captured |
+|   34 | Will     |          | Ukraine               |   3 | Scandinavia           |   1 |      0 |      1 | captured |
+|   34 | Will     |          | Iceland               |   3 | Greenland             |   1 |      0 |      1 | captured |
+|   35 | Ben      |          | Quebec                |   5 | Greenland             |   1 |      1 |      1 | captured |
+|   36 | Jim      |          | North Africa          |   8 | Western Europe        |   2 |      0 |      2 | captured |
+|   37 | Andrew   |          | Siberia               |   4 | Yakutsk               |   1 |      0 |      1 | captured |
+|   38 | Will     |          | Iceland               |   6 | Greenland             |   4 |      3 |      4 | captured |
+|   38 | Will     |          | Iceland               |   3 | Greenland             |   3 |      2 |      0 | kept     |
+|   40 | Jim      |          | North Africa          |  17 | Egypt                 |   1 |      0 |      1 | captured |
+|   40 | Jim      |          | North Africa          |  14 | Western Europe        |   3 |      1 |      3 | captured |
+|   40 | Jim      |          | North Africa          |  10 | Congo                 |   1 |      1 |      1 | captured |
+|   40 | Jim      |          | North Africa          |   8 | Congo                 |   1 |      3 |      0 | kept     |
+|   41 | Andrew   |          | Siberia               |  16 | Ural                  |   1 |      0 |      1 | captured |
+|   41 | Andrew   |          | Ural                  |   3 | Afghanistan           |   1 |      0 |      1 | captured |
+|   41 | Andrew   |          | Afghanistan           |   2 | Ukraine               |   1 |      1 |      0 | kept     |
+|   42 | Will     |          | Iceland               |  12 | Greenland             |  11 |     12 |      8 | captured |
+|   43 | Ben      |          | Greenland             |  14 | Iceland               |   4 |      9 |      4 | captured |
+|   44 | Jim      |          | North Africa          |  12 | Western Europe        |   2 |      4 |      2 | captured |
+|   44 | Jim      |          | North Africa          |   5 | Congo                 |   1 |      0 |      1 | captured |
+|   45 | Andrew   |          | Ural                  |   4 | Ukraine               |   1 |      0 |      1 | captured |
+|   45 | Andrew   |          | Ukraine               |   3 | Scandinavia           |   1 |      2 |      0 | kept     |
+|   46 | Will     |          | Great Britain         |   7 | Iceland               |   1 |      0 |      1 | captured |
+|   46 | Will     |          | Iceland               |   6 | Greenland             |   4 |      1 |      4 | captured |
+|   47 | Ben      |          | Northwest Territory   |   5 | Greenland             |   1 |      0 |      1 | captured |
+|   48 | Jim      |          | Western Europe        |   6 | Southern Europe       |   1 |      0 |      1 | captured |
+|   48 | Jim      |          | Southern Europe       |   3 | Middle East           |   1 |      2 |      0 | kept     |
+|   49 | Andrew   |          | Middle East           |   4 | Southern Europe       |   1 |      0 |      1 | captured |
+|   50 | Will     |          | Iceland               |   8 | Greenland             |   4 |     10 |      4 | captured |
+|   51 | Ben      |          | Greenland             |  10 | Iceland               |   1 |      2 |      1 | captured |
+|   52 | Jim      |          | Venezuela             |  24 | Central America       |   6 |      5 |      6 | captured |
+|   52 | Jim      |          | Central America       |  18 | Eastern United States |   3 |      3 |      3 | captured |
+|   52 | Jim      |          | Eastern United States |   3 | Western United States |   2 |      0 |      2 | captured |
+|   52 | Jim      |          | North Africa          |   6 | Southern Europe       |   2 |      2 |      0 | kept     |
+|   53 | Andrew   |          | Southern Europe       |   3 | Egypt                 |   1 |      0 |      1 | captured |
+|   53 | Andrew   |          | Ural                  |  13 | Afghanistan           |   1 |      1 |      1 | captured |
+|   53 | Andrew   |          | Afghanistan           |   3 | China                 |   1 |      2 |      1 | captured |
+|   54 | Will     |          | Great Britain         |   9 | Western Europe        |   1 |      0 |      1 | captured |
+|   54 | Will     |          | Great Britain         |   6 | Iceland               |   1 |      0 |      1 | captured |
+|   55 | Ben      |          | Quebec                |   5 | Eastern United States |   1 |      0 |      1 | captured |
+|   56 | Jim      |          | North Africa          |   9 | Egypt                 |   1 |      0 |      1 | captured |
+|   56 | Jim      |          | North Africa          |   8 | Western Europe        |   3 |      2 |      3 | captured |
+|   56 | Jim      |          | Western United States |   2 | Eastern United States |   4 |      1 |      0 | kept     |
+|   57 | Andrew   |          | South Africa          |  15 | Congo                 |   1 |      0 |      1 | captured |
+|   57 | Andrew   |          | South Africa          |  12 | East Africa           |   1 |      0 |      1 | captured |
+|   57 | Andrew   |          | East Africa           |   3 | Egypt                 |   1 |      0 |      1 | captured |
+|   57 | Andrew   |          | Congo                 |   3 | North Africa          |   3 |      0 |      3 | captured |
+|   57 | Andrew   |          | South Africa          |   9 | Madagascar            |   6 |      1 |      6 | captured |
+|   58 | Will     |          | Northern Europe       |   7 | Southern Europe       |   1 |      2 |      1 | captured |
+|   58 | Will     |          | Southern Europe       |   4 | Egypt                 |   2 |      1 |      2 | captured |
+|   58 | Will     |          | Scandinavia           |   3 | Ukraine               |   1 |      1 |      1 | captured |
+|   59 | Ben      |          | Alberta               |  17 | Western United States |   1 |      0 |      1 | captured |
+|   59 | Ben      |          | Western United States |  16 | Central America       |   1 |      0 |      1 | captured |
+|   60 | Jim      |          | Western Europe        |  18 | North Africa          |   2 |      2 |      2 | captured |
+|   60 | Jim      |          | North Africa          |  13 | Egypt                 |   2 |      2 |      0 | kept     |
+|   61 | Andrew   |          | East Africa           |  10 | North Africa          |   3 |      5 |      3 | captured |
+|   62 | Will     |          | Iceland               |   9 | Greenland             |   7 |      8 |      6 | captured |
+|   63 | Ben      |          | Kamchatka             |   5 | Yakutsk               |   1 |      0 |      1 | captured |
+|   64 | Jim      |          | Venezuela             |  17 | Central America       |  18 |      5 |      7 | captured |
+|   65 | Andrew   |          | Irkutsk               |   5 | Yakutsk               |   1 |      0 |      1 | captured |
+|   65 | Andrew   |          | Ural                  |   9 | Afghanistan           |   1 |      1 |      1 | captured |
+|   66 | Will     |          | Iceland               |  18 | Greenland             |   6 |      8 |      6 | captured |
+|   67 | Ben      |          | Ontario               |  15 | Greenland             |   3 |      2 |      3 | captured |
+|   67 | Ben      |          | Greenland             |  12 | Iceland               |   5 |      9 |      5 | captured |
+|   68 | Jim      |          | Western Europe        |   5 | Southern Europe       |   1 |      1 |      1 | captured |
+|   68 | Jim      |          | Venezuela             |  19 | Central America       |  15 |      7 |      3 | kept     |
+|   69 | Andrew   |          | Yakutsk               |  11 | Kamchatka             |   4 |      2 |      4 | captured |
+|   69 | Andrew   |          | Kamchatka             |   8 | Alaska                |   4 |      1 |      4 | captured |
+|   69 | Andrew   |          | Alaska                |   6 | Northwest Territory   |   1 |      0 |      1 | captured |
+|   69 | Andrew   |          | Northwest Territory   |   5 | Alberta               |   1 |      1 |      1 | captured |
+|   69 | Andrew   |          | Ural                  |   9 | China                 |   1 |      1 |      1 | captured |
+|   70 | Will     |          | Egypt                 |   7 | East Africa           |   1 |      0 |      1 | captured |
+|   71 | Ben      |          | Ontario               |   4 | Northwest Territory   |   1 |      2 |      1 | captured |
+|   71 | Ben      |          | Ontario               |   2 | Northwest Territory   |   1 |      1 |      0 | kept     |
+|   72 | Jim      |          | Southern Europe       |  18 | Ukraine               |   4 |      5 |      4 | captured |
+|   72 | Jim      |          | Southern Europe       |  12 | Middle East           |   2 |      0 |      2 | captured |
+|   72 | Jim      |          | Middle East           |   3 | Egypt                 |   4 |      3 |      4 | captured |
+|   73 | Andrew   |          | Afghanistan           |   6 | Middle East           |   1 |      4 |      1 | captured |
+|   73 | Andrew   |          | China                 |  11 | India                 |   1 |      1 |      1 | captured |
+|   73 | Andrew   |          | Alberta               |   3 | Ontario               |   1 |      0 |      1 | captured |
+|   73 | Andrew   |          | Ontario               |   2 | Quebec                |   1 |      0 |      1 | captured |
+|   74 | Will     |          | East Africa           |   9 | Middle East           |   1 |      1 |      1 | captured |
+|   74 | Will     |          | Middle East           |   5 | India                 |   9 |      3 |      7 | captured |
+|   75 | Ben      |          | Eastern United States |   4 | Quebec                |   1 |      0 |      1 | captured |
+|   76 | Jim      |          | Venezuela             |  14 | Central America       |  12 |      4 |      6 | captured |
+|   76 | Jim      |          | East Africa           |   3 | Congo                 |   1 |      0 |      1 | captured |
+|   76 | Jim      |          | Congo                 |   2 | South Africa          |   1 |      1 |      0 | kept     |
+|   77 | Andrew   |          | India                 |   8 | Afghanistan           |   1 |      0 |      1 | captured |
+|   78 | Will     |          | Middle East           |   5 | Southern Europe       |   1 |      1 |      1 | captured |
+|   79 | Ben      |          | Quebec                |   6 | Ontario               |   1 |      0 |      1 | captured |
+|   80 | Jim      |          | Congo                 |   6 | South Africa          |   1 |      0 |      1 | captured |
+|   80 | Jim      |          | South Africa          |   5 | Madagascar            |   1 |      1 |      1 | captured |
+|   80 | Jim      |          | Venezuela             |  14 | Central America       |   9 |      2 |      2 | kept     |
+|   81 | Andrew   |          | Afghanistan           |  15 | Middle East           |   1 |      0 |      1 | captured |
+|   81 | Andrew   |          | Middle East           |  14 | Egypt                 |   1 |      0 |      1 | captured |
+|   81 | Andrew   |          | Egypt                 |  13 | North Africa          |   6 |      0 |      6 | captured |
+|   81 | Andrew   |          | North Africa          |  12 | Congo                 |   1 |      1 |      1 | captured |
+|   81 | Andrew   |          | Congo                 |  10 | East Africa           |   1 |      0 |      1 | captured |
+|   81 | Andrew   |          | East Africa           |   9 | Madagascar            |   3 |      3 |      3 | captured |
+|   81 | Andrew   |          | Madagascar            |   5 | South Africa          |   1 |      2 |      1 | captured |
+|   82 | Will     |          | Southern Europe       |   7 | Middle East           |   1 |      1 |      1 | captured |
+|   82 | Will     |          | Middle East           |   3 | Egypt                 |   1 |      1 |      1 | captured |
+|   83 | Ben      |          | Ontario               |   6 | Alberta               |   1 |      0 |      1 | captured |
+|   83 | Ben      |          | Alberta               |   5 | Northwest Territory   |   1 |      0 |      1 | captured |
+|   83 | Ben      |          | Northwest Territory   |   4 | Alaska                |   1 |      0 |      1 | captured |
+|   84 | Jim      |          | Venezuela             |  14 | Central America       |   8 |      3 |      1 | captured |
+|   84 | Jim      |          | North Africa          |   7 | Egypt                 |   1 |      0 |      1 | captured |
+|   84 | Jim      |          | Egypt                 |   3 | East Africa           |   1 |      2 |      1 | captured |
+|   85 | Andrew   |          | India                 |  13 | Middle East           |   2 |      0 |      2 | captured |
+|   86 | Will     |          | Great Britain         |   7 | Iceland               |   1 |      1 |      1 | captured |
+|   86 | Will     |          | Iceland               |   5 | Greenland             |   2 |      0 |      2 | captured |
+|   87 | Ben      |          | Quebec                |  12 | Greenland             |   2 |      0 |      2 | captured |
+|   88 | Jim      |          | Ukraine               |   4 | Ural                  |   1 |      0 |      1 | captured |
+|   88 | Jim      |          | Venezuela             |  14 | Central America       |   8 |      2 |      2 | kept     |
+|   89 | Andrew   |          | Middle East           |  23 | Southern Europe       |   2 |      1 |      2 | captured |
+|   89 | Andrew   |          | Southern Europe       |  21 | Northern Europe       |   3 |      3 |      3 | captured |
+|   89 | Andrew   |          | Northern Europe       |   3 | Ukraine               |   1 |      4 |      1 | captured |
+|   90 | Will     |          | Great Britain         |  11 | Scandinavia           |   1 |      0 |      1 | captured |
 
 * Stats
   using attack information parsed from the logs.
   We can compute attacking stats.
 
  N.B. The defending player is not currently tracked. Statitics are only for aggression.
-  #+BEGIN_SRC R :session :var d=results-attacks :colnames yes
+#+BEGIN_SRC R :session :var d=results-attacks :colnames yes
   library(dplyr)
-   d %>% 
-   group_by(player) %>%
-   summarise(attacks=n(),
-	    attack_losses=sum(a_lost),
-            kills=sum(d_lost),
-   	    win_ratio=length(which(status=='captured'))/n(),
-            avg_attack_disparity=mean(a_n - d_n)) %>%
-   arrange(attacks)
+  top_attack <-
+    d %>%
+    group_by(a.player, d.player) %>% tally() %>%
+    group_by(a.player) %>% mutate(r=rank(n)) %>%
+    filter(r<2) %>% summarize(most.attacked=paste(d.player,collapse=","))
+
+   x <-
+    d %>% 
+    group_by(a.player) %>%
+    summarise(attacks=n(),
+    	    losses=sum(a.lost),
+    	    kills=sum(d.lost),
+    	    win.ratio=length(which(status=='captured'))/n(),
+    	    avg.attack.disparity=mean(a.n - d.n)) %>%
+    mutate_at(.funs=function(x) round(x,2), vars(win.ratio, avg.attack.disparity)) %>%
+    #inner_join(top_attack) %>%
+    arrange(attacks)
   #+END_SRC
 
   #+RESULTS:
- | player | attacks | attack_losses | kills |         win_ratio | avg_attack_disparity |
-  |--------+---------+---------------+-------+-------------------+----------------------|
-  | Josh   |       8 |            15 |    14 |             0.625 |                 3.25 |
-  | Ben    |      24 |            33 |    34 | 0.916666666666667 |     5.66666666666667 |
-  | Will   |      31 |            79 |    75 | 0.935483870967742 |     3.83870967741935 |
-  | Jim    |      38 |            85 |    92 | 0.789473684210526 |     7.05263157894737 |
-  | Andrew |      39 |            35 |    57 | 0.923076923076923 |     5.51282051282051 |
+  | a.player | attacks | losses | kills | win.ratio | avg.attack.disparity |
+  |----------+---------+--------+-------+-----------+----------------------|
+  | Josh     |       8 |     15 |    14 |      0.62 |                 3.25 |
+  | Ben      |      29 |     33 |    40 |      0.93 |                 5.62 |
+  | Will     |      36 |     82 |    81 |      0.94 |                 4.06 |
+  | Jim      |      46 |     95 |   102 |      0.78 |                 6.63 |
+  | Andrew   |      50 |     49 |    79 |      0.94 |                 6.62 |
 
 
 * Colophon/Appendix
