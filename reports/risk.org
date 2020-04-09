@@ -1,5 +1,8 @@
 #+Title:Risk by email stats
 #+DATE: 2020-04-04
+* What
+Jump to [[Stats]]. 
+
 * Log
 Copy/pasted from gamesbyemail.com's game log. The page does fetch malformated json to populate the log, but the objects are dense.
 The presented log seems easier to parse.
@@ -2174,7 +2177,2299 @@ Scandinavia captured
 496.	Fortified Scandinavia (3) with 7 armies from Great Britain (8)
 Fortified Great Britain (1) with 1 army from Scandinavia (10)
 Will receives one card
-END OF TURN  
+END OF TURN
+497.	Received 3 regular armies for occupying 9 territories
+Received 5 regular armies for occupying N. America
+Traded Western Europe (A), Japan (A) and Eastern Australia (A) for 4 regular armies
+Deployed 1 occupying army to Alaska (5)
+Deployed 1 occupying army to Alaska (6)
+Deployed 1 occupying army to Central America (6)
+Deployed 1 occupying army to Central America (7)
+Deployed 1 occupying army to Central America (8)
+Deployed 1 occupying army to Central America (9)
+Deployed 1 occupying army to Greenland (8)
+Deployed 1 occupying army to Central America (10)
+Deployed 1 occupying army to Central America (11)
+Deployed 1 occupying army to Central America (12)
+Deployed 1 occupying army to Central America (13)
+Deployed 1 occupying army to Central America (14)
+498.	Central America (15) attacks Venezuela (12) with 3 armies
+Attacker lost 1 with 5,5,1
+Defender lost 1 with 6,3
+499.	Central America (14) attacks Venezuela (11) with 3 armies
+Attacker lost 0 with 6,5,3
+Defender lost 2 with 4,3
+500.	Central America (14) attacks Venezuela (9) with 3 armies
+Attacker lost 2 with 4,2,1
+Defender lost 0 with 5,5
+501.	END OF TURN
+502.	Received 3 regular armies for occupying 9 territories
+Received 2 regular armies for occupying S. America
+Deployed 5 occupying armies to Venezuela (9)
+503.	Venezuela (14) attacks Central America (12) with 3 armies
+Attacker lost 2 with 6,3,1
+Defender lost 0 with 6,6
+504.	Venezuela (12) attacks Central America (12) with 3 armies
+Attacker lost 1 with 3,2,1
+Defender lost 1 with 3,1
+505.	Venezuela (11) attacks Central America (11) with 3 armies
+Attacker lost 0 with 6,4,2
+Defender lost 2 with 2,2
+506.	Venezuela (11) attacks Central America (9) with 3 armies
+Attacker lost 0 with 6,4,2
+Defender lost 2 with 5,2
+507.	Venezuela (11) attacks Central America (7) with 3 armies
+Attacker lost 0 with 6,4,2
+Defender lost 2 with 2,1
+508.	Venezuela (11) attacks Central America (5) with 3 armies
+Attacker lost 0 with 6,6,5
+Defender lost 2 with 5,2
+509.	Venezuela (11) attacks Central America (3) with 3 armies
+Attacker lost 2 with 6,3,3
+Defender lost 0 with 6,3
+510.	Venezuela (9) attacks Central America (3) with 3 armies
+Attacker lost 1 with 6,5,4
+Defender lost 1 with 6,1
+511.	Venezuela (8) attacks Central America (2) with 3 armies
+Attacker lost 2 with 6,4,4
+Defender lost 0 with 6,6
+512.	Venezuela (6) attacks Central America (2) with 3 armies
+Attacker lost 1 with 5,4,2
+Defender lost 1 with 5,1
+513.	Venezuela (5) attacks Central America (1) with 3 armies
+Attacker lost 0 with 5,5,4
+Defender lost 1 with 1
+Central America captured
+514.	Fortified Venezuela (2) with 1 army from Brazil (10)
+Fortified Venezuela (3) with 1 army from Brazil (9)
+Fortified Venezuela (4) with 1 army from Brazil (8)
+Fortified Venezuela (5) with 1 army from Brazil (7)
+Jim receives one card
+END OF TURN
+515.	Received 5 regular armies for occupying 16 territories
+Deployed 1 occupying army to Southern Europe (11)
+Deployed 1 occupying army to India (2)
+Deployed 1 occupying army to China (2)
+Deployed 1 occupying army to Southern Europe (12)
+Deployed 1 occupying army to Afghanistan (2)
+516.	Afghanistan (3) attacks Ukraine (1) with 2 armies
+Attacker lost 0 with 6,2
+Defender lost 1 with 5
+Ukraine captured
+517.	Andrew receives one card
+END OF TURN
+518.	Received 3 regular armies for occupying 8 territories
+Received 2 regular armies for occupying Australia
+Traded South Africa (A), India (C) and Middle East (I) for 10 regular armies
+Deployed 1 occupying army to Siam (17)
+Deployed 1 occupying army to Siam (18)
+Deployed 1 occupying army to Siam (19)
+Deployed 1 occupying army to Scandinavia (9)
+Deployed 1 occupying army to Scandinavia (10)
+Deployed 1 occupying army to Scandinavia (11)
+Deployed 1 occupying army to Scandinavia (12)
+Deployed 1 occupying army to Scandinavia (13)
+Deployed 1 occupying army to Scandinavia (14)
+Deployed 1 occupying army to Scandinavia (15)
+Deployed 1 occupying army to Scandinavia (16)
+Deployed 1 occupying army to Scandinavia (17)
+Deployed 1 occupying army to Scandinavia (18)
+Deployed 1 occupying army to Scandinavia (19)
+Deployed 1 occupying army to Scandinavia (20)
+519.	Scandinavia (21) attacks Ukraine (2) until defeated
+Attacker lost 2 with 5,3,1
+Defender lost 0 with 5,5
+Attacker lost 1 with 3,1,1
+Defender lost 1 with 1,1
+Attacker lost 0 with 5,2,2
+Defender lost 1 with 2
+Ukraine captured
+520.	Scandinavia (15) attacks Northern Europe (1) until defeated
+Attacker lost 1 with 6,6,4
+Defender lost 0 with 6
+Attacker lost 0 with 4,4,4
+Defender lost 1 with 3
+Northern Europe captured
+521.	Moved 10 armies from Scandinavia (11) to Northern Europe (3)
+Moved 10 armies from Scandinavia (1) to Northern Europe (13)
+Moved 10 armies from Scandinavia (11) to Northern Europe (3)
+Moved 1 army from Scandinavia (1) to Northern Europe (13)
+Moved 1 army from Scandinavia (2) to Northern Europe (12)
+Fortified Great Britain (2) with 10 armies from Northern Europe (11)
+Fortified Northern Europe (1) with 1 army from Great Britain (12)
+Fortified Northern Europe (2) with 1 army from Great Britain (11)
+Will receives one card
+END OF TURN
+522.	Received 3 regular armies for occupying 8 territories
+Deployed 1 occupying army to Alaska (7)
+Deployed 1 occupying army to Alaska (8)
+Deployed 1 occupying army to Greenland (9)
+523.	Alaska (9) attacks Kamchatka (1) with 3 armies
+Attacker lost 0 with 6,5,2
+Defender lost 1 with 3
+Kamchatka captured
+524.	Greenland (10) attacks Iceland (3) with 3 armies
+Attacker lost 0 with 6,6,5
+Defender lost 2 with 5,2
+525.	Greenland (10) attacks Iceland (1) with 3 armies
+Attacker lost 1 with 5,5,2
+Defender lost 0 with 5
+526.	Greenland (9) attacks Iceland (1) with 3 armies
+Attacker lost 1 with 6,4,3
+Defender lost 0 with 6
+527.	Greenland (8) attacks Iceland (1) with 3 armies
+Attacker lost 0 with 4,4,3
+Defender lost 1 with 2
+Iceland captured
+528.	Fortified Eastern United States (1) with 3 armies from Quebec (4)
+Ben receives one card
+END OF TURN
+529.	Received 3 regular armies for occupying 9 territories
+Received 2 regular armies for occupying S. America
+Traded Western United States (A), Ontario (C) and Egypt (I) for 10 regular armies
+Deployed 2 occupying armies to Egypt (1)
+Deployed 15 occupying armies to Egypt (3)
+530.	Egypt (18) attacks East Africa (1) until defeated
+Attacker lost 1 with 2,1,1
+Defender lost 0 with 6
+Attacker lost 0 with 6,5,4
+Defender lost 1 with 5
+East Africa captured
+531.	Moved 13 armies from Egypt (14) to East Africa (3)
+532.	East Africa (16) attacks South Africa (1) with 1 army
+Attacker lost 0 with 6
+Defender lost 1 with 5
+South Africa captured
+533.	East Africa (15) attacks Madagascar (2) with 2 armies
+Attacker lost 0 with 6,5
+Defender lost 2 with 3,1
+Madagascar captured
+534.	East Africa (13) attacks Middle East (1) until defeated
+Attacker lost 0 with 6,1,1
+Defender lost 1 with 2
+Middle East captured
+535.	Fortified North Africa (3) with 9 armies from East Africa (10)
+Jim receives one card
+END OF TURN
+536.	Received 3 regular armies for occupying 10 territories
+Deployed 3 occupying armies to Southern Europe (13)
+537.	Southern Europe (16) attacks Ukraine (3) with 3 armies
+Attacker lost 1 with 4,4,1
+Defender lost 1 with 5,2
+538.	Southern Europe (15) attacks Ukraine (2) with 3 armies
+Attacker lost 1 with 5,4,2
+Defender lost 1 with 5,3
+539.	Southern Europe (14) attacks Ukraine (1) with 3 armies
+Attacker lost 0 with 6,4,4
+Defender lost 1 with 1
+Ukraine captured
+540.	Moved 10 armies from Southern Europe (11) to Ukraine (3)
+Fortified Afghanistan (1) with 1 army from China (3)
+Andrew receives one card
+END OF TURN
+541.	Received 3 regular armies for occupying 8 territories
+Received 2 regular armies for occupying Australia
+Deployed 1 occupying army to Northern Europe (3)
+Deployed 1 occupying army to Northern Europe (4)
+Deployed 1 occupying army to Northern Europe (5)
+Deployed 1 occupying army to Northern Europe (6)
+Deployed 1 occupying army to Northern Europe (7)
+542.	Northern Europe (8) attacks Southern Europe (1) until defeated
+Attacker lost 0 with 4,2,1
+Defender lost 1 with 1
+Southern Europe captured
+543.	Moved 4 armies from Northern Europe (5) to Southern Europe (3)
+Moved 4 armies from Northern Europe (1) to Southern Europe (7)
+Moved 1 army from Northern Europe (5) to Southern Europe (3)
+Will receives one card
+END OF TURN
+544.	Received 3 regular armies for occupying 10 territories
+Deployed 1 occupying army to Eastern United States (4)
+Deployed 1 occupying army to Eastern United States (5)
+Deployed 1 occupying army to Eastern United States (6)
+545.	Eastern United States (7) attacks Central America (3) with 3 armies
+Attacker lost 1 with 6,3,2
+Defender lost 1 with 5,5
+546.	Eastern United States (6) attacks Central America (2) with 3 armies
+Attacker lost 2 with 2,1,1
+Defender lost 0 with 4,3
+547.	Eastern United States (4) attacks Central America (2) with 3 armies
+Attacker lost 1 with 3,2,2
+Defender lost 1 with 6,1
+548.	Eastern United States (3) attacks Central America (1) with 2 armies
+Attacker lost 1 with 5,4
+Defender lost 0 with 5
+549.	Eastern United States (2) attacks Central America (1) with 1 army
+Attacker lost 0 with 5
+Defender lost 1 with 4
+Central America captured
+550.	Ben receives one card
+END OF TURN
+551.	Received 4 regular armies for occupying 12 territories
+Received 3 regular armies for occupying Africa
+Received 2 regular armies for occupying S. America
+Deployed 9 occupying armies to North Africa (12)
+552.	North Africa (21) attacks Western Europe (2) with 3 armies
+Attacker lost 1 with 6,5,2
+Defender lost 1 with 6,3
+553.	North Africa (20) attacks Western Europe (1) with 3 armies
+Attacker lost 0 with 6,4,2
+Defender lost 1 with 5
+Western Europe captured
+554.	Moved 1 army from North Africa (17) to Western Europe (3)
+Moved 1 army from North Africa (16) to Western Europe (4)
+Moved 1 army from North Africa (15) to Western Europe (5)
+Moved 1 army from North Africa (14) to Western Europe (6)
+Moved 1 army from North Africa (13) to Western Europe (7)
+Moved 1 army from North Africa (12) to Western Europe (8)
+Moved 1 army from North Africa (11) to Western Europe (9)
+Moved 1 army from North Africa (10) to Western Europe (10)
+Moved 1 army from North Africa (9) to Western Europe (11)
+Moved 1 army from North Africa (8) to Western Europe (12)
+Moved 1 army from North Africa (7) to Western Europe (13)
+555.	Western Europe (14) attacks Great Britain (10) with 3 armies
+Attacker lost 1 with 5,3,1
+Defender lost 1 with 5,1
+556.	Western Europe (13) attacks Great Britain (9) with 3 armies
+Attacker lost 2 with 5,3,2
+Defender lost 0 with 5,4
+557.	Western Europe (11) attacks Great Britain (9) with 3 armies
+Attacker lost 1 with 4,4,3
+Defender lost 1 with 6,1
+558.	Western Europe (10) attacks Great Britain (8) with 3 armies
+Attacker lost 0 with 3,2,1
+Defender lost 2 with 1,1
+559.	Western Europe (10) attacks Great Britain (6) with 3 armies
+Attacker lost 2 with 4,3,1
+Defender lost 0 with 6,3
+560.	Western Europe (8) attacks Great Britain (6) with 3 armies
+Attacker lost 1 with 6,2,2
+Defender lost 1 with 5,5
+561.	Western Europe (7) attacks Great Britain (5) with 3 armies
+Attacker lost 0 with 5,3,2
+Defender lost 2 with 4,2
+562.	Western Europe (7) attacks Great Britain (3) with 3 armies
+Attacker lost 1 with 6,3,1
+Defender lost 1 with 4,3
+563.	Western Europe (6) attacks Great Britain (2) with 3 armies
+Attacker lost 2 with 4,3,2
+Defender lost 0 with 5,5
+564.	Western Europe (4) attacks Great Britain (2) with 3 armies
+Attacker lost 0 with 5,2,2
+Defender lost 2 with 2,1
+Great Britain captured
+565.	Fortified Western Europe (1) with 2 armies from Great Britain (3)
+Jim receives one card
+END OF TURN
+566.	Received 3 regular armies for occupying 9 territories
+Traded East Africa (I), Peru (I) and Congo (I) for 6 regular armies
+Deployed 1 occupying army to Ukraine (13)
+Deployed 1 occupying army to Ukraine (14)
+Deployed 1 occupying army to Ukraine (15)
+Deployed 1 occupying army to Ukraine (16)
+Deployed 1 occupying army to Ukraine (17)
+Deployed 1 occupying army to Ukraine (18)
+Deployed 1 occupying army to Ukraine (19)
+Deployed 1 occupying army to Mongolia (2)
+Deployed 1 occupying army to Mongolia (3)
+567.	Ukraine (20) attacks Northern Europe (4) with 3 armies
+Attacker lost 1 with 6,2,1
+Defender lost 1 with 4,2
+568.	Ukraine (19) attacks Northern Europe (3) with 3 armies
+Attacker lost 0 with 6,5,5
+Defender lost 2 with 5,2
+569.	Ukraine (19) attacks Northern Europe (1) with 3 armies
+Attacker lost 0 with 5,3,3
+Defender lost 1 with 1
+Northern Europe captured
+570.	Moved 15 armies from Ukraine (16) to Northern Europe (3)
+571.	Northern Europe (18) attacks Scandinavia (3) with 3 armies
+Attacker lost 2 with 6,4,4
+Defender lost 0 with 6,5
+572.	Northern Europe (16) attacks Scandinavia (3) with 3 armies
+Attacker lost 0 with 6,4,2
+Defender lost 2 with 3,2
+573.	Northern Europe (16) attacks Scandinavia (1) with 3 armies
+Attacker lost 1 with 3,3,1
+Defender lost 0 with 3
+574.	Northern Europe (15) attacks Scandinavia (1) with 3 armies
+Attacker lost 1 with 6,5,3
+Defender lost 0 with 6
+575.	Northern Europe (14) attacks Scandinavia (1) with 3 armies
+Attacker lost 0 with 6,5,3
+Defender lost 1 with 2
+Scandinavia captured
+576.	Moved 10 armies from Northern Europe (11) to Scandinavia (3)
+Andrew receives one card
+END OF TURN
+577.	Received 3 regular armies for occupying 6 territories
+Received 2 regular armies for occupying Australia
+Deployed 1 occupying army to Southern Europe (4)
+Deployed 1 occupying army to Southern Europe (5)
+Deployed 1 occupying army to Southern Europe (6)
+Deployed 1 occupying army to Southern Europe (7)
+Deployed 1 occupying army to Southern Europe (8)
+578.	Southern Europe (9) attacks Egypt (1) until defeated
+Attacker lost 0 with 3,3,1
+Defender lost 1 with 1
+Egypt captured
+579.	Moved 5 armies from Southern Europe (6) to Egypt (3)
+580.	Egypt (8) attacks East Africa (1) until defeated
+Attacker lost 0 with 6,5,1
+Defender lost 1 with 5
+East Africa captured
+581.	Moved 1 army from Egypt (5) to East Africa (3)
+Will receives one card
+END OF TURN
+582.	Received 3 regular armies for occupying 11 territories
+Received 5 regular armies for occupying N. America
+Deployed 1 occupying army to Central America (1)
+Deployed 7 occupying armies to Central America (2)
+583.	Central America (9) attacks Venezuela (6) with 3 armies
+Attacker lost 2 with 5,5,4
+Defender lost 0 with 5,5
+584.	Central America (7) attacks Venezuela (6) with 3 armies
+Attacker lost 2 with 3,2,1
+Defender lost 0 with 6,4
+585.	Central America (5) attacks Venezuela (6) with 3 armies
+Attacker lost 1 with 2,2,1
+Defender lost 1 with 4,1
+586.	Iceland (3) attacks Great Britain (1) with 2 armies
+Attacker lost 1 with 1,1
+Defender lost 0 with 2
+587.	Iceland (2) attacks Great Britain (1) with 1 army
+Attacker lost 0 with 6
+Defender lost 1 with 1
+Great Britain captured
+588.	Ben receives one card
+END OF TURN
+589.	Received 3 regular armies for occupying 11 territories
+Received 2 regular armies for occupying S. America
+Deployed 5 occupying armies to North Africa (6)
+590.	Western Europe (3) attacks Great Britain (1) with 2 armies
+Attacker lost 1 with 6,2
+Defender lost 0 with 6
+591.	Western Europe (2) attacks Great Britain (1) with 1 army
+Attacker lost 0 with 6
+Defender lost 1 with 2
+Great Britain captured
+592.	North Africa (11) attacks Egypt (4) with 3 armies
+Attacker lost 0 with 6,5,3
+Defender lost 2 with 3,2
+593.	North Africa (11) attacks Egypt (2) with 3 armies
+Attacker lost 2 with 2,1,1
+Defender lost 0 with 5,2
+594.	North Africa (9) attacks Egypt (2) with 3 armies
+Attacker lost 2 with 3,3,2
+Defender lost 0 with 6,3
+595.	Venezuela (5) attacks Central America (4) with 3 armies
+Attacker lost 0 with 6,6,5
+Defender lost 2 with 2,1
+596.	Venezuela (5) attacks Central America (2) with 3 armies
+Attacker lost 2 with 5,4,3
+Defender lost 0 with 5,4
+597.	Fortified Venezuela (3) with 1 army from Brazil (6)
+Fortified Venezuela (4) with 1 army from Brazil (5)
+Fortified Venezuela (5) with 3 armies from Brazil (4)
+Jim receives one card
+END OF TURN
+598.	Received 3 regular armies for occupying 11 territories
+Deployed 3 occupying armies to Mongolia (4)
+599.	Scandinavia (13) attacks Iceland (1) with 3 armies
+Attacker lost 0 with 6,6,2
+Defender lost 1 with 4
+Iceland captured
+600.	Moved 9 armies from Scandinavia (10) to Iceland (3)
+601.	Iceland (12) attacks Greenland (5) with 3 armies
+Attacker lost 0 with 5,5,5
+Defender lost 2 with 4,1
+602.	Iceland (12) attacks Greenland (3) with 3 armies
+Attacker lost 1 with 6,4,4
+Defender lost 1 with 6,1
+603.	Iceland (11) attacks Greenland (2) with 3 armies
+Attacker lost 2 with 5,2,2
+Defender lost 0 with 5,3
+604.	Iceland (9) attacks Greenland (2) with 3 armies
+Attacker lost 2 with 4,1,1
+Defender lost 0 with 6,4
+605.	Iceland (7) attacks Greenland (2) with 3 armies
+Attacker lost 2 with 4,4,1
+Defender lost 0 with 4,4
+606.	Iceland (5) attacks Greenland (2) with 3 armies
+Attacker lost 2 with 4,1,1
+Defender lost 0 with 5,5
+607.	Iceland (3) attacks Greenland (2) with 2 armies
+Attacker lost 1 with 6,1
+Defender lost 1 with 4,4
+608.	Iceland (2) attacks Greenland (1) with 1 army
+Attacker lost 1 with 1
+Defender lost 0 with 2
+609.	Andrew receives one card
+END OF TURN
+610.	Received 3 regular armies for occupying 8 territories
+Received 2 regular armies for occupying Australia
+Traded Northwest Territory (A), Siam (I) and Wild for 10 regular armies
+Deployed 2 occupying armies to Siam (20)
+Deployed 1 occupying army to East Africa (4)
+Deployed 1 occupying army to East Africa (5)
+Deployed 1 occupying army to East Africa (6)
+Deployed 1 occupying army to East Africa (7)
+Deployed 1 occupying army to East Africa (8)
+Deployed 1 occupying army to East Africa (9)
+Deployed 1 occupying army to East Africa (10)
+Deployed 1 occupying army to East Africa (11)
+Deployed 1 occupying army to East Africa (12)
+Deployed 1 occupying army to East Africa (13)
+Deployed 1 occupying army to East Africa (14)
+Deployed 1 occupying army to East Africa (15)
+Deployed 1 occupying army to East Africa (16)
+Deployed 1 occupying army to East Africa (17)
+Deployed 1 occupying army to East Africa (18)
+611.	East Africa (19) attacks Madagascar (2) until defeated
+Attacker lost 1 with 6,6,5
+Defender lost 1 with 6,3
+Attacker lost 0 with 4,4,1
+Defender lost 1 with 3
+Madagascar captured
+612.	Moved 14 armies from East Africa (15) to Madagascar (3)
+Moved 14 armies from East Africa (1) to Madagascar (17)
+Moved 14 armies from East Africa (15) to Madagascar (3)
+Moved 1 army from East Africa (1) to Madagascar (17)
+Moved 1 army from East Africa (2) to Madagascar (16)
+Moved 1 army from East Africa (3) to Madagascar (15)
+613.	Madagascar (14) attacks South Africa (1) until defeated
+Attacker lost 1 with 3,1,1
+Defender lost 0 with 3
+Attacker lost 0 with 5,2,1
+Defender lost 1 with 3
+South Africa captured
+614.	Fortified South Africa (3) with 9 armies from Madagascar (10)
+Fortified Madagascar (1) with 1 army from South Africa (12)
+Fortified Madagascar (2) with 1 army from South Africa (11)
+Fortified South Africa (10) with 2 armies from Madagascar (3)
+Will receives one card
+END OF TURN
+615.	Received 3 regular armies for occupying 10 territories
+Received 5 regular armies for occupying N. America
+Deployed 1 occupying army to Central America (2)
+Deployed 1 occupying army to Central America (3)
+Deployed 1 occupying army to Central America (4)
+Deployed 1 occupying army to Central America (5)
+Deployed 1 occupying army to Greenland (1)
+Deployed 1 occupying army to Greenland (2)
+Deployed 1 occupying army to Greenland (3)
+Deployed 1 occupying army to Central America (6)
+616.	Kamchatka (3) attacks Yakutsk (1) with 2 armies
+Attacker lost 0 with 6,5
+Defender lost 1 with 2
+Yakutsk captured
+617.	Ben receives one card
+END OF TURN
+618.	Received 3 regular armies for occupying 10 territories
+Received 2 regular armies for occupying S. America
+Traded Alaska (I), Southern Europe (A) and Ukraine (C) for 10 regular armies
+Deployed 15 occupying armies to North Africa (7)
+619.	Middle East (3) attacks Southern Europe (1) with 2 armies
+Attacker lost 0 with 4,4
+Defender lost 1 with 1
+Southern Europe captured
+620.	Southern Europe (2) attacks Egypt (2) with 1 army
+Attacker lost 1 with 2
+Defender lost 0 with 2,1
+621.	North Africa (22) attacks Egypt (2) with 3 armies
+Attacker lost 2 with 5,3,2
+Defender lost 0 with 6,5
+622.	North Africa (20) attacks Egypt (2) with 3 armies
+Attacker lost 2 with 6,6,1
+Defender lost 0 with 6,6
+623.	North Africa (18) attacks Egypt (2) with 3 armies
+Attacker lost 2 with 6,3,1
+Defender lost 0 with 6,3
+624.	North Africa (16) attacks Egypt (2) with 3 armies
+Attacker lost 1 with 6,6,3
+Defender lost 1 with 6,3
+625.	North Africa (15) attacks Egypt (1) with 3 armies
+Attacker lost 1 with 4,3,2
+Defender lost 0 with 6
+626.	North Africa (14) attacks Egypt (1) with 3 armies
+Attacker lost 0 with 5,5,3
+Defender lost 1 with 1
+Egypt captured
+627.	Egypt (3) attacks East Africa (4) with 2 armies
+Attacker lost 1 with 6,2
+Defender lost 1 with 3,2
+628.	Egypt (2) attacks East Africa (3) with 1 army
+Attacker lost 1 with 3
+Defender lost 0 with 5,4
+629.	Jim receives one card
+END OF TURN
+630.	Received 3 regular armies for occupying 11 territories
+Deployed 3 occupying armies to Mongolia (7)
+631.	Mongolia (10) attacks Kamchatka (1) until defeated
+Attacker lost 0 with 5,2,1
+Defender lost 1 with 4
+Kamchatka captured
+632.	Moved 6 armies from Mongolia (7) to Kamchatka (3)
+Andrew receives one card
+END OF TURN
+633.	Received 3 regular armies for occupying 8 territories
+Received 2 regular armies for occupying Australia
+Deployed 1 occupying army to South Africa (12)
+Deployed 1 occupying army to South Africa (13)
+Deployed 1 occupying army to South Africa (14)
+Deployed 1 occupying army to Siam (22)
+Deployed 1 occupying army to South Africa (15)
+634.	South Africa (16) attacks Congo (1) until defeated
+Attacker lost 0 with 2,1,1
+Defender lost 1 with 1
+Congo captured
+635.	Moved 12 armies from South Africa (13) to Congo (3)
+Moved 1 army from South Africa (1) to Congo (15)
+Fortified East Africa (3) with 13 armies from Congo (14)
+Fortified Congo (1) with 1 army from East Africa (16)
+Fortified Congo (2) with 1 army from East Africa (15)
+Will receives one card
+END OF TURN
+636.	Received 3 regular armies for occupying 10 territories
+Received 5 regular armies for occupying N. America
+Deployed 1 occupying army to Greenland (4)
+Deployed 1 occupying army to Greenland (5)
+Deployed 1 occupying army to Alaska (6)
+Deployed 1 occupying army to Central America (7)
+Deployed 1 occupying army to Central America (8)
+Deployed 1 occupying army to Central America (9)
+Deployed 1 occupying army to Central America (10)
+Deployed 1 occupying army to Central America (11)
+637.	Yakutsk (2) attacks Siberia (1) with 1 army
+Attacker lost 1 with 1
+Defender lost 0 with 5
+638.	Greenland (6) attacks Iceland (1) with 3 armies
+Attacker lost 0 with 5,2,1
+Defender lost 1 with 1
+Iceland captured
+639.	Fortified Greenland (3) with 2 armies from Iceland (3)
+Ben receives one card
+END OF TURN
+640.	Received 3 regular armies for occupying 11 territories
+Received 2 regular armies for occupying S. America
+Deployed 1 occupying army to Venezuela (8)
+Deployed 1 occupying army to Venezuela (9)
+Deployed 1 occupying army to Venezuela (10)
+Deployed 1 occupying army to Venezuela (11)
+Deployed 1 occupying army to Ural (3)
+641.	Ural (4) attacks Ukraine (1) with 1 army
+Attacker lost 1 with 1
+Defender lost 0 with 3
+642.	Ural (3) attacks Ukraine (1) with 1 army
+Attacker lost 0 with 6
+Defender lost 1 with 1
+Ukraine captured
+643.	Venezuela (12) attacks Central America (12) with 3 armies
+Attacker lost 0 with 4,4,3
+Defender lost 2 with 2,1
+644.	Venezuela (12) attacks Central America (10) with 3 armies
+Attacker lost 0 with 6,6,6
+Defender lost 2 with 5,2
+645.	Venezuela (12) attacks Central America (8) with 3 armies
+Attacker lost 2 with 5,4,1
+Defender lost 0 with 5,5
+646.	Venezuela (10) attacks Central America (8) with 3 armies
+Attacker lost 2 with 5,4,1
+Defender lost 0 with 6,4
+647.	Fortified Brazil (1) with 10 armies from North Africa (11)
+Jim receives one card
+END OF TURN
+648.	Received 3 regular armies for occupying 10 territories
+Traded Venezuela (I), Wild and Scandinavia (C) for 10 regular armies
+Deployed 2 occupying armies to Scandinavia (1)
+Deployed 1 occupying army to Kamchatka (9)
+Deployed 1 occupying army to Kamchatka (10)
+Deployed 1 occupying army to Kamchatka (11)
+Deployed 1 occupying army to Scandinavia (3)
+Deployed 1 occupying army to Scandinavia (4)
+Deployed 1 occupying army to Scandinavia (5)
+Deployed 1 occupying army to Scandinavia (6)
+Deployed 1 occupying army to Scandinavia (7)
+Deployed 1 occupying army to Scandinavia (8)
+Deployed 1 occupying army to Scandinavia (9)
+Deployed 1 occupying army to Scandinavia (10)
+Deployed 1 occupying army to Scandinavia (11)
+Deployed 1 occupying army to Scandinavia (12)
+649.	Scandinavia (13) attacks Ukraine (1) with 1 army
+Attacker lost 1 with 2
+Defender lost 0 with 2
+650.	Scandinavia (12) attacks Ukraine (1) with 1 army
+Attacker lost 0 with 3
+Defender lost 1 with 1
+Ukraine captured
+651.	Moved 10 armies from Scandinavia (11) to Ukraine (1)
+Fortified Japan (1) with 11 armies from Kamchatka (12)
+Andrew receives one card
+END OF TURN
+652.	Received 3 regular armies for occupying 9 territories
+Received 2 regular armies for occupying Australia
+Deployed 1 occupying army to East Africa (14)
+Deployed 1 occupying army to Siam (23)
+Deployed 1 occupying army to Siam (24)
+Deployed 1 occupying army to East Africa (15)
+Deployed 1 occupying army to East Africa (16)
+653.	East Africa (17) attacks Egypt (1) until defeated
+Attacker lost 1 with 5,2,2
+Defender lost 0 with 5
+Attacker lost 1 with 4,4,2
+Defender lost 0 with 4
+Attacker lost 1 with 5,3,2
+Defender lost 0 with 6
+Attacker lost 0 with 6,6,5
+Defender lost 1 with 2
+Egypt captured
+654.	Moved 10 armies from East Africa (11) to Egypt (3)
+Moved 10 armies from East Africa (1) to Egypt (13)
+Moved 10 armies from East Africa (11) to Egypt (3)
+Moved 1 army from East Africa (1) to Egypt (13)
+Moved 1 army from East Africa (2) to Egypt (12)
+Moved 1 army from East Africa (3) to Egypt (11)
+Moved 1 army from East Africa (4) to Egypt (10)
+655.	Egypt (11) attacks North Africa (1) until defeated
+Attacker lost 0 with 4,2,1
+Defender lost 1 with 1
+North Africa captured
+656.	Moved 7 armies from Egypt (8) to North Africa (3)
+Moved 7 armies from Egypt (1) to North Africa (10)
+Moved 7 armies from Egypt (8) to North Africa (3)
+Moved 1 army from Egypt (1) to North Africa (10)
+Moved 1 army from Egypt (2) to North Africa (9)
+Moved 1 army from Egypt (1) to North Africa (10)
+Moved 1 army from Egypt (2) to North Africa (9)
+Moved 1 army from Egypt (3) to North Africa (8)
+Will receives one card
+END OF TURN
+657.	Received 3 regular armies for occupying 11 territories
+Received 5 regular armies for occupying N. America
+Deployed 1 occupying army to Central America (8)
+Deployed 1 occupying army to Central America (9)
+Deployed 1 occupying army to Central America (10)
+Deployed 1 occupying army to Central America (11)
+Deployed 1 occupying army to Greenland (5)
+Deployed 1 occupying army to Greenland (6)
+Deployed 1 occupying army to Alaska (7)
+Deployed 1 occupying army to Alaska (8)
+Traded Siberia (C), Madagascar (C) and Alberta (C) for 8 regular armies
+Deployed 2 occupying armies to Alberta (1)
+Deployed 1 occupying army to Greenland (7)
+Deployed 1 occupying army to Iceland (1)
+Deployed 1 occupying army to Iceland (2)
+Deployed 1 occupying army to Central America (12)
+Deployed 1 occupying army to Central America (13)
+Deployed 1 occupying army to Central America (14)
+Deployed 1 occupying army to Alaska (9)
+Deployed 1 occupying army to Alaska (10)
+658.	Iceland (3) attacks Great Britain (1) with 2 armies
+Attacker lost 0 with 5,4
+Defender lost 1 with 4
+Great Britain captured
+659.	Great Britain (2) attacks Western Europe (1) with 1 army
+Attacker lost 0 with 6
+Defender lost 1 with 3
+Western Europe captured
+660.	Fortified Alaska (11) with 2 armies from Alberta (3)
+Ben receives one card
+END OF TURN
+661.	Received 3 regular armies for occupying 7 territories
+Received 2 regular armies for occupying S. America
+Deployed 5 occupying armies to Brazil (11)
+662.	Brazil (16) attacks North Africa (7) until defeated
+Attacker lost 0 with 3,3,1
+Defender lost 2 with 2,1
+Attacker lost 1 with 4,2,1
+Defender lost 1 with 3,2
+Attacker lost 0 with 5,3,2
+Defender lost 2 with 2,1
+Attacker lost 0 with 6,3,2
+Defender lost 2 with 5,1
+North Africa captured
+663.	Fortified Venezuela (8) with 1 army from Brazil (12)
+Fortified Venezuela (9) with 1 army from Brazil (11)
+Jim receives one card
+END OF TURN
+664.	Received 3 regular armies for occupying 11 territories
+Deployed 1 occupying army to Japan (12)
+Deployed 1 occupying army to Japan (13)
+Deployed 1 occupying army to Japan (14)
+665.	Ukraine (11) attacks Ural (2) with 3 armies
+Attacker lost 2 with 3,2,1
+Defender lost 0 with 3,2
+666.	Ukraine (9) attacks Ural (2) until defeated
+Attacker lost 2 with 5,1,1
+Defender lost 0 with 5,2
+Attacker lost 1 with 4,4,2
+Defender lost 1 with 5,1
+Attacker lost 1 with 6,5,3
+Defender lost 0 with 6
+Attacker lost 0 with 5,5,4
+Defender lost 1 with 4
+Ural captured
+667.	Moved 1 army from Ukraine (2) to Ural (3)
+Andrew receives one card
+END OF TURN
+668.	Received 3 regular armies for occupying 10 territories
+Received 2 regular armies for occupying Australia
+Deployed 1 occupying army to Siam (25)
+Deployed 1 occupying army to Congo (3)
+Deployed 1 occupying army to Egypt (4)
+Deployed 1 occupying army to Egypt (5)
+Deployed 1 occupying army to Egypt (6)
+669.	Egypt (7) attacks Middle East (1) until defeated
+Attacker lost 0 with 5,3,2
+Defender lost 1 with 4
+Middle East captured
+670.	Fortified Egypt (4) with 1 army from Middle East (3)
+Fortified Egypt (5) with 1 army from Middle East (2)
+Will receives one card
+END OF TURN
+671.	Received 4 regular armies for occupying 13 territories
+Received 5 regular armies for occupying N. America
+Deployed 1 occupying army to Western Europe (1)
+Deployed 1 occupying army to Great Britain (1)
+Deployed 1 occupying army to Iceland (1)
+Deployed 1 occupying army to Iceland (2)
+Deployed 1 occupying army to Iceland (3)
+Deployed 1 occupying army to Great Britain (2)
+Deployed 1 occupying army to Iceland (4)
+Deployed 1 occupying army to Iceland (5)
+Deployed 1 occupying army to Great Britain (3)
+672.	Iceland (6) attacks Scandinavia (1) with 3 armies
+Attacker lost 1 with 5,1,1
+Defender lost 0 with 5
+673.	Iceland (5) attacks Scandinavia (1) with 3 armies
+Attacker lost 1 with 4,1,1
+Defender lost 0 with 6
+674.	Iceland (4) attacks Scandinavia (1) with 3 armies
+Attacker lost 0 with 6,5,3
+Defender lost 1 with 2
+Scandinavia captured
+675.	Great Britain (4) attacks Northern Europe (1) with 3 armies
+Attacker lost 1 with 3,2,1
+Defender lost 0 with 5
+676.	Great Britain (3) attacks Northern Europe (1) with 2 armies
+Attacker lost 1 with 3,1
+Defender lost 0 with 4
+677.	Great Britain (2) attacks Northern Europe (1) with 1 army
+Attacker lost 1 with 2
+Defender lost 0 with 3
+678.	Western Europe (2) attacks Southern Europe (1) with 1 army
+Attacker lost 0 with 3
+Defender lost 1 with 1
+Southern Europe captured
+679.	Scandinavia (3) attacks Northern Europe (1) with 2 armies
+Attacker lost 1 with 4,2
+Defender lost 0 with 4
+680.	Scandinavia (2) attacks Northern Europe (1) with 1 army
+Attacker lost 1 with 3
+Defender lost 0 with 5
+681.	Ben receives one card
+END OF TURN
+682.	Received 3 regular armies for occupying 5 territories
+Received 2 regular armies for occupying S. America
+Traded Mongolia (I), Kamchatka (I) and Argentina (I) for 6 regular armies
+Deployed 2 occupying armies to Argentina (1)
+Deployed 1 occupying army to Venezuela (10)
+Deployed 10 occupying armies to Venezuela (11)
+683.	Venezuela (21) attacks Central America (15) until defeated
+Attacker lost 1 with 5,5,3
+Defender lost 1 with 5,2
+Attacker lost 1 with 4,4,4
+Defender lost 1 with 5,2
+Attacker lost 2 with 1,1,1
+Defender lost 0 with 6,1
+Attacker lost 0 with 5,4,4
+Defender lost 2 with 3,3
+Attacker lost 1 with 5,3,2
+Defender lost 1 with 5,1
+Attacker lost 1 with 4,3,3
+Defender lost 1 with 5,2
+Attacker lost 0 with 6,4,3
+Defender lost 2 with 3,1
+Attacker lost 1 with 4,4,3
+Defender lost 1 with 4,3
+Attacker lost 1 with 5,5,3
+Defender lost 1 with 6,4
+Attacker lost 0 with 3,2,2
+Defender lost 2 with 2,1
+Attacker lost 0 with 6,4,1
+Defender lost 2 with 4,3
+Attacker lost 1 with 6,4,1
+Defender lost 0 with 6
+Attacker lost 0 with 6,4,4
+Defender lost 1 with 5
+Central America captured
+684.	Moved 8 armies from Venezuela (9) to Central America (3)
+685.	Central America (11) attacks Eastern United States (1) with 1 army
+Attacker lost 1 with 3
+Defender lost 0 with 3
+686.	Central America (10) attacks Eastern United States (1) with 1 army
+Attacker lost 1 with 4
+Defender lost 0 with 6
+687.	Central America (9) attacks Eastern United States (1) with 1 army
+Attacker lost 1 with 2
+Defender lost 0 with 3
+688.	Fortified Venezuela (1) with 7 armies from Central America (8)
+Jim receives one card
+END OF TURN
+689.	Received 3 regular armies for occupying 11 territories
+Deployed 1 occupying army to Japan (15)
+Deployed 1 occupying army to China (2)
+Deployed 1 occupying army to India (3)
+690.	India (4) attacks Middle East (1) until defeated
+Attacker lost 0 with 6,4,2
+Defender lost 1 with 2
+Middle East captured
+691.	China (3) attacks Siam (26) with 2 armies
+Attacker lost 2 with 3,2
+Defender lost 0 with 6,3
+692.	Fortified India (1) with 1 army from Middle East (3)
+Andrew receives one card
+END OF TURN
+693.	Received 3 regular armies for occupying 10 territories
+Received 2 regular armies for occupying Australia
+Deployed 1 occupying army to Congo (4)
+Deployed 1 occupying army to Siam (26)
+Deployed 1 occupying army to Egypt (6)
+Deployed 1 occupying army to Egypt (7)
+Deployed 1 occupying army to Egypt (8)
+694.	Egypt (9) attacks Southern Europe (1) until defeated
+Attacker lost 1 with 5,5,4
+Defender lost 0 with 5
+Attacker lost 0 with 6,3,1
+Defender lost 1 with 5
+Southern Europe captured
+695.	Fortified Egypt (5) with 1 army from Southern Europe (3)
+Fortified Egypt (6) with 1 army from Southern Europe (2)
+Will receives one card
+END OF TURN
+696.	Received 4 regular armies for occupying 13 territories
+Deployed 1 occupying army to Eastern United States (1)
+Deployed 1 occupying army to Eastern United States (2)
+Deployed 1 occupying army to Eastern United States (3)
+Deployed 1 occupying army to Eastern United States (4)
+697.	Eastern United States (5) attacks Central America (1) with 3 armies
+Attacker lost 1 with 3,1,1
+Defender lost 0 with 5
+698.	Eastern United States (4) attacks Central America (1) with 2 armies
+Attacker lost 1 with 4,1
+Defender lost 0 with 4
+699.	Eastern United States (3) attacks Central America (1) with 2 armies
+Attacker lost 1 with 4,3
+Defender lost 0 with 5
+700.	Eastern United States (2) attacks Central America (1) with 1 army
+Attacker lost 1 with 1
+Defender lost 0 with 4
+701.	Alaska (13) attacks Kamchatka (1) with 3 armies
+Attacker lost 1 with 5,4,4
+Defender lost 0 with 5
+702.	Alaska (12) attacks Kamchatka (1) with 3 armies
+Attacker lost 1 with 2,1,1
+Defender lost 0 with 4
+703.	Alaska (11) attacks Kamchatka (1) with 3 armies
+Attacker lost 0 with 5,4,3
+Defender lost 1 with 1
+Kamchatka captured
+704.	Ben receives one card
+END OF TURN
+705.	Received 3 regular armies for occupying 6 territories
+Received 2 regular armies for occupying S. America
+Deployed 5 occupying armies to Central America (1)
+706.	Central America (6) attacks Eastern United States (1) with 1 army
+Attacker lost 0 with 6
+Defender lost 1 with 2
+Eastern United States captured
+707.	Central America (5) attacks Western United States (1) with 1 army
+Attacker lost 0 with 4
+Defender lost 1 with 3
+Western United States captured
+708.	Fortified Brazil (10) with 2 armies from North Africa (3)
+Jim receives one card
+END OF TURN
+709.	Received 3 regular armies for occupying 11 territories
+Deployed 1 occupying army to Japan (16)
+Deployed 1 occupying army to Japan (17)
+Deployed 1 occupying army to Middle East (2)
+710.	Middle East (3) attacks Southern Europe (1) with 2 armies
+Attacker lost 0 with 6,2
+Defender lost 1 with 3
+Southern Europe captured
+711.	Fortified Afghanistan (2) with 3 armies from Ural (4)
+Andrew receives one card
+END OF TURN
+712.	Received 3 regular armies for occupying 10 territories
+Received 2 regular armies for occupying Australia
+Traded Ural (C), Indonesia (A) and New Guinea (I) for 10 regular armies
+Deployed 2 occupying armies to Indonesia (2)
+Deployed 1 occupying army to Siam (27)
+Deployed 1 occupying army to Siam (28)
+Deployed 1 occupying army to Siam (29)
+Deployed 1 occupying army to Congo (5)
+Deployed 1 occupying army to Congo (6)
+Deployed 1 occupying army to Congo (7)
+Deployed 1 occupying army to Congo (8)
+Deployed 1 occupying army to Congo (9)
+Deployed 1 occupying army to Congo (10)
+Deployed 1 occupying army to Congo (11)
+Deployed 1 occupying army to Congo (12)
+Deployed 1 occupying army to Congo (13)
+Deployed 1 occupying army to Congo (14)
+Deployed 1 occupying army to Congo (15)
+Deployed 1 occupying army to Congo (16)
+713.	Congo (17) attacks North Africa (1) until defeated
+Attacker lost 0 with 4,4,3
+Defender lost 1 with 1
+North Africa captured
+714.	Moved 13 armies from Congo (14) to North Africa (3)
+Moved 1 army from Congo (1) to North Africa (16)
+715.	North Africa (15) attacks Western Europe (1) until defeated
+Attacker lost 0 with 6,1,1
+Defender lost 1 with 5
+Western Europe captured
+716.	Moved 11 armies from North Africa (12) to Western Europe (3)
+Moved 11 armies from North Africa (1) to Western Europe (14)
+Moved 1 army from North Africa (12) to Western Europe (3)
+Moved 1 army from North Africa (11) to Western Europe (4)
+Moved 1 army from North Africa (10) to Western Europe (5)
+Moved 1 army from North Africa (9) to Western Europe (6)
+Moved 4 armies from North Africa (8) to Western Europe (7)
+Moved 1 army from North Africa (12) to Western Europe (3)
+Moved 1 army from North Africa (11) to Western Europe (4)
+Will receives one card
+END OF TURN
+717.	Received 3 regular armies for occupying 11 territories
+Traded China (I), North Africa (C) and Northern Europe (A) for 10 regular armies
+Deployed 13 occupying armies to Alberta (1)
+718.	Alberta (14) attacks Western United States (1) with 3 armies
+Attacker lost 0 with 6,5,4
+Defender lost 1 with 2
+Western United States captured
+719.	Moved 10 armies from Alberta (11) to Western United States (3)
+720.	Western United States (13) attacks Eastern United States (1) with 3 armies
+Attacker lost 0 with 6,3,2
+Defender lost 1 with 3
+Eastern United States captured
+721.	Moved 9 armies from Western United States (10) to Eastern United States (3)
+722.	Eastern United States (12) attacks Central America (4) with 3 armies
+Attacker lost 2 with 5,3,2
+Defender lost 0 with 5,3
+723.	Eastern United States (10) attacks Central America (4) with 3 armies
+Attacker lost 1 with 6,2,2
+Defender lost 1 with 5,4
+724.	Eastern United States (9) attacks Central America (3) with 3 armies
+Attacker lost 0 with 6,6,2
+Defender lost 2 with 2,1
+725.	Eastern United States (9) attacks Central America (1) with 3 armies
+Attacker lost 1 with 3,2,1
+Defender lost 0 with 3
+726.	Eastern United States (8) attacks Central America (1) with 3 armies
+Attacker lost 0 with 5,4,1
+Defender lost 1 with 3
+Central America captured
+727.	Moved 4 armies from Eastern United States (5) to Central America (3)
+Ben receives one card
+END OF TURN
+728.	Received 3 regular armies for occupying 4 territories
+Received 2 regular armies for occupying S. America
+Deployed 5 occupying armies to Venezuela (8)
+729.	Venezuela (13) attacks Central America (7) until defeated
+Attacker lost 1 with 6,3,3
+Defender lost 1 with 6,1
+Attacker lost 2 with 5,3,3
+Defender lost 0 with 6,5
+Attacker lost 0 with 6,4,1
+Defender lost 2 with 4,3
+Attacker lost 2 with 2,2,1
+Defender lost 0 with 3,2
+Attacker lost 0 with 6,5,3
+Defender lost 2 with 3,2
+Attacker lost 0 with 6,4,1
+Defender lost 2 with 4,2
+Central America captured
+730.	Central America (3) attacks Eastern United States (1) with 1 army
+Attacker lost 1 with 4
+Defender lost 0 with 4
+731.	Central America (2) attacks Eastern United States (1) with 1 army
+Attacker lost 1 with 3
+Defender lost 0 with 5
+732.	Fortified Brazil (12) with 2 armies from Argentina (3)
+Jim receives one card
+END OF TURN
+733.	Received 4 regular armies for occupying 12 territories
+Deployed 1 occupying army to Northern Europe (1)
+Deployed 1 occupying army to Northern Europe (2)
+Deployed 1 occupying army to Northern Europe (3)
+Deployed 1 occupying army to Japan (18)
+734.	Northern Europe (4) attacks Great Britain (1) until defeated
+Attacker lost 1 with 2,2,2
+Defender lost 0 with 6
+735.	Northern Europe (3) attacks Great Britain (1) with 2 armies
+Attacker lost 1 with 2,1
+Defender lost 0 with 5
+736.	Northern Europe (2) attacks Great Britain (1) with 1 army
+Attacker lost 1 with 4
+Defender lost 0 with 5
+737.	Japan (19) attacks Kamchatka (3) with 3 armies
+Attacker lost 2 with 4,2,1
+Defender lost 0 with 6,2
+738.	Japan (17) attacks Kamchatka (3) with 3 armies
+Attacker lost 0 with 6,6,4
+Defender lost 2 with 5,1
+739.	Japan (17) attacks Kamchatka (1) with 3 armies
+Attacker lost 0 with 6,5,4
+Defender lost 1 with 5
+Kamchatka captured
+740.	Fortified Japan (14) with 2 armies from Kamchatka (3)
+Andrew receives one card
+END OF TURN
+741.	Received 4 regular armies for occupying 12 territories
+Received 2 regular armies for occupying Australia
+Received 3 regular armies for occupying Africa
+Deployed 1 occupying army to Siam (30)
+Deployed 1 occupying army to Siam (31)
+Deployed 1 occupying army to North Africa (12)
+Deployed 1 occupying army to North Africa (13)
+Deployed 1 occupying army to North Africa (14)
+Deployed 1 occupying army to North Africa (15)
+Deployed 1 occupying army to North Africa (16)
+Deployed 1 occupying army to Western Europe (3)
+Deployed 1 occupying army to Western Europe (4)
+742.	Western Europe (5) attacks Great Britain (1) until defeated
+Attacker lost 1 with 5,5,3
+Defender lost 0 with 5
+Attacker lost 0 with 4,4,3
+Defender lost 1 with 1
+Great Britain captured
+743.	Will receives one card
+END OF TURN
+744.	Received 3 regular armies for occupying 11 territories
+Traded Iceland (I), Quebec (C) and Western Europe (A) for 10 regular armies
+Deployed 13 occupying armies to Eastern United States (1)
+Deployed 2 occupying armies to Quebec (1)
+745.	Eastern United States (14) attacks Central America (1) with 3 armies
+Attacker lost 0 with 6,5,3
+Defender lost 1 with 3
+Central America captured
+746.	Moved 10 armies from Eastern United States (11) to Central America (3)
+747.	Central America (13) attacks Venezuela (5) with 3 armies
+Attacker lost 1 with 5,4,3
+Defender lost 1 with 4,4
+748.	Central America (12) attacks Venezuela (4) with 3 armies
+Attacker lost 1 with 6,4,3
+Defender lost 1 with 6,1
+749.	Central America (11) attacks Venezuela (3) with 3 armies
+Attacker lost 0 with 6,4,2
+Defender lost 2 with 2,1
+750.	Central America (11) attacks Venezuela (1) with 3 armies
+Attacker lost 0 with 6,4,2
+Defender lost 1 with 4
+Venezuela captured
+751.	Moved 1 army from Central America (8) to Venezuela (3)
+752.	Venezuela (4) attacks Peru (1) with 3 armies
+Attacker lost 0 with 5,3,2
+Defender lost 1 with 1
+Peru captured
+753.	Peru (3) attacks Argentina (1) with 2 armies
+Attacker lost 1 with 3,3
+Defender lost 0 with 4
+754.	Peru (2) attacks Argentina (1) with 1 army
+Attacker lost 1 with 5
+Defender lost 0 with 5
+755.	Fortified Eastern United States (1) with 2 armies from Quebec (3)
+Ben receives one card
+END OF TURN
+756.	Received 3 regular armies for occupying 2 territories
+Deployed 3 occupying armies to Brazil (14)
+757.	Brazil (17) attacks Peru (1) with 1 army
+Attacker lost 0 with 5
+Defender lost 1 with 3
+Peru captured
+758.	Brazil (16) attacks Venezuela (1) with 1 army
+Attacker lost 1 with 4
+Defender lost 0 with 4
+759.	Brazil (15) attacks Venezuela (1) with 1 army
+Attacker lost 1 with 1
+Defender lost 0 with 2
+760.	Brazil (14) attacks Venezuela (1) with 1 army
+Attacker lost 1 with 5
+Defender lost 0 with 5
+761.	Brazil (13) attacks Venezuela (1) with 1 army
+Attacker lost 0 with 6
+Defender lost 1 with 5
+Venezuela captured
+762.	Brazil (12) attacks North Africa (17) until defeated
+Attacker lost 1 with 5,5,1
+Defender lost 1 with 6,2
+Attacker lost 0 with 6,5,3
+Defender lost 2 with 4,2
+Attacker lost 1 with 3,3,2
+Defender lost 1 with 5,2
+Attacker lost 0 with 5,2,1
+Defender lost 2 with 4,1
+Attacker lost 0 with 6,5,3
+Defender lost 2 with 5,1
+Attacker lost 1 with 4,1,1
+Defender lost 1 with 2,1
+Attacker lost 0 with 5,3,2
+Defender lost 2 with 3,1
+Attacker lost 0 with 5,3,1
+Defender lost 2 with 4,1
+Attacker lost 2 with 5,4,1
+Defender lost 0 with 6,6
+Attacker lost 0 with 6,4,3
+Defender lost 2 with 1,1
+Attacker lost 1 with 6,3,2
+Defender lost 1 with 4,3
+Attacker lost 1 with 4,2,2
+Defender lost 0 with 6
+Attacker lost 0 with 6,5,3
+Defender lost 1 with 3
+North Africa captured
+763.	Fortified Brazil (2) with 2 armies from North Africa (3)
+Jim receives one card
+END OF TURN
+764.	Received 4 regular armies for occupying 13 territories
+Deployed 1 occupying army to Siberia (1)
+Deployed 1 occupying army to Siberia (2)
+Deployed 1 occupying army to Siberia (3)
+Deployed 1 occupying army to Japan (16)
+Traded Central America (A), Western Australia (A) and Eastern Australia (A) for 4 regular armies
+Deployed 1 occupying army to Japan (17)
+Deployed 1 occupying army to Japan (18)
+Deployed 1 occupying army to Japan (19)
+Deployed 1 occupying army to Japan (20)
+765.	Siberia (4) attacks Yakutsk (1) until defeated
+Attacker lost 1 with 5,2,1
+Defender lost 0 with 5
+766.	Siberia (3) attacks Yakutsk (1) with 2 armies
+Attacker lost 0 with 6,3
+Defender lost 1 with 2
+Yakutsk captured
+767.	Fortified Mongolia (1) with 20 armies from Japan (21)
+Andrew receives one card
+END OF TURN
+768.	Received 4 regular armies for occupying 12 territories
+Received 2 regular armies for occupying Australia
+Deployed 1 occupying army to Siam (32)
+Deployed 1 occupying army to Congo (2)
+Deployed 1 occupying army to Congo (3)
+Deployed 1 occupying army to Congo (4)
+Deployed 1 occupying army to Congo (5)
+Deployed 1 occupying army to Congo (6)
+769.	Congo (7) attacks North Africa (1) until defeated
+Attacker lost 0 with 4,4,2
+Defender lost 1 with 1
+North Africa captured
+770.	Moved 1 army from Congo (4) to North Africa (3)
+Moved 1 army from Congo (3) to North Africa (4)
+Moved 1 army from Congo (2) to North Africa (5)
+Will receives one card
+END OF TURN
+771.	Received 3 regular armies for occupying 11 territories
+Received 5 regular armies for occupying N. America
+Deployed 8 occupying armies to Central America (7)
+772.	Central America (15) attacks Venezuela (1) with 3 armies
+Attacker lost 1 with 5,4,4
+Defender lost 0 with 5
+773.	Central America (14) attacks Venezuela (1) with 3 armies
+Attacker lost 0 with 3,2,1
+Defender lost 1 with 2
+Venezuela captured
+774.	Moved 10 armies from Central America (11) to Venezuela (3)
+775.	Venezuela (13) attacks Peru (1) with 3 armies
+Attacker lost 0 with 6,3,3
+Defender lost 1 with 3
+Peru captured
+776.	Moved 9 armies from Venezuela (10) to Peru (3)
+777.	Peru (12) attacks Argentina (1) with 3 armies
+Attacker lost 1 with 5,5,3
+Defender lost 0 with 5
+778.	Peru (11) attacks Argentina (1) with 3 armies
+Attacker lost 0 with 6,4,2
+Defender lost 1 with 3
+Argentina captured
+779.	Moved 7 armies from Peru (8) to Argentina (3)
+780.	Argentina (10) attacks Brazil (4) with 3 armies
+Attacker lost 1 with 6,4,1
+Defender lost 1 with 6,2
+781.	Argentina (9) attacks Brazil (3) with 3 armies
+Attacker lost 0 with 6,5,5
+Defender lost 2 with 5,2
+782.	Argentina (9) attacks Brazil (1) with 3 armies
+Attacker lost 0 with 5,2,1
+Defender lost 1 with 1
+Brazil captured
+Jim defeated, turns over null to Ben
+783.	Moved 5 armies from Argentina (6) to Brazil (3)
+Traded Yakutsk (C), Eastern United States (A) and Middle East (I) for 10 regular armies
+Deployed 2 occupying armies to Eastern United States (3)
+Deployed 1 occupying army to Brazil (8)
+Deployed 1 occupying army to Brazil (9)
+Deployed 1 occupying army to Alaska (8)
+Deployed 1 occupying army to Alaska (9)
+Deployed 6 occupying armies to Iceland (1)
+Fortified Iceland (7) with 3 armies from Greenland (8)
+Ben receives one card
+END OF TURN
+784.	Received 4 regular armies for occupying 14 territories
+Deployed 1 occupying army to Southern Europe (2)
+Deployed 1 occupying army to Southern Europe (3)
+Deployed 1 occupying army to Mongolia (21)
+Deployed 1 occupying army to Mongolia (22)
+785.	Southern Europe (4) attacks Western Europe (1) until defeated
+Attacker lost 1 with 4,2,1
+Defender lost 0 with 5
+786.	Southern Europe (3) attacks Western Europe (1) with 2 armies
+Attacker lost 1 with 3,1
+Defender lost 0 with 5
+787.	Southern Europe (2) attacks Western Europe (1) with 1 army
+Attacker lost 1 with 1
+Defender lost 0 with 4
+788.	India (2) attacks Siam (33) with 1 army
+Attacker lost 1 with 3
+Defender lost 0 with 6,5
+789.	Fortified Ukraine (1) with 4 armies from Afghanistan (5)
+END OF TURN
+790.	Received 4 regular armies for occupying 13 territories
+Received 2 regular armies for occupying Australia
+Received 3 regular armies for occupying Africa
+Traded Brazil (A), Great Britain (A) and South Africa (A) for 4 regular armies
+Deployed 2 occupying armies to Great Britain (3)
+Deployed 1 occupying army to North Africa (6)
+Deployed 1 occupying army to North Africa (7)
+Deployed 1 occupying army to North Africa (8)
+Deployed 1 occupying army to North Africa (9)
+Deployed 1 occupying army to North Africa (10)
+Deployed 1 occupying army to North Africa (11)
+Deployed 1 occupying army to North Africa (12)
+Deployed 1 occupying army to North Africa (13)
+Deployed 1 occupying army to North Africa (14)
+Deployed 1 occupying army to East Africa (3)
+Deployed 1 occupying army to North Africa (15)
+Deployed 1 occupying army to North Africa (16)
+Deployed 1 occupying army to North Africa (17)
+791.	North Africa (18) attacks Brazil (10) until defeated
+Attacker lost 0 with 5,3,2
+Defender lost 2 with 3,1
+Attacker lost 0 with 5,4,3
+Defender lost 2 with 3,1
+Attacker lost 2 with 3,2,1
+Defender lost 0 with 6,2
+Attacker lost 1 with 5,2,1
+Defender lost 1 with 5,1
+Attacker lost 1 with 6,5,4
+Defender lost 1 with 6,3
+Attacker lost 0 with 6,5,4
+Defender lost 2 with 4,2
+Attacker lost 0 with 5,4,3
+Defender lost 2 with 2,1
+Brazil captured
+792.	Moved 10 armies from North Africa (11) to Brazil (3)
+Moved 1 army from North Africa (1) to Brazil (13)
+793.	Brazil (12) attacks Argentina (1) until defeated
+Attacker lost 0 with 6,6,3
+Defender lost 1 with 3
+Argentina captured
+794.	Moved 8 armies from Brazil (9) to Argentina (3)
+795.	Argentina (11) attacks Peru (1) until defeated
+Attacker lost 0 with 6,6,4
+Defender lost 1 with 5
+Peru captured
+796.	Moved 7 armies from Argentina (8) to Peru (3)
+797.	Peru (10) attacks Venezuela (1) until defeated
+Attacker lost 0 with 5,4,1
+Defender lost 1 with 4
+Venezuela captured
+798.	Moved 6 armies from Peru (7) to Venezuela (3)
+799.	Venezuela (9) attacks Central America (1) until defeated
+Attacker lost 1 with 2,2,2
+Defender lost 0 with 4
+Attacker lost 1 with 6,5,1
+Defender lost 0 with 6
+Attacker lost 1 with 6,5,2
+Defender lost 0 with 6
+Attacker lost 1 with 5,4,1
+Defender lost 0 with 5
+Attacker lost 0 with 5,4,3
+Defender lost 1 with 3
+Central America captured
+800.	Fortified North Africa (2) with 1 army from Egypt (7)
+Will receives one card
+END OF TURN
+801.	Received 3 regular armies for occupying 10 territories
+Traded India (C), Japan (A) and Egypt (I) for 10 regular armies
+Deployed 13 occupying armies to Eastern United States (5)
+802.	Eastern United States (18) attacks Central America (3) with 3 armies
+Attacker lost 1 with 6,6,2
+Defender lost 1 with 6,5
+803.	Eastern United States (17) attacks Central America (2) with 3 armies
+Attacker lost 1 with 6,4,1
+Defender lost 1 with 6,3
+804.	Eastern United States (16) attacks Central America (1) with 3 armies
+Attacker lost 1 with 5,3,2
+Defender lost 0 with 6
+805.	Eastern United States (15) attacks Central America (1) with 3 armies
+Attacker lost 0 with 4,3,2
+Defender lost 1 with 2
+Central America captured
+806.	Moved 11 armies from Eastern United States (12) to Central America (3)
+807.	Central America (14) attacks Venezuela (2) with 3 armies
+Attacker lost 1 with 6,4,3
+Defender lost 1 with 5,4
+808.	Central America (13) attacks Venezuela (1) with 3 armies
+Attacker lost 1 with 6,5,4
+Defender lost 0 with 6
+809.	Central America (12) attacks Venezuela (1) with 3 armies
+Attacker lost 0 with 6,6,3
+Defender lost 1 with 1
+Venezuela captured
+810.	Moved 8 armies from Central America (9) to Venezuela (3)
+811.	Venezuela (11) attacks Peru (1) with 3 armies
+Attacker lost 0 with 5,3,2
+Defender lost 1 with 4
+Peru captured
+812.	Moved 7 armies from Venezuela (8) to Peru (3)
+813.	Peru (10) attacks Argentina (1) with 3 armies
+Attacker lost 0 with 6,5,2
+Defender lost 1 with 2
+Argentina captured
+814.	Moved 6 armies from Peru (7) to Argentina (3)
+815.	Argentina (9) attacks Brazil (1) with 3 armies
+Attacker lost 0 with 3,1,1
+Defender lost 1 with 2
+Brazil captured
+816.	Moved 5 armies from Argentina (6) to Brazil (3)
+817.	Iceland (10) attacks Great Britain (5) with 3 armies
+Attacker lost 2 with 4,3,2
+Defender lost 0 with 5,4
+818.	Iceland (8) attacks Great Britain (5) with 3 armies
+Attacker lost 1 with 3,3,1
+Defender lost 1 with 3,2
+819.	Iceland (7) attacks Great Britain (4) with 3 armies
+Attacker lost 2 with 5,2,2
+Defender lost 0 with 5,4
+820.	Iceland (5) attacks Great Britain (4) with 3 armies
+Attacker lost 0 with 6,6,1
+Defender lost 2 with 3,1
+821.	Iceland (5) attacks Great Britain (2) with 3 armies
+Attacker lost 0 with 6,3,2
+Defender lost 2 with 1,1
+Great Britain captured
+822.	Moved 1 army from Iceland (2) to Great Britain (3)
+823.	Great Britain (4) attacks Western Europe (1) with 3 armies
+Attacker lost 0 with 6,4,4
+Defender lost 1 with 1
+Western Europe captured
+824.	Brazil (8) attacks North Africa (3) with 3 armies
+Attacker lost 1 with 6,4,2
+Defender lost 1 with 6,2
+825.	Brazil (7) attacks North Africa (2) with 3 armies
+Attacker lost 1 with 3,3,1
+Defender lost 1 with 4,2
+826.	Western Europe (3) attacks North Africa (1) with 2 armies
+Attacker lost 1 with 1,1
+Defender lost 0 with 3
+827.	Western Europe (2) attacks North Africa (1) with 1 army
+Attacker lost 1 with 1
+Defender lost 0 with 5
+828.	Brazil (6) attacks North Africa (1) with 1 army
+Attacker lost 0 with 6
+Defender lost 1 with 4
+North Africa captured
+829.	Ben receives one card
+END OF TURN
+830.	Received 4 regular armies for occupying 14 territories
+Deployed 1 occupying army to Mongolia (23)
+Deployed 1 occupying army to Mongolia (24)
+Deployed 1 occupying army to Mongolia (25)
+Deployed 1 occupying army to Ukraine (5)
+831.	Ukraine (6) attacks Scandinavia (1) with 3 armies
+Attacker lost 1 with 5,4,3
+Defender lost 0 with 6
+832.	Ukraine (5) attacks Scandinavia (1) with 3 armies
+Attacker lost 0 with 3,1,1
+Defender lost 1 with 1
+Scandinavia captured
+833.	Moved 1 army from Ukraine (2) to Scandinavia (3)
+Andrew receives one card
+END OF TURN
+834.	Received 3 regular armies for occupying 10 territories
+Received 2 regular armies for occupying Australia
+Deployed 1 occupying army to Egypt (6)
+Deployed 1 occupying army to Egypt (7)
+Deployed 1 occupying army to Egypt (8)
+Deployed 1 occupying army to Egypt (9)
+Deployed 1 occupying army to Egypt (10)
+835.	Egypt (11) attacks North Africa (1) until defeated
+Attacker lost 1 with 6,5,5
+Defender lost 0 with 6
+Attacker lost 0 with 5,1,1
+Defender lost 1 with 3
+North Africa captured
+836.	Moved 6 armies from Egypt (7) to North Africa (3)
+837.	North Africa (9) attacks Brazil (5) until defeated
+Attacker lost 2 with 2,1,1
+Defender lost 0 with 2,1
+Attacker lost 2 with 5,2,1
+Defender lost 0 with 5,5
+Attacker lost 2 with 6,4,2
+Defender lost 0 with 6,5
+838.	Fortified East Africa (4) with 1 army from North Africa (3)
+Will receives one card
+END OF TURN
+839.	Received 5 regular armies for occupying 16 territories
+Received 5 regular armies for occupying N. America
+Received 2 regular armies for occupying S. America
+Deployed 1 occupying army to Brazil (5)
+Deployed 1 occupying army to Brazil (6)
+Deployed 1 occupying army to Brazil (7)
+Deployed 1 occupying army to Brazil (8)
+Deployed 1 occupying army to Brazil (9)
+Deployed 1 occupying army to Alaska (10)
+Deployed 1 occupying army to Greenland (5)
+Deployed 1 occupying army to Greenland (6)
+Deployed 1 occupying army to Greenland (7)
+Deployed 1 occupying army to Western Europe (1)
+Deployed 1 occupying army to Great Britain (1)
+Deployed 1 occupying army to Iceland (1)
+840.	Alaska (11) attacks Kamchatka (1) with 3 armies
+Attacker lost 0 with 6,5,4
+Defender lost 1 with 5
+Kamchatka captured
+841.	Ben receives one card
+END OF TURN
+842.	Received 4 regular armies for occupying 14 territories
+Traded Greenland (C), Western United States (A) and Congo (I) for 10 regular armies
+Deployed 1 occupying army to Mongolia (26)
+Deployed 1 occupying army to Mongolia (27)
+Deployed 1 occupying army to Mongolia (28)
+Deployed 1 occupying army to Mongolia (29)
+Deployed 1 occupying army to Mongolia (30)
+Deployed 1 occupying army to Mongolia (31)
+Deployed 1 occupying army to Mongolia (32)
+Deployed 1 occupying army to Mongolia (33)
+Deployed 1 occupying army to Mongolia (34)
+Deployed 1 occupying army to Mongolia (35)
+Deployed 1 occupying army to Mongolia (36)
+Deployed 1 occupying army to Scandinavia (4)
+Deployed 1 occupying army to Scandinavia (5)
+Deployed 1 occupying army to Scandinavia (6)
+843.	Scandinavia (7) attacks Iceland (2) until defeated
+Attacker lost 0 with 6,4,4
+Defender lost 2 with 4,2
+Iceland captured
+844.	Moved 3 armies from Scandinavia (4) to Iceland (3)
+845.	Iceland (6) attacks Great Britain (2) until defeated
+Attacker lost 1 with 5,2,2
+Defender lost 1 with 4,2
+Attacker lost 1 with 5,4,3
+Defender lost 0 with 6
+Attacker lost 1 with 4,3,2
+Defender lost 0 with 4
+846.	Iceland (3) attacks Great Britain (1) with 2 armies
+Attacker lost 0 with 6,5
+Defender lost 1 with 1
+Great Britain captured
+847.	Andrew receives one card
+END OF TURN
+848.	Received 3 regular armies for occupying 11 territories
+Received 2 regular armies for occupying Australia
+Received 3 regular armies for occupying Africa
+Traded Irkutsk (C), East Africa (I) and Northwest Territory (A) for 10 regular armies
+Deployed 2 occupying armies to East Africa (5)
+Deployed 1 occupying army to Egypt (1)
+Deployed 1 occupying army to North Africa (2)
+Deployed 1 occupying army to North Africa (3)
+Deployed 1 occupying army to North Africa (4)
+Deployed 1 occupying army to North Africa (5)
+Deployed 1 occupying army to North Africa (6)
+Deployed 1 occupying army to North Africa (7)
+Deployed 1 occupying army to North Africa (8)
+Deployed 1 occupying army to North Africa (9)
+Deployed 1 occupying army to North Africa (10)
+Deployed 1 occupying army to North Africa (11)
+Deployed 1 occupying army to North Africa (12)
+Deployed 1 occupying army to North Africa (13)
+Deployed 1 occupying army to North Africa (14)
+Deployed 1 occupying army to Siam (33)
+Deployed 1 occupying army to Siam (34)
+Deployed 1 occupying army to North Africa (15)
+Deployed 1 occupying army to North Africa (16)
+849.	North Africa (17) attacks Brazil (10) until defeated
+Attacker lost 1 with 6,1,1
+Defender lost 1 with 4,1
+Attacker lost 1 with 6,5,5
+Defender lost 1 with 6,4
+Attacker lost 1 with 5,4,1
+Defender lost 1 with 6,3
+Attacker lost 2 with 5,2,1
+Defender lost 0 with 6,3
+Attacker lost 2 with 4,3,2
+Defender lost 0 with 6,5
+Attacker lost 0 with 6,3,2
+Defender lost 2 with 3,2
+Attacker lost 1 with 4,3,1
+Defender lost 1 with 6,1
+Attacker lost 1 with 6,2,1
+Defender lost 1 with 5,3
+Attacker lost 0 with 6,6,1
+Defender lost 2 with 2,1
+Attacker lost 1 with 6,3,2
+Defender lost 0 with 6
+Attacker lost 0 with 5,5,5
+Defender lost 1 with 4
+Brazil captured
+850.	Moved 3 armies from North Africa (4) to Brazil (3)
+851.	Brazil (6) attacks Venezuela (1) until defeated
+Attacker lost 0 with 3,3,1
+Defender lost 1 with 1
+Venezuela captured
+852.	Venezuela (3) attacks Central America (1) with 2 armies
+Attacker lost 1 with 2,1
+Defender lost 0 with 3
+853.	Venezuela (2) attacks Central America (1) with 1 army
+Attacker lost 1 with 3
+Defender lost 0 with 4
+854.	Fortified Venezuela (1) with 1 army from Brazil (3)
+Will receives one card
+END OF TURN
+855.	Received 4 regular armies for occupying 13 territories
+Received 5 regular armies for occupying N. America
+Deployed 9 occupying armies to Central America (1)
+856.	Central America (10) attacks Venezuela (2) with 3 armies
+Attacker lost 1 with 6,6,5
+Defender lost 1 with 6,1
+857.	Central America (9) attacks Venezuela (1) with 3 armies
+Attacker lost 0 with 3,3,2
+Defender lost 1 with 2
+Venezuela captured
+858.	Moved 5 armies from Central America (6) to Venezuela (3)
+859.	Venezuela (8) attacks Brazil (2) with 3 armies
+Attacker lost 1 with 6,1,1
+Defender lost 1 with 3,2
+860.	Venezuela (7) attacks Brazil (1) with 3 armies
+Attacker lost 0 with 6,5,1
+Defender lost 1 with 3
+Brazil captured
+861.	Moved 3 armies from Venezuela (4) to Brazil (3)
+862.	Western Europe (2) attacks North Africa (1) with 1 army
+Attacker lost 0 with 5
+Defender lost 1 with 4
+North Africa captured
+863.	Ben receives one card
+END OF TURN
+864.	Received 5 regular armies for occupying 16 territories
+Deployed 1 occupying army to China (1)
+Deployed 1 occupying army to Great Britain (2)
+Deployed 1 occupying army to Great Britain (3)
+Deployed 1 occupying army to Mongolia (37)
+Deployed 1 occupying army to Mongolia (38)
+865.	Great Britain (4) attacks Western Europe (1) until defeated
+Attacker lost 1 with 4,1,1
+Defender lost 0 with 4
+866.	Great Britain (3) attacks Western Europe (1) with 2 armies
+Attacker lost 1 with 6,1
+Defender lost 0 with 6
+867.	Great Britain (2) attacks Western Europe (1) with 1 army
+Attacker lost 1 with 2
+Defender lost 0 with 6
+868.	Mongolia (39) attacks Kamchatka (3) until defeated
+Attacker lost 1 with 6,4,2
+Defender lost 1 with 6,2
+Attacker lost 0 with 6,4,3
+Defender lost 2 with 3,1
+Kamchatka captured
+869.	Fortified Kamchatka (3) with 1 army from Yakutsk (2)
+Andrew receives one card
+END OF TURN
+870.	Received 3 regular armies for occupying 10 territories
+Received 2 regular armies for occupying Australia
+Deployed 1 occupying army to East Africa (7)
+Deployed 1 occupying army to East Africa (8)
+Deployed 1 occupying army to East Africa (9)
+Deployed 1 occupying army to East Africa (10)
+Deployed 1 occupying army to East Africa (11)
+871.	East Africa (12) attacks North Africa (1) until defeated
+Attacker lost 0 with 6,5,4
+Defender lost 1 with 4
+North Africa captured
+872.	Moved 8 armies from East Africa (9) to North Africa (3)
+873.	North Africa (11) attacks Brazil (6) until defeated
+Attacker lost 0 with 6,6,2
+Defender lost 2 with 4,3
+Attacker lost 0 with 5,4,3
+Defender lost 2 with 3,1
+Attacker lost 1 with 6,3,1
+Defender lost 1 with 4,3
+Attacker lost 0 with 6,3,3
+Defender lost 1 with 5
+Brazil captured
+874.	Moved 6 armies from North Africa (7) to Brazil (3)
+875.	Brazil (9) attacks Venezuela (1) until defeated
+Attacker lost 0 with 5,4,1
+Defender lost 1 with 3
+Venezuela captured
+876.	Moved 5 armies from Brazil (6) to Venezuela (3)
+877.	Venezuela (8) attacks Central America (1) until defeated
+Attacker lost 0 with 6,5,4
+Defender lost 1 with 5
+Central America captured
+878.	Moved 4 armies from Venezuela (5) to Central America (3)
+Moved 1 army from Venezuela (1) to Central America (7)
+Moved 1 army from Venezuela (2) to Central America (6)
+Moved 1 army from Venezuela (3) to Central America (5)
+Will receives one card
+END OF TURN
+879.	Received 3 regular armies for occupying 11 territories
+Deployed 1 occupying army to Eastern United States (1)
+Deployed 1 occupying army to Eastern United States (2)
+Deployed 1 occupying army to Eastern United States (3)
+880.	Greenland (8) attacks Iceland (1) with 3 armies
+Attacker lost 1 with 4,2,2
+Defender lost 0 with 6
+881.	Greenland (7) attacks Iceland (1) with 3 armies
+Attacker lost 1 with 5,4,2
+Defender lost 0 with 5
+882.	Greenland (6) attacks Iceland (1) with 3 armies
+Attacker lost 0 with 6,6,3
+Defender lost 1 with 1
+Iceland captured
+883.	Eastern United States (4) attacks Central America (4) with 3 armies
+Attacker lost 2 with 5,2,2
+Defender lost 0 with 6,4
+884.	Eastern United States (2) attacks Central America (4) with 1 army
+Attacker lost 0 with 5
+Defender lost 1 with 3,2
+885.	Eastern United States (2) attacks Central America (3) with 1 army
+Attacker lost 1 with 6
+Defender lost 0 with 6,1
+886.	Fortified Greenland (3) with 2 armies from Iceland (3)
+Ben receives one card
+END OF TURN
+887.	Received 5 regular armies for occupying 16 territories
+Deployed 1 occupying army to Middle East (1)
+Deployed 1 occupying army to Middle East (2)
+Deployed 1 occupying army to Middle East (3)
+Deployed 1 occupying army to Mongolia (35)
+Deployed 1 occupying army to Mongolia (36)
+888.	Middle East (4) attacks East Africa (1) until defeated
+Attacker lost 0 with 5,5,3
+Defender lost 1 with 3
+East Africa captured
+889.	East Africa (3) attacks North Africa (1) with 2 armies
+Attacker lost 0 with 5,1
+Defender lost 1 with 1
+North Africa captured
+890.	North Africa (2) attacks Congo (1) with 1 army
+Attacker lost 1 with 4
+Defender lost 0 with 6
+891.	Andrew receives one card
+END OF TURN
+892.	Received 4 regular armies for occupying 12 territories
+Received 2 regular armies for occupying Australia
+Deployed 1 occupying army to Brazil (1)
+Deployed 1 occupying army to Brazil (2)
+Deployed 1 occupying army to Brazil (3)
+Deployed 1 occupying army to Brazil (4)
+Deployed 1 occupying army to Brazil (5)
+Deployed 1 occupying army to Brazil (6)
+893.	Brazil (7) attacks Argentina (1) until defeated
+Attacker lost 1 with 2,2,1
+Defender lost 0 with 4
+Attacker lost 0 with 6,3,2
+Defender lost 1 with 3
+Argentina captured
+894.	Argentina (3) attacks Peru (1) with 2 armies
+Attacker lost 0 with 3,2
+Defender lost 1 with 1
+Peru captured
+895.	Fortified Central America (3) with 1 army from Venezuela (4)
+Fortified Central America (4) with 1 army from Venezuela (3)
+Will receives one card
+END OF TURN
+896.	Received 3 regular armies for occupying 10 territories
+Traded Siam (I), Southern Europe (A) and Wild for 10 regular armies
+Deployed 13 occupying armies to Eastern United States (1)
+897.	Eastern United States (14) attacks Central America (5) with 3 armies
+Attacker lost 1 with 4,4,2
+Defender lost 1 with 4,1
+898.	Eastern United States (13) attacks Central America (4) with 3 armies
+Attacker lost 1 with 6,4,3
+Defender lost 1 with 5,5
+899.	Eastern United States (12) attacks Central America (3) with 3 armies
+Attacker lost 0 with 5,3,2
+Defender lost 2 with 3,2
+900.	Eastern United States (12) attacks Central America (1) with 3 armies
+Attacker lost 1 with 6,4,3
+Defender lost 0 with 6
+901.	Eastern United States (11) attacks Central America (1) with 3 armies
+Attacker lost 1 with 2,1,1
+Defender lost 0 with 6
+902.	Eastern United States (10) attacks Central America (1) with 3 armies
+Attacker lost 0 with 6,3,1
+Defender lost 1 with 2
+Central America captured
+903.	Moved 6 armies from Eastern United States (7) to Central America (3)
+Ben receives one card
+END OF TURN
+904.	Received 6 regular armies for occupying 18 territories
+Traded Afghanistan (C), Ukraine (C) and Scandinavia (C) for 8 regular armies
+Deployed 2 occupying armies to Scandinavia (1)
+Deployed 1 occupying army to Mongolia (37)
+Deployed 1 occupying army to Mongolia (38)
+Deployed 1 occupying army to Mongolia (39)
+Deployed 1 occupying army to China (2)
+Deployed 1 occupying army to India (1)
+Deployed 1 occupying army to Kamchatka (4)
+Deployed 1 occupying army to North Africa (1)
+Deployed 1 occupying army to North Africa (2)
+Deployed 1 occupying army to North Africa (3)
+Deployed 1 occupying army to North Africa (4)
+Deployed 1 occupying army to North Africa (5)
+Deployed 1 occupying army to North Africa (6)
+Deployed 1 occupying army to East Africa (1)
+Deployed 1 occupying army to Middle East (1)
+905.	North Africa (7) attacks Congo (1) until defeated
+Attacker lost 0 with 6,3,1
+Defender lost 1 with 1
+Congo captured
+906.	Moved 3 armies from North Africa (4) to Congo (3)
+907.	Congo (6) attacks South Africa (2) until defeated
+Attacker lost 2 with 5,3,1
+Defender lost 0 with 5,3
+Attacker lost 1 with 5,2,1
+Defender lost 1 with 5,1
+908.	Congo (3) attacks South Africa (1) with 2 armies
+Attacker lost 0 with 5,2
+Defender lost 1 with 2
+South Africa captured
+909.	South Africa (2) attacks Madagascar (1) with 1 army
+Attacker lost 1 with 5
+Defender lost 0 with 5
+910.	Andrew receives one card
+END OF TURN
+911.	Received 3 regular armies for occupying 11 territories
+Received 2 regular armies for occupying Australia
+Received 2 regular armies for occupying S. America
+Deployed 1 occupying army to Venezuela (2)
+Deployed 1 occupying army to Venezuela (3)
+Deployed 1 occupying army to Venezuela (4)
+Deployed 1 occupying army to Venezuela (5)
+Deployed 1 occupying army to Venezuela (6)
+Deployed 1 occupying army to Egypt (2)
+Deployed 1 occupying army to Egypt (3)
+912.	Egypt (4) attacks North Africa (1) until defeated
+Attacker lost 1 with 5,5,1
+Defender lost 0 with 5
+913.	Egypt (3) attacks North Africa (1) with 2 armies
+Attacker lost 0 with 5,5
+Defender lost 1 with 2
+North Africa captured
+914.	Fortified Venezuela (7) with 1 army from Brazil (3)
+Will receives one card
+END OF TURN
+915.	Received 3 regular armies for occupying 11 territories
+Received 5 regular armies for occupying N. America
+Deployed 8 occupying armies to Western Europe (1)
+916.	Western Europe (9) attacks North Africa (2) with 3 armies
+Attacker lost 1 with 5,2,1
+Defender lost 1 with 3,3
+917.	Western Europe (8) attacks North Africa (1) with 3 armies
+Attacker lost 0 with 5,1,1
+Defender lost 1 with 4
+North Africa captured
+918.	Moved 4 armies from Western Europe (5) to North Africa (3)
+919.	North Africa (7) attacks Brazil (2) with 3 armies
+Attacker lost 1 with 5,5,1
+Defender lost 1 with 5,2
+920.	North Africa (6) attacks Brazil (1) with 3 armies
+Attacker lost 0 with 6,5,4
+Defender lost 1 with 4
+Brazil captured
+921.	Moved 2 armies from North Africa (3) to Brazil (3)
+922.	Brazil (5) attacks Argentina (1) with 3 armies
+Attacker lost 0 with 3,2,1
+Defender lost 1 with 1
+Argentina captured
+923.	Moved 1 army from Brazil (2) to Argentina (3)
+Moved 1 army from Brazil (1) to Argentina (4)
+Moved 1 army from Brazil (2) to Argentina (3)
+924.	Argentina (4) attacks Peru (2) with 3 armies
+Attacker lost 0 with 6,2,1
+Defender lost 2 with 4,1
+Peru captured
+925.	Ben receives one card
+END OF TURN
+926.	Received 6 regular armies for occupying 19 territories
+Deployed 1 occupying army to East Africa (2)
+Deployed 1 occupying army to East Africa (3)
+Deployed 1 occupying army to East Africa (4)
+Deployed 1 occupying army to Kamchatka (5)
+Deployed 1 occupying army to Great Britain (1)
+Deployed 1 occupying army to Congo (1)
+927.	East Africa (5) attacks Egypt (1) until defeated
+Attacker lost 0 with 6,5,2
+Defender lost 1 with 4
+Egypt captured
+928.	Egypt (3) attacks North Africa (1) with 2 armies
+Attacker lost 1 with 5,3
+Defender lost 0 with 5
+929.	Egypt (2) attacks North Africa (1) with 1 army
+Attacker lost 0 with 5
+Defender lost 1 with 4
+North Africa captured
+930.	East Africa (2) attacks Madagascar (1) with 1 army
+Attacker lost 1 with 5
+Defender lost 0 with 6
+931.	Fortified North Africa (1) with 1 army from Congo (2)
+Andrew receives one card
+END OF TURN
+932.	Received 3 regular armies for occupying 7 territories
+Received 2 regular armies for occupying Australia
+Traded Alaska (I), Venezuela (I) and Mongolia (I) for 6 regular armies
+Deployed 2 occupying armies to Venezuela (8)
+Deployed 1 occupying army to Venezuela (10)
+Deployed 1 occupying army to Venezuela (11)
+Deployed 1 occupying army to Venezuela (12)
+Deployed 1 occupying army to Venezuela (13)
+Deployed 1 occupying army to Venezuela (14)
+Deployed 1 occupying army to Venezuela (15)
+Deployed 1 occupying army to Venezuela (16)
+Deployed 1 occupying army to Venezuela (17)
+Deployed 1 occupying army to Venezuela (18)
+Deployed 1 occupying army to Venezuela (19)
+Deployed 1 occupying army to Venezuela (20)
+933.	Venezuela (21) attacks Peru (3) until defeated
+Attacker lost 0 with 5,2,2
+Defender lost 2 with 1,1
+Attacker lost 1 with 2,2,1
+Defender lost 0 with 2
+Attacker lost 0 with 5,4,3
+Defender lost 1 with 4
+Peru captured
+934.	Moved 16 armies from Venezuela (17) to Peru (3)
+935.	Peru (19) attacks Argentina (1) until defeated
+Attacker lost 0 with 5,3,3
+Defender lost 1 with 2
+Argentina captured
+936.	Moved 15 armies from Peru (16) to Argentina (3)
+937.	Argentina (18) attacks Brazil (1) until defeated
+Attacker lost 0 with 6,1,1
+Defender lost 1 with 1
+Brazil captured
+938.	Moved 14 armies from Argentina (15) to Brazil (3)
+Fortified Venezuela (1) with 16 armies from Brazil (17)
+Fortified Brazil (1) with 16 armies from Venezuela (17)
+Fortified Venezuela (1) with 16 armies from Brazil (17)
+Fortified Brazil (1) with 1 army from Venezuela (17)
+Fortified Brazil (2) with 1 army from Venezuela (16)
+Fortified Brazil (3) with 1 army from Venezuela (15)
+Will receives one card
+END OF TURN
+939.	Received 3 regular armies for occupying 11 territories
+Received 5 regular armies for occupying N. America
+Deployed 1 occupying army to Central America (9)
+Deployed 1 occupying army to Central America (10)
+Deployed 1 occupying army to Central America (11)
+Deployed 1 occupying army to Central America (12)
+Deployed 1 occupying army to Central America (13)
+Deployed 1 occupying army to Central America (14)
+Deployed 1 occupying army to Central America (15)
+Deployed 1 occupying army to Central America (16)
+940.	Central America (17) attacks Venezuela (14) with 3 armies
+Attacker lost 1 with 6,5,3
+Defender lost 1 with 6,3
+941.	Central America (16) attacks Venezuela (13) with 3 armies
+Attacker lost 0 with 6,6,1
+Defender lost 2 with 1,1
+942.	Central America (16) attacks Venezuela (11) with 3 armies
+Attacker lost 0 with 5,4,3
+Defender lost 2 with 3,1
+943.	Central America (16) attacks Venezuela (9) with 3 armies
+Attacker lost 2 with 6,4,4
+Defender lost 0 with 6,5
+944.	Central America (14) attacks Venezuela (9) with 3 armies
+Attacker lost 1 with 4,1,1
+Defender lost 1 with 3,2
+945.	Central America (13) attacks Venezuela (8) with 3 armies
+Attacker lost 2 with 5,3,2
+Defender lost 0 with 6,5
+946.	Central America (11) attacks Venezuela (8) with 3 armies
+Attacker lost 1 with 5,5,3
+Defender lost 1 with 5,1
+947.	Central America (10) attacks Venezuela (7) with 3 armies
+Attacker lost 0 with 6,5,4
+Defender lost 2 with 2,1
+948.	Central America (10) attacks Venezuela (5) with 3 armies
+Attacker lost 1 with 5,2,1
+Defender lost 1 with 6,1
+949.	Central America (9) attacks Venezuela (4) with 3 armies
+Attacker lost 0 with 6,5,3
+Defender lost 2 with 5,1
+950.	Central America (9) attacks Venezuela (2) with 3 armies
+Attacker lost 0 with 6,3,2
+Defender lost 2 with 5,1
+Venezuela captured
+951.	Moved 5 armies from Central America (6) to Venezuela (3)
+Ben receives one card
+END OF TURN
+952.	Received 7 regular armies for occupying 21 territories
+Traded Wild, Alberta (C) and Argentina (I) for 10 regular armies
+Deployed 1 occupying army to East Africa (1)
+Deployed 1 occupying army to East Africa (2)
+Deployed 1 occupying army to Great Britain (2)
+Deployed 1 occupying army to Kamchatka (6)
+Deployed 1 occupying army to China (3)
+Deployed 1 occupying army to India (2)
+Deployed 1 occupying army to China (4)
+Deployed 1 occupying army to China (5)
+Deployed 1 occupying army to North Africa (2)
+Deployed 1 occupying army to North Africa (3)
+Deployed 1 occupying army to North Africa (4)
+Deployed 1 occupying army to North Africa (5)
+Deployed 1 occupying army to Great Britain (3)
+Deployed 1 occupying army to Southern Europe (1)
+Deployed 1 occupying army to Kamchatka (7)
+Deployed 1 occupying army to Great Britain (4)
+Deployed 1 occupying army to Great Britain (5)
+953.	East Africa (3) attacks Madagascar (1) with 2 armies
+Attacker lost 1 with 3,2
+Defender lost 0 with 4
+954.	East Africa (2) attacks Madagascar (1) with 1 army
+Attacker lost 0 with 5
+Defender lost 1 with 1
+Madagascar captured
+955.	Great Britain (6) attacks Western Europe (1) until defeated
+Attacker lost 0 with 5,2,1
+Defender lost 1 with 1
+Western Europe captured
+956.	Fortified China (6) with 39 armies from Mongolia (40)
+Andrew receives one card
+END OF TURN
+957.	Received 3 regular armies for occupying 8 territories
+Received 2 regular armies for occupying Australia
+Traded Ontario (C), Siberia (C) and Ural (C) for 8 regular armies
+Deployed 1 occupying army to Siam (35)
+Deployed 1 occupying army to Siam (36)
+Deployed 1 occupying army to Siam (37)
+Deployed 1 occupying army to Siam (38)
+Deployed 1 occupying army to Siam (39)
+Deployed 1 occupying army to Siam (40)
+Deployed 1 occupying army to Siam (41)
+Deployed 1 occupying army to Siam (42)
+Deployed 1 occupying army to Siam (43)
+Deployed 1 occupying army to Siam (44)
+Deployed 1 occupying army to Siam (45)
+Deployed 1 occupying army to Siam (46)
+Deployed 1 occupying army to Siam (47)
+958.	Siam (48) attacks India (3) until defeated
+Attacker lost 1 with 4,4,1
+Defender lost 1 with 6,1
+Attacker lost 1 with 5,2,1
+Defender lost 1 with 4,2
+Attacker lost 0 with 6,5,5
+Defender lost 1 with 4
+India captured
+959.	Moved 42 armies from Siam (43) to India (3)
+960.	India (45) attacks Afghanistan (1) until defeated
+Attacker lost 1 with 4,4,3
+Defender lost 0 with 5
+Attacker lost 1 with 2,1,1
+Defender lost 0 with 2
+Attacker lost 1 with 5,4,2
+Defender lost 0 with 6
+Attacker lost 0 with 6,5,3
+Defender lost 1 with 3
+Afghanistan captured
+961.	Moved 38 armies from India (39) to Afghanistan (3)
+962.	Afghanistan (41) attacks Ukraine (1) until defeated
+Attacker lost 0 with 6,3,2
+Defender lost 1 with 5
+Ukraine captured
+963.	Moved 37 armies from Afghanistan (38) to Ukraine (3)
+964.	Ukraine (40) attacks Scandinavia (3) until defeated
+Attacker lost 2 with 4,2,2
+Defender lost 0 with 4,4
+Attacker lost 2 with 6,1,1
+Defender lost 0 with 6,6
+Attacker lost 2 with 3,3,1
+Defender lost 0 with 5,5
+Attacker lost 1 with 6,4,2
+Defender lost 1 with 6,1
+Attacker lost 2 with 4,4,3
+Defender lost 0 with 6,5
+Attacker lost 2 with 6,3,1
+Defender lost 0 with 6,4
+Attacker lost 1 with 6,5,4
+Defender lost 1 with 6,4
+Attacker lost 0 with 4,2,1
+Defender lost 1 with 1
+Scandinavia captured
+965.	Moved 24 armies from Ukraine (25) to Scandinavia (3)
+966.	Scandinavia (27) attacks Iceland (1) until defeated
+Attacker lost 1 with 6,3,2
+Defender lost 0 with 6
+Attacker lost 0 with 6,6,3
+Defender lost 1 with 2
+Iceland captured
+967.	Moved 22 armies from Scandinavia (23) to Iceland (3)
+968.	Iceland (25) attacks Greenland (5) until defeated
+Attacker lost 0 with 5,4,3
+Defender lost 2 with 4,1
+Attacker lost 0 with 5,3,3
+Defender lost 2 with 2,1
+Attacker lost 1 with 3,1,1
+Defender lost 0 with 4
+Attacker lost 0 with 6,2,1
+Defender lost 1 with 3
+Greenland captured
+969.	Moved 20 armies from Iceland (21) to Greenland (3)
+970.	Greenland (23) attacks Northwest Territory (1) until defeated
+Attacker lost 1 with 6,1,1
+Defender lost 0 with 6
+Attacker lost 0 with 5,5,2
+Defender lost 1 with 1
+Northwest Territory captured
+971.	Moved 18 armies from Greenland (19) to Northwest Territory (3)
+972.	Northwest Territory (21) attacks Alaska (8) until defeated
+Attacker lost 0 with 6,4,3
+Defender lost 2 with 4,2
+Attacker lost 1 with 6,5,4
+Defender lost 1 with 6,4
+Attacker lost 0 with 6,5,3
+Defender lost 2 with 5,2
+Attacker lost 1 with 6,5,2
+Defender lost 1 with 6,4
+Attacker lost 0 with 4,4,4
+Defender lost 2 with 2,2
+Alaska captured
+973.	Moved 15 armies from Northwest Territory (16) to Alaska (3)
+974.	Alaska (18) attacks Alberta (1) until defeated
+Attacker lost 0 with 6,3,1
+Defender lost 1 with 4
+Alberta captured
+975.	Moved 14 armies from Alaska (15) to Alberta (3)
+976.	Alberta (17) attacks Ontario (1) until defeated
+Attacker lost 0 with 6,3,3
+Defender lost 1 with 3
+Ontario captured
+977.	Moved 13 armies from Alberta (14) to Ontario (3)
+978.	Ontario (16) attacks Quebec (1) until defeated
+Attacker lost 1 with 6,2,1
+Defender lost 0 with 6
+Attacker lost 1 with 6,5,1
+Defender lost 0 with 6
+Attacker lost 0 with 5,2,1
+Defender lost 1 with 3
+Quebec captured
+979.	Moved 10 armies from Ontario (11) to Quebec (3)
+980.	Quebec (13) attacks Eastern United States (1) until defeated
+Attacker lost 0 with 6,5,3
+Defender lost 1 with 5
+Eastern United States captured
+981.	Moved 9 armies from Quebec (10) to Eastern United States (3)
+982.	Eastern United States (12) attacks Western United States (1) until defeated
+Attacker lost 0 with 6,2,1
+Defender lost 1 with 5
+Western United States captured
+983.	Moved 8 armies from Eastern United States (9) to Western United States (3)
+984.	Western United States (11) attacks Central America (1) until defeated
+Attacker lost 1 with 5,3,1
+Defender lost 0 with 5
+Attacker lost 0 with 6,2,1
+Defender lost 1 with 4
+Central America captured
+985.	Moved 6 armies from Western United States (7) to Central America (3)
+986.	Brazil (4) attacks Venezuela (8) until defeated
+Attacker lost 0 with 6,4,3
+Defender lost 2 with 5,3
+Attacker lost 1 with 5,4,2
+Defender lost 1 with 5,1
+987.	Central America (9) attacks Venezuela (5) until defeated
+Attacker lost 1 with 6,3,1
+Defender lost 1 with 6,1
+Attacker lost 1 with 4,3,2
+Defender lost 1 with 5,2
+Attacker lost 0 with 6,5,1
+Defender lost 2 with 4,3
+Attacker lost 1 with 4,1,1
+Defender lost 0 with 5
+Attacker lost 0 with 5,3,2
+Defender lost 1 with 2
+Venezuela captured
+Ben defeated, turns over null to Will
+988.	Fortified Brazil (3) with 2 armies from Venezuela (3)
+Will receives one card
+END OF TURN
+989.	Received 6 regular armies for occupying 19 territories
+Received 3 regular armies for occupying Africa
+Deployed 1 occupying army to Middle East (2)
+Deployed 1 occupying army to Middle East (3)
+Deployed 1 occupying army to Middle East (4)
+Deployed 1 occupying army to Middle East (5)
+Deployed 1 occupying army to Middle East (6)
+Deployed 1 occupying army to Middle East (7)
+Deployed 1 occupying army to Middle East (8)
+Deployed 1 occupying army to Middle East (9)
+Deployed 1 occupying army to Middle East (10)
+990.	Middle East (11) attacks India (1) until defeated
+Attacker lost 1 with 6,5,2
+Defender lost 0 with 6
+Attacker lost 0 with 6,1,1
+Defender lost 1 with 1
+India captured
+991.	Moved 6 armies from Middle East (7) to India (3)
+992.	India (9) attacks Siam (1) until defeated
+Attacker lost 0 with 6,5,3
+Defender lost 1 with 2
+Siam captured
+993.	Moved 5 armies from India (6) to Siam (3)
+994.	Siam (8) attacks Indonesia (4) until defeated
+Attacker lost 0 with 6,5,1
+Defender lost 2 with 2,2
+Attacker lost 1 with 4,4,3
+Defender lost 1 with 4,3
+Attacker lost 0 with 5,4,1
+Defender lost 1 with 2
+Indonesia captured
+995.	Moved 3 armies from Siam (4) to Indonesia (3)
+996.	Indonesia (6) attacks New Guinea (1) until defeated
+Attacker lost 1 with 6,5,3
+Defender lost 0 with 6
+Attacker lost 0 with 6,5,2
+Defender lost 1 with 5
+New Guinea captured
+997.	Moved 1 army from Indonesia (2) to New Guinea (3)
+998.	New Guinea (4) attacks Eastern Australia (1) until defeated
+Attacker lost 0 with 6,5,5
+Defender lost 1 with 2
+Eastern Australia captured
+999.	Eastern Australia (3) attacks Western Australia (1) with 2 armies
+Attacker lost 0 with 6,2
+Defender lost 1 with 5
+Western Australia captured
+1000.	China (45) attacks Afghanistan (1) until defeated
+Attacker lost 1 with 6,3,3
+Defender lost 0 with 6
+Attacker lost 1 with 4,1,1
+Defender lost 0 with 6
+Attacker lost 1 with 4,3,2
+Defender lost 0 with 6
+Attacker lost 0 with 4,1,1
+Defender lost 1 with 2
+Afghanistan captured
+1001.	Moved 38 armies from China (39) to Afghanistan (3)
+1002.	Afghanistan (41) attacks Ukraine (1) until defeated
+Attacker lost 0 with 6,1,1
+Defender lost 1 with 5
+Ukraine captured
+1003.	Moved 37 armies from Afghanistan (38) to Ukraine (3)
+1004.	Ukraine (40) attacks Scandinavia (1) until defeated
+Attacker lost 1 with 3,2,1
+Defender lost 0 with 3
+Attacker lost 1 with 4,3,3
+Defender lost 0 with 6
+Attacker lost 1 with 6,3,2
+Defender lost 0 with 6
+Attacker lost 0 with 5,3,2
+Defender lost 1 with 1
+Scandinavia captured
+1005.	Moved 33 armies from Ukraine (34) to Scandinavia (3)
+1006.	Scandinavia (36) attacks Iceland (1) until defeated
+Attacker lost 0 with 5,1,1
+Defender lost 1 with 4
+Iceland captured
+1007.	Moved 32 armies from Scandinavia (33) to Iceland (3)
+1008.	Iceland (35) attacks Greenland (1) until defeated
+Attacker lost 0 with 6,5,3
+Defender lost 1 with 1
+Greenland captured
+1009.	Moved 31 armies from Iceland (32) to Greenland (3)
+1010.	Greenland (34) attacks Northwest Territory (1) until defeated
+Attacker lost 1 with 4,3,2
+Defender lost 0 with 5
+Attacker lost 0 with 4,4,3
+Defender lost 1 with 2
+Northwest Territory captured
+1011.	Moved 29 armies from Greenland (30) to Northwest Territory (3)
+1012.	Northwest Territory (32) attacks Alaska (1) until defeated
+Attacker lost 0 with 6,5,2
+Defender lost 1 with 3
+Alaska captured
+1013.	Moved 28 armies from Northwest Territory (29) to Alaska (3)
+1014.	Alaska (31) attacks Alberta (1) until defeated
+Attacker lost 0 with 6,5,1
+Defender lost 1 with 3
+Alberta captured
+1015.	Moved 27 armies from Alaska (28) to Alberta (3)
+1016.	Alberta (30) attacks Ontario (1) until defeated
+Attacker lost 0 with 6,5,3
+Defender lost 1 with 1
+Ontario captured
+1017.	Moved 26 armies from Alberta (27) to Ontario (3)
+1018.	Ontario (29) attacks Quebec (1) until defeated
+Attacker lost 0 with 4,1,1
+Defender lost 1 with 1
+Quebec captured
+1019.	Moved 25 armies from Ontario (26) to Quebec (3)
+1020.	Quebec (28) attacks Eastern United States (1) until defeated
+Attacker lost 0 with 6,4,4
+Defender lost 1 with 2
+Eastern United States captured
+1021.	Moved 24 armies from Quebec (25) to Eastern United States (3)
+1022.	Eastern United States (27) attacks Western United States (1) until defeated
+Attacker lost 0 with 4,4,4
+Defender lost 1 with 2
+Western United States captured
+1023.	Moved 23 armies from Eastern United States (24) to Western United States (3)
+1024.	Western United States (26) attacks Central America (3) until defeated
+Attacker lost 2 with 6,2,2
+Defender lost 0 with 6,3
+Attacker lost 2 with 5,2,2
+Defender lost 0 with 6,2
+Attacker lost 0 with 6,3,3
+Defender lost 2 with 2,1
+Attacker lost 1 with 3,3,3
+Defender lost 0 with 5
+Attacker lost 0 with 5,3,1
+Defender lost 1 with 4
+Central America captured
+1025.	Moved 17 armies from Western United States (18) to Central America (3)
+1026.	Central America (20) attacks Venezuela (1) until defeated
+Attacker lost 1 with 6,4,1
+Defender lost 0 with 6
+Attacker lost 0 with 5,5,3
+Defender lost 1 with 1
+Venezuela captured
+1027.	Moved 15 armies from Central America (16) to Venezuela (3)
+1028.	Venezuela (18) attacks Brazil (5) until defeated
+Attacker lost 2 with 4,2,1
+Defender lost 0 with 5,5
+Attacker lost 0 with 6,4,3
+Defender lost 2 with 4,3
+Attacker lost 0 with 5,5,3
+Defender lost 2 with 3,1
+Attacker lost 0 with 6,5,1
+Defender lost 1 with 4
+Brazil captured
+1029.	Moved 12 armies from Venezuela (13) to Brazil (3)
+1030.	Brazil (15) attacks Peru (1) until defeated
+Attacker lost 0 with 5,4,4
+Defender lost 1 with 2
+Peru captured
+1031.	Moved 11 armies from Brazil (12) to Peru (3)
+1032.	Peru (14) attacks Argentina (1) until defeated
+Attacker lost 0 with 5,1,1
+Defender lost 1 with 4
+Argentina captured
+Will defeated, turns over null to Andrew
+Andrew receives one card
+Andrew is victorious!
+END OF TURN
   #+END_SRC
 * Extract
   "Quick" perl code to extract
@@ -2214,14 +4509,14 @@ END OF TURN
 	    print STDERR "gave up and attacked someone new!? @{$init}{@keys} -> $_";
 	    push @res, $init;
 	}
-	my $adv = $player_contries{$init->{"d.country"}};
+	my $adv = $player_contries{$init->{"d.country"}}||"NA";
 	$init = {"turn"=>$turn,
 	         "a.player"=>$player, "d.player"=>$adv,
 		 "a.country"=>$1, "a.n"=> $2,
 		 "d.country"=>$3, "d.n" => $4, 
 		 "a.lost" => 0, "d.lost" => 0,
 		 "status"=>"kept"};
-        print STDERR "ERROR: already $init->{'d.country'}=> $player: @{$init}{@keys}\n" if $adv == $player;
+        print STDERR "ERROR: already $init->{'d.country'}=> $player ($adv): @{$init}{@keys}\n" if $adv == $player;
       } else {
         print STDERR "until def to 1/2 attackes @{$init}{@keys} -> $_"
       }
@@ -2266,175 +4561,347 @@ END OF TURN
 #+Name: results-attacks
 #+RESULTS: attacks-log
 | turn | a.player | d.player | a.country             | a.n | d.country             | d.n | a.lost | d.lost | status   |
-|    6 | Josh     |          | Venezuela             |   5 | Central America       |   1 |      0 |      1 | captured |
-|    6 | Josh     |          | Eastern United States |   9 | Quebec                |   3 |      0 |      3 | captured |
-|    6 | Josh     |          | Eastern United States |   6 | Western United States |   3 |      3 |      3 | captured |
-|    7 | Will     |          | Eastern Australia     |  11 | New Guinea            |   1 |      1 |      1 | captured |
-|    7 | Will     |          | New Guinea            |   3 | Indonesia             |   1 |      2 |      0 | kept     |
-|    8 | Ben      |          | Irkutsk               |   4 | Kamchatka             |   1 |      3 |      0 | kept     |
-|    9 | Jim      |          | Argentina             |  21 | Peru                  |   1 |      1 |      1 | captured |
-|    9 | Jim      |          | Peru                  |  19 | Venezuela             |   2 |      1 |      2 | captured |
-|    9 | Jim      |          | Venezuela             |  17 | Brazil                |   2 |      2 |      2 | captured |
-|   10 | Andrew   |          | Egypt                 |  11 | East Africa           |   1 |      0 |      1 | captured |
-|   10 | Andrew   |          | East Africa           |   3 | Congo                 |   1 |      1 |      1 | captured |
-|   11 | Josh     |          | Ontario               |   5 | Alberta               |   4 |      4 |      0 | kept     |
-|   12 | Will     |          | Eastern Australia     |   5 | Western Australia     |   1 |      4 |      1 | captured |
-|   12 | Will     |          | New Guinea            |   2 | Western Australia     |   1 |      1 |      1 | captured |
-|   13 | Ben      |          | Irkutsk               |   4 | Kamchatka             |   1 |      0 |      1 | captured |
-|   13 | Ben      |          | Alberta               |   4 | Ontario               |   1 |      0 |      1 | captured |
-|   14 | Jim      |          | Venezuela             |  13 | Central America       |   8 |      6 |      8 | captured |
-|   14 | Jim      |          | Brazil                |   7 | North Africa          |   1 |      2 |      1 | captured |
-|   15 | Andrew   |          | Egypt                 |  12 | North Africa          |   1 |      0 |      1 | captured |
-|   15 | Andrew   |          | Egypt                 |   9 | Middle East           |   1 |      0 |      1 | captured |
-|   16 | Josh     |          | Quebec                |   8 | Ontario               |   2 |      1 |      2 | captured |
-|   16 | Josh     |          | Ontario               |   3 | Alberta               |   2 |      5 |      4 | kept     |
-|   17 | Will     |          | Indonesia             |   5 | Western Australia     |   1 |      0 |      1 | captured |
-|   18 | Ben      |          | Alberta               |   5 | Ontario               |   1 |      0 |      1 | captured |
-|   18 | Ben      |          | Ontario               |   3 | Quebec                |   1 |      0 |      1 | captured |
-|   19 | Jim      |          | Central America       |   6 | Western United States |   1 |      0 |      1 | captured |
-|   19 | Jim      |          | Western United States |   3 | Eastern United States |   1 |      2 |      1 | captured |
-|   20 | Andrew   |          | Egypt                 |   8 | Southern Europe       |   3 |      4 |      3 | captured |
-|   20 | Andrew   |          | Japan                 |   3 | Mongolia              |   1 |      0 |      1 | captured |
-|   21 | Josh     |          | India                 |   4 | China                 |   1 |      0 |      1 | captured |
-|   21 | Josh     |          | China                 |   3 | Afghanistan           |   1 |      2 |      0 | kept     |
-|   22 | Will     |          | Afghanistan           |   5 | India                 |   1 |      0 |      1 | captured |
-|   22 | Will     |          | India                 |   4 | China                 |   1 |      0 |      1 | captured |
-|   22 | Will     |          | China                 |   3 | Ural                  |   1 |      2 |      1 | captured |
-|   23 | Ben      |          | Alberta               |   5 | Northwest Territory   |   1 |      0 |      1 | captured |
-|   24 | Jim      |          | Brazil                |  16 | North Africa          |   8 |     10 |      8 | captured |
-|   25 | Andrew   |          | Congo                 |  15 | North Africa          |   1 |      0 |      1 | captured |
-|   25 | Andrew   |          | North Africa          |  14 | Brazil                |   5 |      5 |      5 | captured |
-|   26 | Will     |          | Western Europe        |   5 | Southern Europe       |   1 |      0 |      1 | captured |
-|   26 | Will     |          | Great Britain         |   6 | Scandinavia           |   1 |      1 |      1 | captured |
-|   27 | Ben      |          | Northwest Territory   |   7 | Alaska                |   3 |      4 |      3 | captured |
-|   27 | Ben      |          | Alberta               |   9 | Western United States |   1 |      0 |      1 | captured |
-|   28 | Jim      |          | Venezuela             |  10 | Brazil                |   1 |      0 |      1 | captured |
-|   28 | Jim      |          | Brazil                |   9 | North Africa          |   8 |      6 |      2 | kept     |
-|   30 | Will     |          | Great Britain         |  16 | Iceland               |  11 |     15 |     12 | captured |
-|   31 | Ben      |          | Iceland               |   4 | Scandinavia           |   1 |      0 |      1 | captured |
-|   31 | Ben      |          | Western United States |   8 | Central America       |   2 |      0 |      2 | captured |
-|   31 | Ben      |          | Western United States |   5 | Eastern United States |   1 |      0 |      1 | captured |
-|   32 | Jim      |          | Brazil                |   8 | North Africa          |   9 |      1 |      9 | captured |
-|   33 | Andrew   |          | Mongolia              |   5 | Irkutsk               |   1 |      1 |      1 | captured |
-|   33 | Andrew   |          | Irkutsk               |   3 | Siberia               |   1 |      0 |      1 | captured |
-|   33 | Andrew   |          | Siberia               |   2 | Ural                  |   1 |      1 |      0 | kept     |
-|   34 | Will     |          | Great Britain         |   8 | Iceland               |   3 |      0 |      3 | captured |
-|   34 | Will     |          | Ukraine               |   3 | Scandinavia           |   1 |      0 |      1 | captured |
-|   34 | Will     |          | Iceland               |   3 | Greenland             |   1 |      0 |      1 | captured |
-|   35 | Ben      |          | Quebec                |   5 | Greenland             |   1 |      1 |      1 | captured |
-|   36 | Jim      |          | North Africa          |   8 | Western Europe        |   2 |      0 |      2 | captured |
-|   37 | Andrew   |          | Siberia               |   4 | Yakutsk               |   1 |      0 |      1 | captured |
-|   38 | Will     |          | Iceland               |   6 | Greenland             |   4 |      3 |      4 | captured |
-|   38 | Will     |          | Iceland               |   3 | Greenland             |   3 |      2 |      0 | kept     |
-|   40 | Jim      |          | North Africa          |  17 | Egypt                 |   1 |      0 |      1 | captured |
-|   40 | Jim      |          | North Africa          |  14 | Western Europe        |   3 |      1 |      3 | captured |
-|   40 | Jim      |          | North Africa          |  10 | Congo                 |   1 |      1 |      1 | captured |
-|   40 | Jim      |          | North Africa          |   8 | Congo                 |   1 |      3 |      0 | kept     |
-|   41 | Andrew   |          | Siberia               |  16 | Ural                  |   1 |      0 |      1 | captured |
-|   41 | Andrew   |          | Ural                  |   3 | Afghanistan           |   1 |      0 |      1 | captured |
-|   41 | Andrew   |          | Afghanistan           |   2 | Ukraine               |   1 |      1 |      0 | kept     |
-|   42 | Will     |          | Iceland               |  12 | Greenland             |  11 |     12 |      8 | captured |
-|   43 | Ben      |          | Greenland             |  14 | Iceland               |   4 |      9 |      4 | captured |
-|   44 | Jim      |          | North Africa          |  12 | Western Europe        |   2 |      4 |      2 | captured |
-|   44 | Jim      |          | North Africa          |   5 | Congo                 |   1 |      0 |      1 | captured |
-|   45 | Andrew   |          | Ural                  |   4 | Ukraine               |   1 |      0 |      1 | captured |
-|   45 | Andrew   |          | Ukraine               |   3 | Scandinavia           |   1 |      2 |      0 | kept     |
-|   46 | Will     |          | Great Britain         |   7 | Iceland               |   1 |      0 |      1 | captured |
-|   46 | Will     |          | Iceland               |   6 | Greenland             |   4 |      1 |      4 | captured |
-|   47 | Ben      |          | Northwest Territory   |   5 | Greenland             |   1 |      0 |      1 | captured |
-|   48 | Jim      |          | Western Europe        |   6 | Southern Europe       |   1 |      0 |      1 | captured |
-|   48 | Jim      |          | Southern Europe       |   3 | Middle East           |   1 |      2 |      0 | kept     |
-|   49 | Andrew   |          | Middle East           |   4 | Southern Europe       |   1 |      0 |      1 | captured |
-|   50 | Will     |          | Iceland               |   8 | Greenland             |   4 |     10 |      4 | captured |
-|   51 | Ben      |          | Greenland             |  10 | Iceland               |   1 |      2 |      1 | captured |
-|   52 | Jim      |          | Venezuela             |  24 | Central America       |   6 |      5 |      6 | captured |
-|   52 | Jim      |          | Central America       |  18 | Eastern United States |   3 |      3 |      3 | captured |
-|   52 | Jim      |          | Eastern United States |   3 | Western United States |   2 |      0 |      2 | captured |
-|   52 | Jim      |          | North Africa          |   6 | Southern Europe       |   2 |      2 |      0 | kept     |
-|   53 | Andrew   |          | Southern Europe       |   3 | Egypt                 |   1 |      0 |      1 | captured |
-|   53 | Andrew   |          | Ural                  |  13 | Afghanistan           |   1 |      1 |      1 | captured |
-|   53 | Andrew   |          | Afghanistan           |   3 | China                 |   1 |      2 |      1 | captured |
-|   54 | Will     |          | Great Britain         |   9 | Western Europe        |   1 |      0 |      1 | captured |
-|   54 | Will     |          | Great Britain         |   6 | Iceland               |   1 |      0 |      1 | captured |
-|   55 | Ben      |          | Quebec                |   5 | Eastern United States |   1 |      0 |      1 | captured |
-|   56 | Jim      |          | North Africa          |   9 | Egypt                 |   1 |      0 |      1 | captured |
-|   56 | Jim      |          | North Africa          |   8 | Western Europe        |   3 |      2 |      3 | captured |
-|   56 | Jim      |          | Western United States |   2 | Eastern United States |   4 |      1 |      0 | kept     |
-|   57 | Andrew   |          | South Africa          |  15 | Congo                 |   1 |      0 |      1 | captured |
-|   57 | Andrew   |          | South Africa          |  12 | East Africa           |   1 |      0 |      1 | captured |
-|   57 | Andrew   |          | East Africa           |   3 | Egypt                 |   1 |      0 |      1 | captured |
-|   57 | Andrew   |          | Congo                 |   3 | North Africa          |   3 |      0 |      3 | captured |
-|   57 | Andrew   |          | South Africa          |   9 | Madagascar            |   6 |      1 |      6 | captured |
-|   58 | Will     |          | Northern Europe       |   7 | Southern Europe       |   1 |      2 |      1 | captured |
-|   58 | Will     |          | Southern Europe       |   4 | Egypt                 |   2 |      1 |      2 | captured |
-|   58 | Will     |          | Scandinavia           |   3 | Ukraine               |   1 |      1 |      1 | captured |
-|   59 | Ben      |          | Alberta               |  17 | Western United States |   1 |      0 |      1 | captured |
-|   59 | Ben      |          | Western United States |  16 | Central America       |   1 |      0 |      1 | captured |
-|   60 | Jim      |          | Western Europe        |  18 | North Africa          |   2 |      2 |      2 | captured |
-|   60 | Jim      |          | North Africa          |  13 | Egypt                 |   2 |      2 |      0 | kept     |
-|   61 | Andrew   |          | East Africa           |  10 | North Africa          |   3 |      5 |      3 | captured |
-|   62 | Will     |          | Iceland               |   9 | Greenland             |   7 |      8 |      6 | captured |
-|   63 | Ben      |          | Kamchatka             |   5 | Yakutsk               |   1 |      0 |      1 | captured |
-|   64 | Jim      |          | Venezuela             |  17 | Central America       |  18 |      5 |      7 | captured |
-|   65 | Andrew   |          | Irkutsk               |   5 | Yakutsk               |   1 |      0 |      1 | captured |
-|   65 | Andrew   |          | Ural                  |   9 | Afghanistan           |   1 |      1 |      1 | captured |
-|   66 | Will     |          | Iceland               |  18 | Greenland             |   6 |      8 |      6 | captured |
-|   67 | Ben      |          | Ontario               |  15 | Greenland             |   3 |      2 |      3 | captured |
-|   67 | Ben      |          | Greenland             |  12 | Iceland               |   5 |      9 |      5 | captured |
-|   68 | Jim      |          | Western Europe        |   5 | Southern Europe       |   1 |      1 |      1 | captured |
-|   68 | Jim      |          | Venezuela             |  19 | Central America       |  15 |      7 |      3 | kept     |
-|   69 | Andrew   |          | Yakutsk               |  11 | Kamchatka             |   4 |      2 |      4 | captured |
-|   69 | Andrew   |          | Kamchatka             |   8 | Alaska                |   4 |      1 |      4 | captured |
-|   69 | Andrew   |          | Alaska                |   6 | Northwest Territory   |   1 |      0 |      1 | captured |
-|   69 | Andrew   |          | Northwest Territory   |   5 | Alberta               |   1 |      1 |      1 | captured |
-|   69 | Andrew   |          | Ural                  |   9 | China                 |   1 |      1 |      1 | captured |
-|   70 | Will     |          | Egypt                 |   7 | East Africa           |   1 |      0 |      1 | captured |
-|   71 | Ben      |          | Ontario               |   4 | Northwest Territory   |   1 |      2 |      1 | captured |
-|   71 | Ben      |          | Ontario               |   2 | Northwest Territory   |   1 |      1 |      0 | kept     |
-|   72 | Jim      |          | Southern Europe       |  18 | Ukraine               |   4 |      5 |      4 | captured |
-|   72 | Jim      |          | Southern Europe       |  12 | Middle East           |   2 |      0 |      2 | captured |
-|   72 | Jim      |          | Middle East           |   3 | Egypt                 |   4 |      3 |      4 | captured |
-|   73 | Andrew   |          | Afghanistan           |   6 | Middle East           |   1 |      4 |      1 | captured |
-|   73 | Andrew   |          | China                 |  11 | India                 |   1 |      1 |      1 | captured |
-|   73 | Andrew   |          | Alberta               |   3 | Ontario               |   1 |      0 |      1 | captured |
-|   73 | Andrew   |          | Ontario               |   2 | Quebec                |   1 |      0 |      1 | captured |
-|   74 | Will     |          | East Africa           |   9 | Middle East           |   1 |      1 |      1 | captured |
-|   74 | Will     |          | Middle East           |   5 | India                 |   9 |      3 |      7 | captured |
-|   75 | Ben      |          | Eastern United States |   4 | Quebec                |   1 |      0 |      1 | captured |
-|   76 | Jim      |          | Venezuela             |  14 | Central America       |  12 |      4 |      6 | captured |
-|   76 | Jim      |          | East Africa           |   3 | Congo                 |   1 |      0 |      1 | captured |
-|   76 | Jim      |          | Congo                 |   2 | South Africa          |   1 |      1 |      0 | kept     |
-|   77 | Andrew   |          | India                 |   8 | Afghanistan           |   1 |      0 |      1 | captured |
-|   78 | Will     |          | Middle East           |   5 | Southern Europe       |   1 |      1 |      1 | captured |
-|   79 | Ben      |          | Quebec                |   6 | Ontario               |   1 |      0 |      1 | captured |
-|   80 | Jim      |          | Congo                 |   6 | South Africa          |   1 |      0 |      1 | captured |
-|   80 | Jim      |          | South Africa          |   5 | Madagascar            |   1 |      1 |      1 | captured |
-|   80 | Jim      |          | Venezuela             |  14 | Central America       |   9 |      2 |      2 | kept     |
-|   81 | Andrew   |          | Afghanistan           |  15 | Middle East           |   1 |      0 |      1 | captured |
-|   81 | Andrew   |          | Middle East           |  14 | Egypt                 |   1 |      0 |      1 | captured |
-|   81 | Andrew   |          | Egypt                 |  13 | North Africa          |   6 |      0 |      6 | captured |
-|   81 | Andrew   |          | North Africa          |  12 | Congo                 |   1 |      1 |      1 | captured |
-|   81 | Andrew   |          | Congo                 |  10 | East Africa           |   1 |      0 |      1 | captured |
-|   81 | Andrew   |          | East Africa           |   9 | Madagascar            |   3 |      3 |      3 | captured |
-|   81 | Andrew   |          | Madagascar            |   5 | South Africa          |   1 |      2 |      1 | captured |
-|   82 | Will     |          | Southern Europe       |   7 | Middle East           |   1 |      1 |      1 | captured |
-|   82 | Will     |          | Middle East           |   3 | Egypt                 |   1 |      1 |      1 | captured |
-|   83 | Ben      |          | Ontario               |   6 | Alberta               |   1 |      0 |      1 | captured |
-|   83 | Ben      |          | Alberta               |   5 | Northwest Territory   |   1 |      0 |      1 | captured |
-|   83 | Ben      |          | Northwest Territory   |   4 | Alaska                |   1 |      0 |      1 | captured |
-|   84 | Jim      |          | Venezuela             |  14 | Central America       |   8 |      3 |      1 | captured |
-|   84 | Jim      |          | North Africa          |   7 | Egypt                 |   1 |      0 |      1 | captured |
-|   84 | Jim      |          | Egypt                 |   3 | East Africa           |   1 |      2 |      1 | captured |
-|   85 | Andrew   |          | India                 |  13 | Middle East           |   2 |      0 |      2 | captured |
-|   86 | Will     |          | Great Britain         |   7 | Iceland               |   1 |      1 |      1 | captured |
-|   86 | Will     |          | Iceland               |   5 | Greenland             |   2 |      0 |      2 | captured |
-|   87 | Ben      |          | Quebec                |  12 | Greenland             |   2 |      0 |      2 | captured |
-|   88 | Jim      |          | Ukraine               |   4 | Ural                  |   1 |      0 |      1 | captured |
-|   88 | Jim      |          | Venezuela             |  14 | Central America       |   8 |      2 |      2 | kept     |
-|   89 | Andrew   |          | Middle East           |  23 | Southern Europe       |   2 |      1 |      2 | captured |
-|   89 | Andrew   |          | Southern Europe       |  21 | Northern Europe       |   3 |      3 |      3 | captured |
-|   89 | Andrew   |          | Northern Europe       |   3 | Ukraine               |   1 |      4 |      1 | captured |
-|   90 | Will     |          | Great Britain         |  11 | Scandinavia           |   1 |      0 |      1 | captured |
+|    6 | Josh     | NA       | Venezuela             |   5 | Central America       |   1 |      0 |      1 | captured |
+|    6 | Josh     | NA       | Eastern United States |   9 | Quebec                |   3 |      0 |      3 | captured |
+|    6 | Josh     | NA       | Eastern United States |   6 | Western United States |   3 |      3 |      3 | captured |
+|    7 | Will     | NA       | Eastern Australia     |  11 | New Guinea            |   1 |      1 |      1 | captured |
+|    7 | Will     | NA       | New Guinea            |   3 | Indonesia             |   1 |      2 |      0 | kept     |
+|    8 | Ben      | NA       | Irkutsk               |   4 | Kamchatka             |   1 |      3 |      0 | kept     |
+|    9 | Jim      | NA       | Argentina             |  21 | Peru                  |   1 |      1 |      1 | captured |
+|    9 | Jim      | NA       | Peru                  |  19 | Venezuela             |   2 |      1 |      2 | captured |
+|    9 | Jim      | NA       | Venezuela             |  17 | Brazil                |   2 |      2 |      2 | captured |
+|   10 | Andrew   | NA       | Egypt                 |  11 | East Africa           |   1 |      0 |      1 | captured |
+|   10 | Andrew   | NA       | East Africa           |   3 | Congo                 |   1 |      1 |      1 | captured |
+|   11 | Josh     | NA       | Ontario               |   5 | Alberta               |   4 |      4 |      0 | kept     |
+|   12 | Will     | NA       | Eastern Australia     |   5 | Western Australia     |   1 |      4 |      1 | captured |
+|   12 | Will     | NA       | New Guinea            |   2 | Western Australia     |   1 |      1 |      1 | captured |
+|   13 | Ben      | NA       | Irkutsk               |   4 | Kamchatka             |   1 |      0 |      1 | captured |
+|   13 | Ben      | NA       | Alberta               |   4 | Ontario               |   1 |      0 |      1 | captured |
+|   14 | Jim      | NA       | Venezuela             |  13 | Central America       |   8 |      6 |      8 | captured |
+|   14 | Jim      | NA       | Brazil                |   7 | North Africa          |   1 |      2 |      1 | captured |
+|   15 | Andrew   | NA       | Egypt                 |  12 | North Africa          |   1 |      0 |      1 | captured |
+|   15 | Andrew   | NA       | Egypt                 |   9 | Middle East           |   1 |      0 |      1 | captured |
+|   16 | Josh     | NA       | Quebec                |   8 | Ontario               |   2 |      1 |      2 | captured |
+|   16 | Josh     | NA       | Ontario               |   3 | Alberta               |   2 |      5 |      4 | kept     |
+|   17 | Will     | NA       | Indonesia             |   5 | Western Australia     |   1 |      0 |      1 | captured |
+|   18 | Ben      | NA       | Alberta               |   5 | Ontario               |   1 |      0 |      1 | captured |
+|   18 | Ben      | NA       | Ontario               |   3 | Quebec                |   1 |      0 |      1 | captured |
+|   19 | Jim      | NA       | Central America       |   6 | Western United States |   1 |      0 |      1 | captured |
+|   19 | Jim      | NA       | Western United States |   3 | Eastern United States |   1 |      2 |      1 | captured |
+|   20 | Andrew   | NA       | Egypt                 |   8 | Southern Europe       |   3 |      4 |      3 | captured |
+|   20 | Andrew   | NA       | Japan                 |   3 | Mongolia              |   1 |      0 |      1 | captured |
+|   21 | Josh     | NA       | India                 |   4 | China                 |   1 |      0 |      1 | captured |
+|   21 | Josh     | NA       | China                 |   3 | Afghanistan           |   1 |      2 |      0 | kept     |
+|   22 | Will     | NA       | Afghanistan           |   5 | India                 |   1 |      0 |      1 | captured |
+|   22 | Will     | NA       | India                 |   4 | China                 |   1 |      0 |      1 | captured |
+|   22 | Will     | NA       | China                 |   3 | Ural                  |   1 |      2 |      1 | captured |
+|   23 | Ben      | NA       | Alberta               |   5 | Northwest Territory   |   1 |      0 |      1 | captured |
+|   24 | Jim      | NA       | Brazil                |  16 | North Africa          |   8 |     10 |      8 | captured |
+|   25 | Andrew   | NA       | Congo                 |  15 | North Africa          |   1 |      0 |      1 | captured |
+|   25 | Andrew   | NA       | North Africa          |  14 | Brazil                |   5 |      5 |      5 | captured |
+|   26 | Will     | NA       | Western Europe        |   5 | Southern Europe       |   1 |      0 |      1 | captured |
+|   26 | Will     | NA       | Great Britain         |   6 | Scandinavia           |   1 |      1 |      1 | captured |
+|   27 | Ben      | NA       | Northwest Territory   |   7 | Alaska                |   3 |      4 |      3 | captured |
+|   27 | Ben      | NA       | Alberta               |   9 | Western United States |   1 |      0 |      1 | captured |
+|   28 | Jim      | NA       | Venezuela             |  10 | Brazil                |   1 |      0 |      1 | captured |
+|   28 | Jim      | NA       | Brazil                |   9 | North Africa          |   8 |      6 |      2 | kept     |
+|   30 | Will     | NA       | Great Britain         |  16 | Iceland               |  11 |     15 |     12 | captured |
+|   31 | Ben      | NA       | Iceland               |   4 | Scandinavia           |   1 |      0 |      1 | captured |
+|   31 | Ben      | NA       | Western United States |   8 | Central America       |   2 |      0 |      2 | captured |
+|   31 | Ben      | NA       | Western United States |   5 | Eastern United States |   1 |      0 |      1 | captured |
+|   32 | Jim      | NA       | Brazil                |   8 | North Africa          |   9 |      1 |      9 | captured |
+|   33 | Andrew   | NA       | Mongolia              |   5 | Irkutsk               |   1 |      1 |      1 | captured |
+|   33 | Andrew   | NA       | Irkutsk               |   3 | Siberia               |   1 |      0 |      1 | captured |
+|   33 | Andrew   | NA       | Siberia               |   2 | Ural                  |   1 |      1 |      0 | kept     |
+|   34 | Will     | NA       | Great Britain         |   8 | Iceland               |   3 |      0 |      3 | captured |
+|   34 | Will     | NA       | Ukraine               |   3 | Scandinavia           |   1 |      0 |      1 | captured |
+|   34 | Will     | NA       | Iceland               |   3 | Greenland             |   1 |      0 |      1 | captured |
+|   35 | Ben      | NA       | Quebec                |   5 | Greenland             |   1 |      1 |      1 | captured |
+|   36 | Jim      | NA       | North Africa          |   8 | Western Europe        |   2 |      0 |      2 | captured |
+|   37 | Andrew   | NA       | Siberia               |   4 | Yakutsk               |   1 |      0 |      1 | captured |
+|   38 | Will     | NA       | Iceland               |   6 | Greenland             |   4 |      3 |      4 | captured |
+|   38 | Will     | NA       | Iceland               |   3 | Greenland             |   3 |      2 |      0 | kept     |
+|   40 | Jim      | NA       | North Africa          |  17 | Egypt                 |   1 |      0 |      1 | captured |
+|   40 | Jim      | NA       | North Africa          |  14 | Western Europe        |   3 |      1 |      3 | captured |
+|   40 | Jim      | NA       | North Africa          |  10 | Congo                 |   1 |      1 |      1 | captured |
+|   40 | Jim      | NA       | North Africa          |   8 | Congo                 |   1 |      3 |      0 | kept     |
+|   41 | Andrew   | NA       | Siberia               |  16 | Ural                  |   1 |      0 |      1 | captured |
+|   41 | Andrew   | NA       | Ural                  |   3 | Afghanistan           |   1 |      0 |      1 | captured |
+|   41 | Andrew   | NA       | Afghanistan           |   2 | Ukraine               |   1 |      1 |      0 | kept     |
+|   42 | Will     | NA       | Iceland               |  12 | Greenland             |  11 |     12 |      8 | captured |
+|   43 | Ben      | NA       | Greenland             |  14 | Iceland               |   4 |      9 |      4 | captured |
+|   44 | Jim      | NA       | North Africa          |  12 | Western Europe        |   2 |      4 |      2 | captured |
+|   44 | Jim      | NA       | North Africa          |   5 | Congo                 |   1 |      0 |      1 | captured |
+|   45 | Andrew   | NA       | Ural                  |   4 | Ukraine               |   1 |      0 |      1 | captured |
+|   45 | Andrew   | NA       | Ukraine               |   3 | Scandinavia           |   1 |      2 |      0 | kept     |
+|   46 | Will     | NA       | Great Britain         |   7 | Iceland               |   1 |      0 |      1 | captured |
+|   46 | Will     | NA       | Iceland               |   6 | Greenland             |   4 |      1 |      4 | captured |
+|   47 | Ben      | NA       | Northwest Territory   |   5 | Greenland             |   1 |      0 |      1 | captured |
+|   48 | Jim      | NA       | Western Europe        |   6 | Southern Europe       |   1 |      0 |      1 | captured |
+|   48 | Jim      | NA       | Southern Europe       |   3 | Middle East           |   1 |      2 |      0 | kept     |
+|   49 | Andrew   | NA       | Middle East           |   4 | Southern Europe       |   1 |      0 |      1 | captured |
+|   50 | Will     | NA       | Iceland               |   8 | Greenland             |   4 |     10 |      4 | captured |
+|   51 | Ben      | NA       | Greenland             |  10 | Iceland               |   1 |      2 |      1 | captured |
+|   52 | Jim      | NA       | Venezuela             |  24 | Central America       |   6 |      5 |      6 | captured |
+|   52 | Jim      | NA       | Central America       |  18 | Eastern United States |   3 |      3 |      3 | captured |
+|   52 | Jim      | NA       | Eastern United States |   3 | Western United States |   2 |      0 |      2 | captured |
+|   52 | Jim      | NA       | North Africa          |   6 | Southern Europe       |   2 |      2 |      0 | kept     |
+|   53 | Andrew   | NA       | Southern Europe       |   3 | Egypt                 |   1 |      0 |      1 | captured |
+|   53 | Andrew   | NA       | Ural                  |  13 | Afghanistan           |   1 |      1 |      1 | captured |
+|   53 | Andrew   | NA       | Afghanistan           |   3 | China                 |   1 |      2 |      1 | captured |
+|   54 | Will     | NA       | Great Britain         |   9 | Western Europe        |   1 |      0 |      1 | captured |
+|   54 | Will     | NA       | Great Britain         |   6 | Iceland               |   1 |      0 |      1 | captured |
+|   55 | Ben      | NA       | Quebec                |   5 | Eastern United States |   1 |      0 |      1 | captured |
+|   56 | Jim      | NA       | North Africa          |   9 | Egypt                 |   1 |      0 |      1 | captured |
+|   56 | Jim      | NA       | North Africa          |   8 | Western Europe        |   3 |      2 |      3 | captured |
+|   56 | Jim      | NA       | Western United States |   2 | Eastern United States |   4 |      1 |      0 | kept     |
+|   57 | Andrew   | NA       | South Africa          |  15 | Congo                 |   1 |      0 |      1 | captured |
+|   57 | Andrew   | NA       | South Africa          |  12 | East Africa           |   1 |      0 |      1 | captured |
+|   57 | Andrew   | NA       | East Africa           |   3 | Egypt                 |   1 |      0 |      1 | captured |
+|   57 | Andrew   | NA       | Congo                 |   3 | North Africa          |   3 |      0 |      3 | captured |
+|   57 | Andrew   | NA       | South Africa          |   9 | Madagascar            |   6 |      1 |      6 | captured |
+|   58 | Will     | NA       | Northern Europe       |   7 | Southern Europe       |   1 |      2 |      1 | captured |
+|   58 | Will     | NA       | Southern Europe       |   4 | Egypt                 |   2 |      1 |      2 | captured |
+|   58 | Will     | NA       | Scandinavia           |   3 | Ukraine               |   1 |      1 |      1 | captured |
+|   59 | Ben      | NA       | Alberta               |  17 | Western United States |   1 |      0 |      1 | captured |
+|   59 | Ben      | NA       | Western United States |  16 | Central America       |   1 |      0 |      1 | captured |
+|   60 | Jim      | NA       | Western Europe        |  18 | North Africa          |   2 |      2 |      2 | captured |
+|   60 | Jim      | NA       | North Africa          |  13 | Egypt                 |   2 |      2 |      0 | kept     |
+|   61 | Andrew   | NA       | East Africa           |  10 | North Africa          |   3 |      5 |      3 | captured |
+|   62 | Will     | NA       | Iceland               |   9 | Greenland             |   7 |      8 |      6 | captured |
+|   63 | Ben      | NA       | Kamchatka             |   5 | Yakutsk               |   1 |      0 |      1 | captured |
+|   64 | Jim      | NA       | Venezuela             |  17 | Central America       |  18 |      5 |      7 | captured |
+|   65 | Andrew   | NA       | Irkutsk               |   5 | Yakutsk               |   1 |      0 |      1 | captured |
+|   65 | Andrew   | NA       | Ural                  |   9 | Afghanistan           |   1 |      1 |      1 | captured |
+|   66 | Will     | NA       | Iceland               |  18 | Greenland             |   6 |      8 |      6 | captured |
+|   67 | Ben      | NA       | Ontario               |  15 | Greenland             |   3 |      2 |      3 | captured |
+|   67 | Ben      | NA       | Greenland             |  12 | Iceland               |   5 |      9 |      5 | captured |
+|   68 | Jim      | NA       | Western Europe        |   5 | Southern Europe       |   1 |      1 |      1 | captured |
+|   68 | Jim      | NA       | Venezuela             |  19 | Central America       |  15 |      7 |      3 | kept     |
+|   69 | Andrew   | NA       | Yakutsk               |  11 | Kamchatka             |   4 |      2 |      4 | captured |
+|   69 | Andrew   | NA       | Kamchatka             |   8 | Alaska                |   4 |      1 |      4 | captured |
+|   69 | Andrew   | NA       | Alaska                |   6 | Northwest Territory   |   1 |      0 |      1 | captured |
+|   69 | Andrew   | NA       | Northwest Territory   |   5 | Alberta               |   1 |      1 |      1 | captured |
+|   69 | Andrew   | NA       | Ural                  |   9 | China                 |   1 |      1 |      1 | captured |
+|   70 | Will     | NA       | Egypt                 |   7 | East Africa           |   1 |      0 |      1 | captured |
+|   71 | Ben      | NA       | Ontario               |   4 | Northwest Territory   |   1 |      2 |      1 | captured |
+|   71 | Ben      | NA       | Ontario               |   2 | Northwest Territory   |   1 |      1 |      0 | kept     |
+|   72 | Jim      | NA       | Southern Europe       |  18 | Ukraine               |   4 |      5 |      4 | captured |
+|   72 | Jim      | NA       | Southern Europe       |  12 | Middle East           |   2 |      0 |      2 | captured |
+|   72 | Jim      | NA       | Middle East           |   3 | Egypt                 |   4 |      3 |      4 | captured |
+|   73 | Andrew   | NA       | Afghanistan           |   6 | Middle East           |   1 |      4 |      1 | captured |
+|   73 | Andrew   | NA       | China                 |  11 | India                 |   1 |      1 |      1 | captured |
+|   73 | Andrew   | NA       | Alberta               |   3 | Ontario               |   1 |      0 |      1 | captured |
+|   73 | Andrew   | NA       | Ontario               |   2 | Quebec                |   1 |      0 |      1 | captured |
+|   74 | Will     | NA       | East Africa           |   9 | Middle East           |   1 |      1 |      1 | captured |
+|   74 | Will     | NA       | Middle East           |   5 | India                 |   9 |      3 |      7 | captured |
+|   75 | Ben      | NA       | Eastern United States |   4 | Quebec                |   1 |      0 |      1 | captured |
+|   76 | Jim      | NA       | Venezuela             |  14 | Central America       |  12 |      4 |      6 | captured |
+|   76 | Jim      | NA       | East Africa           |   3 | Congo                 |   1 |      0 |      1 | captured |
+|   76 | Jim      | NA       | Congo                 |   2 | South Africa          |   1 |      1 |      0 | kept     |
+|   77 | Andrew   | NA       | India                 |   8 | Afghanistan           |   1 |      0 |      1 | captured |
+|   78 | Will     | NA       | Middle East           |   5 | Southern Europe       |   1 |      1 |      1 | captured |
+|   79 | Ben      | NA       | Quebec                |   6 | Ontario               |   1 |      0 |      1 | captured |
+|   80 | Jim      | NA       | Congo                 |   6 | South Africa          |   1 |      0 |      1 | captured |
+|   80 | Jim      | NA       | South Africa          |   5 | Madagascar            |   1 |      1 |      1 | captured |
+|   80 | Jim      | NA       | Venezuela             |  14 | Central America       |   9 |      2 |      2 | kept     |
+|   81 | Andrew   | NA       | Afghanistan           |  15 | Middle East           |   1 |      0 |      1 | captured |
+|   81 | Andrew   | NA       | Middle East           |  14 | Egypt                 |   1 |      0 |      1 | captured |
+|   81 | Andrew   | NA       | Egypt                 |  13 | North Africa          |   6 |      0 |      6 | captured |
+|   81 | Andrew   | NA       | North Africa          |  12 | Congo                 |   1 |      1 |      1 | captured |
+|   81 | Andrew   | NA       | Congo                 |  10 | East Africa           |   1 |      0 |      1 | captured |
+|   81 | Andrew   | NA       | East Africa           |   9 | Madagascar            |   3 |      3 |      3 | captured |
+|   81 | Andrew   | NA       | Madagascar            |   5 | South Africa          |   1 |      2 |      1 | captured |
+|   82 | Will     | NA       | Southern Europe       |   7 | Middle East           |   1 |      1 |      1 | captured |
+|   82 | Will     | NA       | Middle East           |   3 | Egypt                 |   1 |      1 |      1 | captured |
+|   83 | Ben      | NA       | Ontario               |   6 | Alberta               |   1 |      0 |      1 | captured |
+|   83 | Ben      | NA       | Alberta               |   5 | Northwest Territory   |   1 |      0 |      1 | captured |
+|   83 | Ben      | NA       | Northwest Territory   |   4 | Alaska                |   1 |      0 |      1 | captured |
+|   84 | Jim      | NA       | Venezuela             |  14 | Central America       |   8 |      3 |      1 | captured |
+|   84 | Jim      | NA       | North Africa          |   7 | Egypt                 |   1 |      0 |      1 | captured |
+|   84 | Jim      | NA       | Egypt                 |   3 | East Africa           |   1 |      2 |      1 | captured |
+|   85 | Andrew   | NA       | India                 |  13 | Middle East           |   2 |      0 |      2 | captured |
+|   86 | Will     | NA       | Great Britain         |   7 | Iceland               |   1 |      1 |      1 | captured |
+|   86 | Will     | NA       | Iceland               |   5 | Greenland             |   2 |      0 |      2 | captured |
+|   87 | Ben      | NA       | Quebec                |  12 | Greenland             |   2 |      0 |      2 | captured |
+|   88 | Jim      | NA       | Ukraine               |   4 | Ural                  |   1 |      0 |      1 | captured |
+|   88 | Jim      | NA       | Venezuela             |  14 | Central America       |   8 |      2 |      2 | kept     |
+|   89 | Andrew   | NA       | Middle East           |  23 | Southern Europe       |   2 |      1 |      2 | captured |
+|   89 | Andrew   | NA       | Southern Europe       |  21 | Northern Europe       |   3 |      3 |      3 | captured |
+|   89 | Andrew   | NA       | Northern Europe       |   3 | Ukraine               |   1 |      4 |      1 | captured |
+|   90 | Will     | NA       | Great Britain         |  11 | Scandinavia           |   1 |      0 |      1 | captured |
+|   91 | Ben      | NA       | Central America       |  15 | Venezuela             |  12 |      3 |      3 | kept     |
+|   92 | Jim      | NA       | Venezuela             |  14 | Central America       |  12 |      9 |     12 | captured |
+|   93 | Andrew   | NA       | Afghanistan           |   3 | Ukraine               |   1 |      0 |      1 | captured |
+|   94 | Will     | NA       | Scandinavia           |  21 | Ukraine               |   2 |      3 |      2 | captured |
+|   94 | Will     | NA       | Scandinavia           |  15 | Northern Europe       |   1 |      1 |      1 | captured |
+|   95 | Ben      | NA       | Alaska                |   9 | Kamchatka             |   1 |      0 |      1 | captured |
+|   95 | Ben      | NA       | Greenland             |  10 | Iceland               |   3 |      2 |      3 | captured |
+|   96 | Jim      | NA       | Egypt                 |  18 | East Africa           |   1 |      1 |      1 | captured |
+|   96 | Jim      | NA       | East Africa           |  16 | South Africa          |   1 |      0 |      1 | captured |
+|   96 | Jim      | NA       | East Africa           |  15 | Madagascar            |   2 |      0 |      2 | captured |
+|   96 | Jim      | NA       | East Africa           |  13 | Middle East           |   1 |      0 |      1 | captured |
+|   97 | Andrew   | NA       | Southern Europe       |  16 | Ukraine               |   3 |      2 |      3 | captured |
+|   98 | Will     | NA       | Northern Europe       |   8 | Southern Europe       |   1 |      0 |      1 | captured |
+|   99 | Ben      | NA       | Eastern United States |   7 | Central America       |   3 |      5 |      3 | captured |
+|  100 | Jim      | NA       | North Africa          |  21 | Western Europe        |   2 |      1 |      2 | captured |
+|  100 | Jim      | NA       | Western Europe        |  14 | Great Britain         |  10 |     10 |     10 | captured |
+|  101 | Andrew   | NA       | Ukraine               |  20 | Northern Europe       |   4 |      1 |      4 | captured |
+|  101 | Andrew   | NA       | Northern Europe       |  18 | Scandinavia           |   3 |      4 |      3 | captured |
+|  102 | Will     | NA       | Southern Europe       |   9 | Egypt                 |   1 |      0 |      1 | captured |
+|  102 | Will     | NA       | Egypt                 |   8 | East Africa           |   1 |      0 |      1 | captured |
+|  103 | Ben      | NA       | Central America       |   9 | Venezuela             |   6 |      6 |      2 | captured |
+|  104 | Jim      | NA       | Western Europe        |   3 | Great Britain         |   1 |      1 |      1 | captured |
+|  104 | Jim      | NA       | North Africa          |  11 | Egypt                 |   4 |      6 |      4 | kept     |
+|  105 | Andrew   | NA       | Scandinavia           |  13 | Iceland               |   1 |      0 |      1 | captured |
+|  105 | Andrew   | NA       | Iceland               |  12 | Greenland             |   5 |     11 |      4 | kept     |
+|  106 | Will     | NA       | East Africa           |  19 | Madagascar            |   2 |      1 |      2 | captured |
+|  106 | Will     | NA       | Madagascar            |  14 | South Africa          |   1 |      1 |      1 | captured |
+|  107 | Ben      | NA       | Kamchatka             |   3 | Yakutsk               |   1 |      0 |      1 | captured |
+|  108 | Jim      | NA       | Middle East           |   3 | Southern Europe       |   1 |      0 |      1 | captured |
+|  108 | Jim      | NA       | Southern Europe       |   2 | Egypt                 |   2 |      9 |      2 | captured |
+|  108 | Jim      | NA       | Egypt                 |   3 | East Africa           |   4 |      2 |      1 | kept     |
+|  109 | Andrew   | NA       | Mongolia              |  10 | Kamchatka             |   1 |      0 |      1 | captured |
+|  110 | Will     | NA       | South Africa          |  16 | Congo                 |   1 |      0 |      1 | captured |
+|  111 | Ben      | NA       | Yakutsk               |   2 | Siberia               |   1 |      1 |      1 | captured |
+|  112 | Jim      | NA       | Ural                  |   4 | Ukraine               |   1 |      1 |      1 | captured |
+|  112 | Jim      | NA       | Venezuela             |  12 | Central America       |  12 |      4 |      4 | kept     |
+|  113 | Andrew   | NA       | Scandinavia           |  13 | Ukraine               |   1 |      1 |      1 | captured |
+|  114 | Will     | NA       | East Africa           |  17 | Egypt                 |   1 |      3 |      1 | captured |
+|  114 | Will     | NA       | Egypt                 |  11 | North Africa          |   1 |      0 |      1 | captured |
+|  115 | Ben      | NA       | Iceland               |   3 | Great Britain         |   1 |      0 |      1 | captured |
+|  115 | Ben      | NA       | Great Britain         |   2 | Western Europe        |   1 |      0 |      1 | captured |
+|  116 | Jim      | NA       | Brazil                |  16 | North Africa          |   7 |      1 |      7 | captured |
+|  117 | Andrew   | NA       | Ukraine               |  11 | Ural                  |   2 |      6 |      2 | captured |
+|  118 | Will     | NA       | Egypt                 |   7 | Middle East           |   1 |      0 |      1 | captured |
+|  119 | Ben      | NA       | Iceland               |   6 | Scandinavia           |   1 |      2 |      1 | captured |
+|  119 | Ben      | NA       | Great Britain         |   4 | Northern Europe       |   1 |      3 |      1 | captured |
+|  119 | Ben      | NA       | Scandinavia           |   3 | Northern Europe       |   1 |      2 |      0 | kept     |
+|  120 | Jim      | NA       | Venezuela             |  21 | Central America       |  15 |      9 |     15 | captured |
+|  120 | Jim      | NA       | Central America       |  11 | Eastern United States |   1 |      3 |      0 | kept     |
+|  121 | Andrew   | NA       | India                 |   4 | Middle East           |   1 |      0 |      1 | captured |
+|  121 | Andrew   | NA       | China                 |   3 | Siam                  |  26 |      2 |      0 | kept     |
+|  122 | Will     | NA       | Egypt                 |   9 | Southern Europe       |   1 |      1 |      1 | captured |
+|  123 | Ben      | NA       | Eastern United States |   5 | Central America       |   1 |      6 |      1 | captured |
+|  124 | Jim      | NA       | Central America       |   6 | Eastern United States |   1 |      0 |      1 | captured |
+|  124 | Jim      | NA       | Central America       |   5 | Western United States |   1 |      0 |      1 | captured |
+|  125 | Andrew   | NA       | Middle East           |   3 | Southern Europe       |   1 |      0 |      1 | captured |
+|  126 | Will     | NA       | Congo                 |  17 | North Africa          |   1 |      0 |      1 | captured |
+|  126 | Will     | NA       | North Africa          |  15 | Western Europe        |   1 |      0 |      1 | captured |
+|  127 | Ben      | NA       | Alberta               |  14 | Western United States |   1 |      0 |      1 | captured |
+|  127 | Ben      | NA       | Western United States |  13 | Eastern United States |   1 |      0 |      1 | captured |
+|  127 | Ben      | NA       | Eastern United States |  12 | Central America       |   4 |      4 |      4 | captured |
+|  128 | Jim      | NA       | Venezuela             |  13 | Central America       |   7 |      5 |      7 | captured |
+|  128 | Jim      | NA       | Central America       |   3 | Eastern United States |   1 |      2 |      0 | kept     |
+|  129 | Andrew   | NA       | Northern Europe       |   4 | Great Britain         |   1 |      5 |      3 | captured |
+|  130 | Will     | NA       | Western Europe        |   5 | Great Britain         |   1 |      1 |      1 | captured |
+|  131 | Ben      | NA       | Eastern United States |  14 | Central America       |   1 |      0 |      1 | captured |
+|  131 | Ben      | NA       | Central America       |  13 | Venezuela             |   5 |      2 |      5 | captured |
+|  131 | Ben      | NA       | Venezuela             |   4 | Peru                  |   1 |      0 |      1 | captured |
+|  131 | Ben      | NA       | Peru                  |   3 | Argentina             |   1 |      2 |      0 | kept     |
+|  132 | Jim      | NA       | Brazil                |  17 | Peru                  |   1 |      0 |      1 | captured |
+|  132 | Jim      | NA       | Brazil                |  16 | Venezuela             |   1 |      3 |      1 | captured |
+|  132 | Jim      | NA       | Brazil                |  12 | North Africa          |  17 |      7 |     17 | captured |
+|  133 | Andrew   | NA       | Siberia               |   4 | Yakutsk               |   1 |      1 |      1 | captured |
+|  134 | Will     | NA       | Congo                 |   7 | North Africa          |   1 |      0 |      1 | captured |
+|  135 | Ben      | NA       | Central America       |  15 | Venezuela             |   1 |      1 |      1 | captured |
+|  135 | Ben      | NA       | Venezuela             |  13 | Peru                  |   1 |      0 |      1 | captured |
+|  135 | Ben      | NA       | Peru                  |  12 | Argentina             |   1 |      1 |      1 | captured |
+|  135 | Ben      | NA       | Argentina             |  10 | Brazil                |   4 |      1 |      4 | captured |
+|  136 | Ben      | NA       | Southern Europe       |   4 | Western Europe        |   1 |      4 |      0 | kept     |
+|  137 | Andrew   | NA       | North Africa          |  18 | Brazil                |  10 |      4 |     10 | captured |
+|  137 | Andrew   | NA       | Brazil                |  12 | Argentina             |   1 |      0 |      1 | captured |
+|  137 | Andrew   | NA       | Argentina             |  11 | Peru                  |   1 |      0 |      1 | captured |
+|  137 | Andrew   | NA       | Peru                  |  10 | Venezuela             |   1 |      0 |      1 | captured |
+|  137 | Andrew   | NA       | Venezuela             |   9 | Central America       |   1 |      4 |      1 | captured |
+|  138 | Will     | NA       | Eastern United States |  18 | Central America       |   3 |      3 |      3 | captured |
+|  138 | Will     | NA       | Central America       |  14 | Venezuela             |   2 |      2 |      2 | captured |
+|  138 | Will     | NA       | Venezuela             |  11 | Peru                  |   1 |      0 |      1 | captured |
+|  138 | Will     | NA       | Peru                  |  10 | Argentina             |   1 |      0 |      1 | captured |
+|  138 | Will     | NA       | Argentina             |   9 | Brazil                |   1 |      0 |      1 | captured |
+|  138 | Will     | NA       | Iceland               |  10 | Great Britain         |   5 |      5 |      5 | captured |
+|  138 | Will     | NA       | Great Britain         |   4 | Western Europe        |   1 |      0 |      1 | captured |
+|  138 | Will     | NA       | Brazil                |   8 | North Africa          |   3 |      4 |      3 | captured |
+|  139 | Ben      | NA       | Ukraine               |   6 | Scandinavia           |   1 |      1 |      1 | captured |
+|  140 | Andrew   | NA       | Egypt                 |  11 | North Africa          |   1 |      1 |      1 | captured |
+|  140 | Andrew   | NA       | North Africa          |   9 | Brazil                |   5 |      6 |      0 | kept     |
+|  141 | Will     | NA       | Alaska                |  11 | Kamchatka             |   1 |      0 |      1 | captured |
+|  142 | Ben      | NA       | Scandinavia           |   7 | Iceland               |   2 |      0 |      2 | captured |
+|  142 | Ben      | NA       | Iceland               |   6 | Great Britain         |   2 |      3 |      2 | captured |
+|  143 | Andrew   | NA       | North Africa          |  17 | Brazil                |  10 |     10 |     10 | captured |
+|  143 | Andrew   | NA       | Brazil                |   6 | Venezuela             |   1 |      0 |      1 | captured |
+|  143 | Andrew   | NA       | Venezuela             |   3 | Central America       |   1 |      2 |      0 | kept     |
+|  144 | Will     | NA       | Central America       |  10 | Venezuela             |   2 |      1 |      2 | captured |
+|  144 | Will     | NA       | Venezuela             |   8 | Brazil                |   2 |      1 |      2 | captured |
+|  144 | Will     | NA       | Western Europe        |   2 | North Africa          |   1 |      0 |      1 | captured |
+|  145 | Ben      | NA       | Great Britain         |   4 | Western Europe        |   1 |      4 |      3 | captured |
+|  146 | Andrew   | NA       | East Africa           |  12 | North Africa          |   1 |      0 |      1 | captured |
+|  146 | Andrew   | NA       | North Africa          |  11 | Brazil                |   6 |      1 |      6 | captured |
+|  146 | Andrew   | NA       | Brazil                |   9 | Venezuela             |   1 |      0 |      1 | captured |
+|  146 | Andrew   | NA       | Venezuela             |   8 | Central America       |   1 |      0 |      1 | captured |
+|  147 | Will     | NA       | Greenland             |   8 | Iceland               |   1 |      2 |      1 | captured |
+|  147 | Will     | NA       | Eastern United States |   4 | Central America       |   4 |      3 |      1 | kept     |
+|  148 | Ben      | NA       | Middle East           |   4 | East Africa           |   1 |      0 |      1 | captured |
+|  148 | Ben      | NA       | East Africa           |   3 | North Africa          |   1 |      0 |      1 | captured |
+|  148 | Ben      | NA       | North Africa          |   2 | Congo                 |   1 |      1 |      0 | kept     |
+|  149 | Andrew   | NA       | Brazil                |   7 | Argentina             |   1 |      1 |      1 | captured |
+|  149 | Andrew   | NA       | Argentina             |   3 | Peru                  |   1 |      0 |      1 | captured |
+|  150 | Will     | NA       | Eastern United States |  14 | Central America       |   5 |      4 |      5 | captured |
+|  151 | Ben      | NA       | North Africa          |   7 | Congo                 |   1 |      0 |      1 | captured |
+|  151 | Ben      | NA       | Congo                 |   6 | South Africa          |   2 |      3 |      2 | captured |
+|  151 | Ben      | NA       | South Africa          |   2 | Madagascar            |   1 |      1 |      0 | kept     |
+|  152 | Andrew   | NA       | Egypt                 |   4 | North Africa          |   1 |      1 |      1 | captured |
+|  153 | Will     | NA       | Western Europe        |   9 | North Africa          |   2 |      1 |      2 | captured |
+|  153 | Will     | NA       | North Africa          |   7 | Brazil                |   2 |      1 |      2 | captured |
+|  153 | Will     | NA       | Brazil                |   5 | Argentina             |   1 |      0 |      1 | captured |
+|  153 | Will     | NA       | Argentina             |   4 | Peru                  |   2 |      0 |      2 | captured |
+|  154 | Ben      | NA       | East Africa           |   5 | Egypt                 |   1 |      0 |      1 | captured |
+|  154 | Ben      | NA       | Egypt                 |   3 | North Africa          |   1 |      1 |      1 | captured |
+|  154 | Ben      | NA       | East Africa           |   2 | Madagascar            |   1 |      1 |      0 | kept     |
+|  155 | Andrew   | NA       | Venezuela             |  21 | Peru                  |   3 |      1 |      3 | captured |
+|  155 | Andrew   | NA       | Peru                  |  19 | Argentina             |   1 |      0 |      1 | captured |
+|  155 | Andrew   | NA       | Argentina             |  18 | Brazil                |   1 |      0 |      1 | captured |
+|  156 | Will     | NA       | Central America       |  17 | Venezuela             |  14 |      8 |     14 | captured |
+|  157 | Ben      | NA       | East Africa           |   3 | Madagascar            |   1 |      1 |      1 | captured |
+|  157 | Ben      | NA       | Great Britain         |   6 | Western Europe        |   1 |      0 |      1 | captured |
+|  158 | Andrew   | NA       | Siam                  |  48 | India                 |   3 |      2 |      3 | captured |
+|  158 | Andrew   | NA       | India                 |  45 | Afghanistan           |   1 |      3 |      1 | captured |
+|  158 | Andrew   | NA       | Afghanistan           |  41 | Ukraine               |   1 |      0 |      1 | captured |
+|  158 | Andrew   | NA       | Ukraine               |  40 | Scandinavia           |   3 |     12 |      3 | captured |
+|  158 | Andrew   | NA       | Scandinavia           |  27 | Iceland               |   1 |      1 |      1 | captured |
+|  158 | Andrew   | NA       | Iceland               |  25 | Greenland             |   5 |      1 |      5 | captured |
+|  158 | Andrew   | NA       | Greenland             |  23 | Northwest Territory   |   1 |      1 |      1 | captured |
+|  158 | Andrew   | NA       | Northwest Territory   |  21 | Alaska                |   8 |      2 |      8 | captured |
+|  158 | Andrew   | NA       | Alaska                |  18 | Alberta               |   1 |      0 |      1 | captured |
+|  158 | Andrew   | NA       | Alberta               |  17 | Ontario               |   1 |      0 |      1 | captured |
+|  158 | Andrew   | NA       | Ontario               |  16 | Quebec                |   1 |      2 |      1 | captured |
+|  158 | Andrew   | NA       | Quebec                |  13 | Eastern United States |   1 |      0 |      1 | captured |
+|  158 | Andrew   | NA       | Eastern United States |  12 | Western United States |   1 |      0 |      1 | captured |
+|  158 | Andrew   | NA       | Western United States |  11 | Central America       |   1 |      1 |      1 | captured |
+|  158 | Andrew   | NA       | Brazil                |   4 | Venezuela             |   8 |      4 |      8 | captured |
+|  159 | Andrew   | NA       | Middle East           |  11 | India                 |   1 |      1 |      1 | captured |
+|  159 | Andrew   | NA       | India                 |   9 | Siam                  |   1 |      0 |      1 | captured |
+|  159 | Andrew   | NA       | Siam                  |   8 | Indonesia             |   4 |      1 |      4 | captured |
+|  159 | Andrew   | NA       | Indonesia             |   6 | New Guinea            |   1 |      1 |      1 | captured |
+|  159 | Andrew   | NA       | New Guinea            |   4 | Eastern Australia     |   1 |      0 |      1 | captured |
+|  159 | Andrew   | NA       | Eastern Australia     |   3 | Western Australia     |   1 |      0 |      1 | captured |
+|  159 | Andrew   | NA       | China                 |  45 | Afghanistan           |   1 |      3 |      1 | captured |
+|  159 | Andrew   | NA       | Afghanistan           |  41 | Ukraine               |   1 |      0 |      1 | captured |
+|  159 | Andrew   | NA       | Ukraine               |  40 | Scandinavia           |   1 |      3 |      1 | captured |
+|  159 | Andrew   | NA       | Scandinavia           |  36 | Iceland               |   1 |      0 |      1 | captured |
+|  159 | Andrew   | NA       | Iceland               |  35 | Greenland             |   1 |      0 |      1 | captured |
+|  159 | Andrew   | NA       | Greenland             |  34 | Northwest Territory   |   1 |      1 |      1 | captured |
+|  159 | Andrew   | NA       | Northwest Territory   |  32 | Alaska                |   1 |      0 |      1 | captured |
+|  159 | Andrew   | NA       | Alaska                |  31 | Alberta               |   1 |      0 |      1 | captured |
+|  159 | Andrew   | NA       | Alberta               |  30 | Ontario               |   1 |      0 |      1 | captured |
+|  159 | Andrew   | NA       | Ontario               |  29 | Quebec                |   1 |      0 |      1 | captured |
+|  159 | Andrew   | NA       | Quebec                |  28 | Eastern United States |   1 |      0 |      1 | captured |
+|  159 | Andrew   | NA       | Eastern United States |  27 | Western United States |   1 |      0 |      1 | captured |
+|  159 | Andrew   | NA       | Western United States |  26 | Central America       |   3 |      5 |      3 | captured |
+|  159 | Andrew   | NA       | Central America       |  20 | Venezuela             |   1 |      1 |      1 | captured |
+|  159 | Andrew   | NA       | Venezuela             |  18 | Brazil                |   5 |      2 |      5 | captured |
+|  159 | Andrew   | NA       | Brazil                |  15 | Peru                  |   1 |      0 |      1 | captured |
+|  159 | Andrew   | NA       | Peru                  |  14 | Argentina             |   1 |      0 |      1 | captured |
 
 * Stats
   using attack information parsed from the logs.
@@ -2466,10 +4933,10 @@ END OF TURN
   | a.player | attacks | losses | kills | win.ratio | avg.attack.disparity |
   |----------+---------+--------+-------+-----------+----------------------|
   | Josh     |       8 |     15 |    14 |      0.62 |                 3.25 |
-  | Ben      |      29 |     33 |    40 |      0.93 |                 5.62 |
-  | Will     |      36 |     82 |    81 |      0.94 |                 4.06 |
-  | Jim      |      46 |     95 |   102 |      0.78 |                 6.63 |
-  | Andrew   |      50 |     49 |    79 |      0.94 |                 6.62 |
+  | Ben      |      69 |     94 |    96 |      0.87 |                 5.23 |
+  | Jim      |      70 |    169 |   195 |      0.79 |                 6.69 |
+  | Will     |      72 |    128 |   150 |      0.96 |                 6.32 |
+  | Andrew   |     122 |    160 |   217 |      0.94 |                11.61 |
 
 
 * Colophon/Appendix

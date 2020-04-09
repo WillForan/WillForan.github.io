@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2020-04-04 Sat 21:49 -->
+<!-- 2020-04-08 Wed 22:19 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Risk by email stats</title>
@@ -245,16 +245,26 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org55d3c45">1. Log</a></li>
-<li><a href="#org70cd9a6">2. Extract</a></li>
-<li><a href="#orga45c99d">3. Stats</a></li>
-<li><a href="#org65c7a10">4. Colophon/Appendix</a></li>
+<li><a href="#orgc00dcf2">1. What</a></li>
+<li><a href="#org944b632">2. Log</a></li>
+<li><a href="#orgfc8e04a">3. Extract</a></li>
+<li><a href="#org2bbad39">4. Stats</a></li>
+<li><a href="#org004ab50">5. Colophon/Appendix</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org55d3c45" class="outline-2">
-<h2 id="org55d3c45"><span class="section-number-2">1</span> Log</h2>
+<div id="outline-container-orgc00dcf2" class="outline-2">
+<h2 id="orgc00dcf2"><span class="section-number-2">1</span> What</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+Jump to <a href="#org2bbad39">4</a>. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org944b632" class="outline-2">
+<h2 id="org944b632"><span class="section-number-2">2</span> Log</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 Copy/pasted from gamesbyemail.com's game log. The page does fetch malformated json to populate the log, but the objects are dense.
 The presented log seems easier to parse.
@@ -263,14 +273,14 @@ The interesting bits to extract are "Attacks", "Defends", "XXX defeated", and "E
 </div>
 </div>
 
-<div id="outline-container-org70cd9a6" class="outline-2">
-<h2 id="org70cd9a6"><span class="section-number-2">2</span> Extract</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgfc8e04a" class="outline-2">
+<h2 id="orgfc8e04a"><span class="section-number-2">3</span> Extract</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 "Quick" perl code to extract
 </p>
 <div class="org-src-container">
-<pre class="src src-perl" id="orgf0057fb"><span style="font-weight: bold;">use</span> <span style="font-weight: bold; text-decoration: underline;">strict</span>;
+<pre class="src src-perl" id="org4d3bc03"><span style="font-weight: bold;">use</span> <span style="font-weight: bold; text-decoration: underline;">strict</span>;
 <span style="font-weight: bold;">use</span> <span style="font-weight: bold; text-decoration: underline;">experimental</span> <span style="font-style: italic;">'switch'</span>;
 open <span style="font-weight: bold; text-decoration: underline;">my</span> $<span style="font-weight: bold; font-style: italic;">fh</span>, <span style="font-style: italic;">"&lt;"</span>, <span style="font-style: italic;">"txt/risk_log.txt"</span> or <span style="font-weight: bold;">die</span> <span style="font-style: italic;">"no file"</span>;
 <span style="font-weight: bold; text-decoration: underline;">my</span> @<span style="font-weight: bold; font-style: italic; text-decoration: underline;">players</span>=qw<span style="font-style: italic;">/Andrew Josh Will Ben Jim/</span>;
@@ -304,14 +314,14 @@ open <span style="font-weight: bold; text-decoration: underline;">my</span> $<sp
           print STDERR <span style="font-style: italic;">"gave up and attacked someone new!? @{$init}{@keys} -&gt; $_"</span>;
           push @<span style="font-weight: bold; font-style: italic; text-decoration: underline;">res</span>, $<span style="font-weight: bold; font-style: italic;">init</span>;
       }
-      <span style="font-weight: bold; text-decoration: underline;">my</span> $<span style="font-weight: bold; font-style: italic;">adv</span> = $<span style="font-weight: bold; font-style: italic;">player_contries</span>{$<span style="font-weight: bold; font-style: italic;">init</span>-&gt;{<span style="font-style: italic;">"d.country"</span>}};
+      <span style="font-weight: bold; text-decoration: underline;">my</span> $<span style="font-weight: bold; font-style: italic;">adv</span> = $<span style="font-weight: bold; font-style: italic;">player_contries</span>{$<span style="font-weight: bold; font-style: italic;">init</span>-&gt;{<span style="font-style: italic;">"d.country"</span>}}||<span style="font-style: italic;">"NA"</span>;
       $<span style="font-weight: bold; font-style: italic;">init</span> = {<span style="font-style: italic;">"turn"</span>=&gt;$<span style="font-weight: bold; font-style: italic;">turn</span>,
                <span style="font-style: italic;">"a.player"</span>=&gt;$<span style="font-weight: bold; font-style: italic;">player</span>, <span style="font-style: italic;">"d.player"</span>=&gt;$<span style="font-weight: bold; font-style: italic;">adv</span>,
                <span style="font-style: italic;">"a.country"</span>=&gt;$<span style="font-weight: bold; font-style: italic;">1</span>, <span style="font-style: italic;">"a.n"</span>=&gt; $<span style="font-weight: bold; font-style: italic;">2</span>,
                <span style="font-style: italic;">"d.country"</span>=&gt;$<span style="font-weight: bold; font-style: italic;">3</span>, <span style="font-style: italic;">"d.n"</span> =&gt; $<span style="font-weight: bold; font-style: italic;">4</span>, 
                <span style="font-style: italic;">"a.lost"</span> =&gt; 0, <span style="font-style: italic;">"d.lost"</span> =&gt; 0,
                <span style="font-style: italic;">"status"</span>=&gt;<span style="font-style: italic;">"kept"</span>};
-      print STDERR <span style="font-style: italic;">"ERROR: already $init-&gt;{'d.country'}=&gt; $player: @{$init}{@keys}\n"</span> <span style="font-weight: bold;">if</span> $<span style="font-weight: bold; font-style: italic;">adv</span> == $<span style="font-weight: bold; font-style: italic;">player</span>;
+      print STDERR <span style="font-style: italic;">"ERROR: already $init-&gt;{'d.country'}=&gt; $player ($adv): @{$init}{@keys}\n"</span> <span style="font-weight: bold;">if</span> $<span style="font-weight: bold; font-style: italic;">adv</span> == $<span style="font-weight: bold; font-style: italic;">player</span>;
     } <span style="font-weight: bold;">else</span> {
       print STDERR <span style="font-style: italic;">"until def to 1/2 attackes @{$init}{@keys} -&gt; $_"</span>
     }
@@ -354,7 +364,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 
 </pre>
 </div>
-<table id="org4e8a959">
+<table id="org056bf34">
 
 
 <colgroup>
@@ -395,7 +405,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">6</td>
 <td class="org-left">Josh</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Venezuela</td>
 <td class="org-right">5</td>
 <td class="org-left">Central America</td>
@@ -408,7 +418,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">6</td>
 <td class="org-left">Josh</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Eastern United States</td>
 <td class="org-right">9</td>
 <td class="org-left">Quebec</td>
@@ -421,7 +431,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">6</td>
 <td class="org-left">Josh</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Eastern United States</td>
 <td class="org-right">6</td>
 <td class="org-left">Western United States</td>
@@ -434,7 +444,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">7</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Eastern Australia</td>
 <td class="org-right">11</td>
 <td class="org-left">New Guinea</td>
@@ -447,7 +457,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">7</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">New Guinea</td>
 <td class="org-right">3</td>
 <td class="org-left">Indonesia</td>
@@ -460,7 +470,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">8</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Irkutsk</td>
 <td class="org-right">4</td>
 <td class="org-left">Kamchatka</td>
@@ -473,7 +483,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">9</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Argentina</td>
 <td class="org-right">21</td>
 <td class="org-left">Peru</td>
@@ -486,7 +496,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">9</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Peru</td>
 <td class="org-right">19</td>
 <td class="org-left">Venezuela</td>
@@ -499,7 +509,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">9</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Venezuela</td>
 <td class="org-right">17</td>
 <td class="org-left">Brazil</td>
@@ -512,7 +522,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">10</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Egypt</td>
 <td class="org-right">11</td>
 <td class="org-left">East Africa</td>
@@ -525,7 +535,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">10</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">East Africa</td>
 <td class="org-right">3</td>
 <td class="org-left">Congo</td>
@@ -538,7 +548,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">11</td>
 <td class="org-left">Josh</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Ontario</td>
 <td class="org-right">5</td>
 <td class="org-left">Alberta</td>
@@ -551,7 +561,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">12</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Eastern Australia</td>
 <td class="org-right">5</td>
 <td class="org-left">Western Australia</td>
@@ -564,7 +574,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">12</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">New Guinea</td>
 <td class="org-right">2</td>
 <td class="org-left">Western Australia</td>
@@ -577,7 +587,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">13</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Irkutsk</td>
 <td class="org-right">4</td>
 <td class="org-left">Kamchatka</td>
@@ -590,7 +600,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">13</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Alberta</td>
 <td class="org-right">4</td>
 <td class="org-left">Ontario</td>
@@ -603,7 +613,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">14</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Venezuela</td>
 <td class="org-right">13</td>
 <td class="org-left">Central America</td>
@@ -616,7 +626,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">14</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Brazil</td>
 <td class="org-right">7</td>
 <td class="org-left">North Africa</td>
@@ -629,7 +639,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">15</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Egypt</td>
 <td class="org-right">12</td>
 <td class="org-left">North Africa</td>
@@ -642,7 +652,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">15</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Egypt</td>
 <td class="org-right">9</td>
 <td class="org-left">Middle East</td>
@@ -655,7 +665,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">16</td>
 <td class="org-left">Josh</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Quebec</td>
 <td class="org-right">8</td>
 <td class="org-left">Ontario</td>
@@ -668,7 +678,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">16</td>
 <td class="org-left">Josh</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Ontario</td>
 <td class="org-right">3</td>
 <td class="org-left">Alberta</td>
@@ -681,7 +691,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">17</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Indonesia</td>
 <td class="org-right">5</td>
 <td class="org-left">Western Australia</td>
@@ -694,7 +704,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">18</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Alberta</td>
 <td class="org-right">5</td>
 <td class="org-left">Ontario</td>
@@ -707,7 +717,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">18</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Ontario</td>
 <td class="org-right">3</td>
 <td class="org-left">Quebec</td>
@@ -720,7 +730,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">19</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Central America</td>
 <td class="org-right">6</td>
 <td class="org-left">Western United States</td>
@@ -733,7 +743,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">19</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Western United States</td>
 <td class="org-right">3</td>
 <td class="org-left">Eastern United States</td>
@@ -746,7 +756,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">20</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Egypt</td>
 <td class="org-right">8</td>
 <td class="org-left">Southern Europe</td>
@@ -759,7 +769,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">20</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Japan</td>
 <td class="org-right">3</td>
 <td class="org-left">Mongolia</td>
@@ -772,7 +782,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">21</td>
 <td class="org-left">Josh</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">India</td>
 <td class="org-right">4</td>
 <td class="org-left">China</td>
@@ -785,7 +795,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">21</td>
 <td class="org-left">Josh</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">China</td>
 <td class="org-right">3</td>
 <td class="org-left">Afghanistan</td>
@@ -798,7 +808,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">22</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Afghanistan</td>
 <td class="org-right">5</td>
 <td class="org-left">India</td>
@@ -811,7 +821,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">22</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">India</td>
 <td class="org-right">4</td>
 <td class="org-left">China</td>
@@ -824,7 +834,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">22</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">China</td>
 <td class="org-right">3</td>
 <td class="org-left">Ural</td>
@@ -837,7 +847,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">23</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Alberta</td>
 <td class="org-right">5</td>
 <td class="org-left">Northwest Territory</td>
@@ -850,7 +860,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">24</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Brazil</td>
 <td class="org-right">16</td>
 <td class="org-left">North Africa</td>
@@ -863,7 +873,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">25</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Congo</td>
 <td class="org-right">15</td>
 <td class="org-left">North Africa</td>
@@ -876,7 +886,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">25</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">14</td>
 <td class="org-left">Brazil</td>
@@ -889,7 +899,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">26</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Western Europe</td>
 <td class="org-right">5</td>
 <td class="org-left">Southern Europe</td>
@@ -902,7 +912,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">26</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Great Britain</td>
 <td class="org-right">6</td>
 <td class="org-left">Scandinavia</td>
@@ -915,7 +925,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">27</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Northwest Territory</td>
 <td class="org-right">7</td>
 <td class="org-left">Alaska</td>
@@ -928,7 +938,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">27</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Alberta</td>
 <td class="org-right">9</td>
 <td class="org-left">Western United States</td>
@@ -941,7 +951,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">28</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Venezuela</td>
 <td class="org-right">10</td>
 <td class="org-left">Brazil</td>
@@ -954,7 +964,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">28</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Brazil</td>
 <td class="org-right">9</td>
 <td class="org-left">North Africa</td>
@@ -967,7 +977,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">30</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Great Britain</td>
 <td class="org-right">16</td>
 <td class="org-left">Iceland</td>
@@ -980,7 +990,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">31</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Iceland</td>
 <td class="org-right">4</td>
 <td class="org-left">Scandinavia</td>
@@ -993,7 +1003,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">31</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Western United States</td>
 <td class="org-right">8</td>
 <td class="org-left">Central America</td>
@@ -1006,7 +1016,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">31</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Western United States</td>
 <td class="org-right">5</td>
 <td class="org-left">Eastern United States</td>
@@ -1019,7 +1029,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">32</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Brazil</td>
 <td class="org-right">8</td>
 <td class="org-left">North Africa</td>
@@ -1032,7 +1042,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">33</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Mongolia</td>
 <td class="org-right">5</td>
 <td class="org-left">Irkutsk</td>
@@ -1045,7 +1055,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">33</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Irkutsk</td>
 <td class="org-right">3</td>
 <td class="org-left">Siberia</td>
@@ -1058,7 +1068,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">33</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Siberia</td>
 <td class="org-right">2</td>
 <td class="org-left">Ural</td>
@@ -1071,7 +1081,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">34</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Great Britain</td>
 <td class="org-right">8</td>
 <td class="org-left">Iceland</td>
@@ -1084,7 +1094,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">34</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Ukraine</td>
 <td class="org-right">3</td>
 <td class="org-left">Scandinavia</td>
@@ -1097,7 +1107,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">34</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Iceland</td>
 <td class="org-right">3</td>
 <td class="org-left">Greenland</td>
@@ -1110,7 +1120,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">35</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Quebec</td>
 <td class="org-right">5</td>
 <td class="org-left">Greenland</td>
@@ -1123,7 +1133,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">36</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">8</td>
 <td class="org-left">Western Europe</td>
@@ -1136,7 +1146,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">37</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Siberia</td>
 <td class="org-right">4</td>
 <td class="org-left">Yakutsk</td>
@@ -1149,7 +1159,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">38</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Iceland</td>
 <td class="org-right">6</td>
 <td class="org-left">Greenland</td>
@@ -1162,7 +1172,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">38</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Iceland</td>
 <td class="org-right">3</td>
 <td class="org-left">Greenland</td>
@@ -1175,7 +1185,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">40</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">17</td>
 <td class="org-left">Egypt</td>
@@ -1188,7 +1198,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">40</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">14</td>
 <td class="org-left">Western Europe</td>
@@ -1201,7 +1211,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">40</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">10</td>
 <td class="org-left">Congo</td>
@@ -1214,7 +1224,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">40</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">8</td>
 <td class="org-left">Congo</td>
@@ -1227,7 +1237,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">41</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Siberia</td>
 <td class="org-right">16</td>
 <td class="org-left">Ural</td>
@@ -1240,7 +1250,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">41</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Ural</td>
 <td class="org-right">3</td>
 <td class="org-left">Afghanistan</td>
@@ -1253,7 +1263,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">41</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Afghanistan</td>
 <td class="org-right">2</td>
 <td class="org-left">Ukraine</td>
@@ -1266,7 +1276,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">42</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Iceland</td>
 <td class="org-right">12</td>
 <td class="org-left">Greenland</td>
@@ -1279,7 +1289,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">43</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Greenland</td>
 <td class="org-right">14</td>
 <td class="org-left">Iceland</td>
@@ -1292,7 +1302,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">44</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">12</td>
 <td class="org-left">Western Europe</td>
@@ -1305,7 +1315,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">44</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">5</td>
 <td class="org-left">Congo</td>
@@ -1318,7 +1328,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">45</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Ural</td>
 <td class="org-right">4</td>
 <td class="org-left">Ukraine</td>
@@ -1331,7 +1341,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">45</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Ukraine</td>
 <td class="org-right">3</td>
 <td class="org-left">Scandinavia</td>
@@ -1344,7 +1354,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">46</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Great Britain</td>
 <td class="org-right">7</td>
 <td class="org-left">Iceland</td>
@@ -1357,7 +1367,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">46</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Iceland</td>
 <td class="org-right">6</td>
 <td class="org-left">Greenland</td>
@@ -1370,7 +1380,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">47</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Northwest Territory</td>
 <td class="org-right">5</td>
 <td class="org-left">Greenland</td>
@@ -1383,7 +1393,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">48</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Western Europe</td>
 <td class="org-right">6</td>
 <td class="org-left">Southern Europe</td>
@@ -1396,7 +1406,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">48</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Southern Europe</td>
 <td class="org-right">3</td>
 <td class="org-left">Middle East</td>
@@ -1409,7 +1419,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">49</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Middle East</td>
 <td class="org-right">4</td>
 <td class="org-left">Southern Europe</td>
@@ -1422,7 +1432,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">50</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Iceland</td>
 <td class="org-right">8</td>
 <td class="org-left">Greenland</td>
@@ -1435,7 +1445,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">51</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Greenland</td>
 <td class="org-right">10</td>
 <td class="org-left">Iceland</td>
@@ -1448,7 +1458,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">52</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Venezuela</td>
 <td class="org-right">24</td>
 <td class="org-left">Central America</td>
@@ -1461,7 +1471,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">52</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Central America</td>
 <td class="org-right">18</td>
 <td class="org-left">Eastern United States</td>
@@ -1474,7 +1484,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">52</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Eastern United States</td>
 <td class="org-right">3</td>
 <td class="org-left">Western United States</td>
@@ -1487,7 +1497,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">52</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">6</td>
 <td class="org-left">Southern Europe</td>
@@ -1500,7 +1510,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">53</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Southern Europe</td>
 <td class="org-right">3</td>
 <td class="org-left">Egypt</td>
@@ -1513,7 +1523,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">53</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Ural</td>
 <td class="org-right">13</td>
 <td class="org-left">Afghanistan</td>
@@ -1526,7 +1536,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">53</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Afghanistan</td>
 <td class="org-right">3</td>
 <td class="org-left">China</td>
@@ -1539,7 +1549,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">54</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Great Britain</td>
 <td class="org-right">9</td>
 <td class="org-left">Western Europe</td>
@@ -1552,7 +1562,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">54</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Great Britain</td>
 <td class="org-right">6</td>
 <td class="org-left">Iceland</td>
@@ -1565,7 +1575,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">55</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Quebec</td>
 <td class="org-right">5</td>
 <td class="org-left">Eastern United States</td>
@@ -1578,7 +1588,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">56</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">9</td>
 <td class="org-left">Egypt</td>
@@ -1591,7 +1601,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">56</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">8</td>
 <td class="org-left">Western Europe</td>
@@ -1604,7 +1614,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">56</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Western United States</td>
 <td class="org-right">2</td>
 <td class="org-left">Eastern United States</td>
@@ -1617,7 +1627,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">57</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">South Africa</td>
 <td class="org-right">15</td>
 <td class="org-left">Congo</td>
@@ -1630,7 +1640,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">57</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">South Africa</td>
 <td class="org-right">12</td>
 <td class="org-left">East Africa</td>
@@ -1643,7 +1653,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">57</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">East Africa</td>
 <td class="org-right">3</td>
 <td class="org-left">Egypt</td>
@@ -1656,7 +1666,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">57</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Congo</td>
 <td class="org-right">3</td>
 <td class="org-left">North Africa</td>
@@ -1669,7 +1679,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">57</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">South Africa</td>
 <td class="org-right">9</td>
 <td class="org-left">Madagascar</td>
@@ -1682,7 +1692,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">58</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Northern Europe</td>
 <td class="org-right">7</td>
 <td class="org-left">Southern Europe</td>
@@ -1695,7 +1705,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">58</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Southern Europe</td>
 <td class="org-right">4</td>
 <td class="org-left">Egypt</td>
@@ -1708,7 +1718,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">58</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Scandinavia</td>
 <td class="org-right">3</td>
 <td class="org-left">Ukraine</td>
@@ -1721,7 +1731,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">59</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Alberta</td>
 <td class="org-right">17</td>
 <td class="org-left">Western United States</td>
@@ -1734,7 +1744,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">59</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Western United States</td>
 <td class="org-right">16</td>
 <td class="org-left">Central America</td>
@@ -1747,7 +1757,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">60</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Western Europe</td>
 <td class="org-right">18</td>
 <td class="org-left">North Africa</td>
@@ -1760,7 +1770,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">60</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">13</td>
 <td class="org-left">Egypt</td>
@@ -1773,7 +1783,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">61</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">East Africa</td>
 <td class="org-right">10</td>
 <td class="org-left">North Africa</td>
@@ -1786,7 +1796,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">62</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Iceland</td>
 <td class="org-right">9</td>
 <td class="org-left">Greenland</td>
@@ -1799,7 +1809,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">63</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Kamchatka</td>
 <td class="org-right">5</td>
 <td class="org-left">Yakutsk</td>
@@ -1812,7 +1822,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">64</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Venezuela</td>
 <td class="org-right">17</td>
 <td class="org-left">Central America</td>
@@ -1825,7 +1835,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">65</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Irkutsk</td>
 <td class="org-right">5</td>
 <td class="org-left">Yakutsk</td>
@@ -1838,7 +1848,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">65</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Ural</td>
 <td class="org-right">9</td>
 <td class="org-left">Afghanistan</td>
@@ -1851,7 +1861,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">66</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Iceland</td>
 <td class="org-right">18</td>
 <td class="org-left">Greenland</td>
@@ -1864,7 +1874,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">67</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Ontario</td>
 <td class="org-right">15</td>
 <td class="org-left">Greenland</td>
@@ -1877,7 +1887,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">67</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Greenland</td>
 <td class="org-right">12</td>
 <td class="org-left">Iceland</td>
@@ -1890,7 +1900,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">68</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Western Europe</td>
 <td class="org-right">5</td>
 <td class="org-left">Southern Europe</td>
@@ -1903,7 +1913,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">68</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Venezuela</td>
 <td class="org-right">19</td>
 <td class="org-left">Central America</td>
@@ -1916,7 +1926,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">69</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Yakutsk</td>
 <td class="org-right">11</td>
 <td class="org-left">Kamchatka</td>
@@ -1929,7 +1939,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">69</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Kamchatka</td>
 <td class="org-right">8</td>
 <td class="org-left">Alaska</td>
@@ -1942,7 +1952,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">69</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Alaska</td>
 <td class="org-right">6</td>
 <td class="org-left">Northwest Territory</td>
@@ -1955,7 +1965,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">69</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Northwest Territory</td>
 <td class="org-right">5</td>
 <td class="org-left">Alberta</td>
@@ -1968,7 +1978,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">69</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Ural</td>
 <td class="org-right">9</td>
 <td class="org-left">China</td>
@@ -1981,7 +1991,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">70</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Egypt</td>
 <td class="org-right">7</td>
 <td class="org-left">East Africa</td>
@@ -1994,7 +2004,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">71</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Ontario</td>
 <td class="org-right">4</td>
 <td class="org-left">Northwest Territory</td>
@@ -2007,7 +2017,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">71</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Ontario</td>
 <td class="org-right">2</td>
 <td class="org-left">Northwest Territory</td>
@@ -2020,7 +2030,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">72</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Southern Europe</td>
 <td class="org-right">18</td>
 <td class="org-left">Ukraine</td>
@@ -2033,7 +2043,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">72</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Southern Europe</td>
 <td class="org-right">12</td>
 <td class="org-left">Middle East</td>
@@ -2046,7 +2056,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">72</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Middle East</td>
 <td class="org-right">3</td>
 <td class="org-left">Egypt</td>
@@ -2059,7 +2069,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">73</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Afghanistan</td>
 <td class="org-right">6</td>
 <td class="org-left">Middle East</td>
@@ -2072,7 +2082,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">73</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">China</td>
 <td class="org-right">11</td>
 <td class="org-left">India</td>
@@ -2085,7 +2095,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">73</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Alberta</td>
 <td class="org-right">3</td>
 <td class="org-left">Ontario</td>
@@ -2098,7 +2108,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">73</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Ontario</td>
 <td class="org-right">2</td>
 <td class="org-left">Quebec</td>
@@ -2111,7 +2121,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">74</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">East Africa</td>
 <td class="org-right">9</td>
 <td class="org-left">Middle East</td>
@@ -2124,7 +2134,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">74</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Middle East</td>
 <td class="org-right">5</td>
 <td class="org-left">India</td>
@@ -2137,7 +2147,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">75</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Eastern United States</td>
 <td class="org-right">4</td>
 <td class="org-left">Quebec</td>
@@ -2150,7 +2160,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">76</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Venezuela</td>
 <td class="org-right">14</td>
 <td class="org-left">Central America</td>
@@ -2163,7 +2173,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">76</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">East Africa</td>
 <td class="org-right">3</td>
 <td class="org-left">Congo</td>
@@ -2176,7 +2186,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">76</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Congo</td>
 <td class="org-right">2</td>
 <td class="org-left">South Africa</td>
@@ -2189,7 +2199,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">77</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">India</td>
 <td class="org-right">8</td>
 <td class="org-left">Afghanistan</td>
@@ -2202,7 +2212,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">78</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Middle East</td>
 <td class="org-right">5</td>
 <td class="org-left">Southern Europe</td>
@@ -2215,7 +2225,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">79</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Quebec</td>
 <td class="org-right">6</td>
 <td class="org-left">Ontario</td>
@@ -2228,7 +2238,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">80</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Congo</td>
 <td class="org-right">6</td>
 <td class="org-left">South Africa</td>
@@ -2241,7 +2251,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">80</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">South Africa</td>
 <td class="org-right">5</td>
 <td class="org-left">Madagascar</td>
@@ -2254,7 +2264,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">80</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Venezuela</td>
 <td class="org-right">14</td>
 <td class="org-left">Central America</td>
@@ -2267,7 +2277,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">81</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Afghanistan</td>
 <td class="org-right">15</td>
 <td class="org-left">Middle East</td>
@@ -2280,7 +2290,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">81</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Middle East</td>
 <td class="org-right">14</td>
 <td class="org-left">Egypt</td>
@@ -2293,7 +2303,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">81</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Egypt</td>
 <td class="org-right">13</td>
 <td class="org-left">North Africa</td>
@@ -2306,7 +2316,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">81</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">12</td>
 <td class="org-left">Congo</td>
@@ -2319,7 +2329,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">81</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Congo</td>
 <td class="org-right">10</td>
 <td class="org-left">East Africa</td>
@@ -2332,7 +2342,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">81</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">East Africa</td>
 <td class="org-right">9</td>
 <td class="org-left">Madagascar</td>
@@ -2345,7 +2355,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">81</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Madagascar</td>
 <td class="org-right">5</td>
 <td class="org-left">South Africa</td>
@@ -2358,7 +2368,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">82</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Southern Europe</td>
 <td class="org-right">7</td>
 <td class="org-left">Middle East</td>
@@ -2371,7 +2381,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">82</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Middle East</td>
 <td class="org-right">3</td>
 <td class="org-left">Egypt</td>
@@ -2384,7 +2394,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">83</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Ontario</td>
 <td class="org-right">6</td>
 <td class="org-left">Alberta</td>
@@ -2397,7 +2407,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">83</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Alberta</td>
 <td class="org-right">5</td>
 <td class="org-left">Northwest Territory</td>
@@ -2410,7 +2420,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">83</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Northwest Territory</td>
 <td class="org-right">4</td>
 <td class="org-left">Alaska</td>
@@ -2423,7 +2433,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">84</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Venezuela</td>
 <td class="org-right">14</td>
 <td class="org-left">Central America</td>
@@ -2436,7 +2446,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">84</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">North Africa</td>
 <td class="org-right">7</td>
 <td class="org-left">Egypt</td>
@@ -2449,7 +2459,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">84</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Egypt</td>
 <td class="org-right">3</td>
 <td class="org-left">East Africa</td>
@@ -2462,7 +2472,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">85</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">India</td>
 <td class="org-right">13</td>
 <td class="org-left">Middle East</td>
@@ -2475,7 +2485,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">86</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Great Britain</td>
 <td class="org-right">7</td>
 <td class="org-left">Iceland</td>
@@ -2488,7 +2498,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">86</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Iceland</td>
 <td class="org-right">5</td>
 <td class="org-left">Greenland</td>
@@ -2501,7 +2511,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">87</td>
 <td class="org-left">Ben</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Quebec</td>
 <td class="org-right">12</td>
 <td class="org-left">Greenland</td>
@@ -2514,7 +2524,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">88</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Ukraine</td>
 <td class="org-right">4</td>
 <td class="org-left">Ural</td>
@@ -2527,7 +2537,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">88</td>
 <td class="org-left">Jim</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Venezuela</td>
 <td class="org-right">14</td>
 <td class="org-left">Central America</td>
@@ -2540,7 +2550,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">89</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Middle East</td>
 <td class="org-right">23</td>
 <td class="org-left">Southern Europe</td>
@@ -2553,7 +2563,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">89</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Southern Europe</td>
 <td class="org-right">21</td>
 <td class="org-left">Northern Europe</td>
@@ -2566,7 +2576,7 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">89</td>
 <td class="org-left">Andrew</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Northern Europe</td>
 <td class="org-right">3</td>
 <td class="org-left">Ukraine</td>
@@ -2579,10 +2589,2246 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 <tr>
 <td class="org-right">90</td>
 <td class="org-left">Will</td>
-<td class="org-left">&#xa0;</td>
+<td class="org-left">NA</td>
 <td class="org-left">Great Britain</td>
 <td class="org-right">11</td>
 <td class="org-left">Scandinavia</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">91</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Central America</td>
+<td class="org-right">15</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">12</td>
+<td class="org-right">3</td>
+<td class="org-right">3</td>
+<td class="org-left">kept</td>
+</tr>
+
+<tr>
+<td class="org-right">92</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">14</td>
+<td class="org-left">Central America</td>
+<td class="org-right">12</td>
+<td class="org-right">9</td>
+<td class="org-right">12</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">93</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Afghanistan</td>
+<td class="org-right">3</td>
+<td class="org-left">Ukraine</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">94</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Scandinavia</td>
+<td class="org-right">21</td>
+<td class="org-left">Ukraine</td>
+<td class="org-right">2</td>
+<td class="org-right">3</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">94</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Scandinavia</td>
+<td class="org-right">15</td>
+<td class="org-left">Northern Europe</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">95</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Alaska</td>
+<td class="org-right">9</td>
+<td class="org-left">Kamchatka</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">95</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Greenland</td>
+<td class="org-right">10</td>
+<td class="org-left">Iceland</td>
+<td class="org-right">3</td>
+<td class="org-right">2</td>
+<td class="org-right">3</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">96</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">Egypt</td>
+<td class="org-right">18</td>
+<td class="org-left">East Africa</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">96</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">East Africa</td>
+<td class="org-right">16</td>
+<td class="org-left">South Africa</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">96</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">East Africa</td>
+<td class="org-right">15</td>
+<td class="org-left">Madagascar</td>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">96</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">East Africa</td>
+<td class="org-right">13</td>
+<td class="org-left">Middle East</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">97</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Southern Europe</td>
+<td class="org-right">16</td>
+<td class="org-left">Ukraine</td>
+<td class="org-right">3</td>
+<td class="org-right">2</td>
+<td class="org-right">3</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">98</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Northern Europe</td>
+<td class="org-right">8</td>
+<td class="org-left">Southern Europe</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">99</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Eastern United States</td>
+<td class="org-right">7</td>
+<td class="org-left">Central America</td>
+<td class="org-right">3</td>
+<td class="org-right">5</td>
+<td class="org-right">3</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">100</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">21</td>
+<td class="org-left">Western Europe</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">100</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">Western Europe</td>
+<td class="org-right">14</td>
+<td class="org-left">Great Britain</td>
+<td class="org-right">10</td>
+<td class="org-right">10</td>
+<td class="org-right">10</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">101</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Ukraine</td>
+<td class="org-right">20</td>
+<td class="org-left">Northern Europe</td>
+<td class="org-right">4</td>
+<td class="org-right">1</td>
+<td class="org-right">4</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">101</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Northern Europe</td>
+<td class="org-right">18</td>
+<td class="org-left">Scandinavia</td>
+<td class="org-right">3</td>
+<td class="org-right">4</td>
+<td class="org-right">3</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">102</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Southern Europe</td>
+<td class="org-right">9</td>
+<td class="org-left">Egypt</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">102</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Egypt</td>
+<td class="org-right">8</td>
+<td class="org-left">East Africa</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">103</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Central America</td>
+<td class="org-right">9</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">6</td>
+<td class="org-right">6</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">104</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">Western Europe</td>
+<td class="org-right">3</td>
+<td class="org-left">Great Britain</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">104</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">11</td>
+<td class="org-left">Egypt</td>
+<td class="org-right">4</td>
+<td class="org-right">6</td>
+<td class="org-right">4</td>
+<td class="org-left">kept</td>
+</tr>
+
+<tr>
+<td class="org-right">105</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Scandinavia</td>
+<td class="org-right">13</td>
+<td class="org-left">Iceland</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">105</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Iceland</td>
+<td class="org-right">12</td>
+<td class="org-left">Greenland</td>
+<td class="org-right">5</td>
+<td class="org-right">11</td>
+<td class="org-right">4</td>
+<td class="org-left">kept</td>
+</tr>
+
+<tr>
+<td class="org-right">106</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">East Africa</td>
+<td class="org-right">19</td>
+<td class="org-left">Madagascar</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">106</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Madagascar</td>
+<td class="org-right">14</td>
+<td class="org-left">South Africa</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">107</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Kamchatka</td>
+<td class="org-right">3</td>
+<td class="org-left">Yakutsk</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">108</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">Middle East</td>
+<td class="org-right">3</td>
+<td class="org-left">Southern Europe</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">108</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">Southern Europe</td>
+<td class="org-right">2</td>
+<td class="org-left">Egypt</td>
+<td class="org-right">2</td>
+<td class="org-right">9</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">108</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">Egypt</td>
+<td class="org-right">3</td>
+<td class="org-left">East Africa</td>
+<td class="org-right">4</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">kept</td>
+</tr>
+
+<tr>
+<td class="org-right">109</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Mongolia</td>
+<td class="org-right">10</td>
+<td class="org-left">Kamchatka</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">110</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">South Africa</td>
+<td class="org-right">16</td>
+<td class="org-left">Congo</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">111</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Yakutsk</td>
+<td class="org-right">2</td>
+<td class="org-left">Siberia</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">112</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">Ural</td>
+<td class="org-right">4</td>
+<td class="org-left">Ukraine</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">112</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">12</td>
+<td class="org-left">Central America</td>
+<td class="org-right">12</td>
+<td class="org-right">4</td>
+<td class="org-right">4</td>
+<td class="org-left">kept</td>
+</tr>
+
+<tr>
+<td class="org-right">113</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Scandinavia</td>
+<td class="org-right">13</td>
+<td class="org-left">Ukraine</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">114</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">East Africa</td>
+<td class="org-right">17</td>
+<td class="org-left">Egypt</td>
+<td class="org-right">1</td>
+<td class="org-right">3</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">114</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Egypt</td>
+<td class="org-right">11</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">115</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Iceland</td>
+<td class="org-right">3</td>
+<td class="org-left">Great Britain</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">115</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Great Britain</td>
+<td class="org-right">2</td>
+<td class="org-left">Western Europe</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">116</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">16</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">7</td>
+<td class="org-right">1</td>
+<td class="org-right">7</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">117</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Ukraine</td>
+<td class="org-right">11</td>
+<td class="org-left">Ural</td>
+<td class="org-right">2</td>
+<td class="org-right">6</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">118</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Egypt</td>
+<td class="org-right">7</td>
+<td class="org-left">Middle East</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">119</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Iceland</td>
+<td class="org-right">6</td>
+<td class="org-left">Scandinavia</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">119</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Great Britain</td>
+<td class="org-right">4</td>
+<td class="org-left">Northern Europe</td>
+<td class="org-right">1</td>
+<td class="org-right">3</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">119</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Scandinavia</td>
+<td class="org-right">3</td>
+<td class="org-left">Northern Europe</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-left">kept</td>
+</tr>
+
+<tr>
+<td class="org-right">120</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">21</td>
+<td class="org-left">Central America</td>
+<td class="org-right">15</td>
+<td class="org-right">9</td>
+<td class="org-right">15</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">120</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">Central America</td>
+<td class="org-right">11</td>
+<td class="org-left">Eastern United States</td>
+<td class="org-right">1</td>
+<td class="org-right">3</td>
+<td class="org-right">0</td>
+<td class="org-left">kept</td>
+</tr>
+
+<tr>
+<td class="org-right">121</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">India</td>
+<td class="org-right">4</td>
+<td class="org-left">Middle East</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">121</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">China</td>
+<td class="org-right">3</td>
+<td class="org-left">Siam</td>
+<td class="org-right">26</td>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-left">kept</td>
+</tr>
+
+<tr>
+<td class="org-right">122</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Egypt</td>
+<td class="org-right">9</td>
+<td class="org-left">Southern Europe</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">123</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Eastern United States</td>
+<td class="org-right">5</td>
+<td class="org-left">Central America</td>
+<td class="org-right">1</td>
+<td class="org-right">6</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">124</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">Central America</td>
+<td class="org-right">6</td>
+<td class="org-left">Eastern United States</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">124</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">Central America</td>
+<td class="org-right">5</td>
+<td class="org-left">Western United States</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">125</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Middle East</td>
+<td class="org-right">3</td>
+<td class="org-left">Southern Europe</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">126</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Congo</td>
+<td class="org-right">17</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">126</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">15</td>
+<td class="org-left">Western Europe</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">127</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Alberta</td>
+<td class="org-right">14</td>
+<td class="org-left">Western United States</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">127</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Western United States</td>
+<td class="org-right">13</td>
+<td class="org-left">Eastern United States</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">127</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Eastern United States</td>
+<td class="org-right">12</td>
+<td class="org-left">Central America</td>
+<td class="org-right">4</td>
+<td class="org-right">4</td>
+<td class="org-right">4</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">128</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">13</td>
+<td class="org-left">Central America</td>
+<td class="org-right">7</td>
+<td class="org-right">5</td>
+<td class="org-right">7</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">128</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">Central America</td>
+<td class="org-right">3</td>
+<td class="org-left">Eastern United States</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-left">kept</td>
+</tr>
+
+<tr>
+<td class="org-right">129</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Northern Europe</td>
+<td class="org-right">4</td>
+<td class="org-left">Great Britain</td>
+<td class="org-right">1</td>
+<td class="org-right">5</td>
+<td class="org-right">3</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">130</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Western Europe</td>
+<td class="org-right">5</td>
+<td class="org-left">Great Britain</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">131</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Eastern United States</td>
+<td class="org-right">14</td>
+<td class="org-left">Central America</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">131</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Central America</td>
+<td class="org-right">13</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">5</td>
+<td class="org-right">2</td>
+<td class="org-right">5</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">131</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">4</td>
+<td class="org-left">Peru</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">131</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Peru</td>
+<td class="org-right">3</td>
+<td class="org-left">Argentina</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-left">kept</td>
+</tr>
+
+<tr>
+<td class="org-right">132</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">17</td>
+<td class="org-left">Peru</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">132</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">16</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">1</td>
+<td class="org-right">3</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">132</td>
+<td class="org-left">Jim</td>
+<td class="org-left">NA</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">12</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">17</td>
+<td class="org-right">7</td>
+<td class="org-right">17</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">133</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Siberia</td>
+<td class="org-right">4</td>
+<td class="org-left">Yakutsk</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">134</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Congo</td>
+<td class="org-right">7</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">135</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Central America</td>
+<td class="org-right">15</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">135</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">13</td>
+<td class="org-left">Peru</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">135</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Peru</td>
+<td class="org-right">12</td>
+<td class="org-left">Argentina</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">135</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Argentina</td>
+<td class="org-right">10</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">4</td>
+<td class="org-right">1</td>
+<td class="org-right">4</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">136</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Southern Europe</td>
+<td class="org-right">4</td>
+<td class="org-left">Western Europe</td>
+<td class="org-right">1</td>
+<td class="org-right">4</td>
+<td class="org-right">0</td>
+<td class="org-left">kept</td>
+</tr>
+
+<tr>
+<td class="org-right">137</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">18</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">10</td>
+<td class="org-right">4</td>
+<td class="org-right">10</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">137</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">12</td>
+<td class="org-left">Argentina</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">137</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Argentina</td>
+<td class="org-right">11</td>
+<td class="org-left">Peru</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">137</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Peru</td>
+<td class="org-right">10</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">137</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">9</td>
+<td class="org-left">Central America</td>
+<td class="org-right">1</td>
+<td class="org-right">4</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">138</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Eastern United States</td>
+<td class="org-right">18</td>
+<td class="org-left">Central America</td>
+<td class="org-right">3</td>
+<td class="org-right">3</td>
+<td class="org-right">3</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">138</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Central America</td>
+<td class="org-right">14</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">2</td>
+<td class="org-right">2</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">138</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">11</td>
+<td class="org-left">Peru</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">138</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Peru</td>
+<td class="org-right">10</td>
+<td class="org-left">Argentina</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">138</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Argentina</td>
+<td class="org-right">9</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">138</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Iceland</td>
+<td class="org-right">10</td>
+<td class="org-left">Great Britain</td>
+<td class="org-right">5</td>
+<td class="org-right">5</td>
+<td class="org-right">5</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">138</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Great Britain</td>
+<td class="org-right">4</td>
+<td class="org-left">Western Europe</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">138</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">8</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">3</td>
+<td class="org-right">4</td>
+<td class="org-right">3</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">139</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Ukraine</td>
+<td class="org-right">6</td>
+<td class="org-left">Scandinavia</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">140</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Egypt</td>
+<td class="org-right">11</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">140</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">9</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">5</td>
+<td class="org-right">6</td>
+<td class="org-right">0</td>
+<td class="org-left">kept</td>
+</tr>
+
+<tr>
+<td class="org-right">141</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Alaska</td>
+<td class="org-right">11</td>
+<td class="org-left">Kamchatka</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">142</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Scandinavia</td>
+<td class="org-right">7</td>
+<td class="org-left">Iceland</td>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">142</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Iceland</td>
+<td class="org-right">6</td>
+<td class="org-left">Great Britain</td>
+<td class="org-right">2</td>
+<td class="org-right">3</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">143</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">17</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">10</td>
+<td class="org-right">10</td>
+<td class="org-right">10</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">143</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">6</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">143</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">3</td>
+<td class="org-left">Central America</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-left">kept</td>
+</tr>
+
+<tr>
+<td class="org-right">144</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Central America</td>
+<td class="org-right">10</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">144</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">8</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">144</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Western Europe</td>
+<td class="org-right">2</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">145</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Great Britain</td>
+<td class="org-right">4</td>
+<td class="org-left">Western Europe</td>
+<td class="org-right">1</td>
+<td class="org-right">4</td>
+<td class="org-right">3</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">146</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">East Africa</td>
+<td class="org-right">12</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">146</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">11</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">6</td>
+<td class="org-right">1</td>
+<td class="org-right">6</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">146</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">9</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">146</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">8</td>
+<td class="org-left">Central America</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">147</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Greenland</td>
+<td class="org-right">8</td>
+<td class="org-left">Iceland</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">147</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Eastern United States</td>
+<td class="org-right">4</td>
+<td class="org-left">Central America</td>
+<td class="org-right">4</td>
+<td class="org-right">3</td>
+<td class="org-right">1</td>
+<td class="org-left">kept</td>
+</tr>
+
+<tr>
+<td class="org-right">148</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Middle East</td>
+<td class="org-right">4</td>
+<td class="org-left">East Africa</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">148</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">East Africa</td>
+<td class="org-right">3</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">148</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">2</td>
+<td class="org-left">Congo</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-left">kept</td>
+</tr>
+
+<tr>
+<td class="org-right">149</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">7</td>
+<td class="org-left">Argentina</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">149</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Argentina</td>
+<td class="org-right">3</td>
+<td class="org-left">Peru</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">150</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Eastern United States</td>
+<td class="org-right">14</td>
+<td class="org-left">Central America</td>
+<td class="org-right">5</td>
+<td class="org-right">4</td>
+<td class="org-right">5</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">151</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">7</td>
+<td class="org-left">Congo</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">151</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Congo</td>
+<td class="org-right">6</td>
+<td class="org-left">South Africa</td>
+<td class="org-right">2</td>
+<td class="org-right">3</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">151</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">South Africa</td>
+<td class="org-right">2</td>
+<td class="org-left">Madagascar</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-left">kept</td>
+</tr>
+
+<tr>
+<td class="org-right">152</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Egypt</td>
+<td class="org-right">4</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">153</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Western Europe</td>
+<td class="org-right">9</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">153</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">7</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">153</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">5</td>
+<td class="org-left">Argentina</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">153</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Argentina</td>
+<td class="org-right">4</td>
+<td class="org-left">Peru</td>
+<td class="org-right">2</td>
+<td class="org-right">0</td>
+<td class="org-right">2</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">154</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">East Africa</td>
+<td class="org-right">5</td>
+<td class="org-left">Egypt</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">154</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Egypt</td>
+<td class="org-right">3</td>
+<td class="org-left">North Africa</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">154</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">East Africa</td>
+<td class="org-right">2</td>
+<td class="org-left">Madagascar</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-left">kept</td>
+</tr>
+
+<tr>
+<td class="org-right">155</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">21</td>
+<td class="org-left">Peru</td>
+<td class="org-right">3</td>
+<td class="org-right">1</td>
+<td class="org-right">3</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">155</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Peru</td>
+<td class="org-right">19</td>
+<td class="org-left">Argentina</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">155</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Argentina</td>
+<td class="org-right">18</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">156</td>
+<td class="org-left">Will</td>
+<td class="org-left">NA</td>
+<td class="org-left">Central America</td>
+<td class="org-right">17</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">14</td>
+<td class="org-right">8</td>
+<td class="org-right">14</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">157</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">East Africa</td>
+<td class="org-right">3</td>
+<td class="org-left">Madagascar</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">157</td>
+<td class="org-left">Ben</td>
+<td class="org-left">NA</td>
+<td class="org-left">Great Britain</td>
+<td class="org-right">6</td>
+<td class="org-left">Western Europe</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">158</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Siam</td>
+<td class="org-right">48</td>
+<td class="org-left">India</td>
+<td class="org-right">3</td>
+<td class="org-right">2</td>
+<td class="org-right">3</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">158</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">India</td>
+<td class="org-right">45</td>
+<td class="org-left">Afghanistan</td>
+<td class="org-right">1</td>
+<td class="org-right">3</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">158</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Afghanistan</td>
+<td class="org-right">41</td>
+<td class="org-left">Ukraine</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">158</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Ukraine</td>
+<td class="org-right">40</td>
+<td class="org-left">Scandinavia</td>
+<td class="org-right">3</td>
+<td class="org-right">12</td>
+<td class="org-right">3</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">158</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Scandinavia</td>
+<td class="org-right">27</td>
+<td class="org-left">Iceland</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">158</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Iceland</td>
+<td class="org-right">25</td>
+<td class="org-left">Greenland</td>
+<td class="org-right">5</td>
+<td class="org-right">1</td>
+<td class="org-right">5</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">158</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Greenland</td>
+<td class="org-right">23</td>
+<td class="org-left">Northwest Territory</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">158</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Northwest Territory</td>
+<td class="org-right">21</td>
+<td class="org-left">Alaska</td>
+<td class="org-right">8</td>
+<td class="org-right">2</td>
+<td class="org-right">8</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">158</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Alaska</td>
+<td class="org-right">18</td>
+<td class="org-left">Alberta</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">158</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Alberta</td>
+<td class="org-right">17</td>
+<td class="org-left">Ontario</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">158</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Ontario</td>
+<td class="org-right">16</td>
+<td class="org-left">Quebec</td>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">158</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Quebec</td>
+<td class="org-right">13</td>
+<td class="org-left">Eastern United States</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">158</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Eastern United States</td>
+<td class="org-right">12</td>
+<td class="org-left">Western United States</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">158</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Western United States</td>
+<td class="org-right">11</td>
+<td class="org-left">Central America</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">158</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">4</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">8</td>
+<td class="org-right">4</td>
+<td class="org-right">8</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Middle East</td>
+<td class="org-right">11</td>
+<td class="org-left">India</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">India</td>
+<td class="org-right">9</td>
+<td class="org-left">Siam</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Siam</td>
+<td class="org-right">8</td>
+<td class="org-left">Indonesia</td>
+<td class="org-right">4</td>
+<td class="org-right">1</td>
+<td class="org-right">4</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Indonesia</td>
+<td class="org-right">6</td>
+<td class="org-left">New Guinea</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">New Guinea</td>
+<td class="org-right">4</td>
+<td class="org-left">Eastern Australia</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Eastern Australia</td>
+<td class="org-right">3</td>
+<td class="org-left">Western Australia</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">China</td>
+<td class="org-right">45</td>
+<td class="org-left">Afghanistan</td>
+<td class="org-right">1</td>
+<td class="org-right">3</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Afghanistan</td>
+<td class="org-right">41</td>
+<td class="org-left">Ukraine</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Ukraine</td>
+<td class="org-right">40</td>
+<td class="org-left">Scandinavia</td>
+<td class="org-right">1</td>
+<td class="org-right">3</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Scandinavia</td>
+<td class="org-right">36</td>
+<td class="org-left">Iceland</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Iceland</td>
+<td class="org-right">35</td>
+<td class="org-left">Greenland</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Greenland</td>
+<td class="org-right">34</td>
+<td class="org-left">Northwest Territory</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Northwest Territory</td>
+<td class="org-right">32</td>
+<td class="org-left">Alaska</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Alaska</td>
+<td class="org-right">31</td>
+<td class="org-left">Alberta</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Alberta</td>
+<td class="org-right">30</td>
+<td class="org-left">Ontario</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Ontario</td>
+<td class="org-right">29</td>
+<td class="org-left">Quebec</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Quebec</td>
+<td class="org-right">28</td>
+<td class="org-left">Eastern United States</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Eastern United States</td>
+<td class="org-right">27</td>
+<td class="org-left">Western United States</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Western United States</td>
+<td class="org-right">26</td>
+<td class="org-left">Central America</td>
+<td class="org-right">3</td>
+<td class="org-right">5</td>
+<td class="org-right">3</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Central America</td>
+<td class="org-right">20</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Venezuela</td>
+<td class="org-right">18</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">5</td>
+<td class="org-right">2</td>
+<td class="org-right">5</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Brazil</td>
+<td class="org-right">15</td>
+<td class="org-left">Peru</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-left">captured</td>
+</tr>
+
+<tr>
+<td class="org-right">159</td>
+<td class="org-left">Andrew</td>
+<td class="org-left">NA</td>
+<td class="org-left">Peru</td>
+<td class="org-right">14</td>
+<td class="org-left">Argentina</td>
 <td class="org-right">1</td>
 <td class="org-right">0</td>
 <td class="org-right">1</td>
@@ -2593,9 +4839,9 @@ join <span style="font-style: italic;">"\n"</span>, map {join(<span style="font-
 </div>
 </div>
 
-<div id="outline-container-orga45c99d" class="outline-2">
-<h2 id="orga45c99d"><span class="section-number-2">3</span> Stats</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org2bbad39" class="outline-2">
+<h2 id="org2bbad39"><span class="section-number-2">4</span> Stats</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 using attack information parsed from the logs.
 We can compute attacking stats.
@@ -2665,38 +4911,38 @@ top_attack <span style="font-weight: bold; text-decoration: underline;">&lt;-</s
 
 <tr>
 <td class="org-left">Ben</td>
-<td class="org-right">29</td>
-<td class="org-right">33</td>
-<td class="org-right">40</td>
-<td class="org-right">0.93</td>
-<td class="org-right">5.62</td>
-</tr>
-
-<tr>
-<td class="org-left">Will</td>
-<td class="org-right">36</td>
-<td class="org-right">82</td>
-<td class="org-right">81</td>
-<td class="org-right">0.94</td>
-<td class="org-right">4.06</td>
+<td class="org-right">69</td>
+<td class="org-right">94</td>
+<td class="org-right">96</td>
+<td class="org-right">0.87</td>
+<td class="org-right">5.23</td>
 </tr>
 
 <tr>
 <td class="org-left">Jim</td>
-<td class="org-right">46</td>
-<td class="org-right">95</td>
-<td class="org-right">102</td>
-<td class="org-right">0.78</td>
-<td class="org-right">6.63</td>
+<td class="org-right">70</td>
+<td class="org-right">169</td>
+<td class="org-right">195</td>
+<td class="org-right">0.79</td>
+<td class="org-right">6.69</td>
+</tr>
+
+<tr>
+<td class="org-left">Will</td>
+<td class="org-right">72</td>
+<td class="org-right">128</td>
+<td class="org-right">150</td>
+<td class="org-right">0.96</td>
+<td class="org-right">6.32</td>
 </tr>
 
 <tr>
 <td class="org-left">Andrew</td>
-<td class="org-right">50</td>
-<td class="org-right">49</td>
-<td class="org-right">79</td>
+<td class="org-right">122</td>
+<td class="org-right">160</td>
+<td class="org-right">217</td>
 <td class="org-right">0.94</td>
-<td class="org-right">6.62</td>
+<td class="org-right">11.61</td>
 </tr>
 </tbody>
 </table>
@@ -2704,9 +4950,9 @@ top_attack <span style="font-weight: bold; text-decoration: underline;">&lt;-</s
 </div>
 
 
-<div id="outline-container-org65c7a10" class="outline-2">
-<h2 id="org65c7a10"><span class="section-number-2">4</span> Colophon/Appendix</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org004ab50" class="outline-2">
+<h2 id="org004ab50"><span class="section-number-2">5</span> Colophon/Appendix</h2>
+<div class="outline-text-2" id="text-5">
 <ul class="org-ul">
 <li><code>Perl::Critic</code> + <code>flycheck</code> were helpful in debuging perl code.</li>
 <li><code>perldb: perl -d -e 0</code> was useful, but without tangling to a file, less than idea.</li>
@@ -2717,7 +4963,7 @@ top_attack <span style="font-weight: bold; text-decoration: underline;">&lt;-</s
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2020-04-04</p>
-<p class="date">Created: 2020-04-04 Sat 21:49</p>
+<p class="date">Created: 2020-04-08 Wed 22:19</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
