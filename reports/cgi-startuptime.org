@@ -1,0 +1,133 @@
+:PROPERTIES:
+:ID:       573e9b54-e251-4557-9190-771ee35ab7ef
+:END:
+#+title: cgi-bin and interpreter startup time
+#+DATE: 2021-10-22
+
+* Numbers
+
+Motivated by generating an intuition for the bare minimum time a cgi-bin script request could take,
+I've generated an unprincipled list of startup times for various interpreters.
+
+There are lots of reasons to find this metric useless. It's nothing like a measure of how fast code can run in the interpreter (arithmetic, regexp matching, etc), or even the time needed to load in common dependencies.
+
+
+Eye-balling start up times for what I have installed on my system, there are 3 groups.
+ * fast: perl, awk, sed, bash, lisp(!)
+ * okay: php, bb, py, node, ruby
+ * slow: julia, lisp, R, clojure
+
+#+begin_src bash :cache
+    # hi in various interpreters 
+    hi_lisp(){ sbcl --no-sysinit --no-userinit --eval '(progn (format t "hi!") (quit))';}
+    # loads quicklisp
+    hi_lpslow(){ sbcl --eval '(progn (format t "hi!") (quit))';}
+    hi_pl(){ perl -E "say 'hi'";}
+    hi_py(){ python -c "print('hi')";}
+    hi_node(){ node -e "console.log('hi')";}
+    hi_ruby(){ ruby -e "puts 'hi'";}
+    hi_bb(){ bb '(print "hi\n")'; }
+    hi_bash() { bash -c "echo hi";}
+    hi_php() { php -r 'echo "hi\n";';}
+    hi_r() { Rscript --vanilla -e "print('hi')";}
+    hi_jl() { julia -e 'print("hi")';}
+    hi_clj() { clj --eval '(println "hi")';}
+    hi_apl() { echo -e '"hi"\n)OFF' |  apl --noCIN -q --noSV; }
+    hi_awk() { echo hi | awk '{print $0}';}
+    hi_sed() { echo hi | sed -n p;}
+
+    # time it. find all hi* functions. export them so hyperfine can see 'em
+    csvtime() { hyperfine $1 --style none --export-csv >(cat) 2>/dev/null ; }
+    for f in $(typeset -F|grep -oP 'hi_[a-z]+$'); do
+      export -f $f
+      csvtime $f;
+    done |
+  sort -u | # remove repeated headers. "command" sorted before "hi*" => header on top
+  perl -F, -slane 'print join "\t", map {$_=/^[0-9]/?sprintf("%.5f",$_):$_} @F'| # fewer sigfig for numbers
+  awk 'NR<2{print $0;next}{print $0|"sort -k2,2"}'| # sort all but the header
+  sed s/hi_// # remove function name that helped identify in $(typeset -F)
+
+#+end_src
+
+#+RESULTS:
+| command |    mean |  stddev |  median |    user |  system |     min |     max |
+| sed     | 0.00233 | 0.00025 | 0.00228 | 0.00182 | 0.00114 | 0.00189 | 0.00389 |
+| pl      | 0.00281 | 0.00014 |  0.0028 | 0.00145 | 0.00142 | 0.00242 | 0.00377 |
+| bash    | 0.00338 | 0.00014 | 0.00338 | 0.00213 | 0.00134 | 0.00297 | 0.00436 |
+| awk     | 0.00389 | 0.00015 | 0.00389 | 0.00283 | 0.00146 |  0.0034 | 0.00491 |
+| lisp    | 0.00463 | 0.00026 | 0.00463 | 0.00182 |  0.0029 | 0.00377 | 0.00542 |
+| apl     | 0.00737 | 0.00026 | 0.00738 | 0.00417 | 0.00354 | 0.00671 | 0.00883 |
+| php     | 0.01478 | 0.00029 | 0.01475 | 0.00838 | 0.00623 | 0.01423 | 0.01664 |
+| bb      | 0.02002 | 0.00042 | 0.01996 | 0.00578 | 0.01491 | 0.01927 | 0.02251 |
+| py      | 0.02795 | 0.00095 | 0.02752 | 0.02241 | 0.00523 | 0.02684 | 0.03187 |
+| node    | 0.03609 |  0.0008 | 0.03594 | 0.02729 | 0.00913 | 0.03506 | 0.04009 |
+| ruby    | 0.06791 | 0.00882 | 0.06648 | 0.05812 | 0.00888 |  0.0579 | 0.08943 |
+| jl      | 0.16368 | 0.00241 | 0.16342 | 0.08349 | 0.07878 | 0.16008 | 0.16821 |
+| r       | 0.18803 | 0.00371 | 0.18716 | 0.15006 | 0.04015 | 0.18374 | 0.19786 |
+| lpslow  | 0.33705 | 0.00433 |   0.336 | 0.28454 | 0.04951 | 0.33246 |  0.3469 |
+| clj     | 1.07845 | 0.02057 | 1.07499 | 1.57696 | 0.21864 | 1.05055 | 1.11453 |
+
+*  More on Motivation
+Musings in https://eccentric-j.com/blog/clojure-like-its-php.html consider
+~babashka~'s faster-than-clojure start up time in context of cgi-bin scripts. Aside: compiling clojure with GraalVM and serving quick starting binaries is an essential part of a [[https://github.com/LabNeuroCogDevel/psiclj][work project]].
+
+
+I find the babashka write-up compelling, but not for the same reason as the author. I have a very small collection of local cgi-bin scripts, all in bash. And all are under the magic 100-or-so lines that mark when convention says use a "real programming language."
+#+begin_src bash
+ echo -e "file\tline-count\ttype"
+ ssh s2 '
+  for f in /srv/http/cgi-bin/*; do
+   echo -e "$(basename $f)\t$(wc -l < $f)\t$(file -bL $f|sed s/,.*//)";
+  done'
+#+end_src
+
+#+RESULTS:
+| file  | line-count | type                      |
+| books |         46 | Bourne-Again shell script |
+| e     |         48 | Bourne-Again shell script |
+| hi    |          6 | Bourne-Again shell script |
+| tv    |         73 | Bourne-Again shell script |
+
+These utilities emerged organically from small itches and lean heavily on other bigger tools (calibre, sqlite, filesystem). Shell's a good fit, but the choice wasn't deliberate. It's nice to be prompted to think about it. The procrastinator-looking-for-an-escape is always interested in exploring other hacks.
+
+I'd previously been burned by noticeably slow python. ~Matplotlib~ generated an image of the week's roster to embed in emails for up-to-date whos-going-to-show-up status. It was slow enough that opening the google sheet in a new tab was often competitive time-wise. (Were I to redo the project, I'd use shell and imagemagick)
+
+To that end, I'm curios what the quickest start up is for common interpreters are.
+
+* Other thoughts
+
+** startup time is likely to be entirely eclipsed by library load times
+  #+begin_src bash :cache yes :results verbatim
+  (
+    hyperfine 'python -c "1"'
+    hyperfine 'python -c "import matplotlib;import pandas; 1"'
+   ) |sed -n s/Range[^0-9]*//p
+
+  #+end_src
+
+  #+RESULTS[40c2d81137ab592dedb377899da4b65bf0e9be08]:
+  :   25.8 ms …  27.6 ms    100 runs
+  :   397.1 ms … 426.1 ms    10 runs
+
+** Common lisp can start up fast if it doesn't have to load much
+   I haven't tested leaving out quicklisp but still loading whatever libraries would be useful. I suspect lisp would do better than python while still providing an interface to live edit.
+
+** native binaries: fast but large
+CL and clojure can both be compiled to very fast-starting native images. But both are large for even small programs (~60Mb for SBCL, and ~40Mb for clojure w/postgres at least)
+
+** APL nerd snipe
+I fell into a small APL rabbit hole. The online manual is wrong. Neither [[https://www.gnu.org/software/apl/apl.html][~--eval~]] nor ~--off~ are valid arguments! Regardless, anytime I come near APL, I loose hours thinking this will be the time it clicks. Doubly so when considering [[https://github.com/phantomics/april][april]]. Someday I'll figure out getting a nifti file into lisp as a matrix and april will open up a new world.
+
+** User experience 
+   #+begin_quote https://danluu.com/term-latency/
+    20ms feels fine, 50ms feels laggy, and 150ms feels unbearable.
+   #+end_quote 
+
+   VR headset latency might be as orthogonal to application startup a time metric can get, but the psycho-physics still provide a useful baseline. With a shell terminal as a not-so-impoverished REPL for shell cgi-bin, the evaluate part of the loop is worth inspecting, though less so for the actual page rendering. Though there's psychology to explore there to. I wish APL had become an often embedded DSL as ubiquitous as regular expressions.
+   #+begin_quote https://www2.deloitte.com/ie/en/pages/consulting/articles/milliseconds-make-millions.html
+   Based on a 0.1s natural mobile site speed improvement, we ... conversions increase [~8-10%]
+   #+end_quote
+
+   The same feels true for development, especially self-motivated ones. I'll move on to something with a quicker feedback if I am constantly waiting a second or two for iterative results.
+https://input-delay.glitch.me/
+
