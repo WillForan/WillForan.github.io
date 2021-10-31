@@ -3,6 +3,8 @@
 :END:
 #+title: cgi-bin and interpreter startup time
 #+DATE: 2021-10-22
+#+OPTIONS: _:{} ^:{} toc:nil num:nil
+
 
 * Numbers
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-10-30 Sat 22:55 -->
+<!-- 2021-10-30 Sat 23:00 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>cgi-bin and interpreter startup time</title>
@@ -217,28 +217,11 @@
 <body class="container">
 <div id="content">
 <h1 class="title">cgi-bin and interpreter startup time</h1>
-<div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#org43c981d">1. Numbers</a></li>
-<li><a href="#orgd07310a">2. More on Motivation</a></li>
-<li><a href="#orga8ce030">3. Other thoughts</a>
-<ul>
-<li><a href="#orge27818d">3.1. startup time is likely to be entirely eclipsed by library load times</a></li>
-<li><a href="#org84b1814">3.2. Common lisp can start up fast if it doesn't have to load much</a></li>
-<li><a href="#orgd842e09">3.3. native binaries: fast but large</a></li>
-<li><a href="#org83185f5">3.4. APL nerd snipe</a></li>
-<li><a href="#orga832604">3.5. User experience</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
 
-<div id="outline-container-org43c981d" class="outline-2">
-<h2 id="org43c981d"><span class="section-number-2">1</span> Numbers</h2>
-<div class="outline-text-2" id="text-1">
+
+<div id="outline-container-org1949542" class="outline-2">
+<h2 id="org1949542">Numbers</h2>
+<div class="outline-text-2" id="text-org1949542">
 <p>
 Motivated by generating an intuition for the bare minimum time a cgi-bin script request could take,
 I've generated an unprincipled list of startup times for various interpreters.
@@ -493,9 +476,9 @@ sed s/hi_// <span style="font-weight: bold; font-style: italic;"># </span><span 
 </div>
 </div>
 
-<div id="outline-container-orgd07310a" class="outline-2">
-<h2 id="orgd07310a"><span class="section-number-2">2</span> More on Motivation</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org7c6e2b8" class="outline-2">
+<h2 id="org7c6e2b8">More on Motivation</h2>
+<div class="outline-text-2" id="text-org7c6e2b8">
 <p>
 Musings in <a href="https://eccentric-j.com/blog/clojure-like-its-php.html">https://eccentric-j.com/blog/clojure-like-its-php.html</a> consider
 <code>babashka</code>'s faster-than-clojure start up time in context of cgi-bin scripts. Aside: compiling clojure with GraalVM and serving quick starting binaries is an essential part of a <a href="https://github.com/LabNeuroCogDevel/psiclj">work project</a>.
@@ -572,13 +555,13 @@ To that end, I'm curios what the quickest start up is for common interpreters ar
 </div>
 </div>
 
-<div id="outline-container-orga8ce030" class="outline-2">
-<h2 id="orga8ce030"><span class="section-number-2">3</span> Other thoughts</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org918129b" class="outline-2">
+<h2 id="org918129b">Other thoughts</h2>
+<div class="outline-text-2" id="text-org918129b">
 </div>
-<div id="outline-container-orge27818d" class="outline-3">
-<h3 id="orge27818d"><span class="section-number-3">3.1</span> startup time is likely to be entirely eclipsed by library load times</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-orgca7274d" class="outline-3">
+<h3 id="orgca7274d">startup time is likely to be entirely eclipsed by library load times</h3>
+<div class="outline-text-3" id="text-orgca7274d">
 <div class="org-src-container">
 <pre class="src src-bash">(
   hyperfine <span style="font-style: italic;">'python -c "1"'</span>
@@ -595,36 +578,36 @@ To that end, I'm curios what the quickest start up is for common interpreters ar
 </div>
 </div>
 
-<div id="outline-container-org84b1814" class="outline-3">
-<h3 id="org84b1814"><span class="section-number-3">3.2</span> Common lisp can start up fast if it doesn't have to load much</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-orgd2c332f" class="outline-3">
+<h3 id="orgd2c332f">Common lisp can start up fast if it doesn't have to load much</h3>
+<div class="outline-text-3" id="text-orgd2c332f">
 <p>
 I haven't tested leaving out quicklisp but still loading whatever libraries would be useful. I suspect lisp would do better than python while still providing an interface to live edit.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgd842e09" class="outline-3">
-<h3 id="orgd842e09"><span class="section-number-3">3.3</span> native binaries: fast but large</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-org96c725f" class="outline-3">
+<h3 id="org96c725f">native binaries: fast but large</h3>
+<div class="outline-text-3" id="text-org96c725f">
 <p>
 CL and clojure can both be compiled to very fast-starting native images. But both are large for even small programs (~60Mb for SBCL, and ~40Mb for clojure w/postgres at least)
 </p>
 </div>
 </div>
 
-<div id="outline-container-org83185f5" class="outline-3">
-<h3 id="org83185f5"><span class="section-number-3">3.4</span> APL nerd snipe</h3>
-<div class="outline-text-3" id="text-3-4">
+<div id="outline-container-org695c752" class="outline-3">
+<h3 id="org695c752">APL nerd snipe</h3>
+<div class="outline-text-3" id="text-org695c752">
 <p>
 I fell into a small APL rabbit hole. The online manual is wrong. Neither <a href="https://www.gnu.org/software/apl/apl.html"><code>--eval</code></a> nor <code>--off</code> are valid arguments! Regardless, anytime I come near APL, I loose hours thinking this will be the time it clicks. Doubly so when considering <a href="https://github.com/phantomics/april">april</a>. Someday I'll figure out getting a nifti file into lisp as a matrix and april will open up a new world.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orga832604" class="outline-3">
-<h3 id="orga832604"><span class="section-number-3">3.5</span> User experience</h3>
-<div class="outline-text-3" id="text-3-5">
+<div id="outline-container-org0375896" class="outline-3">
+<h3 id="org0375896">User experience</h3>
+<div class="outline-text-3" id="text-org0375896">
 <blockquote>
 <p>
 20ms feels fine, 50ms feels laggy, and 150ms feels unbearable.
@@ -650,7 +633,7 @@ The same feels true for development, especially self-motivated ones. I'll move o
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2021-10-22</p>
-<p class="date">Created: 2021-10-30 Sat 22:55</p>
+<p class="date">Created: 2021-10-30 Sat 23:00</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
