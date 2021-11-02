@@ -16,3 +16,10 @@ index.html: $(wildcard reports/*org) src/make_index.py src/gopher.tmp src/index.
 	python src/make_index.py
 	# NB "h" is gopher server defined in ~/.ssh/config
 	rsync --size-only -rvhi gopher/ s2:/var/gopher/
+
+# how to go from org to html
+html/%.html: reports/%.org
+	org-export html  --infile $< --outfile $@ --css http://orgmode.org/org-manual.css
+
+allreports = $(wildcard reports/*.org)
+all-html: $(allreports:reports%org=html%html)
