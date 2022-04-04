@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2021-10-30 Sat 23:00 -->
+<!-- 2022-04-04 Mon 11:52 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>cgi-bin and interpreter startup time</title>
@@ -49,7 +49,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -190,7 +190,7 @@
   .org-svg { width: 90%; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="http://orgmode.org/org-manual.css" />
 <script type="text/javascript">
 // @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
@@ -214,14 +214,14 @@
 // @license-end
 </script>
 </head>
-<body class="container">
+<body>
 <div id="content">
 <h1 class="title">cgi-bin and interpreter startup time</h1>
 
 
-<div id="outline-container-org1949542" class="outline-2">
-<h2 id="org1949542">Numbers</h2>
-<div class="outline-text-2" id="text-org1949542">
+<div id="outline-container-Numbers" class="outline-2">
+<h2 id="Numbers">Numbers</h2>
+<div class="outline-text-2" id="text-Numbers">
 <p>
 Motivated by generating an intuition for the bare minimum time a cgi-bin script request could take,
 I've generated an unprincipled list of startup times for various interpreters.
@@ -274,8 +274,7 @@ sed s/hi_// <span style="font-weight: bold; font-style: italic;"># </span><span 
 </pre>
 </div>
 
-<table class="table table-striped table-bordered table-condensed"
-         style="width: auto;">
+<table>
 
 
 <colgroup>
@@ -476,9 +475,9 @@ sed s/hi_// <span style="font-weight: bold; font-style: italic;"># </span><span 
 </div>
 </div>
 
-<div id="outline-container-org7c6e2b8" class="outline-2">
-<h2 id="org7c6e2b8">More on Motivation</h2>
-<div class="outline-text-2" id="text-org7c6e2b8">
+<div id="outline-container-More%20on%20Motivation" class="outline-2">
+<h2 id="More%20on%20Motivation">More on Motivation</h2>
+<div class="outline-text-2" id="text-More%20on%20Motivation">
 <p>
 Musings in <a href="https://eccentric-j.com/blog/clojure-like-its-php.html">https://eccentric-j.com/blog/clojure-like-its-php.html</a> consider
 <code>babashka</code>'s faster-than-clojure start up time in context of cgi-bin scripts. Aside: compiling clojure with GraalVM and serving quick starting binaries is an essential part of a <a href="https://github.com/LabNeuroCogDevel/psiclj">work project</a>.
@@ -497,8 +496,7 @@ ssh s2 <span style="font-style: italic;">'</span>
 </pre>
 </div>
 
-<table class="table table-striped table-bordered table-condensed"
-         style="width: auto;">
+<table>
 
 
 <colgroup>
@@ -555,13 +553,13 @@ To that end, I'm curios what the quickest start up is for common interpreters ar
 </div>
 </div>
 
-<div id="outline-container-org918129b" class="outline-2">
-<h2 id="org918129b">Other thoughts</h2>
-<div class="outline-text-2" id="text-org918129b">
+<div id="outline-container-Other%20thoughts" class="outline-2">
+<h2 id="Other%20thoughts">Other thoughts</h2>
+<div class="outline-text-2" id="text-Other%20thoughts">
 </div>
-<div id="outline-container-orgca7274d" class="outline-3">
-<h3 id="orgca7274d">startup time is likely to be entirely eclipsed by library load times</h3>
-<div class="outline-text-3" id="text-orgca7274d">
+<div id="outline-container-startup%20time%20is%20likely%20to%20be%20entirely%20eclipsed%20by%20library%20load%20times" class="outline-3">
+<h3 id="startup%20time%20is%20likely%20to%20be%20entirely%20eclipsed%20by%20library%20load%20times">startup time is likely to be entirely eclipsed by library load times</h3>
+<div class="outline-text-3" id="text-startup%20time%20is%20likely%20to%20be%20entirely%20eclipsed%20by%20library%20load%20times">
 <div class="org-src-container">
 <pre class="src src-bash">(
   hyperfine <span style="font-style: italic;">'python -c "1"'</span>
@@ -578,36 +576,36 @@ To that end, I'm curios what the quickest start up is for common interpreters ar
 </div>
 </div>
 
-<div id="outline-container-orgd2c332f" class="outline-3">
-<h3 id="orgd2c332f">Common lisp can start up fast if it doesn't have to load much</h3>
-<div class="outline-text-3" id="text-orgd2c332f">
+<div id="outline-container-Common%20lisp%20can%20start%20up%20fast%20if%20it%20doesn%27t%20have%20to%20load%20much" class="outline-3">
+<h3 id="Common%20lisp%20can%20start%20up%20fast%20if%20it%20doesn%27t%20have%20to%20load%20much">Common lisp can start up fast if it doesn't have to load much</h3>
+<div class="outline-text-3" id="text-Common%20lisp%20can%20start%20up%20fast%20if%20it%20doesn%27t%20have%20to%20load%20much">
 <p>
 I haven't tested leaving out quicklisp but still loading whatever libraries would be useful. I suspect lisp would do better than python while still providing an interface to live edit.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org96c725f" class="outline-3">
-<h3 id="org96c725f">native binaries: fast but large</h3>
-<div class="outline-text-3" id="text-org96c725f">
+<div id="outline-container-native%20binaries%3A%20fast%20but%20large" class="outline-3">
+<h3 id="native%20binaries%3A%20fast%20but%20large">native binaries: fast but large</h3>
+<div class="outline-text-3" id="text-native%20binaries%3A%20fast%20but%20large">
 <p>
 CL and clojure can both be compiled to very fast-starting native images. But both are large for even small programs (~60Mb for SBCL, and ~40Mb for clojure w/postgres at least)
 </p>
 </div>
 </div>
 
-<div id="outline-container-org695c752" class="outline-3">
-<h3 id="org695c752">APL nerd snipe</h3>
-<div class="outline-text-3" id="text-org695c752">
+<div id="outline-container-APL%20nerd%20snipe" class="outline-3">
+<h3 id="APL%20nerd%20snipe">APL nerd snipe</h3>
+<div class="outline-text-3" id="text-APL%20nerd%20snipe">
 <p>
 I fell into a small APL rabbit hole. The online manual is wrong. Neither <a href="https://www.gnu.org/software/apl/apl.html"><code>--eval</code></a> nor <code>--off</code> are valid arguments! Regardless, anytime I come near APL, I loose hours thinking this will be the time it clicks. Doubly so when considering <a href="https://github.com/phantomics/april">april</a>. Someday I'll figure out getting a nifti file into lisp as a matrix and april will open up a new world.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org0375896" class="outline-3">
-<h3 id="org0375896">User experience</h3>
-<div class="outline-text-3" id="text-org0375896">
+<div id="outline-container-User%20experience" class="outline-3">
+<h3 id="User%20experience">User experience</h3>
+<div class="outline-text-3" id="text-User%20experience">
 <blockquote>
 <p>
 20ms feels fine, 50ms feels laggy, and 150ms feels unbearable.
@@ -633,7 +631,7 @@ The same feels true for development, especially self-motivated ones. I'll move o
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2021-10-22</p>
-<p class="date">Created: 2021-10-30 Sat 23:00</p>
+<p class="date">Created: 2022-04-04 Mon 11:52</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
