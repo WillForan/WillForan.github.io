@@ -9,7 +9,11 @@ import re
 import pprint
 
 # we need to be in the correct directory. always start at script directory
-thisdir=os.path.dirname(__file__)
+# when sourcing __file__ might not be defined
+try:
+    thisdir=os.path.dirname(__file__)
+except:
+    thisdir=os.getcwd()
 if not thisdir: thisdir='./'
 os.chdir(thisdir)
 
@@ -28,15 +32,19 @@ def file_stat(f):
           fstat.st_mtime)
     return({'f': f,'mt': mt})
 
+def file_sort_key(d : dict):
+     """should have keys 'mt' (modified time) and 'date' (#DATE: YYYY...)
+     but DATE might not be in the text. fallback on modfication time"""
+     default = datetime.datetime.strftime(d['mt'],"%Y-%m-%d")
+     return d.get('date', default)
+
 def file_info(f):
     txtinfo = {}
     with open(f) as fp:
          for l in fp:
              # collect which of date and title we haven't
              # yet set in txtinfo
-             need = [ k
-                         for k in redict.keys()
-                         if not txtinfo.get(k) ]
+             need = [ k for k in redict.keys() if not txtinfo.get(k) ]
              # if we have both, we're done
              if len(need) == 0:
                  break
@@ -46,10 +54,16 @@ def file_info(f):
                  m = redict[k].match(l)
                  if m:
                      txtinfo[k] = m.group(1)
+                     print("matched %s => %s" % (k, txtinfo[k]))
 
     if not txtinfo.get('title'):
+        print(f"WARNING: no '#+TITLE: in {f}")
         txtinfo['title']= re.sub('(.md|.org)$','', os.path.basename(f))
         # .replace('_',' '))
+
+    if not txtinfo.get('date'):
+        print(f"WARNING: no '#+DATE: YYYY-MM-DD' in {f}")
+        txtinfo['date'] = "1800-01-01"
 
     return(txtinfo)
 
@@ -57,10 +71,10 @@ def file_info(f):
 import pandas
 # editing org file we are in ../reports, as file we are in ../src
 os.chdir('../reports')
-filelist = [ {**file_stat(f), **file_info(f)} for f in glob.glob('*.org') ]
-print(filelist)
+all_org = glob.glob('*.org')
+filelist = [{**file_stat(f), **file_info(f)} for f in all_org]
 # reverse sort by date
-filelist = sorted(filelist,key=lambda x: x['date'],reverse=True)
+filelist = sorted(filelist,key=file_sort_key,reverse=True)
 # as a dataframe
 file_df = pandas.DataFrame(filelist)
 
@@ -70,13 +84,12 @@ def export_info(file_df):
   file_df['export_to'] = [ '../html/%s.html'%t for t in file_df['title'] ]
   file_df['export_date'] =  [ file_stat(f)['mt'] for f in file_df['export_to'] ]
   return(file_df)
-
-from subprocess import call
 # update dataframe with export vars
 file_df = export_info(file_df)
 # find None (!= to self) or out-of-date
 need_update = file_df.query('export_date != export_date or export_date < mt')
 
+from subprocess import call
 for i,n in need_update.iterrows():
     call(['org-export','html','--infile',n['f'],'--outfile',n['export_to'],'--bootstrap' ])
 

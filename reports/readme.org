@@ -1,3 +1,4 @@
+# -*- org-src-preserve-indentation: t; -*-
 #+TITLE: readme: static generator python wrapping org-mode
 #+DATE: 2017-11-18
 #+OPTIONS: _:{} ^:{} toc:nil num:nil
@@ -51,63 +52,76 @@ run tangle from ~reports/~ directory not top level. relative links work much bet
    - we want to (re-)export files that have an out-of-date export file, so keep modification time info of source org file
 
  #+BEGIN_SRC python :tangle ../src/make_index.py :session :results none :exports none
-   #!/usr/bin/env python3
-   
-   # DO NOT EDIT OUTSIDE OF ORG-MODE FILE
-   # this file is tangled from readme.org
-   import os
-   import glob
-   import datetime
-   import re
-   import pprint
-   
-   # we need to be in the correct directory. always start at script directory
-   thisdir=os.path.dirname(__file__)
-   if not thisdir: thisdir='./'
-   os.chdir(thisdir)
-   
+#!/usr/bin/env python3
 
-   # regexp for things we want to pull from org-file:
-   #  date and title
-   redict = {'date':
-              re.compile('^#\+DATE:.*(\d{4}-\d{2}-\d{2})'),
-             'title': re.compile('^#\+TITLE: ?(.*)')}
+# DO NOT EDIT OUTSIDE OF ORG-MODE FILE
+# this file is tangled from readme.org
+import os
+import glob
+import datetime
+import re
+import pprint
 
-   def file_stat(f):
-       if not os.path.isfile(f):
-            return({'f': f,'mt': None})
-       fstat = os.stat(f)
-       mt = datetime.datetime.fromtimestamp(
-             fstat.st_mtime)
-       return({'f': f,'mt': mt})
+# we need to be in the correct directory. always start at script directory
+# when sourcing __file__ might not be defined
+try:
+    thisdir=os.path.dirname(__file__)
+except:
+    thisdir=os.getcwd()
+if not thisdir: thisdir='./'
+os.chdir(thisdir)
 
-   def file_info(f):
-       txtinfo = {}
-       with open(f) as fp:
-            for l in fp:
-                # collect which of date and title we haven't
-                # yet set in txtinfo
-                need = [ k
-                            for k in redict.keys()
-                            if not txtinfo.get(k) ]
-                # if we have both, we're done
-                if len(need) == 0:
-                    break
 
-                # otherwise search for the ones we need
-                for k in need:
-                    m = redict[k].match(l)
-                    if m:
-                        txtinfo[k] = m.group(1)
-			print("matched %s => %s" % (k, txtinfo[k]))
+# regexp for things we want to pull from org-file:
+#  date and title
+redict = {'date':
+           re.compile('^#\+DATE:.*(\d{4}-\d{2}-\d{2})'),
+          'title': re.compile('^#\+TITLE: ?(.*)')}
 
-       if not txtinfo.get('title'):
-           txtinfo['title']= re.sub('(.md|.org)$','', os.path.basename(f))
-           # .replace('_',' '))
+def file_stat(f):
+    if not os.path.isfile(f):
+         return({'f': f,'mt': None})
+    fstat = os.stat(f)
+    mt = datetime.datetime.fromtimestamp(
+          fstat.st_mtime)
+    return({'f': f,'mt': mt})
 
-       return(txtinfo)
+def file_sort_key(d : dict):
+     """should have keys 'mt' (modified time) and 'date' (#DATE: YYYY...)
+     but DATE might not be in the text. fallback on modfication time"""
+     default = datetime.datetime.strftime(d['mt'],"%Y-%m-%d")
+     return d.get('date', default)
 
- #+END_SRC
+def file_info(f):
+    txtinfo = {}
+    with open(f) as fp:
+         for l in fp:
+             # collect which of date and title we haven't
+             # yet set in txtinfo
+             need = [ k for k in redict.keys() if not txtinfo.get(k) ]
+             # if we have both, we're done
+             if len(need) == 0:
+                 break
+
+             # otherwise search for the ones we need
+             for k in need:
+                 m = redict[k].match(l)
+                 if m:
+                     txtinfo[k] = m.group(1)
+                     print("matched %s => %s" % (k, txtinfo[k]))
+
+    if not txtinfo.get('title'):
+        print(f"WARNING: no '#+TITLE: in {f}")
+        txtinfo['title']= re.sub('(.md|.org)$','', os.path.basename(f))
+        # .replace('_',' '))
+
+    if not txtinfo.get('date'):
+        print(f"WARNING: no '#+DATE: YYYY-MM-DD' in {f}")
+        txtinfo['date'] = "1800-01-01"
+
+    return(txtinfo)
+
+#+END_SRC
 
 ** find all pages
   We're creating a py file in ~../src~, but running this from an org file in the directory we expect all the files to already be in.
@@ -115,16 +129,16 @@ run tangle from ~reports/~ directory not top level. relative links work much bet
   
  We use the function above to pull out info on the file
 #+BEGIN_SRC python :tangle ../src/make_index.py :session :results none :exports none
-  # ### find all the files we want to use as reports
-  import pandas
-  # editing org file we are in ../reports, as file we are in ../src
-  os.chdir('../reports')
-  all_org = glob.glob('*.org')
-  filelist = [{**file_stat(f), **file_info(f)} for f in all_org]
-  # reverse sort by date
-  filelist = sorted(filelist,key=lambda x: x['date'],reverse=True)
-  # as a dataframe
-  file_df = pandas.DataFrame(filelist)
+# ### find all the files we want to use as reports
+import pandas
+# editing org file we are in ../reports, as file we are in ../src
+os.chdir('../reports')
+all_org = glob.glob('*.org')
+filelist = [{**file_stat(f), **file_info(f)} for f in all_org]
+# reverse sort by date
+filelist = sorted(filelist,key=file_sort_key,reverse=True)
+# as a dataframe
+file_df = pandas.DataFrame(filelist)
 #+END_SRC
 
 #+BEGIN_SRC python :session :results raw  :exports both
@@ -133,9 +147,13 @@ tabulate(file_df.head(n=5),headers="keys", tablefmt="orgtbl",showindex=False)
 #+END_SRC
 
 #+RESULTS:
-|       date | f              | mt                         | title      |
-|------------+----------------+----------------------------+------------|
-| 2017-11-18 | make_index.org | 2017-11-18 19:47:22.007319 | make_index |
+| f                   | mt                         | title                                |       date |
+|---------------------+----------------------------+--------------------------------------+------------|
+| cgi-startuptime.org | 2022-04-04 16:34:06.432610 | cgi-bin and interpreter startup time | 2021-10-22 |
+| risk.org            | 2021-10-22 21:26:10.164202 | risk                                 | 2020-04-04 |
+| gopher.org          | 2021-10-22 21:26:10.163202 | gopher                               | 2019-03-15 |
+| netflix.org         | 2021-10-22 21:26:10.163202 | Netflix Usage                        | 2017-12-09 |
+| strava.org          | 2021-10-22 21:26:10.164202 | Strava Tracked Workouts              | 2017-12-09 |
 
 ** export pages 
 
@@ -160,60 +178,81 @@ Meanwhile, the instructions to do all of this are written in emacs. Literate pro
     By default ~org-export~ builds ~ess~ and ~org~ from git. This was failing. 
     I removed these two from ~org-export-html.el:cli-el-get-setup~
 
+    
+*** DIY Make target list
+    Makefile could (should) figure out what needs to be exported.
+    But we already have modification times. So we can compare those to the output targets to see which needs to be (re)run.
+
 #+BEGIN_SRC python :tangle ../src/make_index.py :session :results none :exports none
-  # build a list of exported files and their export (modification) date
-  # build those that need it
-  def export_info(file_df):
-    file_df['export_to'] = [ '../html/%s.html'%t for t in file_df['title'] ]
-    file_df['export_date'] =  [ file_stat(f)['mt'] for f in file_df['export_to'] ]
-    return(file_df)
+# build a list of exported files and their export (modification) date
+# build those that need it
+def export_info(file_df):
+  file_df['export_to'] = [ '../html/%s.html'%t for t in file_df['title'] ]
+  file_df['export_date'] =  [ file_stat(f)['mt'] for f in file_df['export_to'] ]
+  return(file_df)
+# update dataframe with export vars
+file_df = export_info(file_df)
+# find None (!= to self) or out-of-date
+need_update = file_df.query('export_date != export_date or export_date < mt')
+#+END_SRC
 
-  from subprocess import call
-  # update dataframe with export vars
-  file_df = export_info(file_df)
-  # find None (!= to self) or out-of-date
-  need_update = file_df.query('export_date != export_date or export_date < mt')
+*** quick look
+#+BEGIN_SRC python :session :results raw  :exports both
+from tabulate import tabulate
+tabulate(need_update[['title','export_date','mt']],headers="keys", tablefmt="orgtbl",showindex=False)
+#+END_SRC
 
-  for i,n in need_update.iterrows():
-      call(['org-export','html','--infile',n['f'],'--outfile',n['export_to'],'--bootstrap' ])
+#+RESULTS:
+| title                                             | export_date                | mt                         |
+|---------------------------------------------------+----------------------------+----------------------------|
+| readme: static generator python wrapping org-mode | 2022-04-04 16:36:17.933011 | 2022-04-04 16:36:51.075014 |
 
-  # update again, see if everything exported
-  file_df = export_info(file_df)
-  need_update = file_df.query('export_date != export_date or export_date < mt')
-  if len(need_update) != 0:
-      print("some files failed to update: %s!"%(",".join(need_update['title'])))
+*** Actually run
+#+BEGIN_SRC python :tangle ../src/make_index.py :session :results none :exports none
+from subprocess import call
+for i,n in need_update.iterrows():
+    call(['org-export','html','--infile',n['f'],'--outfile',n['export_to'],'--bootstrap' ])
+
+# update again, see if everything exported
+file_df = export_info(file_df)
+need_update = file_df.query('export_date != export_date or export_date < mt')
+if len(need_update) != 0:
+    print("some files failed to update: %s!"%(",".join(need_update['title'])))
 
 #+END_SRC
 
 ** create the index 
    The index page links to all the exported org files.
 
-   We'll use a template engine --- [[https://bitbucket.org/akorn/wheezy.template][wheezy.template]] because it was linked [[https://wiki.python.org/moin/Templating][here]] --- to wrap generate the index page.
-#+BEGIN_SRC html :tangle ../src/index.tmp
-  @require(file_df,title)
-  <html> <head>
-     <title>@title</title>
-     <link rel="stylesheet" type="text/css" href="style.css" />
-    </head>
-    <body>
-      <h1>@title</h1>
-      <ul>
-      @for i,f in file_df.iterrows():
-          <li><a href="@f['uri']"><time>@f['date']</time> @f['title']</a></li>
-      @end
-      </ul>
-      <h1>External</h1>
-      <ul class="info">
-         <li><a href="https://github.com/WillForan">Github</a></li>
-         <li><a href="https://stackoverflow.com/users/1031776/will">StackOverflow</a></li>
-         <li><a href="https://scholar.google.com/citations?user=PzX6F5oAAAAJ">GoogleScholar</a></li>
-         <li><a href="https://www.strava.com/athletes/15036420">Strava</a></li>
-      </ul>
-    </body>
-  </html>
-#+END_SRC
+   
+*** Template
+    We'll use a template engine --- [[https://bitbucket.org/akorn/wheezy.template][wheezy.template]] because it was linked [[https://wiki.python.org/moin/Templating][here]] --- to wrap generate the index page.
+ #+BEGIN_SRC html :tangle ../src/index.tmp
+@require(file_df,title)
+<html> <head>
+   <title>@title</title>
+   <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <h1>@title</h1>
+    Also in <a href="gopher://www.xn--4-cmb.com">gopher space</a>
+    <ul>
+    @for i,f in file_df.iterrows():
+        <li><a href="@f['uri']"><time>@f['date']</time> @f['title']</a></li>
+    @end
+    </ul>
+    <h1>External</h1>
+    <ul class="info">
+       <li><a href="https://github.com/WillForan">Github</a></li>
+       <li><a href="https://stackoverflow.com/users/1031776/will">StackOverflow</a></li>
+       <li><a href="https://scholar.google.com/citations?user=PzX6F5oAAAAJ">GoogleScholar</a></li>
+       <li><a href="https://www.strava.com/athletes/15036420">Strava</a></li>
+    </ul>
+  </body>
+</html>
+ #+end_src
 
-#+BEGIN_SRC css :tangle ../style.css :exports none
+ #+BEGIN_SRC css :tangle ../style.css :exports none
 body { font-family: mono; font-weight: bold;}
 h1 { font-size: larger;}
 ul { list-style: none;} 
@@ -221,9 +260,10 @@ time { color: grey;}
 a { text-decoration: none;}
 .info li {display: inline-block;}
 .info li:not(:last-child):after { content: ' |';}
-#+END_SRC
+ #+END_SRC
 
-#+BEGIN_SRC python :tangle ../src/make_index.py :session :results none :exports none
+*** Populate
+  #+BEGIN_SRC python :tangle ../src/make_index.py :session :results none :exports none
 # export_to is relative to this script. should be relative to index.html
 # remove '../'
 file_df['uri'] = [ re.sub('^\.\./','',x) for x in file_df['export_to'] ]
@@ -238,4 +278,4 @@ index_str = template.render({'file_df': file_df,'title': 'WF log'})
 with open('../index.html','w') as indexf:
     indexf.write(index_str)
 
-#+END_SRC
+  #+END_SRC

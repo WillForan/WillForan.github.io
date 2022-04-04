@@ -1,7 +1,7 @@
 .SUFFIXES:
 .PHONY: all
 
-all: index.html
+all: .make/gopher.ls
 org-export:
 	# should have org-export in path
 	# git clone https://github.com/nhoffman/org-export.git
@@ -14,12 +14,17 @@ src/index.tmp style.css src/make_index.py: reports/readme.org
 
 index.html: $(wildcard reports/*org) src/make_index.py src/gopher.tmp src/index.tmp org-export
 	python src/make_index.py
-	# NB "h" is gopher server defined in ~/.ssh/config
+
+.make/gopher.ls: index.html | .make
+	# NB "s2" is gopher server defined in ~/.ssh/config
 	rsync --size-only -rvhi gopher/ s2:/var/gopher/
+	date > .make/gopher.ls
 
 # how to go from org to html
 html/%.html: reports/%.org
-	org-export html  --infile $< --outfile $@ --css http://orgmode.org/org-manual.css
+	org-export html  --infile $< --outfile $@ --bootstrap
 
 allreports = $(wildcard reports/*.org)
 all-html: $(allreports:reports%org=html%html)
+.make:
+	@mkdir make
