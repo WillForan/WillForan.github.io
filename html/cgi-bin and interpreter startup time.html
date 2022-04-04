@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2022-04-04 Mon 16:36 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cgi-bin and interpreter startup time</title>
+<meta name="generator" content="Org mode">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body class="container">
+<div id="content">
+<h1 class="title">cgi-bin and interpreter startup time</h1>
+
+
+<div id="outline-container-Numbers" class="outline-2">
+<h2 id="Numbers">Numbers</h2>
+<div class="outline-text-2" id="text-Numbers">
+<p>
+Motivated by generating an intuition for the bare minimum time a cgi-bin script request could take,
+I've generated an unprincipled list of startup times for various interpreters.
+</p>
+
+<p>
+There are lots of reasons to find this metric useless. It's nothing like a measure of how fast code can run in the interpreter (arithmetic, regexp matching, etc), or even the time needed to load in common dependencies.
+</p>
+
+
+<p>
+Eye-balling start up times for what I have installed on my system, there are 3 groups.
+</p>
+<ul class="org-ul">
+<li>fast (&lt;.005s): perl, awk, sed, bash, lisp(!)</li>
+<li>okay: php, bb, py, node, ruby</li>
+<li>slow (&gt;1s): julia, lisp, R, clojure</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-bash">  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">hi in various interpreters </span>
+  hi_lisp(){ sbcl --no-sysinit --no-userinit --eval <span style="font-style: italic;">'(progn (format t "hi!") (quit))'</span>;}
+  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">loads quicklisp</span>
+  hi_lpslow(){ sbcl --eval <span style="font-style: italic;">'(progn (format t "hi!") (quit))'</span>;}
+  hi_pl(){ perl -E <span style="font-style: italic;">"say 'hi'"</span>;}
+  hi_py(){ python -c <span style="font-style: italic;">"print('hi')"</span>;}
+  hi_node(){ node -e <span style="font-style: italic;">"console.log('hi')"</span>;}
+  hi_ruby(){ ruby -e <span style="font-style: italic;">"puts 'hi'"</span>;}
+  hi_bb(){ bb <span style="font-style: italic;">'(print "hi\n")'</span>; }
+  hi_bash() { bash -c <span style="font-style: italic;">"echo hi"</span>;}
+  hi_php() { php -r <span style="font-style: italic;">'echo "hi\n";'</span>;}
+  hi_r() { Rscript --vanilla -e <span style="font-style: italic;">"print('hi')"</span>;}
+  hi_jl() { julia -e <span style="font-style: italic;">'print("hi")'</span>;}
+  hi_clj() { clj --eval <span style="font-style: italic;">'(println "hi")'</span>;}
+  hi_apl() { <span style="font-weight: bold;">echo</span> -e <span style="font-style: italic;">'"hi"\n)OFF'</span> |  apl --noCIN -q --noSV; }
+  hi_awk() { <span style="font-weight: bold;">echo</span> hi | awk <span style="font-style: italic;">'{print $0}'</span>;}
+  hi_sed() { <span style="font-weight: bold;">echo</span> hi | sed -n p;}
+
+  <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">time it. find all hi* functions. export them so hyperfine can see 'em</span>
+  csvtime() { hyperfine $<span style="font-weight: bold; font-style: italic;">1</span> --style none --export-csv &gt;(cat) 2&gt;/dev/null ; }
+  <span style="font-weight: bold;">for</span> f<span style="font-weight: bold;"> in</span> $(<span style="font-weight: bold;">typeset</span> -F|grep -oP <span style="font-style: italic;">'hi_[a-z]+$'</span>); <span style="font-weight: bold;">do</span>
+    <span style="font-weight: bold;">export</span> -f $<span style="font-weight: bold; font-style: italic;">f</span>
+    csvtime $<span style="font-weight: bold; font-style: italic;">f</span>;
+  <span style="font-weight: bold;">done</span> |
+sort -u | <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">remove repeated headers. "command" sorted before "hi*" =&gt; header on top</span>
+perl -F, -slane <span style="font-style: italic;">'print join "\t", map {$_=/^[0-9]/?sprintf("%.5f",$_):$_} @F'</span>| <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">fewer sigfig for numbers</span>
+awk <span style="font-style: italic;">'NR&lt;2{print $0;next}{print $0|"sort -k2,2"}'</span>| <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">sort all but the header</span>
+sed s/hi_// <span style="font-weight: bold; font-style: italic;"># </span><span style="font-weight: bold; font-style: italic;">remove function name that helped identify in $(</span><span style="font-weight: bold;">typeset</span><span style="font-weight: bold; font-style: italic;"> -F)</span>
+
+</pre>
+</div>
+
+<table class="table table-striped table-bordered table-condensed"
+         style="width: auto;">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+
+<col  class="org-right">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">command</td>
+<td class="org-right">mean</td>
+<td class="org-right">stddev</td>
+<td class="org-right">median</td>
+<td class="org-right">user</td>
+<td class="org-right">system</td>
+<td class="org-right">min</td>
+<td class="org-right">max</td>
+</tr>
+
+<tr>
+<td class="org-left">sed</td>
+<td class="org-right">0.00233</td>
+<td class="org-right">0.00025</td>
+<td class="org-right">0.00228</td>
+<td class="org-right">0.00182</td>
+<td class="org-right">0.00114</td>
+<td class="org-right">0.00189</td>
+<td class="org-right">0.00389</td>
+</tr>
+
+<tr>
+<td class="org-left">pl</td>
+<td class="org-right">0.00281</td>
+<td class="org-right">0.00014</td>
+<td class="org-right">0.0028</td>
+<td class="org-right">0.00145</td>
+<td class="org-right">0.00142</td>
+<td class="org-right">0.00242</td>
+<td class="org-right">0.00377</td>
+</tr>
+
+<tr>
+<td class="org-left">bash</td>
+<td class="org-right">0.00338</td>
+<td class="org-right">0.00014</td>
+<td class="org-right">0.00338</td>
+<td class="org-right">0.00213</td>
+<td class="org-right">0.00134</td>
+<td class="org-right">0.00297</td>
+<td class="org-right">0.00436</td>
+</tr>
+
+<tr>
+<td class="org-left">awk</td>
+<td class="org-right">0.00389</td>
+<td class="org-right">0.00015</td>
+<td class="org-right">0.00389</td>
+<td class="org-right">0.00283</td>
+<td class="org-right">0.00146</td>
+<td class="org-right">0.0034</td>
+<td class="org-right">0.00491</td>
+</tr>
+
+<tr>
+<td class="org-left">lisp</td>
+<td class="org-right">0.00463</td>
+<td class="org-right">0.00026</td>
+<td class="org-right">0.00463</td>
+<td class="org-right">0.00182</td>
+<td class="org-right">0.0029</td>
+<td class="org-right">0.00377</td>
+<td class="org-right">0.00542</td>
+</tr>
+
+<tr>
+<td class="org-left">apl</td>
+<td class="org-right">0.00737</td>
+<td class="org-right">0.00026</td>
+<td class="org-right">0.00738</td>
+<td class="org-right">0.00417</td>
+<td class="org-right">0.00354</td>
+<td class="org-right">0.00671</td>
+<td class="org-right">0.00883</td>
+</tr>
+
+<tr>
+<td class="org-left">php</td>
+<td class="org-right">0.01478</td>
+<td class="org-right">0.00029</td>
+<td class="org-right">0.01475</td>
+<td class="org-right">0.00838</td>
+<td class="org-right">0.00623</td>
+<td class="org-right">0.01423</td>
+<td class="org-right">0.01664</td>
+</tr>
+
+<tr>
+<td class="org-left">bb</td>
+<td class="org-right">0.02002</td>
+<td class="org-right">0.00042</td>
+<td class="org-right">0.01996</td>
+<td class="org-right">0.00578</td>
+<td class="org-right">0.01491</td>
+<td class="org-right">0.01927</td>
+<td class="org-right">0.02251</td>
+</tr>
+
+<tr>
+<td class="org-left">py</td>
+<td class="org-right">0.02795</td>
+<td class="org-right">0.00095</td>
+<td class="org-right">0.02752</td>
+<td class="org-right">0.02241</td>
+<td class="org-right">0.00523</td>
+<td class="org-right">0.02684</td>
+<td class="org-right">0.03187</td>
+</tr>
+
+<tr>
+<td class="org-left">node</td>
+<td class="org-right">0.03609</td>
+<td class="org-right">0.0008</td>
+<td class="org-right">0.03594</td>
+<td class="org-right">0.02729</td>
+<td class="org-right">0.00913</td>
+<td class="org-right">0.03506</td>
+<td class="org-right">0.04009</td>
+</tr>
+
+<tr>
+<td class="org-left">ruby</td>
+<td class="org-right">0.06791</td>
+<td class="org-right">0.00882</td>
+<td class="org-right">0.06648</td>
+<td class="org-right">0.05812</td>
+<td class="org-right">0.00888</td>
+<td class="org-right">0.0579</td>
+<td class="org-right">0.08943</td>
+</tr>
+
+<tr>
+<td class="org-left">jl</td>
+<td class="org-right">0.16368</td>
+<td class="org-right">0.00241</td>
+<td class="org-right">0.16342</td>
+<td class="org-right">0.08349</td>
+<td class="org-right">0.07878</td>
+<td class="org-right">0.16008</td>
+<td class="org-right">0.16821</td>
+</tr>
+
+<tr>
+<td class="org-left">r</td>
+<td class="org-right">0.18803</td>
+<td class="org-right">0.00371</td>
+<td class="org-right">0.18716</td>
+<td class="org-right">0.15006</td>
+<td class="org-right">0.04015</td>
+<td class="org-right">0.18374</td>
+<td class="org-right">0.19786</td>
+</tr>
+
+<tr>
+<td class="org-left">lpslow</td>
+<td class="org-right">0.33705</td>
+<td class="org-right">0.00433</td>
+<td class="org-right">0.336</td>
+<td class="org-right">0.28454</td>
+<td class="org-right">0.04951</td>
+<td class="org-right">0.33246</td>
+<td class="org-right">0.3469</td>
+</tr>
+
+<tr>
+<td class="org-left">clj</td>
+<td class="org-right">1.07845</td>
+<td class="org-right">0.02057</td>
+<td class="org-right">1.07499</td>
+<td class="org-right">1.57696</td>
+<td class="org-right">0.21864</td>
+<td class="org-right">1.05055</td>
+<td class="org-right">1.11453</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-More%20on%20Motivation" class="outline-2">
+<h2 id="More%20on%20Motivation">More on Motivation</h2>
+<div class="outline-text-2" id="text-More%20on%20Motivation">
+<p>
+Musings in <a href="https://eccentric-j.com/blog/clojure-like-its-php.html">https://eccentric-j.com/blog/clojure-like-its-php.html</a> consider
+<code>babashka</code>'s faster-than-clojure start up time in context of cgi-bin scripts. Aside: compiling clojure with GraalVM and serving quick starting binaries is an essential part of a <a href="https://github.com/LabNeuroCogDevel/psiclj">work project</a>.
+</p>
+
+
+<p>
+I find the babashka write-up compelling, but not for the same reason as the author. I have a very small collection of local cgi-bin scripts, all in bash. And all are under the magic 100-or-so lines that mark when convention says use a "real programming language."
+</p>
+<div class="org-src-container">
+<pre class="src src-bash"><span style="font-weight: bold;">echo</span> -e <span style="font-style: italic;">"file\tline-count\ttype"</span>
+ssh s2 <span style="font-style: italic;">'</span>
+<span style="font-style: italic;"> for f in /srv/http/cgi-bin/*; do</span>
+<span style="font-style: italic;">  echo -e "$(</span><span style="font-weight: bold;">basename</span><span style="font-style: italic;"> $f)\t$(</span><span style="font-weight: bold;">wc</span><span style="font-style: italic;"> -l &lt; $f)\t$(</span><span style="font-weight: bold;">file</span><span style="font-style: italic;"> -bL $f|sed s/,.*//)";</span>
+<span style="font-style: italic;"> done'</span>
+</pre>
+</div>
+
+<table class="table table-striped table-bordered table-condensed"
+         style="width: auto;">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-left">
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">file</td>
+<td class="org-right">line-count</td>
+<td class="org-left">type</td>
+</tr>
+
+<tr>
+<td class="org-left">books</td>
+<td class="org-right">46</td>
+<td class="org-left">Bourne-Again shell script</td>
+</tr>
+
+<tr>
+<td class="org-left">e</td>
+<td class="org-right">48</td>
+<td class="org-left">Bourne-Again shell script</td>
+</tr>
+
+<tr>
+<td class="org-left">hi</td>
+<td class="org-right">6</td>
+<td class="org-left">Bourne-Again shell script</td>
+</tr>
+
+<tr>
+<td class="org-left">tv</td>
+<td class="org-right">73</td>
+<td class="org-left">Bourne-Again shell script</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+These utilities emerged organically from small itches and lean heavily on other bigger tools (calibre, sqlite, filesystem). Shell's a good fit, but the choice wasn't deliberate. It's nice to be prompted to think about it. The procrastinator-looking-for-an-escape is always interested in exploring other hacks.
+</p>
+
+<p>
+I'd previously been burned by noticeably slow python. <code>Matplotlib</code> generated an image of the week's soccer roster to embed in emails for up-to-date whos-going-to-show-up status. It was slow enough that opening the google sheet in a new tab was often competitive time-wise. (Were I to redo the project, I'd use shell and imagemagick)
+</p>
+
+
+<p>
+To that end, I'm curious what the quickest start up is for common interpreters are.
+</p>
+</div>
+</div>
+
+<div id="outline-container-Other%20thoughts" class="outline-2">
+<h2 id="Other%20thoughts">Other thoughts</h2>
+<div class="outline-text-2" id="text-Other%20thoughts">
+</div>
+<div id="outline-container-startup%20time%20is%20likely%20to%20be%20entirely%20eclipsed%20by%20library%20load%20times" class="outline-3">
+<h3 id="startup%20time%20is%20likely%20to%20be%20entirely%20eclipsed%20by%20library%20load%20times">startup time is likely to be entirely eclipsed by library load times</h3>
+<div class="outline-text-3" id="text-startup%20time%20is%20likely%20to%20be%20entirely%20eclipsed%20by%20library%20load%20times">
+<div class="org-src-container">
+<pre class="src src-bash">(
+  hyperfine <span style="font-style: italic;">'python -c "1"'</span>
+  hyperfine <span style="font-style: italic;">'python -c "import matplotlib;import pandas; 1"'</span>
+ ) |sed -n s/Range[^0-9]*//p
+
+</pre>
+</div>
+
+<pre class="example">
+25.8 ms …  27.6 ms    100 runs
+397.1 ms … 426.1 ms    10 runs
+</pre>
+</div>
+</div>
+
+<div id="outline-container-Common%20lisp%20can%20start%20up%20fast%20if%20it%20doesn%27t%20have%20to%20load%20much" class="outline-3">
+<h3 id="Common%20lisp%20can%20start%20up%20fast%20if%20it%20doesn%27t%20have%20to%20load%20much">Common lisp can start up fast if it doesn't have to load much</h3>
+<div class="outline-text-3" id="text-Common%20lisp%20can%20start%20up%20fast%20if%20it%20doesn%27t%20have%20to%20load%20much">
+<p>
+I haven't tested leaving out quicklisp but still loading whatever libraries would be useful. I suspect lisp would do better than python while still providing an interface to live edit.
+</p>
+</div>
+</div>
+
+<div id="outline-container-native%20binaries%3A%20fast%20but%20large" class="outline-3">
+<h3 id="native%20binaries%3A%20fast%20but%20large">native binaries: fast but large</h3>
+<div class="outline-text-3" id="text-native%20binaries%3A%20fast%20but%20large">
+<p>
+CL and clojure can both be compiled to very fast-starting native images. But both are large for even small programs (~60Mb for SBCL, and ~40Mb for clojure w/postgres at least)
+</p>
+</div>
+</div>
+
+<div id="outline-container-APL%20nerd%20snipe" class="outline-3">
+<h3 id="APL%20nerd%20snipe">APL nerd snipe</h3>
+<div class="outline-text-3" id="text-APL%20nerd%20snipe">
+<p>
+I fell into a small APL rabbit hole. The online manual is wrong. Neither <a href="https://www.gnu.org/software/apl/apl.html"><code>--eval</code></a> nor <code>--off</code> are valid arguments! Regardless, anytime I come near APL, I loose hours thinking this will be the time it clicks. Doubly so when considering <a href="https://github.com/phantomics/april">april</a>. Someday I'll figure out getting a nifti file into lisp as a matrix and april will open up a new world. (20220404 edit: also <a href="https://github.com/shashi/APL.jl">APL.jl</a>)
+</p>
+</div>
+</div>
+
+<div id="outline-container-User%20experience" class="outline-3">
+<h3 id="User%20experience">User experience</h3>
+<div class="outline-text-3" id="text-User%20experience">
+<blockquote>
+<p>
+20ms feels fine, 50ms feels laggy, and 150ms feels unbearable.
+</p>
+</blockquote>
+
+<p>
+VR headset latency might be as orthogonal to application startup a time metric can get, but the psycho-physics still provide a useful baseline. With a shell terminal as a not-so-impoverished REPL for shell cgi-bin, the evaluate part of the loop is worth inspecting, though less so for the actual page rendering. Though there's psychology to explore there to. I wish APL had become an often embedded DSL as ubiquitous as regular expressions.
+</p>
+<blockquote>
+<p>
+Based on a 0.1s natural mobile site speed improvement, we &#x2026; conversions increase [~8-10%]
+</p>
+</blockquote>
+
+<p>
+The same feels true for development, especially self-motivated ones. I'll move on to something with a quicker feedback if I am constantly waiting a second or two for iterative results.
+<a href="https://input-delay.glitch.me/">https://input-delay.glitch.me/</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: 2021-10-22</p>
+<p class="date">Created: 2022-04-04 Mon 16:36</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

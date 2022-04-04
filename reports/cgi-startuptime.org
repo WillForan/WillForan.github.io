@@ -1,7 +1,7 @@
 :PROPERTIES:
 :ID:       573e9b54-e251-4557-9190-771ee35ab7ef
 :END:
-#+title: cgi-bin and interpreter startup time
+#+TITLE: cgi-bin and interpreter startup time
 #+DATE: 2021-10-22
 #+OPTIONS: _:{} ^:{} toc:nil num:nil
 
@@ -15,9 +15,9 @@ There are lots of reasons to find this metric useless. It's nothing like a measu
 
 
 Eye-balling start up times for what I have installed on my system, there are 3 groups.
- * fast: perl, awk, sed, bash, lisp(!)
+ * fast (<.005s): perl, awk, sed, bash, lisp(!)
  * okay: php, bb, py, node, ruby
- * slow: julia, lisp, R, clojure
+ * slow (>1s): julia, lisp, R, clojure
 
 #+begin_src bash :cache
     # hi in various interpreters 
@@ -92,9 +92,10 @@ I find the babashka write-up compelling, but not for the same reason as the auth
 
 These utilities emerged organically from small itches and lean heavily on other bigger tools (calibre, sqlite, filesystem). Shell's a good fit, but the choice wasn't deliberate. It's nice to be prompted to think about it. The procrastinator-looking-for-an-escape is always interested in exploring other hacks.
 
-I'd previously been burned by noticeably slow python. ~Matplotlib~ generated an image of the week's roster to embed in emails for up-to-date whos-going-to-show-up status. It was slow enough that opening the google sheet in a new tab was often competitive time-wise. (Were I to redo the project, I'd use shell and imagemagick)
+I'd previously been burned by noticeably slow python. ~Matplotlib~ generated an image of the week's soccer roster to embed in emails for up-to-date whos-going-to-show-up status. It was slow enough that opening the google sheet in a new tab was often competitive time-wise. (Were I to redo the project, I'd use shell and imagemagick)
 
-To that end, I'm curios what the quickest start up is for common interpreters are.
+
+To that end, I'm curious what the quickest start up is for common interpreters are.
 
 * Other thoughts
 
@@ -118,7 +119,7 @@ To that end, I'm curios what the quickest start up is for common interpreters ar
 CL and clojure can both be compiled to very fast-starting native images. But both are large for even small programs (~60Mb for SBCL, and ~40Mb for clojure w/postgres at least)
 
 ** APL nerd snipe
-I fell into a small APL rabbit hole. The online manual is wrong. Neither [[https://www.gnu.org/software/apl/apl.html][~--eval~]] nor ~--off~ are valid arguments! Regardless, anytime I come near APL, I loose hours thinking this will be the time it clicks. Doubly so when considering [[https://github.com/phantomics/april][april]]. Someday I'll figure out getting a nifti file into lisp as a matrix and april will open up a new world.
+I fell into a small APL rabbit hole. The online manual is wrong. Neither [[https://www.gnu.org/software/apl/apl.html][~--eval~]] nor ~--off~ are valid arguments! Regardless, anytime I come near APL, I loose hours thinking this will be the time it clicks. Doubly so when considering [[https://github.com/phantomics/april][april]]. Someday I'll figure out getting a nifti file into lisp as a matrix and april will open up a new world. (20220404 edit: also [[https://github.com/shashi/APL.jl][APL.jl]])
 
 ** User experience 
    #+begin_quote https://danluu.com/term-latency/
