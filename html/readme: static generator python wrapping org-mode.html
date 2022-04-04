@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2019-09-30 Mon 13:02 -->
+<!-- 2022-04-04 Mon 17:04 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>readme: static generator python wrapping org-mode</title>
@@ -37,7 +37,7 @@
   }
   pre.src {
     position: relative;
-    overflow: visible;
+    overflow: auto;
     padding-top: 1.2em;
   }
   pre.src:before {
@@ -49,7 +49,7 @@
     padding: 3px;
     border: 1px solid black;
   }
-  pre.src:hover:before { display: inline;}
+  pre.src:hover:before { display: inline; margin-top: 14px;}
   /* Languages per Org manual */
   pre.src-asymptote:before { content: 'Asymptote'; }
   pre.src-awk:before { content: 'Awk'; }
@@ -158,6 +158,19 @@
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
   .inlinetask {
     padding: 10px;
     border: 2px solid gray;
@@ -179,50 +192,26 @@
 </style>
 <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
 <script type="text/javascript">
-/*
-@licstart  The following is the entire license notice for the
-JavaScript code in this tag.
-
-Copyright (C) 2012-2019 Free Software Foundation, Inc.
-
-The JavaScript code in this tag is free software: you can
-redistribute it and/or modify it under the terms of the GNU
-General Public License (GNU GPL) as published by the Free Software
-Foundation, either version 3 of the License, or (at your option)
-any later version.  The code is distributed WITHOUT ANY WARRANTY;
-without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
-
-As additional permission under GNU GPL version 3 section 7, you
-may distribute non-source (e.g., minimized or compacted) forms of
-that code without the copy of the GNU GPL normally required by
-section 4, provided you include this license notice and a URL
-through which recipients can access the Corresponding Source.
-
-
-@licend  The above is the entire license notice
-for the JavaScript code in this tag.
-*/
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
 <!--/*--><![CDATA[/*><!--*/
- function CodeHighlightOn(elem, id)
- {
-   var target = document.getElementById(id);
-   if(null != target) {
-     elem.cacheClassElem = elem.className;
-     elem.cacheClassTarget = target.className;
-     target.className = "code-highlighted";
-     elem.className   = "code-highlighted";
-   }
- }
- function CodeHighlightOff(elem, id)
- {
-   var target = document.getElementById(id);
-   if(elem.cacheClassElem)
-     elem.className = elem.cacheClassElem;
-   if(elem.cacheClassTarget)
-     target.className = elem.cacheClassTarget;
- }
-/*]]>*///-->
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
 </script>
 </head>
 <body class="container">
@@ -230,9 +219,9 @@ for the JavaScript code in this tag.
 <h1 class="title">readme: static generator python wrapping org-mode</h1>
 
 
-<div id="outline-container-org5e817dc" class="outline-2">
-<h2 id="org5e817dc">What</h2>
-<div class="outline-text-2" id="text-org5e817dc">
+<div id="outline-container-What" class="outline-2">
+<h2 id="What">What</h2>
+<div class="outline-text-2" id="text-What">
 <p>
 This is a repo to generate html for github pages from org mode files. 
 </p>
@@ -242,9 +231,9 @@ The file you are reading is both the readme and an individual "report" (linked i
 </p>
 </div>
 
-<div id="outline-container-org9ecd545" class="outline-3">
-<h3 id="org9ecd545">Motivation</h3>
-<div class="outline-text-3" id="text-org9ecd545">
+<div id="outline-container-Motivation" class="outline-3">
+<h3 id="Motivation">Motivation</h3>
+<div class="outline-text-3" id="text-Motivation">
 <ul class="org-ul">
 <li>Org-mode babel is the coolest thing!</li>
 <li>I have a lot of git repos for one off experiments.</li>
@@ -259,21 +248,21 @@ If I make it easy to export org-babel, I can use it to reduce friction on one of
 </div>
 
 
-<div id="outline-container-orgcfc0dff" class="outline-2">
-<h2 id="orgcfc0dff">Notes</h2>
-<div class="outline-text-2" id="text-orgcfc0dff">
+<div id="outline-container-Notes" class="outline-2">
+<h2 id="Notes">Notes</h2>
+<div class="outline-text-2" id="text-Notes">
 </div>
-<div id="outline-container-org2c06157" class="outline-3">
-<h3 id="org2c06157">Usage</h3>
-<div class="outline-text-3" id="text-org2c06157">
+<div id="outline-container-Usage" class="outline-3">
+<h3 id="Usage">Usage</h3>
+<div class="outline-text-3" id="text-Usage">
 <p>
 run <code>make</code> to read through <code>reports/*.org</code> and export to <code>html/</code>
 </p>
 </div>
 
-<div id="outline-container-org5295927" class="outline-4">
-<h4 id="org5295927">this file</h4>
-<div class="outline-text-4" id="text-org5295927">
+<div id="outline-container-this%20file" class="outline-4">
+<h4 id="this%20file">this file</h4>
+<div class="outline-text-4" id="text-this%20file">
 <p>
 run tangle from <code>reports/</code> directory not top level. relative links work much better there.
 </p>
@@ -281,9 +270,9 @@ run tangle from <code>reports/</code> directory not top level. relative links wo
 </div>
 </div>
 
-<div id="outline-container-org440d165" class="outline-3">
-<h3 id="org440d165">org mode</h3>
-<div class="outline-text-3" id="text-org440d165">
+<div id="outline-container-org%20mode" class="outline-3">
+<h3 id="org%20mode">org mode</h3>
+<div class="outline-text-3" id="text-org%20mode">
 <ul class="org-ul">
 <li><code>#+OPTIONS: _:{} ^:{}</code> so <code>_</code> doesn't subscript. Can still use <code>_{}</code> like<sub>this</sub></li>
 <li><code>#+OPTIONS: toc:nil num:nil</code> to remove table of contents and header numbering</li>
@@ -293,9 +282,9 @@ run tangle from <code>reports/</code> directory not top level. relative links wo
 </ul>
 </div>
 </div>
-<div id="outline-container-orgeb6b21e" class="outline-3">
-<h3 id="orgeb6b21e">Todos</h3>
-<div class="outline-text-3" id="text-orgeb6b21e">
+<div id="outline-container-Todos" class="outline-3">
+<h3 id="Todos">Todos</h3>
+<div class="outline-text-3" id="text-Todos">
 <ul class="org-ul">
 <li>add tangled file and link from <code>src_blocks</code> a la <a href="https://stackoverflow.com/questions/38857751/show-tangled-file-name-in-org-mode-code-block-export">this</a> stack overflow QA.</li>
 <li>code highlighting</li>
@@ -305,9 +294,9 @@ run tangle from <code>reports/</code> directory not top level. relative links wo
 </div>
 </div>
 
-<div id="outline-container-org44d9904" class="outline-3">
-<h3 id="org44d9904">Aside</h3>
-<div class="outline-text-3" id="text-org44d9904">
+<div id="outline-container-Aside" class="outline-3">
+<h3 id="Aside">Aside</h3>
+<div class="outline-text-3" id="text-Aside">
 <p>
 The small python script &#x2014; <code>make_index.py</code> &#x2014; made within this document could be replaced by a <code>Makefile</code> and a few bash/perl/python one liners.
 </p>
@@ -315,9 +304,9 @@ The small python script &#x2014; <code>make_index.py</code> &#x2014; made within
 </div>
 </div>
 
-<div id="outline-container-org90d0c98" class="outline-2">
-<h2 id="org90d0c98">Code</h2>
-<div class="outline-text-2" id="text-org90d0c98">
+<div id="outline-container-Code" class="outline-2">
+<h2 id="Code">Code</h2>
+<div class="outline-text-2" id="text-Code">
 <p>
 The python and html template code to export org-files and render <code>index.html</code> is all tangled within this org file.
 </p>
@@ -327,9 +316,9 @@ This is awkward. For this document to be meaningful, it is the only way these fi
 </p>
 </div>
 
-<div id="outline-container-org98079ba" class="outline-3">
-<h3 id="org98079ba">find title and date</h3>
-<div class="outline-text-3" id="text-org98079ba">
+<div id="outline-container-find%20title%20and%20date" class="outline-3">
+<h3 id="find%20title%20and%20date">find title and date</h3>
+<div class="outline-text-3" id="text-find%20title%20and%20date">
 <ul class="org-ul">
 <li>date can be in the file as <code>#+DATE:.*yyyy-mm-dd</code> or could be the modification time of the file</li>
 <li>title <code>#+TITLE:.*</code> or the name of the file</li>
@@ -338,9 +327,9 @@ This is awkward. For this document to be meaningful, it is the only way these fi
 </div>
 </div>
 
-<div id="outline-container-orgeef5f0c" class="outline-3">
-<h3 id="orgeef5f0c">find all pages</h3>
-<div class="outline-text-3" id="text-orgeef5f0c">
+<div id="outline-container-find%20all%20pages" class="outline-3">
+<h3 id="find%20all%20pages">find all pages</h3>
+<div class="outline-text-3" id="text-find%20all%20pages">
 <p>
 We're creating a py file in <code>../src</code>, but running this from an org file in the directory we expect all the files to already be in.
 <code>../reports</code> will work for a file launched in either location. All is lost if we run the code outside of the directory it lives.
@@ -360,37 +349,65 @@ tabulate(file_df.head(n=5),headers=<span style="font-style: italic;">"keys"</spa
 
 
 <colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+
 <col  class="org-right">
-
-<col  class="org-left">
-
-<col  class="org-left">
-
-<col  class="org-left">
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-right">date</th>
 <th scope="col" class="org-left">f</th>
 <th scope="col" class="org-left">mt</th>
 <th scope="col" class="org-left">title</th>
+<th scope="col" class="org-right">date</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-right">2017-11-18</td>
-<td class="org-left">make_index.org</td>
-<td class="org-left">2017-11-18 19:47:22.007319</td>
-<td class="org-left">make_index</td>
+<td class="org-left">cgi-startuptime.org</td>
+<td class="org-left">2022-04-04 16:34:06.432610</td>
+<td class="org-left">cgi-bin and interpreter startup time</td>
+<td class="org-right">2021-10-22</td>
+</tr>
+
+<tr>
+<td class="org-left">risk.org</td>
+<td class="org-left">2021-10-22 21:26:10.164202</td>
+<td class="org-left">risk</td>
+<td class="org-right">2020-04-04</td>
+</tr>
+
+<tr>
+<td class="org-left">gopher.org</td>
+<td class="org-left">2021-10-22 21:26:10.163202</td>
+<td class="org-left">gopher</td>
+<td class="org-right">2019-03-15</td>
+</tr>
+
+<tr>
+<td class="org-left">netflix.org</td>
+<td class="org-left">2021-10-22 21:26:10.163202</td>
+<td class="org-left">Netflix Usage</td>
+<td class="org-right">2017-12-09</td>
+</tr>
+
+<tr>
+<td class="org-left">strava.org</td>
+<td class="org-left">2021-10-22 21:26:10.164202</td>
+<td class="org-left">Strava Tracked Workouts</td>
+<td class="org-right">2017-12-09</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-org0d63c2d" class="outline-3">
-<h3 id="org0d63c2d">export pages</h3>
-<div class="outline-text-3" id="text-org0d63c2d">
+<div id="outline-container-export%20pages" class="outline-3">
+<h3 id="export%20pages">export pages</h3>
+<div class="outline-text-3" id="text-export%20pages">
 <p>
 This is a weird place to be. This text (and code) is written using org-mode within emacs. 
 The actual instructions are run inside python.  
@@ -414,9 +431,9 @@ Meanwhile, the instructions to do all of this are written in emacs. Literate pro
 </p>
 </div>
 
-<div id="outline-container-orgd8b7e81" class="outline-4">
-<h4 id="orgd8b7e81">bonuses</h4>
-<div class="outline-text-4" id="text-orgd8b7e81">
+<div id="outline-container-bonuses" class="outline-4">
+<h4 id="bonuses">bonuses</h4>
+<div class="outline-text-4" id="text-bonuses">
 <ul class="org-ul">
 <li>include css (<code>--bootstrap</code>) without much work</li>
 <li>have more control in the name of the final output html file (<code>--outname</code>).</li>
@@ -424,24 +441,81 @@ Meanwhile, the instructions to do all of this are written in emacs. Literate pro
 </div>
 </div>
 
-<div id="outline-container-org7d1e236" class="outline-4">
-<h4 id="org7d1e236">org-export configuration</h4>
-<div class="outline-text-4" id="text-org7d1e236">
+<div id="outline-container-org-export%20configuration" class="outline-4">
+<h4 id="org-export%20configuration">org-export configuration</h4>
+<div class="outline-text-4" id="text-org-export%20configuration">
 <p>
 By default <code>org-export</code> builds <code>ess</code> and <code>org</code> from git. This was failing. 
 I removed these two from <code>org-export-html.el:cli-el-get-setup</code>
 </p>
 </div>
 </div>
+
+
+<div id="outline-container-DIY%20Make%20target%20list" class="outline-4">
+<h4 id="DIY%20Make%20target%20list">DIY Make target list</h4>
+<div class="outline-text-4" id="text-DIY%20Make%20target%20list">
+<p>
+Makefile could (should) figure out what needs to be exported.
+But we already have modification times. So we can compare those to the output targets to see which needs to be (re)run.
+</p>
+</div>
 </div>
 
-<div id="outline-container-org388e992" class="outline-3">
-<h3 id="org388e992">create the index</h3>
-<div class="outline-text-3" id="text-org388e992">
+<div id="outline-container-quick%20look" class="outline-4">
+<h4 id="quick%20look">quick look</h4>
+<div class="outline-text-4" id="text-quick%20look">
+<div class="org-src-container">
+<pre class="src src-python"><span style="font-weight: bold;">from</span> tabulate <span style="font-weight: bold;">import</span> tabulate
+tabulate(need_update[[<span style="font-style: italic;">'title'</span>,<span style="font-style: italic;">'export_date'</span>,<span style="font-style: italic;">'mt'</span>]],headers=<span style="font-style: italic;">"keys"</span>, tablefmt=<span style="font-style: italic;">"orgtbl"</span>,showindex=<span style="font-weight: bold; text-decoration: underline;">False</span>)
+</pre>
+</div>
+
+<table class="table table-striped table-bordered table-condensed"
+         style="width: auto;">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">title</th>
+<th scope="col" class="org-left">export_date</th>
+<th scope="col" class="org-left">mt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">readme: static generator python wrapping org-mode</td>
+<td class="org-left">2022-04-04 16:36:17.933011</td>
+<td class="org-left">2022-04-04 16:36:51.075014</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-Actually%20run" class="outline-4">
+<h4 id="Actually%20run">Actually run</h4>
+</div>
+</div>
+<div id="outline-container-create%20the%20index" class="outline-3">
+<h3 id="create%20the%20index">create the index</h3>
+<div class="outline-text-3" id="text-create%20the%20index">
 <p>
 The index page links to all the exported org files.
 </p>
+</div>
 
+
+<div id="outline-container-Template" class="outline-4">
+<h4 id="Template">Template</h4>
+<div class="outline-text-4" id="text-Template">
 <p>
 We'll use a template engine &#x2014; <a href="https://bitbucket.org/akorn/wheezy.template">wheezy.template</a> because it was linked <a href="https://wiki.python.org/moin/Templating">here</a> &#x2014; to wrap generate the index page.
 </p>
@@ -453,10 +527,18 @@ We'll use a template engine &#x2014; <a href="https://bitbucket.org/akorn/wheezy
   &lt;/<span style="font-weight: bold;">head</span>&gt;
   &lt;<span style="font-weight: bold;">body</span>&gt;
     &lt;<span style="font-weight: bold;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">@title</span>&lt;/<span style="font-weight: bold;">h1</span>&gt;
+    Also in &lt;<span style="font-weight: bold;">a</span> <span style="font-weight: bold; font-style: italic;">href</span>=<span style="font-style: italic;">"gopher://www.xn--4-cmb.com"</span>&gt;gopher space&lt;/<span style="font-weight: bold;">a</span>&gt;
     &lt;<span style="font-weight: bold;">ul</span>&gt;
     @for i,f in file_df.iterrows():
         &lt;<span style="font-weight: bold;">li</span>&gt;&lt;<span style="font-weight: bold;">a</span> <span style="font-weight: bold; font-style: italic;">href</span>=<span style="font-style: italic;">"@f['uri']"</span>&gt;&lt;<span style="font-weight: bold;">time</span>&gt;@f['date']&lt;/<span style="font-weight: bold;">time</span>&gt; @f['title']&lt;/<span style="font-weight: bold;">a</span>&gt;&lt;/<span style="font-weight: bold;">li</span>&gt;
     @end
+    &lt;/<span style="font-weight: bold;">ul</span>&gt;
+    &lt;<span style="font-weight: bold;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">External</span>&lt;/<span style="font-weight: bold;">h1</span>&gt;
+    &lt;<span style="font-weight: bold;">ul</span> <span style="font-weight: bold; font-style: italic;">class</span>=<span style="font-style: italic;">"info"</span>&gt;
+       &lt;<span style="font-weight: bold;">li</span>&gt;&lt;<span style="font-weight: bold;">a</span> <span style="font-weight: bold; font-style: italic;">href</span>=<span style="font-style: italic;">"https://github.com/WillForan"</span>&gt;Github&lt;/<span style="font-weight: bold;">a</span>&gt;&lt;/<span style="font-weight: bold;">li</span>&gt;
+       &lt;<span style="font-weight: bold;">li</span>&gt;&lt;<span style="font-weight: bold;">a</span> <span style="font-weight: bold; font-style: italic;">href</span>=<span style="font-style: italic;">"https://stackoverflow.com/users/1031776/will"</span>&gt;StackOverflow&lt;/<span style="font-weight: bold;">a</span>&gt;&lt;/<span style="font-weight: bold;">li</span>&gt;
+       &lt;<span style="font-weight: bold;">li</span>&gt;&lt;<span style="font-weight: bold;">a</span> <span style="font-weight: bold; font-style: italic;">href</span>=<span style="font-style: italic;">"https://scholar.google.com/citations?user=PzX6F5oAAAAJ"</span>&gt;GoogleScholar&lt;/<span style="font-weight: bold;">a</span>&gt;&lt;/<span style="font-weight: bold;">li</span>&gt;
+       &lt;<span style="font-weight: bold;">li</span>&gt;&lt;<span style="font-weight: bold;">a</span> <span style="font-weight: bold; font-style: italic;">href</span>=<span style="font-style: italic;">"https://www.strava.com/athletes/15036420"</span>&gt;Strava&lt;/<span style="font-weight: bold;">a</span>&gt;&lt;/<span style="font-weight: bold;">li</span>&gt;
     &lt;/<span style="font-weight: bold;">ul</span>&gt;
   &lt;/<span style="font-weight: bold;">body</span>&gt;
 &lt;/<span style="font-weight: bold;">html</span>&gt;
@@ -464,12 +546,17 @@ We'll use a template engine &#x2014; <a href="https://bitbucket.org/akorn/wheezy
 </div>
 </div>
 </div>
+
+<div id="outline-container-Populate" class="outline-4">
+<h4 id="Populate">Populate</h4>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2017-11-18</p>
-<p class="date">Created: 2019-09-30 Mon 13:02</p>
-<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2022-04-04 Mon 17:04</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>
