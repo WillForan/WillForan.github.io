@@ -232,9 +232,7 @@ if len(need_update) != 0:
 <html> <head>
    <title>@title</title>
    <link rel="stylesheet" type="text/css" href="style.css" />
-<link rel="alternate" type="application/rss+xml" 
-  title="WFLOG RSS Feed" 
-  href="rss.xml" />
+   <link rel="alternate" type="application/rss+xml" title="WFLOG RSS Feed" href="rss.xml" />
   </head>
   <body>
     <h1>@title</h1>
@@ -350,7 +348,7 @@ with open('../gopher/index.gph','w') as indexf:
     #+begin_src xml :tangle ../src/rss.tmp
 @require(time,rss_df)
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
 <channel>
 <title>WFLOG</title>
 <link>www.xn--cmb.com</link>

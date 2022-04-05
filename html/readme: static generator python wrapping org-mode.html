@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-04-04 Mon 22:25 -->
+<!-- 2022-04-04 Mon 22:46 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>readme: static generator python wrapping org-mode</title>
@@ -526,9 +526,7 @@ We'll use a template engine &#x2014; <a href="https://bitbucket.org/akorn/wheezy
 &lt;<span style="font-weight: bold;">html</span>&gt; &lt;<span style="font-weight: bold;">head</span>&gt;
    &lt;<span style="font-weight: bold;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">@title</span>&lt;/<span style="font-weight: bold;">title</span>&gt;
    &lt;<span style="font-weight: bold;">link</span> <span style="font-weight: bold; font-style: italic;">rel</span>=<span style="font-style: italic;">"stylesheet"</span> <span style="font-weight: bold; font-style: italic;">type</span>=<span style="font-style: italic;">"text/css"</span> <span style="font-weight: bold; font-style: italic;">href</span>=<span style="font-style: italic;">"style.css"</span> /&gt;
-&lt;<span style="font-weight: bold;">link</span> <span style="font-weight: bold; font-style: italic;">rel</span>=<span style="font-style: italic;">"alternate"</span> <span style="font-weight: bold; font-style: italic;">type</span>=<span style="font-style: italic;">"application/rss+xml"</span> 
-  <span style="font-weight: bold; font-style: italic;">title</span>=<span style="font-style: italic;">"WFLOG RSS Feed"</span> 
-  <span style="font-weight: bold; font-style: italic;">href</span>=<span style="font-style: italic;">"rss.xml"</span> /&gt;
+   &lt;<span style="font-weight: bold;">link</span> <span style="font-weight: bold; font-style: italic;">rel</span>=<span style="font-style: italic;">"alternate"</span> <span style="font-weight: bold; font-style: italic;">type</span>=<span style="font-style: italic;">"application/rss+xml"</span> <span style="font-weight: bold; font-style: italic;">title</span>=<span style="font-style: italic;">"WFLOG RSS Feed"</span> <span style="font-weight: bold; font-style: italic;">href</span>=<span style="font-style: italic;">"rss.xml"</span> /&gt;
   &lt;/<span style="font-weight: bold;">head</span>&gt;
   &lt;<span style="font-weight: bold;">body</span>&gt;
     &lt;<span style="font-weight: bold;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">@title</span>&lt;/<span style="font-weight: bold;">h1</span>&gt;
@@ -705,7 +703,7 @@ The template is easy enough. needs title, url, desc, date, and cdata encoded htm
 <div class="org-src-container">
 <pre class="src src-xml">@require(time,rss_df)
 &lt;?<span style="font-weight: bold;">xml</span> <span style="font-style: italic;">version="1.0" encoding="utf-8"</span>?&gt;
-&lt;<span style="font-weight: bold;">rss</span> <span style="font-weight: bold; font-style: italic;">version</span>=<span style="font-style: italic;">"2.0"</span>&gt;
+&lt;<span style="font-weight: bold;">rss</span> <span style="font-weight: bold; font-style: italic;">version</span>=<span style="font-style: italic;">"2.0"</span> <span style="font-weight: bold;">xmlns</span>:<span style="font-weight: bold; font-style: italic;">content</span>=<span style="font-style: italic;">"http://purl.org/rss/1.0/modules/content/"</span>&gt;
 &lt;<span style="font-weight: bold;">channel</span>&gt;
 &lt;<span style="font-weight: bold;">title</span>&gt;WFLOG&lt;/<span style="font-weight: bold;">title</span>&gt;
 &lt;<span style="font-weight: bold;">link</span>&gt;www.xn--cmb.com&lt;/<span style="font-weight: bold;">link</span>&gt;
@@ -750,7 +748,7 @@ we should limit the feed to just the most recent files. Though it's unlikely the
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2017-11-18</p>
-<p class="date">Created: 2022-04-04 Mon 22:25</p>
+<p class="date">Created: 2022-04-04 Mon 22:46</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
