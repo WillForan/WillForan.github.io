@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-04-04 Mon 17:04 -->
+<!-- 2022-04-04 Mon 22:25 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>readme: static generator python wrapping org-mode</title>
@@ -339,8 +339,7 @@ We're creating a py file in <code>../src</code>, but running this from an org fi
 We use the function above to pull out info on the file
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span style="font-weight: bold;">from</span> tabulate <span style="font-weight: bold;">import</span> tabulate
-tabulate(file_df.head(n=5),headers=<span style="font-style: italic;">"keys"</span>, tablefmt=<span style="font-style: italic;">"orgtbl"</span>,showindex=<span style="font-weight: bold; text-decoration: underline;">False</span>)
+<pre class="src src-python">tabulate(file_df.head(n=5),headers=<span style="font-style: italic;">"keys"</span>, tablefmt=<span style="font-style: italic;">"orgtbl"</span>,showindex=<span style="font-weight: bold; text-decoration: underline;">False</span>)
 </pre>
 </div>
 
@@ -465,6 +464,9 @@ But we already have modification times. So we can compare those to the output ta
 <div id="outline-container-quick%20look" class="outline-4">
 <h4 id="quick%20look">quick look</h4>
 <div class="outline-text-4" id="text-quick%20look">
+<p>
+TODO: add this to script with something like DRYRUN
+</p>
 <div class="org-src-container">
 <pre class="src src-python"><span style="font-weight: bold;">from</span> tabulate <span style="font-weight: bold;">import</span> tabulate
 tabulate(need_update[[<span style="font-style: italic;">'title'</span>,<span style="font-style: italic;">'export_date'</span>,<span style="font-style: italic;">'mt'</span>]],headers=<span style="font-style: italic;">"keys"</span>, tablefmt=<span style="font-style: italic;">"orgtbl"</span>,showindex=<span style="font-weight: bold; text-decoration: underline;">False</span>)
@@ -492,8 +494,8 @@ tabulate(need_update[[<span style="font-style: italic;">'title'</span>,<span sty
 <tbody>
 <tr>
 <td class="org-left">readme: static generator python wrapping org-mode</td>
-<td class="org-left">2022-04-04 16:36:17.933011</td>
-<td class="org-left">2022-04-04 16:36:51.075014</td>
+<td class="org-left">2022-04-04 17:19:55.509670</td>
+<td class="org-left">2022-04-04 21:36:50.713842</td>
 </tr>
 </tbody>
 </table>
@@ -524,6 +526,9 @@ We'll use a template engine &#x2014; <a href="https://bitbucket.org/akorn/wheezy
 &lt;<span style="font-weight: bold;">html</span>&gt; &lt;<span style="font-weight: bold;">head</span>&gt;
    &lt;<span style="font-weight: bold;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">@title</span>&lt;/<span style="font-weight: bold;">title</span>&gt;
    &lt;<span style="font-weight: bold;">link</span> <span style="font-weight: bold; font-style: italic;">rel</span>=<span style="font-style: italic;">"stylesheet"</span> <span style="font-weight: bold; font-style: italic;">type</span>=<span style="font-style: italic;">"text/css"</span> <span style="font-weight: bold; font-style: italic;">href</span>=<span style="font-style: italic;">"style.css"</span> /&gt;
+&lt;<span style="font-weight: bold;">link</span> <span style="font-weight: bold; font-style: italic;">rel</span>=<span style="font-style: italic;">"alternate"</span> <span style="font-weight: bold; font-style: italic;">type</span>=<span style="font-style: italic;">"application/rss+xml"</span> 
+  <span style="font-weight: bold; font-style: italic;">title</span>=<span style="font-style: italic;">"WFLOG RSS Feed"</span> 
+  <span style="font-weight: bold; font-style: italic;">href</span>=<span style="font-style: italic;">"rss.xml"</span> /&gt;
   &lt;/<span style="font-weight: bold;">head</span>&gt;
   &lt;<span style="font-weight: bold;">body</span>&gt;
     &lt;<span style="font-weight: bold;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">@title</span>&lt;/<span style="font-weight: bold;">h1</span>&gt;
@@ -551,11 +556,201 @@ We'll use a template engine &#x2014; <a href="https://bitbucket.org/akorn/wheezy
 <h4 id="Populate">Populate</h4>
 </div>
 </div>
+<div id="outline-container-Gopher" class="outline-3">
+<h3 id="Gopher">Gopher</h3>
+<div class="outline-text-3" id="text-Gopher">
+<p>
+This was done by another script or by hand somewhere since lost. Tracked here (readme.org) in 20220404
+</p>
+</div>
+<div id="outline-container-Gopher--Template" class="outline-4">
+<h4 id="Gopher--Template">Template</h4>
+<div class="outline-text-4" id="text-Gopher--Template">
+<p>
+Like html, we're using wheezy.template but there's a lot less ceremony.
+</p>
+
+<p>
+Links look like <code>[0|$desc|$link|server|70]</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-html">@require(file_df)
+WF log
+@for i,f in file_df.iterrows():
+[0|@f['date'] - @f['title']|@f['uri']|server|70]
+@end
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-Gopher--Populate" class="outline-4">
+<h4 id="Gopher--Populate">Populate</h4>
+<div class="outline-text-4" id="text-Gopher--Populate">
+<p>
+We're not doing any processing or exporting. Gopher text files will be the same as org source but named .txt instead. ln here but rsync to the gopher server will copy as files.
+</p>
+</div>
+</div>
+<div id="outline-container-Inspecting" class="outline-4">
+<h4 id="Inspecting">Inspecting</h4>
+<div class="outline-text-4" id="text-Inspecting">
+<p>
+Here's what we'll be linking
+</p>
+<div class="org-src-container">
+<pre class="src src-python">tabulate(gopher_df, headers=<span style="font-style: italic;">"keys"</span>, tablefmt=<span style="font-style: italic;">"orgtbl"</span>,showindex=<span style="font-weight: bold; text-decoration: underline;">False</span>)
+</pre>
+</div>
+
+<table class="table table-striped table-bordered table-condensed"
+         style="width: auto;">
+
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+
+<col  class="org-right">
+
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">f</th>
+<th scope="col" class="org-left">title</th>
+<th scope="col" class="org-right">date</th>
+<th scope="col" class="org-left">ln_to</th>
+<th scope="col" class="org-left">need_ln</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">cgi-startuptime.org</td>
+<td class="org-left">cgi-bin and interpreter startup time</td>
+<td class="org-right">2021-10-22</td>
+<td class="org-left">../gopher/cgi-startuptime.txt</td>
+<td class="org-left">False</td>
+</tr>
+
+<tr>
+<td class="org-left">risk.org</td>
+<td class="org-left">risk</td>
+<td class="org-right">2020-04-04</td>
+<td class="org-left">../gopher/risk.txt</td>
+<td class="org-left">False</td>
+</tr>
+
+<tr>
+<td class="org-left">gopher.org</td>
+<td class="org-left">gopher</td>
+<td class="org-right">2019-03-15</td>
+<td class="org-left">../gopher/gopher.txt</td>
+<td class="org-left">False</td>
+</tr>
+
+<tr>
+<td class="org-left">netflix.org</td>
+<td class="org-left">Netflix Usage</td>
+<td class="org-right">2017-12-09</td>
+<td class="org-left">../gopher/netflix.txt</td>
+<td class="org-left">False</td>
+</tr>
+
+<tr>
+<td class="org-left">strava.org</td>
+<td class="org-left">Strava Tracked Workouts</td>
+<td class="org-right">2017-12-09</td>
+<td class="org-left">../gopher/strava.txt</td>
+<td class="org-left">False</td>
+</tr>
+
+<tr>
+<td class="org-left">climbingWallSPA.org</td>
+<td class="org-left">Climbing Wall Route Annotation SPA</td>
+<td class="org-right">2017-11-19</td>
+<td class="org-left">../gopher/climbingWallSPA.txt</td>
+<td class="org-left">False</td>
+</tr>
+
+<tr>
+<td class="org-left">readme.org</td>
+<td class="org-left">readme: static generator python wrapping org-mode</td>
+<td class="org-right">2017-11-18</td>
+<td class="org-left">../gopher/readme.txt</td>
+<td class="org-left">False</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-Commit%20to%20files" class="outline-4">
+<h4 id="Commit%20to%20files">Commit to files</h4>
+</div>
+</div>
+<div id="outline-container-RSS" class="outline-3">
+<h3 id="RSS">RSS</h3>
+<div class="outline-text-3" id="text-RSS">
+</div>
+<div id="outline-container-template" class="outline-4">
+<h4 id="template">template</h4>
+<div class="outline-text-4" id="text-template">
+<p>
+The template is easy enough. needs title, url, desc, date, and cdata encoded html
+</p>
+<div class="org-src-container">
+<pre class="src src-xml">@require(time,rss_df)
+&lt;?<span style="font-weight: bold;">xml</span> <span style="font-style: italic;">version="1.0" encoding="utf-8"</span>?&gt;
+&lt;<span style="font-weight: bold;">rss</span> <span style="font-weight: bold; font-style: italic;">version</span>=<span style="font-style: italic;">"2.0"</span>&gt;
+&lt;<span style="font-weight: bold;">channel</span>&gt;
+&lt;<span style="font-weight: bold;">title</span>&gt;WFLOG&lt;/<span style="font-weight: bold;">title</span>&gt;
+&lt;<span style="font-weight: bold;">link</span>&gt;www.xn--cmb.com&lt;/<span style="font-weight: bold;">link</span>&gt;
+&lt;<span style="font-weight: bold;">description</span>&gt;&lt;/<span style="font-weight: bold;">description</span>&gt;
+&lt;<span style="font-weight: bold;">lastBuildDate</span>&gt;@time&lt;/<span style="font-weight: bold;">lastBuildDate</span>&gt;
+@for i,f in rss_df.iterrows():
+  &lt;<span style="font-weight: bold;">item</span>&gt;
+    &lt;<span style="font-weight: bold;">title</span>&gt;@f['title']&lt;/<span style="font-weight: bold;">title</span>&gt;
+    &lt;<span style="font-weight: bold;">link</span>&gt;@f['link']&lt;/<span style="font-weight: bold;">link</span>&gt;
+    &lt;<span style="font-weight: bold;">description</span>&gt;@f['desc']&lt;/<span style="font-weight: bold;">description</span>&gt;
+    &lt;<span style="font-weight: bold;">pubDate</span>&gt;@f['rss_date']&lt;/<span style="font-weight: bold;">pubDate</span>&gt;
+    &lt;<span style="font-weight: bold;">content</span>:<span style="font-weight: bold;">encoded</span>&gt;&lt;![<span style="font-weight: bold;">CDATA</span>[ @f['cdata'] ]]&gt;&lt;/<span style="font-weight: bold;">content</span>:<span style="font-weight: bold;">encoded</span>&gt;
+    &lt;<span style="font-weight: bold;">dc</span>:<span style="font-weight: bold;">creator</span>&gt;Will Foran&lt;/<span style="font-weight: bold;">dc</span>:<span style="font-weight: bold;">creator</span>&gt;
+  &lt;/<span style="font-weight: bold;">item</span>&gt;
+@end
+&lt;/<span style="font-weight: bold;">channel</span>&gt;
+&lt;/<span style="font-weight: bold;">rss</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-arrange%20data" class="outline-4">
+<h4 id="arrange%20data">arrange data</h4>
+<div class="outline-text-4" id="text-arrange%20data">
+<p>
+need to pull in all the html body. also want date like <code>Mon, 04 Apr 2022 15:22:29 -0400</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-write" class="outline-4">
+<h4 id="write">write</h4>
+<div class="outline-text-4" id="text-write">
+<p>
+we should limit the feed to just the most recent files. Though it's unlikely there will ever be enough text to warrent it.
+</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2017-11-18</p>
-<p class="date">Created: 2022-04-04 Mon 17:04</p>
+<p class="date">Created: 2022-04-04 Mon 22:25</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -142,7 +142,6 @@ file_df = pandas.DataFrame(filelist)
 #+END_SRC
 
 #+BEGIN_SRC python :session :results raw  :exports both
-from tabulate import tabulate
 tabulate(file_df.head(n=5),headers="keys", tablefmt="orgtbl",showindex=False)
 #+END_SRC
 
@@ -197,6 +196,7 @@ need_update = file_df.query('export_date != export_date or export_date < mt')
 #+END_SRC
 
 *** quick look
+    TODO: add this to script with something like DRYRUN
 #+BEGIN_SRC python :session :results raw  :exports both
 from tabulate import tabulate
 tabulate(need_update[['title','export_date','mt']],headers="keys", tablefmt="orgtbl",showindex=False)
@@ -205,7 +205,7 @@ tabulate(need_update[['title','export_date','mt']],headers="keys", tablefmt="org
 #+RESULTS:
 | title                                             | export_date                | mt                         |
 |---------------------------------------------------+----------------------------+----------------------------|
-| readme: static generator python wrapping org-mode | 2022-04-04 16:36:17.933011 | 2022-04-04 16:36:51.075014 |
+| readme: static generator python wrapping org-mode | 2022-04-04 17:19:55.509670 | 2022-04-04 21:36:50.713842 |
 
 *** Actually run
 #+BEGIN_SRC python :tangle ../src/make_index.py :session :results none :exports none
@@ -232,6 +232,9 @@ if len(need_update) != 0:
 <html> <head>
    <title>@title</title>
    <link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="alternate" type="application/rss+xml" 
+  title="WFLOG RSS Feed" 
+  href="rss.xml" />
   </head>
   <body>
     <h1>@title</h1>
@@ -279,3 +282,139 @@ with open('../index.html','w') as indexf:
     indexf.write(index_str)
 
   #+END_SRC
+  
+** Gopher
+This was done by another script or by hand somewhere since lost. Tracked here (readme.org) in 20220404
+*** Template
+    Like html, we're using wheezy.template but there's a lot less ceremony.
+
+    Links look like ~[0|$desc|$link|server|70]~
+ #+BEGIN_SRC html :tangle ../src/gopher.tmp
+@require(file_df)
+WF log
+@for i,f in file_df.iterrows():
+[0|@f['date'] - @f['title']|@f['uri']|server|70]
+@end
+ #+END_SRC
+
+*** Populate
+    We're not doing any processing or exporting. Gopher text files will be the same as org source but named .txt instead. ln here but rsync to the gopher server will copy as files.
+ #+BEGIN_SRC python :tangle ../src/make_index.py :session :results none :exports none
+def gopher_path(f):
+    txt = re.sub('.org$','.txt', f)
+    return re.sub('^', '../gopher/', txt)
+
+gopher_df = file_df[['f','title','date']].copy()
+gopher_df['ln_to'] = [ gopher_path(f) for f in gopher_df['f'] ]
+gopher_df['need_ln'] = [ not os.path.exists(f) for f in gopher_df['ln_to']]
+ #+END_SRC
+ 
+*** Inspecting
+    Here's what we'll be linking
+#+BEGIN_SRC python :session :results raw  :exports both
+tabulate(gopher_df, headers="keys", tablefmt="orgtbl",showindex=False)
+#+END_SRC
+
+#+RESULTS:
+| f                   | title                                             |       date | ln_to                         | need_ln |
+|---------------------+---------------------------------------------------+------------+-------------------------------+---------|
+| cgi-startuptime.org | cgi-bin and interpreter startup time              | 2021-10-22 | ../gopher/cgi-startuptime.txt | False   |
+| risk.org            | risk                                              | 2020-04-04 | ../gopher/risk.txt            | False   |
+| gopher.org          | gopher                                            | 2019-03-15 | ../gopher/gopher.txt          | False   |
+| netflix.org         | Netflix Usage                                     | 2017-12-09 | ../gopher/netflix.txt         | False   |
+| strava.org          | Strava Tracked Workouts                           | 2017-12-09 | ../gopher/strava.txt          | False   |
+| climbingWallSPA.org | Climbing Wall Route Annotation SPA                | 2017-11-19 | ../gopher/climbingWallSPA.txt | False   |
+| readme.org          | readme: static generator python wrapping org-mode | 2017-11-18 | ../gopher/readme.txt          | False   |
+
+*** Commit to files
+ #+BEGIN_SRC python :tangle ../src/make_index.py :session :results none :exports none
+## symlink org to gopher txt
+for i,f in gopher_df.query('need_ln').iterrows():
+    os.symlink('../reports/' + f['f'], f['ln_to'])
+
+## write it out
+gopher = engine.get_template('gopher.tmp')
+gopher_df['uri'] = [ os.path.basename(f) for f in gopher_df['ln_to'] ]
+# using 'date','title', and 'uri'
+gopher_page = gopher.render({'file_df': gopher_df})
+with open('../gopher/index.gph','w') as indexf:
+    indexf.write(gopher_page)
+
+ #+END_SRC
+
+ 
+** RSS
+   
+*** template
+    The template is easy enough. needs title, url, desc, date, and cdata encoded html
+    #+begin_src xml :tangle ../src/rss.tmp
+@require(time,rss_df)
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+<channel>
+<title>WFLOG</title>
+<link>www.xn--cmb.com</link>
+<description></description>
+<lastBuildDate>@time</lastBuildDate>
+@for i,f in rss_df.iterrows():
+  <item>
+    <title>@f['title']</title>
+    <link>@f['link']</link>
+    <description>@f['desc']</description>
+    <pubDate>@f['rss_date']</pubDate>
+    <content:encoded><![CDATA[ @f['cdata'] ]]></content:encoded>
+    <dc:creator>Will Foran</dc:creator>
+  </item>
+@end
+</channel>
+</rss>
+    #+end_src
+    
+*** arrange data
+    need to pull in all the html body. also want date like ~Mon, 04 Apr 2022 15:22:29 -0400~
+
+    #+BEGIN_SRC python :tangle ../src/make_index.py :session :results none :exports none
+def cdata_body(f):
+    with open(f) as x: data = x.read()
+    m = re.search(r"<body[^>]*>(.*)</body", data.replace('\n',''))
+    if not m:
+        return None
+    body = m.groups()[0]
+    # protect ending of cdata[ ']]>'
+    body = body.replace("]]>", "]]&gt;")
+    if body.endswith("]"):
+        body = data[:-1] + "%5D"
+    return body
+
+def rss_desc(cdata):
+    m = re.search(r"<p[^>]*>(.*?)</p", cdata)
+    if not m: return None
+    desc = m.groups()[0]
+    if(len(desc)>300):
+        desc = desc[0:297] + "..."
+    return desc
+
+def rss_date(d):
+    return datetime.datetime.strptime(d,"%Y-%m-%d").strftime("%a, %d %b %Y %T")
+
+rss_df = file_df[['f','title','date','export_to']].copy()
+rss_df['cdata'] = [cdata_body(f) for f in rss_df['export_to'] ]
+rss_df['desc'] = [rss_desc(cd) for cd in rss_df['cdata'] ]
+rss_df['rss_date'] = [rss_date(f) for f in rss_df['date'] ]
+rss_df['link'] = [ 'https://WillForan.github.io/'+f.replace('../','') for f in rss_df['export_to'] ]
+
+    #+END_SRC
+
+
+*** write
+    we should limit the feed to just the most recent files. Though it's unlikely there will ever be enough text to warrent it.
+
+  #+BEGIN_SRC python :tangle ../src/make_index.py :session :results none :exports none
+rss_tmp = engine.get_template('rss.tmp')
+# write it out
+rss_str = rss_tmp.render({
+    'rss_df': rss_df.head(10),
+    'time': datetime.datetime.now().strftime("%a, %d %b %Y %T")})
+with open('../rss.xml','w') as indexf:
+    indexf.write(rss_str)
+    #+END_SRC

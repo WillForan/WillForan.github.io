@@ -112,3 +112,60 @@ template = engine.get_template('index.tmp')
 index_str = template.render({'file_df': file_df,'title': 'WF log'})
 with open('../index.html','w') as indexf:
     indexf.write(index_str)
+
+def gopher_path(f):
+    txt = re.sub('.org$','.txt', f)
+    return re.sub('^', '../gopher/', txt)
+
+gopher_df = file_df[['f','title','date']].copy()
+gopher_df['ln_to'] = [ gopher_path(f) for f in gopher_df['f'] ]
+gopher_df['need_ln'] = [ not os.path.exists(f) for f in gopher_df['ln_to']]
+
+## symlink org to gopher txt
+for i,f in gopher_df.query('need_ln').iterrows():
+    os.symlink('../reports/' + f['f'], f['ln_to'])
+
+## write it out
+gopher = engine.get_template('gopher.tmp')
+gopher_df['uri'] = [ os.path.basename(f) for f in gopher_df['ln_to'] ]
+# using 'date','title', and 'uri'
+gopher_page = gopher.render({'file_df': gopher_df})
+with open('../gopher/index.gph','w') as indexf:
+    indexf.write(gopher_page)
+
+def cdata_body(f):
+    with open(f) as x: data = x.read()
+    m = re.search(r"<body[^>]*>(.*)</body", data.replace('\n',''))
+    if not m:
+        return None
+    body = m.groups()[0]
+    # protect ending of cdata[ ']]>'
+    body = body.replace("]]>", "]]&gt;")
+    if body.endswith("]"):
+        body = data[:-1] + "%5D"
+    return body
+
+def rss_desc(cdata):
+    m = re.search(r"<p[^>]*>(.*?)</p", cdata)
+    if not m: return None
+    desc = m.groups()[0]
+    if(len(desc)>300):
+        desc = desc[0:297] + "..."
+    return desc
+
+def rss_date(d):
+    return datetime.datetime.strptime(d,"%Y-%m-%d").strftime("%a, %d %b %Y %T")
+
+rss_df = file_df[['f','title','date','export_to']].copy()
+rss_df['cdata'] = [cdata_body(f) for f in rss_df['export_to'] ]
+rss_df['desc'] = [rss_desc(cd) for cd in rss_df['cdata'] ]
+rss_df['rss_date'] = [rss_date(f) for f in rss_df['date'] ]
+rss_df['link'] = [ 'https://WillForan.github.io/'+f.replace('../','') for f in rss_df['export_to'] ]
+
+rss_tmp = engine.get_template('rss.tmp')
+# write it out
+rss_str = rss_tmp.render({
+    'rss_df': rss_df.head(10),
+    'time': datetime.datetime.now().strftime("%a, %d %b %Y %T")})
+with open('../rss.xml','w') as indexf:
+    indexf.write(rss_str)

@@ -1,0 +1,20 @@
+@require(time,rss_df)
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+<channel>
+<title>WFLOG</title>
+<link>www.xn--cmb.com</link>
+<description></description>
+<lastBuildDate>@time</lastBuildDate>
+@for i,f in rss_df.iterrows():
+  <item>
+    <title>@f['title']</title>
+    <link>@f['link']</link>
+    <description>@f['desc']</description>
+    <pubDate>@f['rss_date']</pubDate>
+    <content:encoded><![CDATA[ @f['cdata'] ]]></content:encoded>
+    <dc:creator>Will Foran</dc:creator>
+  </item>
+@end
+</channel>
+</rss>
