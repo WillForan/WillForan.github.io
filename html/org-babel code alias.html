@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- 2022-10-01 Sat 20:33 -->
+<!-- 2022-10-01 Sat 21:31 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>org-babel code alias</title>
@@ -195,24 +195,35 @@
 <div id="content" class="content">
 <h1 class="title">org-babel code alias</h1>
 <p>
-creating a new <code>src_block</code> type <code>pyplot</code> so it can have distinct <code>header-args</code> applied
+Org-babel plotting requires additional source block arguments: <code>:results graphics file</code> on image R blocks and <code>:results output file</code> in py blocks. This is a little cumbersome, especially because I have a hard time remembering the exact incantation and might end up writing it 10s of times in a document.
 </p>
-<pre class="example" id="org10fbe9d">
-#+PROPERTY: header-args:pyplot :cache yes :session :dir /ssh:host:/path :eval noexport :results output file :session *py*
-#+PROPERTY: header-args:Rplot :results graphics file :session *R* :cache yes 
-</pre>
 
 <p>
-#+begin_src python :exports none :results none
-#+end_example
+One particularly ugly kludge is to 
 </p>
+<ol class="org-ol">
+<li>create new <code>src_block</code> types as aliases (eg. python=&gt; <code>pyplot</code>).</li>
+<li>assign those aliases distinct <code>#PROPERty: header-args</code></li>
+</ol>
+
+<div id="outline-container-Headers" class="outline-2">
+<h2 id="Headers">Headers</h2>
+<div class="outline-text-2" id="text-Headers">
+<div class="org-src-container">
+<pre class="src src-test">#+PROPERTY: header-args:pyplot :cache yes :session :dir /ssh:host:/path :eval noexport :results output file :session *py*
+#+PROPERTY: header-args:Rplot :results graphics file :session *R* :cache yes 
+#+end_example
+</pre>
+</div>
+</div>
+</div>
 
 <div id="outline-container-Elisp" class="outline-2">
 <h2 id="Elisp">Elisp</h2>
 <div class="outline-text-2" id="text-Elisp">
-<pre class="example" id="org02043ef">
-#+begin_src emacs-lisp :eval yes :exports none
-</pre>
+<p>
+Org files can modify the emacs environment by sourcing elisp. But ideally this would be in <code>use-package</code> config or as it's own library. Here, using <code>#+begin_src emacs-lisp :eval yes :exports none</code>
+</p>
 
 <div class="org-src-container">
 <pre class="src src-emacs-lisp">(add-to-list 'org-src-lang-modes '(<span style="color: #8b2252;">"pyplot"</span> . python))
@@ -228,13 +239,16 @@ creating a new <code>src_block</code> type <code>pyplot</code> so it can have di
 <div id="outline-container-R" class="outline-2">
 <h2 id="R">R</h2>
 <div class="outline-text-2" id="text-R">
+<p>
+with the <code>#+PROPERTY:</code> set from above we can use <code>#+begin_src Rplot :file images/exampe-Rplot.png</code>
+</p>
 <div class="org-src-container">
-<pre class="src src-Rplot">plot(1:3,c(11,10,2),'l')
+<pre class="src src-Rplot">plot(1:3, c(11,10,2), 'l')
 </pre>
 </div>
 
 
-<div id="org8c97d9c" class="figure">
+<div id="org5fb963e" class="figure">
 <p><img src="images/exampe-Rplot.png" alt="exampe-Rplot.png">
 </p>
 </div>
@@ -242,26 +256,36 @@ creating a new <code>src_block</code> type <code>pyplot</code> so it can have di
 </div>
 
 
+
 <div id="outline-container-Python" class="outline-2">
 <h2 id="Python">Python</h2>
 <div class="outline-text-2" id="text-Python">
 <p>
-with help from <a href="https://emacs.stackexchange.com/a/64667/14118">https://emacs.stackexchange.com/a/64667/14118</a>
+python's plotting isn't as seamless as R. One (slow, binary image printed to emacs buffer) solution comes from
+ <a href="https://emacs.stackexchange.com/a/64667/14118">https://emacs.stackexchange.com/a/64667/14118</a> as below. Easiest to include this in the org-babel document within <code>#+begin_src python :exports none :results none :session</code>)
 </p>
 
-<pre class="example" id="orgad5d145">
-#+begin_src python :exports none :results none
-</pre>
-
 <div class="org-src-container">
-<pre class="src src-pyplot">plt.plot([1,2,3],[10,9,2])
+<pre class="src src-python"><span style="color: #a020f0;">import</span> sys
+<span style="color: #a020f0;">import</span> matplotlib.pyplot <span style="color: #a020f0;">as</span> plt
+<span style="color: #a020f0;">def</span> <span style="color: #0000ff;">pltsave</span>():
+    <span style="color: #8b2252;">"org hack: save to :file. header also needs ':results output file"</span>
+    plt.savefig(sys.stdout.<span style="color: #483d8b;">buffer</span>)
+</pre>
+</div>
+
+<p>
+then using <code>#+begin_src pyplot :file images/example-plot.png</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-pyplot">plt.plot([1,2,3], [10,9,2])
 pltsave()
 </pre>
 </div>
 
 
-<div id="orgc7b6be5" class="figure">
-<p><img src="file:///home/foranw/src/WillForan.github.io/html/images/example-plot.png" alt="example-plot.png">
+<div id="org65789b3" class="figure">
+<p><img src="images/example-pyplot.png" alt="example-pyplot.png">
 </p>
 </div>
 </div>
@@ -269,7 +293,7 @@ pltsave()
 </div>
 <div id="postamble" class="status">
 <p class="date">Date: 2022-09-09</p>
-<p class="date">Created: 2022-10-01 Sat 20:33</p>
+<p class="date">Created: 2022-10-01 Sat 21:31</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

@@ -2,25 +2,26 @@
 #+DATE: 2022-09-09
 #+OPTIONS: _:{} ^:{} toc:nil num:nil
 #+CREATOR:
-#+PROPERTY: header-args:pyplot :cache yes :session :dir /ssh:host:/path :eval noexport :results output file
+#+PROPERTY: header-args:pyplot :cache yes :session :eval noexport :results output file
 #+PROPERTY: header-args:Rplot :results graphics file :session :cache yes 
 
-creating a new ~src_block~ type ~pyplot~ so it can have distinct ~header-args~ applied
-#+begin_example
+Org-babel plotting requires additional source block arguments: ~:results graphics file~ on image R blocks and ~:results output file~ in py blocks. This is a little cumbersome, especially because I have a hard time remembering the exact incantation and might end up writing it 10s of times in a document.
+
+One particularly ugly kludge is to 
+ 1. create new ~src_block~ types as aliases (eg. python=> ~pyplot~).
+ 2. assign those aliases distinct ~#PROPERty: header-args~ 
+
+* Headers
+#+begin_src test :exports code :eval never
 #+PROPERTY: header-args:pyplot :cache yes :session :dir /ssh:host:/path :eval noexport :results output file :session *py*
 #+PROPERTY: header-args:Rplot :results graphics file :session *R* :cache yes 
 #+end_example
-
-#+begin_src python :exports none :results none
-#+end_example
+#+end_src
 
 * Elisp
+Org files can modify the emacs environment by sourcing elisp. But ideally this would be in ~use-package~ config or as it's own library. Here, using ~#+begin_src emacs-lisp :eval yes :exports none~
 
-#+begin_example
-#+begin_src emacs-lisp :eval yes :exports none
-#+end_example
-
-#+begin_src emacs-lisp :eval yes :results silent
+#+begin_src emacs-lisp :eval no :results silent
 (add-to-list 'org-src-lang-modes '("pyplot" . python))
 (defalias 'org-babel-execute:pyplot 'org-babel-execute:python)
 
@@ -29,32 +30,34 @@ creating a new ~src_block~ type ~pyplot~ so it can have distinct ~header-args~ a
 #+end_src
 
 * R
-#+begin_src Rplot :file images/exampe-Rplot.png
-plot(1:3,c(11,10,2),'l')
+with the ~#+PROPERTY:~ set from above we can use ~#+begin_src Rplot :file images/exampe-Rplot.png~
+#+begin_src Rplot :file images/exampe-Rplot.png :cache no :eval no
+plot(1:3, c(11,10,2), 'l')
 #+end_src
 
-#+RESULTS[aa0af898630d25dc00e0c2cb5b47d5f951cb825d]:
+#+RESULTS:
 [[file:images/exampe-Rplot.png]]
 
 
+
 * Python
-with help from https://emacs.stackexchange.com/a/64667/14118
+python's plotting isn't as seamless as R. One (slow, binary image printed to emacs buffer) solution comes from
+ https://emacs.stackexchange.com/a/64667/14118 as below. Easiest to include this in the org-babel document within ~#+begin_src python :exports none :results none :session~)
 
-#+begin_example
-#+begin_src python :exports none :results none
-#+end_example
-
-#+begin_src python :exports none :results none :session pylocal :dir /home/foranw/src/WillForan.github.io/reports/
+#+begin_src python :exports code :results none :session 
+import sys
 import matplotlib.pyplot as plt
 def pltsave():
     "org hack: save to :file. header also needs ':results output file"
     plt.savefig(sys.stdout.buffer)
 #+end_src
 
-#+begin_src pyplot :file images/example-plot.png :session pylocal :dir /home/foranw/src/WillForan.github.io/reports/
-plt.plot([1,2,3],[10,9,2])
+then using ~#+begin_src pyplot :file images/example-plot.png~
+#+begin_src pyplot :file images/example-pyplot.png :cache no :session
+plt.plot([1,2,3], [10,9,2])
 pltsave()
 #+end_src
 
-#+RESULTS[103ea684a80ae9b7ef7c694f3fb71ec47d6435b1]:
-[[file:images/example-plot.png]]
+#+RESULTS:
+[[file:images/example-pyplot.png]]
+
