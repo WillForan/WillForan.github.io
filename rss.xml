@@ -4,7 +4,15 @@
 <title>WFLOG</title>
 <link>www.xn--cmb.com</link>
 <description></description>
-<lastBuildDate>Mon, 04 Apr 2022 22:46:56</lastBuildDate>
+<lastBuildDate>Sat, 01 Oct 2022 20:42:23</lastBuildDate>
+  <item>
+    <title>org-babel code alias</title>
+    <link>https://WillForan.github.io/html/org-babel code alias.html</link>
+    <description>creating a new <code>src_block</code> type <code>pyplot</code> so it can have distinct <code>header-args</code> applied</description>
+    <pubDate>Fri, 09 Sep 2022 00:00:00</pubDate>
+    <content:encoded><![CDATA[ <div id="content" class="content"><h1 class="title">org-babel code alias</h1><p>creating a new <code>src_block</code> type <code>pyplot</code> so it can have distinct <code>header-args</code> applied</p><pre class="example" id="org10fbe9d">#+PROPERTY: header-args:pyplot :cache yes :session :dir /ssh:host:/path :eval noexport :results output file :session *py*#+PROPERTY: header-args:Rplot :results graphics file :session *R* :cache yes </pre><p>#+begin_src python :exports none :results none#+end_example</p><div id="outline-container-Elisp" class="outline-2"><h2 id="Elisp">Elisp</h2><div class="outline-text-2" id="text-Elisp"><pre class="example" id="org02043ef">#+begin_src emacs-lisp :eval yes :exports none</pre><div class="org-src-container"><pre class="src src-emacs-lisp">(add-to-list 'org-src-lang-modes '(<span style="color: #8b2252;">"pyplot"</span> . python))(<span style="color: #a020f0;">defalias</span> '<span style="color: #0000ff;">org-babel-execute:pyplot</span> 'org-babel-execute:python)(add-to-list 'org-src-lang-modes '(<span style="color: #8b2252;">"Rplot"</span> . R))(<span style="color: #a020f0;">defalias</span> '<span style="color: #0000ff;">org-babel-execute:Rplot</span> 'org-babel-execute:R)</pre></div></div></div><div id="outline-container-R" class="outline-2"><h2 id="R">R</h2><div class="outline-text-2" id="text-R"><div class="org-src-container"><pre class="src src-Rplot">plot(1:3,c(11,10,2),'l')</pre></div><div id="org8c97d9c" class="figure"><p><img src="images/exampe-Rplot.png" alt="exampe-Rplot.png"></p></div></div></div><div id="outline-container-Python" class="outline-2"><h2 id="Python">Python</h2><div class="outline-text-2" id="text-Python"><p>with help from <a href="https://emacs.stackexchange.com/a/64667/14118">https://emacs.stackexchange.com/a/64667/14118</a></p><pre class="example" id="orgad5d145">#+begin_src python :exports none :results none</pre><div class="org-src-container"><pre class="src src-pyplot">plt.plot([1,2,3],[10,9,2])pltsave()</pre></div><div id="orgc7b6be5" class="figure"><p><img src="file:///home/foranw/src/WillForan.github.io/html/images/example-plot.png" alt="example-plot.png"></p></div></div></div></div><div id="postamble" class="status"><p class="date">Date: 2022-09-09</p><p class="date">Created: 2022-10-01 Sat 20:33</p><p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p></div> ]]></content:encoded>
+    <dc:creator>Will Foran</dc:creator>
+  </item>
   <item>
     <title>cgi-bin and interpreter startup time</title>
     <link>https://WillForan.github.io/html/cgi-bin and interpreter startup time.html</link>
