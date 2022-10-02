@@ -12,7 +12,10 @@ src/index.tmp style.css src/make_index.py: reports/readme.org
 	cd reports
 	emacs --batch -l org -L --eval '(org-babel-tangle "readme.org")'
 
-index.html: $(wildcard reports/*org) src/make_index.py src/gopher.tmp src/index.tmp org-export
+gopher:
+	mkdir -p gopher
+
+index.html: $(wildcard reports/*org) src/make_index.py src/gopher.tmp src/index.tmp org-export | gopher
 	python src/make_index.py
 
 .make/gopher.ls: index.html | .make
