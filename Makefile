@@ -25,7 +25,7 @@ index.html: $(wildcard reports/*org) src/make_index.py src/gopher.tmp src/index.
 
 # how to go from org to html
 html/%.html: reports/%.org
-	org-export html  --infile $< --outfile $@ --bootstrap
+	org-export html  --infile $< --outfile $@
 
 allreports = $(wildcard reports/*.org)
 all-html: $(allreports:reports%org=html%html)

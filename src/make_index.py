@@ -91,7 +91,7 @@ need_update = file_df.query('export_date != export_date or export_date < mt')
 
 from subprocess import call
 for i,n in need_update.iterrows():
-    call(['org-export','html','--infile',n['f'],'--outfile',n['export_to'],'--bootstrap' ])
+    call(['org-export','html','--infile',n['f'],'--outfile',n['export_to']])
 
 # update again, see if everything exported
 file_df = export_info(file_df)
