@@ -1,3 +1,4 @@
 gopher/
 node_modules/
+.make/
 *.DS_Store

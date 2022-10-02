@@ -24,13 +24,15 @@ index.html: $(wildcard reports/*org) src/make_index.py src/gopher.tmp src/index.
 	date > .make/gopher.ls
 
 # how to go from org to html
+# NOT USED
+# make_index.py changes name to match that of TITLE
 html/%.html: reports/%.org
 	org-export html  --infile $< --outfile $@
 
 allreports = $(wildcard reports/*.org)
 all-html: $(allreports:reports%org=html%html)
 .make:
-	@mkdir make
+	@mkdir -p .make
 
 # if we did a pull, timestamps on export files wont be accurate
 # instead of regenerating files. just touch them
