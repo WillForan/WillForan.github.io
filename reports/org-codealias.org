@@ -15,7 +15,6 @@ One particularly ugly kludge is to
 #+begin_src test :exports code :eval never
 #+PROPERTY: header-args:pyplot :cache yes :session :dir /ssh:host:/path :eval noexport :results output file :session *py*
 #+PROPERTY: header-args:Rplot :results graphics file :session *R* :cache yes 
-#+end_example
 #+end_src
 
 * Elisp
