@@ -1,5 +1,5 @@
-#+title: ChatGPT's inverted singularity
-#+date: 2022-12-06
+#+TITLE: ChatGPT's inverted singularity
+#+DATE: 2022-12-06
 
 [[https://en.wikipedia.org/wiki/GPT-3#Training_and_capabilities][60% of GPT-3s training]] is common crawl, an archive of text that makes up the internet.
 As people use large language models to add text to the internet, the models could end up with their own output as training input.
