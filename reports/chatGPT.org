@@ -1,0 +1,10 @@
+#+title: ChatGPT's inverted singularity
+#+date: 2022-12-06
+
+[[https://en.wikipedia.org/wiki/GPT-3#Training_and_capabilities][60% of GPT-3s training]] is common crawl, an archive of text that makes up the internet.
+As people use large language models to add text to the internet, the models could end up with their own output as training input.
+Unchecked, the models will degrade: garbage in, garbage out. Instead of artificial intelligence recursively improving itself in the positive-feedback loop leading to the singularity, the output of the internet-as-a-corpus trained AI will repeatedly amplify noise and produce worsening results. It's the inverse singularity.
+
+On the other hand, the humans reviewing, tweaking, and validating e.g. [[https://meta.stackoverflow.com/questions/421831/temporary-policy-chatgpt-is-banned][generated stack overflow answers]] could help the models. The new training data will have subtitle updates that specifically target previously unknown weak points -- it's original output but with important corrections. 
+
+As much as human reviewers will nudge the language model, the larger change could be to content and style of the people using LLMs output. Does [[https://www.fastcompany.com/90205359/google-you-auto-complete-me][autocomplete make our communications more homogeneous?]] There's evidence even all individuals in large markets will conform to model expectations ([[https://www.journals.uchicago.edu/doi/abs/10.1086/374404][Black-Scholes model CBOE from 30% off to 2% b/c arbitrage]], via [[https://www.kateraworth.com/doughnut/][Doughnut Economics]])! Is our convergence to machine speak elevation or regression?
