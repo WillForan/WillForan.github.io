@@ -3,21 +3,23 @@
    <title>@title</title>
    <link rel="stylesheet" type="text/css" href="style.css" />
    <link rel="alternate" type="application/rss+xml" title="WFLOG RSS Feed" href="rss.xml" />
+   <link rel="shortcut icon" href="https://secure.gravatar.com/avatar/3fed911ae9175eaf6c4e4ec51de7e6ac?size=125">
   </head>
   <body>
-    <h1>@title</h1>
-    Also in <a href="gopher://www.xn--4-cmb.com">gopher space</a>
-    <ul>
-    @for i,f in file_df.iterrows():
-        <li><a href="@f['uri']"><time>@f['date']</time> @f['title']</a></li>
-    @end
-    </ul>
     <h1>External</h1>
     <ul class="info">
        <li><a href="https://github.com/WillForan">Github</a></li>
        <li><a href="https://stackoverflow.com/users/1031776/will">StackOverflow</a></li>
        <li><a href="https://scholar.google.com/citations?user=PzX6F5oAAAAJ">GoogleScholar</a></li>
        <li><a href="https://www.strava.com/athletes/15036420">Strava</a></li>
+       <li><a href="https://www.swrd.trade">SWRD</a></li>
+    </ul>
+    <h1>@title</h1>
+    Also in <a href="gopher://www.xn--4-cmb.com">gopher space</a>
+    <ul>
+    @for i,f in file_df.iterrows():
+        <li><a href="@f['uri']"><time>@f['date']</time> @f['title']</a></li>
+    @end
     </ul>
   </body>
 </html>

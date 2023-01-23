@@ -233,8 +233,17 @@ if len(need_update) != 0:
    <title>@title</title>
    <link rel="stylesheet" type="text/css" href="style.css" />
    <link rel="alternate" type="application/rss+xml" title="WFLOG RSS Feed" href="rss.xml" />
+   <link rel="shortcut icon" href="https://secure.gravatar.com/avatar/3fed911ae9175eaf6c4e4ec51de7e6ac?size=125">
   </head>
   <body>
+    <h1>External</h1>
+    <ul class="info">
+       <li><a href="https://github.com/WillForan">Github</a></li>
+       <li><a href="https://stackoverflow.com/users/1031776/will">StackOverflow</a></li>
+       <li><a href="https://scholar.google.com/citations?user=PzX6F5oAAAAJ">GoogleScholar</a></li>
+       <li><a href="https://www.strava.com/athletes/15036420">Strava</a></li>
+       <li><a href="https://www.swrd.trade">SWRD</a></li>
+    </ul>
     <h1>@title</h1>
     Also in <a href="gopher://www.xn--4-cmb.com">gopher space</a>
     <ul>
@@ -242,25 +251,48 @@ if len(need_update) != 0:
         <li><a href="@f['uri']"><time>@f['date']</time> @f['title']</a></li>
     @end
     </ul>
-    <h1>External</h1>
-    <ul class="info">
-       <li><a href="https://github.com/WillForan">Github</a></li>
-       <li><a href="https://stackoverflow.com/users/1031776/will">StackOverflow</a></li>
-       <li><a href="https://scholar.google.com/citations?user=PzX6F5oAAAAJ">GoogleScholar</a></li>
-       <li><a href="https://www.strava.com/athletes/15036420">Strava</a></li>
-    </ul>
   </body>
 </html>
  #+end_src
 
+*** Styling
+setup minimal styling. 
+ * https://brutalist-web.design/ says always have underlines. so added those back in but colored them lighter (20230122)
+ * https://www.swyx.io/css-100-bytes is inspiration for centering
+ * https://pitt.edu/~foran had my gravatar. picked that up
+
  #+BEGIN_SRC css :tangle ../style.css :exports none
-body { font-family: mono; font-weight: bold;}
+html { height: 100%; display: table;}
+body { font-family: mono; font-weight: bold; max-width: max-content; margin: auto auto;
+valign:center }
 h1 { font-size: larger;}
 ul { list-style: none;} 
 time { color: grey;}
-a { text-decoration: none;}
+a.time { text-decoration: none;}
 .info li {display: inline-block;}
 .info li:not(:last-child):after { content: ' |';}
+
+@media (prefers-color-scheme: dark) {
+
+  /* my terminal settings */
+  body {
+      background: #333;
+      color: peachpuff;
+  }
+  /* links not so dark */
+  a { color: rgb(0, 221, 255);
+     text-decoration-color: gray; }
+}
+
+@media (prefers-color-scheme: light) {
+  /* sepia from firefox reader mode */
+  body {
+    background: rgb(244, 236, 216);
+    color: rgb(91, 70, 54);
+  }
+  a { text-decoration-color: white; }
+}
+
  #+END_SRC
 
 *** Populate

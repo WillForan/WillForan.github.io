@@ -1,7 +1,30 @@
-body { font-family: mono; font-weight: bold;}
+html { height: 100%; display: table;}
+body { font-family: mono; font-weight: bold; max-width: max-content; margin: auto auto;
+valign:center }
 h1 { font-size: larger;}
 ul { list-style: none;} 
 time { color: grey;}
-a { text-decoration: none;}
+a.time { text-decoration: none;}
 .info li {display: inline-block;}
 .info li:not(:last-child):after { content: ' |';}
+
+@media (prefers-color-scheme: dark) {
+
+  /* my terminal settings */
+  body {
+      background: #333;
+      color: peachpuff;
+  }
+  /* links not so dark */
+  a { color: rgb(0, 221, 255);
+     text-decoration-color: gray; }
+}
+
+@media (prefers-color-scheme: light) {
+  /* sepia from firefox reader mode */
+  body {
+    background: rgb(244, 236, 216);
+    color: rgb(91, 70, 54);
+  }
+  a { text-decoration-color: white; }
+}
