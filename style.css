@@ -1,10 +1,8 @@
-html { height: 100%; display: table;}
-body { font-family: mono; font-weight: bold; max-width: max-content; margin: auto auto;
-valign:center }
+html { height: 100%;}
+body { font-family: mono; font-weight: bold; max-width: max-content; margin: auto auto;}
 h1 { font-size: larger;}
 ul { list-style: none;} 
 time { color: grey;}
-a.time { text-decoration: none;}
 .info li {display: inline-block;}
 .info li:not(:last-child):after { content: ' |';}
 
