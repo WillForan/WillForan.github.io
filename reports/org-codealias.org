@@ -30,12 +30,12 @@ Org files can modify the emacs environment by sourcing elisp. But ideally this w
 
 * R
 with the ~#+PROPERTY:~ set from above we can use ~#+begin_src Rplot :file images/exampe-Rplot.png~
-#+begin_src Rplot :file images/exampe-Rplot.png :cache no :eval no
+#+begin_src Rplot :file ../images/exampe-Rplot.png :cache no :eval no
 plot(1:3, c(11,10,2), 'l')
 #+end_src
 
 #+RESULTS:
-[[file:images/exampe-Rplot.png]]
+[[file:../images/exampe-Rplot.png]]
 
 
 
@@ -51,12 +51,12 @@ def pltsave():
     plt.savefig(sys.stdout.buffer)
 #+end_src
 
-then using ~#+begin_src pyplot :file images/example-plot.png~
-#+begin_src pyplot :file images/example-pyplot.png :cache no :session
+then using ~#+begin_src pyplot :file ../images/example-plot.png~
+#+begin_src pyplot :file ../images/example-pyplot.png :cache no :session
 plt.plot([1,2,3], [10,9,2])
 pltsave()
 #+end_src
 
 #+RESULTS:
-[[file:images/example-pyplot.png]]
+[[file:../images/example-pyplot.png]]
 

@@ -1,7 +1,7 @@
 html { height: 100%;}
 body { font-family: mono; font-weight: bold; max-width: max-content; margin: auto auto;}
 h1.main { font-size: larger;}
-ul { list-style: none;} 
+body.index> ul { list-style: none;} 
 time { color: gray;}
 .info li {display: inline-block;}
 .info li:not(:last-child):after { content: ' |';}

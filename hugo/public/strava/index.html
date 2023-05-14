@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Strava Tracked Workouts</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="WFLOG RSS Feed" href="index.xml" />
+    <link rel="shortcut icon" href="https://secure.gravatar.com/avatar/3fed911ae9175eaf6c4e4ec51de7e6ac?size=125">
+  </head>
+  <body style="max-width: 40em">
+
+    <h1 style="font-size:bigger">Strava Tracked Workouts</h1>
+    <div class="content">
+      
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+Viewing Activity
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<div id="outline-container-headline-2" class="outline-3">
+<h3 id="headline-2">
+pulling data
+</h3>
+<div id="outline-text-headline-2" class="outline-text-3">
+<p>Load <a href="https://www.strava.com/athlete/training">https://www.strava.com/athlete/training</a> and copy the requestion curl when inspecting network. 
+Code below does not have the cookie <code>-H</code> param.</p>
+<div class="src src-bash">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">[</span> ! -d strava <span style="color:#f92672">]</span> <span style="color:#f92672">&amp;&amp;</span> mkdir strava
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i in <span style="color:#f92672">{</span>1..20<span style="color:#f92672">}</span>; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># copy from browser request. missing cookie here</span>
+</span></span><span style="display:flex;"><span>    curl <span style="color:#e6db74">&#34;https://www.strava.com/athlete/training_activities?keywords=&amp;activity_type=&amp;workout_type=&amp;commute=&amp;private_activities=&amp;trainer=&amp;gear=&amp;new_activity_only=false&amp;page=</span>$i<span style="color:#e6db74">&amp;per_page=20&#34;</span>  &gt; $i.json
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-3">
+<h3 id="headline-3">
+load data
+</h3>
+<div id="outline-text-headline-3" class="outline-text-3">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>  <span style="color:#a6e22e">library</span>(jsonlite)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">library</span>(lubridate)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">library</span>(dplyr)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">library</span>(ggplot2)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">library</span>(cowplot)
+</span></span><span style="display:flex;"><span>  nasum <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">sum</span>(<span style="color:#a6e22e">na.omit</span>(<span style="color:#a6e22e">as.numeric</span>(x)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  dlist <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lapply</span>(<span style="color:#a6e22e">Sys.glob</span>(<span style="color:#e6db74">&#39;strava/*json&#39;</span>),
+</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">function</span>(f) {
+</span></span><span style="display:flex;"><span>                      <span style="color:#a6e22e">fromJSON</span>(f)<span style="color:#f92672">$</span>models <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>                      <span style="color:#a6e22e">select</span>(id,type,start_time,
+</span></span><span style="display:flex;"><span>                             epoch<span style="color:#f92672">=</span>start_date_local_raw,
+</span></span><span style="display:flex;"><span>                             distance,moving_time,elapsed_time,
+</span></span><span style="display:flex;"><span>                             elevation_gain,calories
+</span></span><span style="display:flex;"><span>                            )
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>  d <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Reduce</span>(rbind,dlist)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  d.year <span style="color:#f92672">&lt;-</span>
+</span></span><span style="display:flex;"><span>      d <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">mutate</span>(start_time <span style="color:#f92672">=</span> <span style="color:#a6e22e">with_tz</span>(<span style="color:#a6e22e">ymd_hms</span>(start_time),<span style="color:#e6db74">&#39;America/New_York&#39;</span>)) <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">filter</span>( start_time <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">now</span>()<span style="color:#f92672">-</span><span style="color:#a6e22e">years</span>(<span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">#d.year$type[d.year$type==&#39;Walk&#39;] &lt;- &#39;Hike&#39;</span>
+</span></span><span style="display:flex;"><span>  d.clean <span style="color:#f92672">&lt;-</span> 
+</span></span><span style="display:flex;"><span>      d.year <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">filter</span>(type <span style="color:#f92672">%in%</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#39;AlpineSki&#39;</span>,<span style="color:#e6db74">&#39;NordicSki&#39;</span>,<span style="color:#e6db74">&#39;Ride&#39;</span>,<span style="color:#e6db74">&#39;Run&#39;</span>,<span style="color:#e6db74">&#39;Swim&#39;</span>,<span style="color:#e6db74">&#39;Hike&#39;</span>))</span></span></code></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-4" class="outline-2">
+<h2 id="headline-4">
+plot 
+</h2>
+<div id="outline-text-headline-4" class="outline-text-2">
+<div class="src src-r">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>  p.hour  <span style="color:#f92672">&lt;-</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">ggplot</span>(d.clean) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">aes</span>(x<span style="color:#f92672">=</span><span style="color:#a6e22e">hour</span>(start_time),fill<span style="color:#f92672">=</span>type) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">geom_histogram</span>(bins<span style="color:#f92672">=</span><span style="color:#ae81ff">24</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">labs</span>(x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;hour of the day&#39;</span>)
+</span></span><span style="display:flex;"><span>  p.wday  <span style="color:#f92672">&lt;-</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">ggplot</span>(d.clean) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">aes</span>(x<span style="color:#f92672">=</span><span style="color:#a6e22e">wday</span>(start_time,label<span style="color:#f92672">=</span>T),fill<span style="color:#f92672">=</span>type) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">geom_histogram</span>(stat<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;count&#39;</span>)<span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">labs</span>(x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;day of week&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  p.type <span style="color:#f92672">&lt;-</span>
+</span></span><span style="display:flex;"><span>      d.clean <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">group_by</span>(`type`) <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">summarise</span>(n<span style="color:#f92672">=</span><span style="color:#a6e22e">n</span>(),
+</span></span><span style="display:flex;"><span>                total.dist<span style="color:#f92672">=</span><span style="color:#a6e22e">nasum</span>(distance),
+</span></span><span style="display:flex;"><span>                total.cal <span style="color:#f92672">=</span> <span style="color:#a6e22e">nasum</span>(calories),
+</span></span><span style="display:flex;"><span>                avg.cal <span style="color:#f92672">=</span> <span style="color:#a6e22e">mean</span>(calories,na.rm<span style="color:#f92672">=</span>T),
+</span></span><span style="display:flex;"><span>                avg.dist <span style="color:#f92672">=</span> <span style="color:#a6e22e">mean</span>(<span style="color:#a6e22e">as.numeric</span>(distance),na.omit<span style="color:#f92672">=</span>T) ) <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">ggplot</span>() <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">aes</span>(x<span style="color:#f92672">=</span>type,color<span style="color:#f92672">=</span>avg.cal,y<span style="color:#f92672">=</span>avg.dist,size<span style="color:#f92672">=</span>n) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">geom_point</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">plot_grid</span>(p.hour <span style="color:#f92672">+</span> <span style="color:#a6e22e">theme</span>(legend.position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;top&#34;</span>),
+</span></span><span style="display:flex;"><span>            p.wday <span style="color:#f92672">+</span> <span style="color:#a6e22e">theme</span>(legend.position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;none&#34;</span>),
+</span></span><span style="display:flex;"><span>            p.type,
+</span></span><span style="display:flex;"><span>            nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)</span></span></code></pre></div>
+</div>
+<p><a href="File:strava/summary.png">File:strava/summary.png</a></p>
+</div>
+</div>
+
+      
+    </div>
+</body>
+</html>

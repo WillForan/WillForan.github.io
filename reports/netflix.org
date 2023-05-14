@@ -1,4 +1,4 @@
-#+TITLE:Netflix Usage
+#+TITLE: Netflix Usage
 #+DATE: 2017-12-09
 #+OPTIONS: _:{} ^:{} toc:nil num:nil
 #+CREATOR: 
@@ -64,7 +64,7 @@ I think there is not a good way to see if something was only partially watched. 
 * Summarizing 
   Plotting what hour of the day gets the most TV watching and what series are viewed the most.
 
- #+Begin_SRC R :session :results output graphics :file netflix/summary.png :exports both
+ #+Begin_SRC R :session :results output graphics :file ../images/netflix/summary.png :exports both
    s <-
        d.year %>%
        group_by(seriesTitle) %>%
@@ -102,4 +102,4 @@ I think there is not a good way to see if something was only partially watched. 
  #+END_SRC
 
  #+RESULTS:
- [[file:netflix/summary.png]]
+ [[file:../images/netflix/summary.png]]

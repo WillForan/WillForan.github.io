@@ -2,3 +2,11 @@ baseURL = 'http://www.foran.cc/'
 languageCode = 'en-us'
 title = 'Foran'
 theme = 'wf'
+
+[module]
+[[module.mounts]]
+  source = '../reports/'
+  target = 'content'
+[[module.mounts]]
+  source = "../images/"
+  target = "static/images"

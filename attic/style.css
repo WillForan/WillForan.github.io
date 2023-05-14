@@ -1,8 +1,8 @@
 html { height: 100%;}
 body { font-family: mono; font-weight: bold; max-width: max-content; margin: auto auto;}
-h1 { font-size: larger;}
+h1.main { font-size: larger;}
 ul { list-style: none;} 
-time { color: grey;}
+time { color: gray;}
 .info li {display: inline-block;}
 .info li:not(:last-child):after { content: ' |';}
 
@@ -26,3 +26,6 @@ time { color: grey;}
   }
   a { text-decoration-color: white; }
 }
+
+div#content {max-width: 50em; font-weight: normal; font-family: sans-serif;}
+div.src {width:90%; padding: 1em; font-family: mono}

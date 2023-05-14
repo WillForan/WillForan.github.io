@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gopher blog</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="alternate" type="application/rss+xml" title="WFLOG RSS Feed" href="index.xml" />
+    <link rel="shortcut icon" href="https://secure.gravatar.com/avatar/3fed911ae9175eaf6c4e4ec51de7e6ac?size=125">
+  </head>
+  <body style="max-width: 40em">
+
+    <h1 style="font-size:bigger">Gopher blog</h1>
+    <div class="content">
+      
+<div id="outline-container-headline-1" class="outline-2">
+<h2 id="headline-1">
+Gopher server
+</h2>
+<div id="outline-text-headline-1" class="outline-text-2">
+<p>I&#39;ve added a gopher server to mirror content. I can not image it will be used seriously, but it seems important.</p>
+<p>
+Gopher links to raw org text files. github.io gets prettified html.</p>
+</div>
+</div>
+<div id="outline-container-headline-2" class="outline-2">
+<h2 id="headline-2">
+Implementation
+</h2>
+<div id="outline-text-headline-2" class="outline-text-2">
+<p>
+My first attempt was with <a href="https://github.com/puckipedia/pyGopher.">https://github.com/puckipedia/pyGopher.</a> I didn&#39;t spend enough time digging for documentation.
+Much later, I found <strong>geomyidae</strong> linked from suckless tools. By timing coincidence or by man page, it clicked.</p>
+<div class="src src-bash">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  git clone git://r-36.net/geomyidae
+</span></span><span style="display:flex;"><span>  cd geomyidae
+</span></span><span style="display:flex;"><span>  make
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># man ./geomyidae.8 </span>
+</span></span><span style="display:flex;"><span>  echo <span style="color:#f92672">[</span>0|test desc|/test.txt|server|70<span style="color:#f92672">]</span> &gt;&gt; /var/gopher/index.gph
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># run server with explict hostname (&#34;server&#34; in links), log everything (31)</span>
+</span></span><span style="display:flex;"><span>  sudo ./geomyidae -d -v <span style="color:#ae81ff">31</span> -h www.xn--4-cmb.com</span></span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="outline-container-headline-3" class="outline-2">
+<h2 id="headline-3">
+Firefox
+</h2>
+<div id="outline-text-headline-3" class="outline-text-2">
+<p>
+<code>lynx</code> can handle <code>gopher://</code> urls, but firefox is more convenient.
+Overbite has a nice plugin but the no-proxy solution needs a native-client bridge installed manually.</p>
+<p>
+after grabbing <a href="https://addons.mozilla.org/en-US/firefox/addon/overbitenx/">https://addons.mozilla.org/en-US/firefox/addon/overbitenx/</a></p>
+<div class="src src-sh">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git clone https://github.com/classilla/overbitenx.git
+</span></span><span style="display:flex;"><span>cd overbitenx
+</span></span><span style="display:flex;"><span>make
+</span></span><span style="display:flex;"><span>cp onyx ~/bin/ <span style="color:#75715e"># ~/bin already in path</span>
+</span></span><span style="display:flex;"><span>mkdir ~/.mozilla/native-messaging-hosts/
+</span></span><span style="display:flex;"><span>cp EXAMPLE_onyx.json ~/.mozilla/native-messaging-hosts/onyx.json
+</span></span><span style="display:flex;"><span>vim $_ <span style="color:#75715e"># correct path to bin</span></span></span></code></pre></div>
+</div>
+</div>
+</div>
+
+      
+    </div>
+</body>
+</html>

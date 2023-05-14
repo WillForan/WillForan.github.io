@@ -1,40 +1,30 @@
 .SUFFIXES:
-.PHONY: all recent-pull
-
+.PHONY: all
+REPORTS := $(wildcard reports/*org)
+GOPH_LN := $(patsubst %.org,%.txt,$(subst reports/,gopher/,$(REPORTS)))
 all: .make/gopher.ls
-org-export:
-	# should have org-export in path
-	# git clone https://github.com/nhoffman/org-export.git
-	# export PATH
-	which org-export
 
-src/index.tmp style.css src/make_index.py: reports/readme.org  
-	cd reports
-	emacs --batch -l org -L --eval '(org-babel-tangle "readme.org")'
+hugo/public/index.html: $(REPORTS)
+	cd hugo && hugo
+
+
+## gopher is (1) linked .org as .txt, (2) generaed index.gph, and  (3)rsync to server
+
+gopher/%.txt:
+	test -e "$@" || ( cd gopher && ln -s "../reports/$(patsubst %.txt,%.org,$(notdir $@))" "$(notdir $@)" )
+
+gopher/index.gph: $(GOPH_LN)
+	./mkgoph.pl $? > "$@"
+
+.make/gopher.ls: hugo/public/index.html gopher/index.gph $(GOPH_LN) | .make gopher
+	# NB "s2" is gopher server defined in ~/.ssh/config
+	rsync --size-only -Lrvhi gopher/ s2:/var/gopher/
+	rsync --size-only -Lrvhi images/ s2:/var/gopher/images/
+	date > .make/gopher.ls
+
+.make:
+	@mkdir -p .make
 
 gopher:
 	mkdir -p gopher
 
-index.html: $(wildcard reports/*org) src/make_index.py src/gopher.tmp src/index.tmp org-export | gopher
-	python src/make_index.py
-
-.make/gopher.ls: index.html | .make
-	# NB "s2" is gopher server defined in ~/.ssh/config
-	rsync --size-only -Lrvhi gopher/ s2:/var/gopher/
-	date > .make/gopher.ls
-
-# how to go from org to html
-# NOT USED
-# make_index.py changes name to match that of TITLE
-html/%.html: reports/%.org
-	org-export html  --infile $< --outfile $@
-
-allreports = $(wildcard reports/*.org)
-all-html: $(allreports:reports%org=html%html)
-.make:
-	@mkdir -p .make
-
-# if we did a pull, timestamps on export files wont be accurate
-# instead of regenerating files. just touch them
-recent-pull:
-	touch html/*html

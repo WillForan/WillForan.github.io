@@ -1,1 +1,1 @@
-reports/readme.org
+reports/hugo.org
