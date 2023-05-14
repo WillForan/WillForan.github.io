@@ -1,9 +1,9 @@
-:PROPERTIES:
-:ID:       573e9b54-e251-4557-9190-771ee35ab7ef
-:END:
 #+TITLE: cgi-bin and interpreter startup time
 #+DATE: 2021-10-22
 #+OPTIONS: _:{} ^:{} toc:nil num:nil
+:PROPERTIES:
+:ID:       573e9b54-e251-4557-9190-771ee35ab7ef
+:END:
 
 
 * Numbers

@@ -1,4 +1,4 @@
-#+TITLE:Strava Tracked Workouts
+#+TITLE: Strava Tracked Workouts
 #+DATE: 2017-12-09
 #+OPTIONS: _:{} ^:{} toc:nil num:nil
 #+CREATOR: 

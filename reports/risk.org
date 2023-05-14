@@ -1,7 +1,7 @@
-#+Title:Risk by email stats
+#+Title: Risk by email stats
 #+DATE: 2020-04-04
 * What
-Jump to [[Stats]]. 
+Jump to [[*Stats]]. 
 
 * Log
 Copy/pasted from gamesbyemail.com's game log. The page does fetch malformated json to populate the log, but the objects are dense.

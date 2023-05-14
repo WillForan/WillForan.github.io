@@ -1,4 +1,3 @@
-# -*- org-src-preserve-indentation: t; -*-
 #+TITLE: readme: static generator python wrapping org-mode
 #+DATE: 2017-11-18
 #+OPTIONS: _:{} ^:{} toc:nil num:nil
@@ -447,3 +446,5 @@ with open('../rss.xml','w') as indexf:
     indexf.write(rss_str)
     #+END_SRC
  
+
+# -*- org-src-preserve-indentation: t; -*-

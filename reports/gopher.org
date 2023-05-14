@@ -1,4 +1,4 @@
-#+Title:Gopher blog
+#+Title: Gopher blog
 #+DATE: 2019-03-15
 #+OPTIONS: _:{} ^:{} toc:nil num:nil
 #+CREATOR: 
