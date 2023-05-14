@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html> <head>
+   <title>WF log</title>
+   <link rel="stylesheet" type="text/css" href="css/style.css" />
+   <link rel="alternate" type="application/rss+xml" title="WFLOG RSS Feed" href="index.xml" />
+   <link rel="shortcut icon" href="https://secure.gravatar.com/avatar/3fed911ae9175eaf6c4e4ec51de7e6ac?size=125">
+  </head>
+  <body>
+    <h1 class="main">External</h1>
+    <ul class="info">
+       <li><a href="https://github.com/WillForan">Github</a></li>
+       <li><a href="https://stackoverflow.com/users/1031776/will">StackOverflow</a></li>
+       <li><a href="https://scholar.google.com/citations?user=PzX6F5oAAAAJ">GoogleScholar</a></li>
+       <li><a href="https://www.strava.com/athletes/15036420">Strava</a></li>
+       <li><a href="https://www.swrd.trade">SWRD</a></li>
+    </ul>
+    <h1 class="main">WF log</h1>
+    Also in <a href="gopher://www.xn--4-cmb.com">gopher space</a>
+    <ul>
+       {{"<!-- /section title -->" | safeHTML}}
+       
+       {{ range sort .Paginator.Pages }}
+       <li><a href="{{ .Permalink }}"><time>{{ .Date | time.Format "2006-01-02"  }}</time> {{ .Title }}</a>{{ if .Draft }} ::Draft{{ end }}</li>
+       {{ end }}
+    </ul>
+  </body>
+</html>

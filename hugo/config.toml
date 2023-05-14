@@ -1,0 +1,4 @@
+baseURL = 'http://www.foran.cc/'
+languageCode = 'en-us'
+title = 'Foran'
+theme = 'wf'
