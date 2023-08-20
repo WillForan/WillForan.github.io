@@ -1,5 +1,26 @@
 html { height: 100%;}
-body { font-family: mono; font-weight: bold; max-width: max-content; margin: auto auto;}
+body {
+   font-family: Helvetica, Arial, Sans-Serif;
+   /*font-weight: bold;*/
+   max-width: max-content;
+   font-size: 1.1em;
+   line-height: 1.7em;
+   margin: auto auto;}
+code {
+  background: #8888;
+  font-family: mono;
+}
+
+pre {
+  font-family: mono;
+  font-size: smaller;
+  border-top: solid black 1px;
+  border-bottom: solid black 1px;
+}
+
+/* when chroma doesn't know how to highlight */
+pre>code { background: none; color: white; }
+
 h1.main { font-size: larger;}
 body.index> ul { list-style: none;} 
 time { color: gray;}
@@ -28,4 +49,33 @@ time { color: gray;}
 }
 
 div#content {max-width: 50em; font-weight: normal; font-family: sans-serif;}
-div.src {width:90%; padding: 1em; font-family: mono}
+
+/* 20230820 - code block bakground spans the entire screen */
+div.src {
+  font-family: mono;
+  background-color: #272822;
+  padding: 1em;
+  /* relative to content max-width above */
+  padding-left: 25em;
+  margin-left: -25em;
+  width: calc( 100vw );
+}
+
+table{
+   font-size: smaller;
+   padding: 1em;
+}
+table>thead{
+  font-weight: bolder;
+  font-size: larger;
+  background: #88888888; /* 8/16 color and alpha: stand out in dark or light mode*/
+}
+
+h1, h2, h3, h4, h5 {
+  margin-left: -2em;
+  /*font-size: larger;*/
+}
+
+h1::before, h2::before, h3::before, h4::before, h5::before {
+   content: "║";
+}
