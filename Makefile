@@ -4,8 +4,8 @@ REPORTS := $(wildcard reports/*org)
 GOPH_LN := $(patsubst %.org,%.txt,$(subst reports/,gopher/,$(REPORTS)))
 all: .make/gopher.ls
 
-hugo/public/index.html: $(REPORTS)
-	cd hugo && hugo
+hugo/public/index.html: $(REPORTS) hugo/config.toml
+	hugo -s hugo
 
 
 ## gopher is (1) linked .org as .txt, (2) generaed index.gph, and  (3)rsync to server
@@ -14,7 +14,7 @@ gopher/%.txt:
 	test -e "$@" || ( cd gopher && ln -s "../reports/$(patsubst %.txt,%.org,$(notdir $@))" "$(notdir $@)" )
 
 gopher/index.gph: $(GOPH_LN)
-	./mkgoph.pl $? > "$@"
+	./mkgoph.pl $^ > "$@"
 
 .make/gopher.ls: hugo/public/index.html gopher/index.gph $(GOPH_LN) | .make gopher
 	# NB "s2" is gopher server defined in ~/.ssh/config
