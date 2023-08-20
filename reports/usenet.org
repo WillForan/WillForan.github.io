@@ -28,10 +28,10 @@ The first run of ~slrn~ creates ~$HOME/.jnewsrc~ with a list of all hierarchies.
 This will be useful for ~slrnpull~
 
 For eternal september, authentication is necessary. ~.slrnrc~ looks like
-#+begin_quote .slrnrc
+#+begin_src conf
 set force_authentication 1
 nnrpaccess "news.eternal-september.org" "xxxx" "yyyyy"
-#+end_quote
+#+end_src
 
 And first pull
 #+begin_src bash
@@ -39,8 +39,7 @@ slrn -h news.eternal-september.org  -f /home/foranw/.jnewsrc --create
 #+end_src
 **** articles: slrnpull
 I initially put the full (27k+) group list in ~slrnpull.conf~. 
-but eternal-september disconnects after the first 300.
-[[fn::or actually maybe the problem is alt.autos.toyota.camry: 3 articles available.\n***Connection to news.eternal-september.org lost. Performing shutdown.]]
+but eternal-september disconnects after the first 300. [fn::or actually maybe the problem is alt.autos.toyota.camry: 3 articles available.\n***Connection to news.eternal-september.org lost. Performing shutdown.]
 Conveniently, .jnewsrc also stores an articles count.
 And that's easy to sort on and probably a good way to limit to active groups.
 
@@ -66,8 +65,13 @@ sed 's/"//g' .slrnrc |
 slrnpull -h news.eternal-september.org
 #+end_src
 #+RESULTS:
+: # 300 groups
 :   Time: 01:04:23, BPS: 70284
 : 08/19/2023 12:57:18 A total of 271509221 bytes received, 1035863 bytes sent in 3879 seconds.
+:
+: # 4100 groups
+: Time: 09:21:24, BPS: 74419
+: 08/20/2023 01:52:36 A total of 2506742895 bytes received, 5781052 bytes sent in 34098 seconds.
 
 *** Dataset
 The directory structure with .minmax files consumes ~100Mb! 
@@ -80,18 +84,18 @@ time find news/ -type f -not -name '.*'  |wc -l
 : real    6m55.229s
 
 
-#+begin_src bash :async yes  :dir /mnt/ttb/news/
+#+begin_src bash :dir /mnt/ttb/news/
 time du -hcs ./
 #+end_src
 
 #+RESULTS:
-: c5ed6073aa7bcf4414e1f2d4c5cdd143
+| 3.2G | total |
 
 
 * Parse
 I've extracted headers with a perl script,
  used ~Lingua::Stem::Snowball~ to stem the article's text, and parallel
-[[fn:: O. Tange (2011): GNU Parallel - The Command-Line Power Tool, ;login: The USENIX Magazine, February 2011:42-47.]] to execute on multiple cores.
+[fn:: O. Tange (2011): GNU Parallel - The Command-Line Power Tool, ;login: The USENIX Magazine, February 2011:42-47.] to execute on multiple cores.
 
 #+begin_src bash :async yes :dir /ssh:s2:/var/spool/news/slrnpull
 time \
@@ -110,15 +114,19 @@ time \
 #+begin_src R :session *R:WillForan.github.io* :results none
 library(dplyr)
 d <- data.table::fread('/mnt/ttb/news/all_articles.tsv.gz',quote="",
-                       col.names=c("folder","date","org","from","agent_full","path","id","body")) |>
+                       col.names=c("folder","date","org","from",
+                                   "agent_full","path","id","body")) |>
      mutate(date=lubridate::ymd_hm(date),
-            agent=gsub('[ /(:].*','',agent_full), # remove version number
-            email=stringr::str_extract(from,'(?<=<)[^>]+'), # extract from within <>: Name <email@host.com>
+            # remove version number
+            agent=gsub('[ /(:].*','',agent_full),
+            # extract from within <>: Name <email@host.com>
+            email=stringr::str_extract(from,'(?<=<)[^>]+'),
             top=stringr::str_extract(folder,'(?<=news/)[^/]*'))
+# only look at 2023 (ending in 20230820)
 d2023 <- d |> filter(date >= "2023-01-01")
 #+end_src
 
-We have +src_R[:session *R:WillForan.github.io*]{nrow(d2023)} {{{results(=92737=)}}} articles from 2023
+We have +src_R[:session *R:WillForan.github.io*]{nrow(d2023)}{{{results(=92737=)}}} articles from 2023
 
 ** User Agent
 No user-agent at all is quote popular (#2).  G2 (google groups) and Mozilla (Thunderbird) are an order of magnitude above other clients.
@@ -168,7 +176,7 @@ Yes. Or user agents just a proxy for spam.
 Here we're looking at the top 4 user agents across each top level.
 ~slrn~ and ~Gnus~ make the top 4 cut in ~comp.*~ and ~sfnet.*~, and ~slrn~ also sneaks in for ~sci.*~
 
-~Gnus~ makes it's strongest showing in ~news~ where there are only 35 posts with a user-agent header [[fn::there are 12 unique emails posting to news, posting to ~*.news~ and ~*.abuse~]]
+~Gnus~ makes it's strongest showing in ~news~ where there are only 35 posts with a user-agent header [fn:: there are 12 unique emails posting to news, posting to ~*.news~ and ~*.abuse~]
 
 #+begin_src R :session *R:WillForan.github.io* :results value table  :colnames yes 
 library(tidyr)
