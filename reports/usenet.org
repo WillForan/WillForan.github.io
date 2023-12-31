@@ -2,8 +2,18 @@
 #+DATE: 2023-08-19
 #+OPTIONS: _:{} ^:{} toc:nil num:nil
 #+CREATOR:
-* Motivation
+* Take away
 [[#Stats][Jump to Stats]]
+
+ * Most everyone posts with G2 or Mozilla (Thunderbird) 
+ * Old newsreaders (Xnews, newsSync, VSoup, MicroPlanet-Gravity, 40tude_Dialog) are still somewhat popular
+   -- despite development having stopped on many.
+ * Russion langauge sentiment appears positive when stemmed and scored as English.
+   German sentiment appears negative.
+ * Selling things and some support groups (stop-smoking) are on the  most postiive end
+ * Obscentities make `testing` and `dev` groups score negative; as do some individual and prolific unhappy posters.
+
+* Motivation
 
 In researching self-hosting ~Discourse~, I saw there's an old plugin to [[https://meta.discourse.org/t/sync-discourse-with-nntp/58602][sync to nntp]]. 
 That was surprising enough to add usenet to lemmy, mastodon, nostr, and ssb
@@ -48,7 +58,7 @@ Unfortunately, the decently active and interesting group I've pegged as a refere
 #+begin_src bash :eval never
 echo default 200     365 > /var/spool/news/slrnpull/slrnpull.conf
 perl -lne 'print if s/^(.*)[!:].*-(\d+)$/$2\t$1/' ~/.jnewsrc|
-  sort -nr|grep -v sex |head -n 300 | cut -f 2 >> /var/spool/news/slrnpull/slrnpull.conf
+  sort -nr|grep -v sex |head -n 4100 | cut -f 2 >> /var/spool/news/slrnpull/slrnpull.conf
 #+end_src
 
 eternal-september.org requires authentication. I copied slrn's auth to slrnpull's authinfo
@@ -74,7 +84,7 @@ slrnpull -h news.eternal-september.org
 : 08/20/2023 01:52:36 A total of 2506742895 bytes received, 5781052 bytes sent in 34098 seconds.
 
 *** Dataset
-The directory structure with .minmax files consumes ~100Mb! 
+The directory structure with .minmax files consumes ~100Mb!
 #+begin_src  bash :async yes  :dir /ssh:s2:/var/spool/news/slrnpull  :eval never
 time find news/ -type f -not -name '.*'  |wc -l 
 #+end_src
@@ -95,7 +105,8 @@ time du -hcs ./
 * Parse
 I've extracted headers with a perl script,
  used ~Lingua::Stem::Snowball~ to stem the article's text, and parallel
-[fn:: O. Tange (2011): GNU Parallel - The Command-Line Power Tool, ;login: The USENIX Magazine, February 2011:42-47.] to execute on multiple cores.
+ [fn::O. Tange (2011): GNU Parallel - The Command-Line Power Tool, ;login: The USENIX Magazine, February 2011:42-47.]
+ to execute on multiple cores. The resulting tab separated file has one line/row per message and compresses well.
 
 #+begin_src bash :async yes :dir /ssh:s2:/var/spool/news/slrnpull
 time \
@@ -104,8 +115,21 @@ time \
   gzip -c > news/all_articles.tsv.gz
 #+end_src
 #+RESULTS:
-: real    17m37.302s
+: real    122m32.779s
 
+#+begin_src bash :async yes :dir /ssh:s2:/var/spool/news/slrnpull
+ du -h news/all_articles.tsv.gz
+#+end_src
+
+#+RESULTS:
+: 373M    news/all_articles.tsv.gz
+
+* Sharing
+
+#+begin_src bash :eval never
+ln -s all_articles.tsv.gz usenet_group-41000_messages-200_date-20230819.tsv.gz 
+rhash --magnet --btih  usenet_group-41000_messages-200_date-20230819.tsv.gz
+#+end_src
 
 * Stats
 :PROPERTIES:
@@ -113,24 +137,30 @@ time \
 :END:
 #+begin_src R :session *R:WillForan.github.io* :results none
 library(dplyr)
-d <- data.table::fread('/mnt/ttb/news/all_articles.tsv.gz',quote="",
+d <- data.table::fread('/mnt/ttb/news/all_articles.tsv.gz', quote="",
                        col.names=c("folder","date","org","from",
                                    "agent_full","path","id","body")) |>
      mutate(date=lubridate::ymd_hm(date),
             # remove version number
             agent=gsub('[ /(:].*','',agent_full),
             # extract from within <>: Name <email@host.com>
-            email=stringr::str_extract(from,'(?<=<)[^>]+'),
+            #email=stringr::str_extract(from,'(?<=<)[^>]+'),
+            # or ( blah@x.com )
+            email=stringr::str_extract(from,'[a-zA-Z0-9.!#$%&*+-/=?^_`{|}~]+@[^ )>]+'),
             top=stringr::str_extract(folder,'(?<=news/)[^/]*'))
 # only look at 2023 (ending in 20230820)
 d2023 <- d |> filter(date >= "2023-01-01")
+
+n_messages_2023 <- nrow(d2023)
 #+end_src
 
-We have +src_R[:session *R:WillForan.github.io*]{nrow(d2023)}{{{results(=92737=)}}} articles from 2023
+We have +src_R[:session *R:WillForan.github.io*]{n_messages_2023}{{{results(=166614=)}}} articles from 2023
 
 ** User Agent
-No user-agent at all is quote popular (#2).  G2 (google groups) and Mozilla (Thunderbird) are an order of magnitude above other clients.
+G2 (google groups) and Mozilla (Thunderbird) are an order of magnitude above other clients.
+
 Mozilla users post more often than google users (though a better stat might be median instead of mean).
+
 
 #+begin_src R :session *R:WillForan.github.io* :results value table  :colnames yes 
 agents_allposts <- d2023 |> count(agent, name='n_posts') |> arrange(-n_posts)
@@ -146,37 +176,66 @@ agents  |> head(n=20)
 #+RESULTS:
 | agent               | n_posts | n_from | user_posts |
 |---------------------+---------+--------+------------|
-| G2                  |   29367 |   3317 |        8.9 |
-|                     |   25885 |   3190 |        8.1 |
-| Mozilla             |   19797 |   1602 |       12.4 |
-| Xnews               |    1724 |    578 |          3 |
-| ForteAgent          |    2345 |    177 |       13.2 |
-| slrn                |    1022 |    129 |        7.9 |
-| Pan                 |    1132 |    105 |       10.8 |
-| Gnus                |     782 |     96 |        8.1 |
-| NewsTap             |    1160 |     88 |       13.2 |
-| Evolution           |     447 |     63 |        7.1 |
-| Mime                |      86 |     63 |        1.4 |
-| tin                 |     631 |     62 |       10.2 |
-| VSoup               |     268 |     62 |        4.3 |
-| Mutt                |     266 |     40 |        6.7 |
-| MicroPlanet-Gravity |     641 |     38 |       16.9 |
-| 40tude_Dialog       |     656 |     33 |       19.9 |
-| Nemo                |     352 |     29 |       12.1 |
-| Usenapp             |     266 |     28 |        9.5 |
-| Unison              |     147 |     28 |        5.2 |
-| MacSOUP             |     262 |     26 |       10.1 |
+| G2                  |   58739 |   6406 |        9.2 |
+|                     |   41694 |   4630 |          9 |
+| Mozilla             |   31724 |   2348 |       13.5 |
+| Xnews               |    2754 |    864 |        3.2 |
+| newsSync            |     510 |    426 |        1.2 |
+| ForteAgent          |    3606 |    237 |       15.2 |
+| slrn                |    2083 |    219 |        9.5 |
+| Pan                 |    1778 |    161 |         11 |
+| Gnus                |    1515 |    158 |        9.6 |
+| NewsTap             |    1751 |    126 |       13.9 |
+| tin                 |    1537 |    107 |       14.4 |
+| Mime                |     142 |     89 |        1.6 |
+| VSoup               |     379 |     87 |        4.4 |
+| Evolution           |     644 |     78 |        8.3 |
+| Dolbo               |     121 |     59 |        2.1 |
+| Mutt                |     357 |     50 |        7.1 |
+| MicroPlanet-Gravity |    1202 |     49 |       24.5 |
+| 40tude_Dialog       |    1119 |     46 |       24.3 |
+| Usenapp             |     449 |     45 |         10 |
+| Unison              |     232 |     41 |        5.7 |
 
-** By top level group
+
+The second most popular user-agent is none -- missing in the header. These look like they come from lists and scripts.
+#+begin_src R :session *R:WillForan.github.io* :colnames yes
+d2023 |>filter(agent=="") |> count(email,path,org) |> arrange(-n) |> head()
+#+end_src
+
+#+RESULTS:
+| email                                     | path                             | org                          |    n |
+|-------------------------------------------+----------------------------------+------------------------------+------|
+| doctor@doctor.nl2k.ab.ca                  | .POSTED.doctor.nl2k.ab.ca        | NetKnow News                 | 2086 |
+| remailer@domain.invalid                   | mail2news                        |                              | 1586 |
+| racist_queer_democrat_paedophiles@now.org | mail2news                        |                              |  836 |
+| bugzilla-noreply@freebsd.org              | .POSTED.news.muc.de              | Newsgate at muc.de e.V.      |  790 |
+| disciple@T3WiJ.com                        | news.eternal-september.org       | A noiseless patient Spider   |  702 |
+| ftpmaster@ftp-master.debian.org           | <envelope@ftp-master.debian.org> | linux.* mail to news gateway |  666 |
+
+#+begin_src R :session *R:WillForan.github.io* :colnames yes
+d2023 |>filter(agent=="",is.na(email)) |> count(folder,name="n_noagent_noemail") |> arrange(-n_noagent_noemail) |> head()
+#+end_src
+
+#+RESULTS:
+| folder                        | n_noagent_noemail |
+|-------------------------------+-------------------|
+| news/soc/culture/korean       |               188 |
+| news/junk                     |               129 |
+| news/alt/bbs/synchronet       |                86 |
+| news/alt/online-service/webtv |                46 |
+| news/comp/mail/sendmail       |                35 |
+| news/alt/politics/uk          |                27 |
+
+*** By top level group
 
 Do different audiences have specific client preferences? 
 
-Yes. Or user agents just a proxy for spam. 
+Yes. Or maybe user agents are just a proxy for spam.
 
 Here we're looking at the top 4 user agents across each top level.
-~slrn~ and ~Gnus~ make the top 4 cut in ~comp.*~ and ~sfnet.*~, and ~slrn~ also sneaks in for ~sci.*~
+~slrn~ and ~Gnus~ make the top 4 cut in ~comp.*~ and ~news.*~, and ~slrn~ also sneaks in for ~sci.*~ while ~gnus~ writes nearly 1/10 of ~sfnet~ messages.
 
-~Gnus~ makes it's strongest showing in ~news~ where there are only 35 posts with a user-agent header [fn:: there are 12 unique emails posting to news, posting to ~*.news~ and ~*.abuse~]
 
 #+begin_src R :session *R:WillForan.github.io* :results value table  :colnames yes 
 library(tidyr)
@@ -201,16 +260,37 @@ merge(N_top,agent_wide) %>% arrange(-TOTAL)
 #+end_src
 
 #+RESULTS:
-| top   | TOTAL |  G2 | Mozilla | Xnews | ForteAgent | slrn | Gnus | XanaNews |
-|-------+-------+-----+---------+-------+------------+------+------+----------|
-| alt   | 24382 | 45% |     20% |   11% |         4% |    0 |    0 |        0 |
-| soc   |  4966 | 74% |     10% |    5% |         3% |    0 |    0 |        0 |
-| comp  |  4693 | 46% |     26% |     0 |          0 |   5% |   4% |        0 |
-| sci   |  2697 | 62% |     17% |     0 |         4% |   3% |    0 |        0 |
-| misc  |   855 | 27% |     28% |   13% |         6% |    0 |    0 |        0 |
-| talk  |   840 | 50% |     19% |    5% |         7% |    0 |    0 |        0 |
-| sfnet |   405 | 42% |     38% |     0 |          0 |    0 |  12% |       4% |
-| news  |    35 |  8% |     23% |     0 |         8% |    0 |  31% |        0 |
+| top   | TOTAL |  G2 | Mozilla | Xnews | ForteAgent | slrn | Gnus | VSoup |
+|-------+-------+-----+---------+-------+------------+------+------+-------|
+| alt   | 38432 | 52% |     16% |   10% |         4% |    0 |    0 |     0 |
+| comp  | 11285 | 62% |     18% |     0 |          0 |   3% |   3% |     0 |
+| soc   |  7679 | 77% |      9% |    5% |         2% |    0 |    0 |     0 |
+| sci   |  4619 | 62% |     17% |     0 |         4% |   2% |    0 |     0 |
+| misc  |  2673 | 54% |     19% |    8% |         4% |    0 |    0 |     0 |
+| talk  |  1964 | 47% |     21% |    8% |         7% |    0 |    0 |     0 |
+| news  |   665 | 35% |     17% |     0 |          0 |   9% |   7% |     0 |
+| sfnet |   422 | 41% |     34% |     0 |          0 |    0 |   9% |    6% |
+
+**** VSoup
+What is Vsoup?! Google isn't any help.  It has an OS/2 version!?
+#+begin_src R :session *R:WillForan.github.io* :colnames yes
+d2023 %>% filter(agent=='VSoup') %>% count(top,agent_full) %>% spread(top,n)
+#+end_src
+
+#+RESULTS:
+| agent_full                  | alt | comp | misc | nz | rec | sfnet |
+|-----------------------------+-----+------+------+----+-----+-------|
+| VSoup v1.2.9.47Beta [95/NT] | 296 |   52 |    1 | 11 |  10 |       |
+| VSoup v1.2.9.48Beta [OS/2]  |   7 |      |      |    |     |     2 |
+
+#+begin_src R :session *R:WillForan.github.io* :colnames yes
+d2023 %>% filter(agent=='VSoup') %>% count(email) %>% summarise(max_vsoup_posts=max(n),med_vsoup_posts=median(n), n_emails=n())
+#+end_src
+
+#+RESULTS:
+| max_vsoup_posts | med_vsoup_posts | n_emails |
+|-----------------+-----------------+----------|
+|              44 |               2 |       87 |
 
 ** sentiment 
 scoring sentiment using stemmed words individual words, valence from Finn Årup Nielsen.
@@ -219,27 +299,48 @@ AFINN ranks a subset of English words -5 (negative) to +5 (positive). I average 
 library(tidytext)
 #nnc <- get_sentiments("nrc") # has dimensions, eg. "joy"
 afn <- get_sentiments("afinn") # -5 neg to +5 positive
+
 # match stemming from perl
 afn_stem <- afn |> mutate(word=SnowballC::wordStem(word,language="en")) |> group_by(word) |> summarise(value=mean(value))
 
-word_corpus <- afn_score <- d2023 |> select(folder, email, agent, body) |>
-  mutate(articleid=1:n()) |>
-  unnest_tokens(word, body) |>
-  group_by(articleid) |> mutate(n_words=n()) |> ungroup() |>
-  inner_join(afn_stem)
 
-afn_score <- word_corpus |>
-  group_by(folder,email,agent, articleid, n_words) |>
-  summarise(afn_sd=sd(value), afn=mean(value), words_scored=n()) |> ungroup()
+
+# could do a giant merge afn to body split
+# but takes too much RAM
+# hash lookup with list name should be fast enough alt to merge
+afn_lookup <- as.list(afn_stem$value) |> `names<-`(afn_stem$word)
+body_stats <- function(body){
+   body <- stringr::str_split(body,' ', simplify=T)
+   vals <- unlist(afn_lookup[body])
+   adj <- 0
+   if(length(vals)==0L) {
+       vals <- c("NA"=0)
+       adj <-1 
+   }
+   data.frame(n_words=length(body),
+              afn=mean(vals),
+              afn_sd=sd(vals),
+              words_scored=length(vals)-adj,
+              body=paste(names(vals),vals,sep=":",collapse=" "))
+}
+# replaces body with scored words only
+afn_score <- d2023 |> 
+  select(top, folder, agent, email, body) |>
+   mutate(folder=gsub('^news/','',folder) |>
+   rowwise() |>
+   mutate(body_stats(body))
+
+write.csv(afn_score,file="afn_score.csv.gz",row.names=F,quote=F)
 
 #+end_src
 
 *** per group
- * The most positive place on usenet in 2023 looks like ~fido7/ru/fidonet/today~.
+ * The most positive place on usenet in 2023 looks like ~fido7/ru/home~. Russian lang take the top 3 (afn=2.5-2.3). Since removed (english valance for russian stemmed words are likely not meaningful)
  * nice to see a supportive place looking positive: alt.support.stop-smoking 
- * windows makes two appearances in the top 20. I guess being held hostage by your OS endears some fraternal empathy. 
+ * post selling things are positive. What a nice financial incentive for being optomistic (tor/forsale, phl/forsal,chi/forsal,van/forsal,alt/forsale)
+ * windows makes two appearances in the top 20 (edit it/comp/os/win/windows10 fell out after update, afn=1.5). I guess being held hostage by your OS endears some fraternal empathy. 
    * similar thing for alt.alien.visitors?
- * Groups with non-English articles might be getting an unfair bump.
+ * Groups with non-English articles shouldn't be included.
 
 
 NB. I capped my pull to 200 articles per group.
@@ -259,8 +360,7 @@ afn_folder_smry <-
   inner_join(n_articles)
 
 afn_folder_smry |>
-  filter(n_email>=8, n_articles>10) |> arrange(-afn) |>
-  mutate(folder=gsub('^news/','',folder)) |>
+  filter(n_email>=8, n_articles>10, !grepl('/ru/',folder)) |> arrange(-afn) |>
   select(folder,afn,n_email,n_articles,wrd_article,mean_sd) |>
   head(n=20)
 #+end_src
@@ -268,26 +368,26 @@ afn_folder_smry |>
 #+RESULTS:
 | folder                        |  afn | n_email | n_articles | wrd_article | mean_sd |
 |-------------------------------+------+---------+------------+-------------+---------|
-| fido7/ru/home                 | 2.59 |       8 |        196 |        13.6 |    1.36 |
-| fido7/ru/windows/xp           | 2.49 |      12 |        127 |        18.9 |     0.9 |
-| fido7/ru/fidonet/today        | 2.31 |      10 |        199 |        24.4 |    0.65 |
 | alt/alien/visitors            | 1.99 |       8 |        200 |      2055.4 |    0.68 |
+| alt/books/larry-niven         | 1.86 |      36 |        104 |       125.6 |    1.23 |
+| tor/forsale                   | 1.71 |      28 |         38 |        35.1 |    0.85 |
+| rec/games/go                  | 1.67 |      59 |         83 |        79.6 |    1.83 |
+| houston/forsale               | 1.66 |      14 |         16 |          49 |     1.4 |
+| phl/forsale                   | 1.65 |      27 |         28 |        36.6 |    1.13 |
+| chi/forsale                   | 1.64 |      67 |         80 |        50.4 |    0.98 |
 | it/sport/calcio/fiorentina    | 1.62 |      17 |        200 |        67.5 |    1.18 |
+| alt/flashback                 |  1.6 |      48 |         81 |          55 |    0.88 |
 | alt/support/stop-smoking      |  1.6 |      13 |         43 |        38.7 |    1.48 |
+| alt/fan/fratellibros          | 1.59 |       8 |         28 |        55.2 |    1.64 |
 | it/discussioni/commercialisti | 1.56 |      44 |        200 |        64.7 |    1.22 |
 | soc/culture/occitan           | 1.54 |      58 |         84 |        67.3 |    1.32 |
+| van/forsale                   | 1.54 |      30 |         33 |        40.1 |    0.96 |
+| atl/forsale                   | 1.53 |      44 |         55 |        61.5 |    1.31 |
 | it/sport/formula1             | 1.52 |      17 |        200 |        66.4 |    1.39 |
+| alt/locksmithing              | 1.51 |       8 |         12 |        40.9 |    0.75 |
 | it/comp/os/win/windows10      |  1.5 |      46 |        200 |        65.4 |     1.9 |
+| nyc/forsale                   | 1.48 |      91 |        104 |        48.2 |    1.14 |
 | aioe/news/assistenza          | 1.46 |      23 |        106 |        55.9 |    1.46 |
-| alt/sewing                    | 1.46 |      21 |         64 |       226.7 |    1.47 |
-| it/hobby/elettronica          | 1.46 |      27 |        202 |        57.8 |    1.38 |
-| it/arti/trash                 | 1.44 |      19 |        202 |        76.8 |    1.01 |
-| it/sport/motociclismo         | 1.43 |      21 |        200 |        60.5 |    1.48 |
-| alt/html                      | 1.42 |      13 |         32 |       107.4 |    1.08 |
-| it/comp/console               | 1.39 |      32 |        200 |        53.1 |    1.34 |
-| it/sport/calcio/milan         | 1.39 |      34 |        201 |          73 |    1.76 |
-| dc/jobs                       | 1.38 |       9 |         76 |       192.8 |    1.19 |
-| rec/music/indian/misc         | 1.36 |      17 |        114 |        81.2 |    1.13 |
 
 
 *** negative
@@ -299,17 +399,41 @@ A kill file would probably change this a lot. soc.culture.scottish and *.webtv h
  * In the opposite of the smoking support above, ~fat-acceptance~ is scored negatively. 
  * I guess buffalo bills fans (all 9 of them) are not a happy bunch
  * alt.crime's no surprise, but not b/c of racist obscenities! The most popular negative words are evil(-3), torture(-4), charge(-3), and crime(-3)
- * scottish culture?
-   * top4 negative: +src_R[:session *R:WillForan.github.io*]{word_corpus %>% filter(grepl("soc/culture/scottish$",folder),value < -1) %>% count(word,value) %>% arrange(-n) %>% head(n=4) %>% apply(1,paste,collapse=' ') %>% paste(collapse=", ")} {{{results(=tortur -4 574\, death -2 276\, kill -3 244\, useless -2 202=)}}}
+ * scottish culture? includes a lot of torture, kill, death
  * webtv in 2023?
     * euthanasia drugs!? lots of other very upsets (re: child trafficking?) posts
+ 
+#+begin_src R :session *R:WillForan.github.io*  :colnames yes
+library(stringr)
+afn_score$body[grepl("soc/culture/scottish$",afn_score$folder)] %>%
+  str_split(" ",simplify=T) %>%
+  str_split(":") %>%
+  Filter(f=\(x) length(x)==2L)  %>%
+  lapply(\(x) data.frame(w=x[1],v=as.numeric(x[2]))) %>%
+  bind_rows() %>% count(w,v) %>% mutate(score=v*n) %>%
+  arrange(score) %>%
+  head()
+#+end_src
+
+#+RESULTS:
+| w       |  v |   n | score |
+|---------+----+-----+-------|
+| tortur  | -4 | 574 | -2296 |
+| kill    | -3 | 244 |  -732 |
+| death   | -2 | 276 |  -552 |
+| victim  | -3 | 165 |  -495 |
+| abus    | -3 | 137 |  -411 |
+| useless | -2 | 202 |  -404 |
+
+
+
 #+begin_src R :session *R:WillForan.github.io*  :colnames yes
 afn_folder_smry |>
-  filter(n_email>=8, n_articles>10, !grepl('test$|dev$',folder)) |>
+  filter(n_email>=8, n_articles>10,
+        !grepl('/pl/|/fr/|geschn|tratsch|/de/|/pa/|/dk/|/in/|spanish|ttiili|german|/nl/|/be/|test$|dev$',folder)) |>
   arrange(afn) |>
-  mutate(folder=gsub('^news/','',folder)) |>
   select(folder,afn,n_email,n_articles,wrd_article,mean_sd) |>
-  head(n=10)
+  head(n=20)
 #+end_src
 
 #+RESULTS:
@@ -318,13 +442,23 @@ afn_folder_smry |>
 | alt/aeffle/und/pferdle                | -2.39 |      12 |         74 |       104.1 |    0.86 |
 | sfnet/huuhaa                          | -1.39 |      10 |        199 |        83.5 |    1.17 |
 | alt/games/microsoft/flight-sim        | -1.23 |       8 |        200 |       212.2 |    2.18 |
-| pl/misc/kolej                         | -1.15 |      19 |        197 |       260.9 |    0.56 |
-| sfnet/keskustelu/varaventtiili        | -1.02 |      10 |        202 |       168.7 |    1.27 |
-| linux/debian/user/german              | -0.98 |      40 |        200 |         134 |    1.51 |
+| it/news/net-abuse                     | -1.16 |      21 |         99 |       307.4 |    1.79 |
+| alt/lawyers                           | -1.05 |      24 |         41 |       465.3 |    1.97 |
+| ca/driving                            | -1.05 |      19 |         23 |       219.5 |    1.66 |
+| alt/tv                                | -1.04 |       9 |        200 |          89 |    1.67 |
+| alt/business/accountability           | -1.01 |      10 |        200 |          78 |    1.61 |
 | alt/online-service/webtv              | -0.95 |      14 |         73 |       186.4 |    1.38 |
 | alt/sports/football/pro/buffalo-bills | -0.95 |       9 |         19 |       171.9 |    1.86 |
-| soc/culture/scottish                  | -0.94 |       9 |        139 |       993.1 |    1.64 |
-| alt/crime                             |  -0.9 |      46 |        189 |       271.1 |    1.65 |
+| soc/culture/scottish                  | -0.94 |       8 |        139 |       993.1 |    1.64 |
+| alt/crime                             |  -0.9 |      45 |        189 |       271.1 |    1.65 |
+| control/cancel                        | -0.89 |      27 |        179 |        11.3 |    0.58 |
+| soc/culture/african/american          | -0.78 |      56 |        200 |         289 |    1.91 |
+| alt/conspiracy/jfk                    | -0.77 |      14 |        212 |        62.7 |    1.87 |
+| alt/disney                            | -0.77 |      29 |        125 |       969.9 |    1.86 |
+| news/answers                          | -0.77 |      19 |         90 |      3376.2 |    1.44 |
+| alt/sports/football/pro/phila-eagles  | -0.76 |      10 |        199 |        57.7 |    2.12 |
+| aus/politics                          | -0.75 |      21 |        187 |        83.6 |    1.85 |
+| alt/0a/fred-hall/nancy-boy            | -0.74 |      11 |        200 |          21 |     2.4 |
 
 *** By user-agent, newsgroup reader client
 Sentiment by reader is probably a silly stat.
@@ -357,35 +491,45 @@ afn_agent_smry |>
 #+RESULTS:
 | agent               |   afn | n_groups | n_email | n_articles | wrd_article | mean_sd |
 |---------------------+-------+----------+---------+------------+-------------+---------|
-| NeoMutt             |  0.81 |       18 |      14 |        160 |         271 |    1.34 |
-| K-9                 |  0.78 |       16 |      17 |         50 |         203 |    1.74 |
-| Pluto               |  0.76 |        2 |      13 |         83 |        56.3 |    1.42 |
-| 40tude_Dialog       |  0.67 |       47 |      27 |        656 |        70.5 |    1.43 |
-| Messenger-Pro       |  0.67 |        3 |      13 |         88 |        58.5 |    1.62 |
-| Evolution           |  0.64 |       37 |      54 |        447 |       203.4 |    1.47 |
-| Turnpike            |  0.62 |       13 |      19 |        245 |        82.3 |     1.7 |
-| Mutt                |   0.6 |       33 |      34 |        266 |       250.3 |    1.58 |
-| Usenapp             |  0.52 |       37 |      24 |        266 |          59 |    1.64 |
-| G2                  |  0.45 |      616 |    2634 |      29367 |      1151.5 |    1.71 |
-| Roundcube           |  0.44 |       13 |      11 |         42 |       250.1 |    1.72 |
-| Gnus                |  0.38 |       94 |      83 |        782 |       141.5 |    1.54 |
-| Thoth               |  0.35 |       25 |      11 |        140 |        64.6 |    1.64 |
-| Mozilla             |  0.33 |      512 |    1318 |      19797 |       225.3 |    1.74 |
-| XanaNews            |  0.31 |       27 |      12 |        151 |        37.1 |     1.6 |
-| Unison              |   0.3 |       36 |      25 |        147 |        59.5 |    1.61 |
-|                     |  0.26 |      579 |    2313 |      25885 |       281.7 |    1.66 |
-| NewsTap             |  0.25 |      116 |      62 |       1160 |       121.3 |    1.81 |
-| MicroPlanet-Gravity |  0.15 |       61 |      33 |        641 |         104 |    1.96 |
-| ForteAgent          |  0.12 |      177 |     145 |       2345 |        88.8 |    1.69 |
-| Pan                 |   0.1 |      144 |      90 |       1132 |      1294.6 |    1.81 |
-| Alpine              |  0.08 |       10 |      11 |         42 |        94.4 |     1.3 |
-| slrn                |  0.08 |      135 |      95 |       1022 |        70.7 |    1.69 |
-| tin                 |  0.08 |       90 |      32 |        631 |        90.7 |    1.79 |
-| Hogwasher           |  0.03 |      121 |      21 |        812 |        83.3 |    1.76 |
-| Mime                | -0.33 |       44 |      62 |         86 |         219 |    1.79 |
-| Xnews               | -0.43 |      172 |     275 |       1724 |         216 |    1.92 |
-| Nemo                | -0.54 |       26 |      24 |        352 |        92.2 |    1.51 |
-| MacCafe             | -0.84 |       12 |      13 |        343 |       115.9 |    1.66 |
+| Rocksolid           |  1.61 |       10 |      12 |        108 |        31.4 |       1 |
+| newsSync            |  1.54 |       19 |     426 |        510 |        48.3 |    1.15 |
+| NewsHound           |  1.09 |        4 |      20 |         84 |       178.5 |    1.28 |
+| Thunderbird         |  1.05 |       16 |      14 |         58 |        76.4 |    1.78 |
+| Cyrus-JMAP          |  0.91 |       10 |      11 |         31 |        65.2 |    1.39 |
+| VSoup               |  0.89 |       23 |      76 |        379 |        80.2 |    1.57 |
+| K-9                 |   0.8 |       20 |      19 |         56 |         197 |    1.72 |
+| NeoMutt             |  0.76 |       23 |      17 |        196 |       315.6 |    1.46 |
+| Evolution           |  0.63 |       65 |      71 |        644 |       185.1 |    1.48 |
+| Mutt                |  0.63 |       55 |      43 |        357 |         247 |    1.56 |
+| Turnpike            |  0.61 |       30 |      20 |        369 |        78.7 |    1.68 |
+| Messenger-Pro       |  0.59 |        8 |      16 |        114 |        57.3 |    1.62 |
+| XanaNews            |  0.57 |       45 |      23 |        310 |        54.5 |    1.55 |
+| G2                  |  0.47 |     1784 |    5186 |      58739 |        1573 |     1.7 |
+| Gnus                |  0.47 |      210 |     137 |       1515 |       162.1 |    1.55 |
+| Roundcube           |  0.43 |       14 |      16 |         43 |       246.2 |    1.73 |
+| Usenapp             |  0.41 |       75 |      39 |        449 |        66.9 |     1.7 |
+| Pluto               |  0.36 |       11 |      19 |        141 |        54.3 |    1.41 |
+| MacSOUP             |  0.28 |       65 |      27 |        498 |        52.9 |    1.75 |
+| Unison              |  0.28 |       56 |      33 |        232 |        67.1 |    1.61 |
+| Mozilla             |  0.27 |     1132 |    1917 |      31724 |       229.1 |    1.73 |
+| tin                 |  0.26 |      233 |      82 |       1537 |        97.4 |    1.84 |
+| Hogwasher           |  0.24 |      297 |      24 |       1882 |        91.4 |    1.85 |
+| Thoth               |  0.21 |       48 |      13 |        218 |        55.8 |    1.65 |
+| 40tude_Dialog       |   0.2 |       91 |      37 |       1119 |        82.9 |    1.38 |
+| Alpine              |   0.2 |       21 |      16 |         72 |        80.5 |    1.56 |
+| slrn                |  0.17 |      288 |     166 |       2083 |        81.9 |    1.71 |
+|                     |  0.13 |     1381 |    3434 |      41694 |       275.9 |    1.67 |
+| NewsTap             |  0.11 |      213 |      84 |       1751 |       116.1 |    1.79 |
+| ForteAgent          |  0.08 |      359 |     216 |       3606 |        82.7 |    1.72 |
+| MT-NewsWatcher      |  0.08 |      361 |      13 |       2598 |        91.9 |    1.84 |
+| Pan                 |  0.05 |      293 |     138 |       1778 |      1686.2 |    1.86 |
+| MicroPlanet-Gravity | -0.03 |      112 |      41 |       1202 |       131.8 |    1.98 |
+| Mime                | -0.32 |       88 |      88 |        142 |       218.2 |    1.85 |
+| Opera               | -0.47 |       46 |      12 |        285 |          44 |    1.61 |
+| Xnews               |  -0.5 |      369 |     432 |       2754 |       233.1 |    1.89 |
+| Nemo                |  -0.6 |       62 |      29 |        655 |         104 |    1.64 |
+| PhoNews             | -0.79 |       14 |      11 |         88 |        69.3 |    1.22 |
+| MacCafe             | -0.82 |       42 |      16 |       1389 |       115.6 |     1.7 |
 
 
 *** pseudo stats
@@ -395,23 +539,28 @@ Both means are slightly above to neutral.
 t.test(afn ~ agent, afn_score %>% filter(agent %in% c("G2","Mozilla")))
 #+end_src
 
-But 40tude_Dialog writers are not significantly more positive than G2.
+#+RESULTS:
+
+And Gnus more positive than slrn
 #+begin_src R :session *R:WillForan.github.io*  :resutls value verbatim
-t.test(afn ~ agent, afn_score %>% filter(agent %in% c("G2","Mozilla")))
+t.test(afn ~ agent, afn_score %>% filter(agent %in% c("Gnus","slrn")))
 #+end_src
+
+#+RESULTS:
 
 Despite how the plot may looking
 #+begin_src R :session *R:WillForan.github.io*  :results graphics file :file ../images/usenet/agent_sentiment.png
 library(ggplot2)
+agent_subset <- c("G2","Mozilla","Gnus","40tude_Dialog","slrn","ForteAgent", "Xnews")
 popular_agents <- afn_score |>
-  filter(agent %in% c("G2","Mozilla","Gnus","40tude_Dialog","slrn")) |>
+  filter(agent %in% agent_subset) |>
   mutate(interface=ifelse(agent %in% c("Gnus","slrn"), "CLI","GUI")) |>
   ggplot() + aes(x=afn, fill=agent) + geom_density(alpha=.5) + 
   see::theme_modern() + facet_grid(interface~.) +
   labs(x="article afinn score", title="Sentiment by user-agent")
 
 positives <- afn_score |>
-  filter(agent %in% c("Gnus","40tude_Dialog","slrn", "G2"), afn>0) |>
+  filter(agent %in% agent_subset, afn>0) |>
   ggplot() + aes(x=afn, fill=agent) + geom_density(alpha=.5) + 
   see::theme_modern() +
   labs(x="article afinn score", title="Sentiment by user-agent: positive")
@@ -422,3 +571,4 @@ cowplot::plot_grid(popular_agents,positives,nrow=2)
 
 #+RESULTS:
 [[file:../images/usenet/agent_sentiment.png]]
+
