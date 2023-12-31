@@ -1,0 +1,61 @@
+#+TITLE: eslint with xo in Emacs
+#+DATE: 2023-12-31
+#+OPTIONS: _:{} ^:{} toc:nil num:nil
+
+* Configure
+
+For project specific js-mode settings, I used @@html:<kbd>M-x</kdb>@@ ~add-dir-local-variable~ to create and build up ~.dir-locals.el~ like
+#+begin_src elisp
+((js-mode . ((flycheck-javascript-eslint-executable . "xo")
+	     (flycheck-eslint-args . "--reporter=json")
+	     (flymake-eslint-executable-args . "--reporter=json")
+	     (flymake-eslint-executable-name . "xo")
+	     (evil-indent-convert-tabs . t)
+	     (indent-tabs-mode . t)
+	     (tab-width . 2)
+	     (editorconfig-mode . t))))
+#+end_src
+
+flymake settings are included, but flycheck is what ultimately worked.
+
+* Notes
+
+I got here trying to hack on [[https://github.com/sindresorhus/awesome-lint][awesome-lint]] a bit. The repo is setup to use xo, ava, and editorconfig.
+
+** Lint with ~xo~
+ [[https://github.com/xojs/xo][~xo~]] wraps ~eslint~ with defaults such that ~.eslintrc.mjs~ or similar file isn't needed.
+
+[[https://github.com/dense-analysis/ale][~ALE~]] (neo/vim) does the right thing out of the box for both linting and ~:ALEFix xo~. And [[https://github.com/vim-test/vim-test][vim-test]]'s ~:TestFile~ works for ava.
+
+The closest I could get to ALE's out of the box support in emacs is to
+1. globally installing eslint and xo (~npm -g --save-dev xo~).[fn:1] and modifying flycheck eslint settings to use ~xo~ and ~--reporter=json~.
+2. ~%!xo --fix --stdin~ (or @@html:<kbd>M-!</kbd>@@ ~xo --fix $file~ @@html:<kbd>C-x x g</kbd>@@; or @@html:<kbd>C-u M-|</kbd>@@ ~xo --fix --stdin~ on selection)
+3. [[https://github.com/meain/toffee][toffee]] doesn't support javascript. @@html:<kbd>M-!</kbd>@@ ~../../node_modules/ava/entrypoints/cli.mjs $file~ doesn't work unless in project root. ~node_modules/ava/entrypoints/cli.mjs --watch~ works well for change tests but will rerun everything if source files change.
+
+[fn:1]  could maybe write a mode hook that searches and sets ~$projectroot/.node_modules/~
+
+*** CLI
+
+#+begin_src shell
+xo --reporter=unix testfile.js
+#+end_src
+
+or much faster but more ceremony
+#+begin_src shell
+cat .eslint.mjs <<-HERE
+module.exports = {
+	root: true,
+	extends: "eslint:recommended",
+	parserOptions: { sourceType: 'module',  ecmaVersion: 2015 },
+	rules: {indent: ["error", "tab"], },
+};
+
+HERE
+
+eslint_d testfile.js
+#+end_src
+
+Aside: ~xo~'s default reporter is mangling my terminal (xterm) font. my kludge, [[https://github.com/WillForan/dotconf/blob/master/bin/fzf-font][~fzf-font~]], helps reset (but font inc and dec wont work afterward).
+
+** EditorConfig
+There's a emacs package for [[https://editorconfig.org/][~editorconfig~]]. enabling it in .dir-locals with ~(editorconfig-mode . t)~.
