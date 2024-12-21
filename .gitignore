@@ -1,4 +1,6 @@
 gopher/
 node_modules/
 .make/
+hugo/public/
+hugo/.hugo_build.lock
 *.DS_Store

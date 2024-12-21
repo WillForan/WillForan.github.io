@@ -1,8 +1,11 @@
 .SUFFIXES:
-.PHONY: all
+.PHONY: all serve
 REPORTS := $(wildcard reports/*org)
 GOPH_LN := $(patsubst %.org,%.txt,$(subst reports/,gopher/,$(REPORTS)))
 all: .make/gopher.ls
+
+serve:
+	hugo -s hugo serve
 
 hugo/public/index.html: $(REPORTS) hugo/config.toml
 	hugo -s hugo
@@ -10,7 +13,7 @@ hugo/public/index.html: $(REPORTS) hugo/config.toml
 
 ## gopher is (1) linked .org as .txt, (2) generaed index.gph, and  (3)rsync to server
 
-gopher/%.txt:
+gopher/%.txt: | gopher
 	test -e "$@" || ( cd gopher && ln -s "../reports/$(patsubst %.txt,%.org,$(notdir $@))" "$(notdir $@)" )
 
 gopher/index.gph: $(GOPH_LN)
