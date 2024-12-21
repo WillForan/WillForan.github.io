@@ -1,0 +1,54 @@
+#+TITLE: Perl REPL
+#+DATE: 2024-12-21
+#+OPTIONS: _:{} ^:{} toc:nil num:nil
+
+How to use a Read-Evaluate-Print-Loop in perl is a perennial question.
+A [[https://stackoverflow.com/questions/73667/how-can-i-start-an-interactive-console-for-perl][stack overflow "interactive console for perl" question from 2008]] has edits as recent as 2023 and an answer from 2021. Both =org mode= and =guix= make an appearance.
+
+The winner seems to (still) be ~rlwrap~ with an eval loop.
+
+#+begin_src bash
+rlwrap -pgreen -A -S "> " perl -MData::Printer -wnE 'say eval()//$@'
+#+end_src
+
+* Options
+But there are many other solutions. Though many have not seen recent updates, Perl's backwards compatibility allows them to still be relevant.
+
+| =perl -de1=    | [[https://perldoc.perl.org/perldebug#The-Perl-Debugger][evergreen]]  | built into perl. use with ~rlwrap~                                                  |
+| [[https://pdl.perl.org/][perldl]] or [[https://metacpan.org/dist/PDL/view/Perldl2/pdl2][pdl2]] | [[https://github.com/PDLPorters/pdl/commits/master/script/perldl][2024-12-11]] | PDL shell (heavy install), =pdl2= can use =Devel::REPL=                             |
+| perli          | [[https://github.com/mklement0/perli/commits/master/][2024-12-06]] | single file CLI perl repl w/ regexp =.remi= and inline doc lookup                   |
+| [[https://metacpan.org/pod/Devel::IPerl][Devel::IPerl]]   | [[https://github.com/EntropyOrg/p5-Devel-IPerl/commits/master/][2023-06-26]] | jupyter notebook kernel                                                             |
+| [[https://metacpan.org/pod/Devel::REPL][Devel::REPL]]    | [[http://git.shadowcat.co.uk/gitweb/gitweb.cgi?p=p5sagit/Devel-REPL.git;a=summary][2022-05-28]] | REPL with plugin infrastructure                                                     |
+| tinyperl       | [[http://git.shadowcat.co.uk/gitweb/gitweb.cgi?p=p5sagit/Eval-WithLexicals.git][2018-05-08]] |                                                                                     |
+| [[https://metacpan.org/pod/reply][reply]]          | [[https://github.com/doy/reply][2016-08-23]] |                                                                                     |
+| [[https://gnp.github.io/psh/][psh]]            | [[https://github.com/gnp/psh/commits/master/][2012-12-18]] | POSIX like shell with perl, like [[https://xon.sh/][xonsh]], [[https://codeberg.org/nibbula/yew/src/branch/master/lish][lish]], etc. see [[https://github.com/oils-for-unix/oils/wiki/Alternative-Shells][oil's alternative shell list]] |
+| [[https://web.archive.org/web/20090109221511/http://blog.jrock.us/articles/Stylish%20REPL.pod][Stylish]]        | [[https://github.com/jrockway/stylish-perl/commits][2011-02-27]] | originally for emacs integration. has it's own repl implementation             |
+
+** PDL
+The Perl Data Language module is actively maintained and provides two REPL scripts. =pld2= uses =Devel::REPL=.
+
+*** Guix
+I went woolgathering with guix. The whole process a little faster than =cpanm PDL= (gave up debugging), but built for perl 5.36 instead of archlinux's current-stable perl 5.40.
+#+begin_src bash
+guix import cpan -r Devel::REPL > perl-devel-repl.scm
+# edits
+#  * add (use-modules (guix packages) ... (gnu packages perl))
+#  * replace 'fill-in-yourself!'
+#  * disable clipboard and pastebin
+#  * perl-module-refresh was missing (propagated-inputs (list perl-module-install))
+#  * add 'perl-devel-repl' at end
+
+guix build -f perl-devel-repl.scm
+guix shell perl perl-pdl perl-term-readline-gnu -f perl-devel-repl.scm -- pdl2
+#+end_src
+
+
+** jupyter
+
+[[https://metacpan.org/pod/Devel::IPerl][Devel::IPerl]] is a kernel for jupyter. It provides an =iperl= script that looks like ipython.
+
+#+begin_src bash
+eval $(perl -I $HOME/perl5/lib/perl5 -Mlocal::lib)
+cpanm Devel::IPerl
+iperl console
+#+end_src
