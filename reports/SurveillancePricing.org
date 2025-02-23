@@ -1,0 +1,13 @@
+#+TITLE: Surveillance Pricing
+#+DATE: 2025-02-23
+#+OPTIONS: _:{} ^:{} toc:nil num:nil
+
+#+begin_quote
+From each according to his ability, to each according to his need.
+#+end_quote
+
+... describes when the price of bread is individualized to what they can stand to pay.
+
+-----
+
+Communism by way of surveillance capitalism. (Inspiration from [[https://yro.slashdot.org/story/25/02/22/230253/will-consumer-data-collection-lead-to-algorithm-adjusted-surveillance-pricing][slashdot/WashPost]].)
