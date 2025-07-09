@@ -7,7 +7,7 @@ all: .make/gopher.ls .make/blog.log
 serve:
 	hugo -s hugo serve
 
-hugo/public/index.html: $(REPORTS) hugo/config.toml
+hugo/public/index.html: $(REPORTS) $(wildcard hugo/themes/wf/*/*) hugo/config.toml
 	hugo -s hugo
 
 .make/blog.log: hugo/public/index.html | .make/
