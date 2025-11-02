@@ -1,7 +1,7 @@
 #+TITLE: Yelling At LLM Clouds: Google JS-only; FF inference process
 #+DATE: 2025-11-02
 #+OPTIONS: _:{} ^:{} toc:nil num:nil
-#+DRAFT: true
+#+DRAFT: false
 
 * LLM influenced workflow changes
 ** Google search is Javascript only
