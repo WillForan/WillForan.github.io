@@ -1,0 +1,52 @@
+#+TITLE: Yelling At LLM Clouds: Google JS-only; FF inference process
+#+DATE: 2025-11-02
+#+OPTIONS: _:{} ^:{} toc:nil num:nil
+#+DRAFT: true
+
+* LLM influenced workflow changes
+** Google search is Javascript only
+This happened a little bit ago (2025-01?). Google search requires [[https://support.google.com/websearch/answer/16515119][Chrome, Firefox, Edge, Safari, or Opera]] (by user agent) and javascript to be enabled.
+#+begin_src bash :results verbatim
+w3m 'www.google.com/search?q=plaintext'
+#+end_src
+
+#+RESULTS:
+: Update your browser
+: Your browser isn't supported anymore. To continue your search, upgrade to a
+: recent version. Learn more
+
+#+begin_src bash :results verbatim
+curl -sL "www.google.com$(curl -sL www.google.com/search?q=date | grep  -Po '/httpservice/retry/[^"]+'|sed 1q)"| pandoc -f html -t plain |head -n3
+#+end_src
+
+#+RESULTS:
+: [Google]
+:
+: Turn on JavaScript to keep searching
+
+Charitable interpretations of this change include combating (LLM training set related increases in) bot traffic or aligning browser requirements across all google web services. To the first, Javascript might be essential to the fingerprinting needed to more correctly track ad views.
+
+But I suspect LLM inference outputs in search results require javascript and this change at least helps push LLM results forward. Then again, is the number of actual humans without javascript even noticeable to google? Bot traffic must be larger than organic requests from non-js browsers.
+
+*** Alternatives
+My use case was to search from within emacs using w3m.el. At the time, [[some][https://news.ycombinator.com/item?id=42747092]] reported =lynx= (user agent ~Lynx/2.8.6rel.5 libwww-FM/2.14~) would still work. But that no longer seems to be the case.
+
+ [[https://seirdy.one/posts/2021/03/10/search-engines-with-own-indexes/][seirdy.one]] has an excellent write-up of the search engine landscape and is a good place to mine for alternatives. [[https://github.com/mwmbl/mwmbl?tab=readme-ov-file#but-what-about][mwmbl github readme]] has a smaller list.
+
+  * duckduckgo is bing and/or yandex but doesn't require JS, has Tor hidden service
+  * https://www.mojeek.com/
+  * https://mwmbl.org/ (open source with foundation hosted central server)
+  * https://stract.com (seridy favorite "smaller")
+  * https://search.marginalia.nu/ (seridy favorite "non-generalist")
+
+** Firefox built in inference
+Firefox is running its [[https://blog.mozilla.org/en/firefox/firefox-ai/running-inference-in-web-extensions/][own local LLM inference]] for [[https://blog.mozilla.org/en/firefox/firefox-ai/ai-link-previews-firefox/][link summary]] and [[https://support.mozilla.org/en-US/kb/how-use-ai-enhanced-tab-groups][tab grouping]]. I only noticed monitoring =about:performance=. =Inference= was using ~250Mb or RAM. But it's also been a [[https://www.tomshardware.com/tech-industry/artificial-intelligence/new-local-ai-integration-into-firefox-spurs-complaints-of-cpu-going-nuts-chip-and-power-spikes-plague-new-version-141-x][reported cause of high CPU usage]].
+For me, while 250Mb/16Gb isn't large, it's still unnecessary. I toggled the =about:config= option =browser.ml.enable= to disable.
+
+* Yelling at clouds
+
+Things change. Previous workflows break. Tools update with new features/bloat. It's the price of being connected, of benefiting from specialists moving their piece of the world forward.
+
+Whereas google's incentives align with user-hostile practices where "forward" progress is regressive from my perspective, I think the new firefox bloat could at least be benign if not enabling.
+
+Language model drive features could be a useful part of the browser experience. Firefox getting out in front with local models that don't phone home to a central server puts FF in a place to better respect users privacy and choice. And even better that it's easy to disable. Too bad there's no such toggle on google search.
