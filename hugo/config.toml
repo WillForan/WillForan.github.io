@@ -1,7 +1,8 @@
 baseURL = '/'
-languageCode = 'en-us'
+locale = 'en-us'
 title = 'Foran'
 theme = 'wf'
+relativeURLs = true
 
 [module]
 [[module.mounts]]

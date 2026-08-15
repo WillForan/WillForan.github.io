@@ -24,7 +24,7 @@
        {{"<!-- /section title -->" | safeHTML}}
        
        {{ range sort .Paginator.Pages }}
-       <li><a href="{{ .Permalink }}"><time>{{ .Date | time.Format "2006-01-02"  }}</time> {{ .Title }}</a>{{ if .Draft }} ::Draft{{ end }}</li>
+       <li><a href="{{ .RelPermalink }}"><time>{{ .Date | time.Format "2006-01-02"  }}</time> {{ .Title }}</a>{{ if .Draft }} ::Draft{{ end }}</li>
        {{ end }}
     </ul>
   </body>
