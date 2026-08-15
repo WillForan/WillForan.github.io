@@ -1,0 +1,106 @@
+#+TITLE: guix httpd
+#+DATE: 2026-08-13
+#+OPTIONS: _:{} ^:{} toc:nil num:nil
+#+DRAFT: false
+
+* Swimming upstream
+The functional infrastructure-as-code nature of a guix system configuration are attractive (rollback, immutable match to spec). Building it is hard.
+
+Employing secrets (like a ssh host key) contort setup and the error, edit, rerun debug cycle is slow with extra steps. Given the stronger read-evaluate-print loop heritage of lisp/scheme, slower iterations is a bit ironic.
+
+* Infra
+We have an old pet (vs cattle) redhat box hosting a large RAID and VMs ostensibly managed by an outside vendor with DIY ip tables for routing. The OS we're running is what we're stuck with for now.
+
+The distro packages are out of date, and it's too old for modern containers. GUIX foreign distro packaging is a good fit, but running services (httpd) with guix packages a la ~guix shell~ in systemd could be problematic[fn:systemd]. A VM seems like a good fit: extra isolation from an old vulnerable OS.
+
+* Becoming salmon
+
+It took a while to get a system configuration that would parse, largely due to it being new-to-me. I can appreciate the elegance of the configuring in scheme, despite doing so adding another not-necessarily-fully-specified layer between what's defined and where it's interpreted.
+
+I run the VM like [fn:nographc] [fn:share]
+#+begin_src shell
+$(guix system vm http-system.scm \
+   --no-graphic \
+   --share="$static=$static")
+#+end_src
+
+
+For common settings, service configuration can be defined with records like ~(server-name "myserversname")~, but not all possible settings have guile defined records. For where service configuration are incomplete wrapers, there are escape hatches in generic wrappers like ~extra-config~ (httpd), ~extra-content~ (sshd) or directly using ~(plain-file)~ or ~(file-local)~ [fn:extraconfig].  Notably, all of these put the final configuration file into ~/gnu/store~ which might be a problem if the file should include a secret.
+
+** future of the near past
+guix doesn't package apache with ~mod_php~. I'd have taken slow and simple over adding another service. The docs I've explored claim FastCGI Process Manager is a better solution than the old php-per-process way. The future (or at least not ancient mod_php past) isn't as nice as it used to be.
+
+** bad config
+ ~http-system.scm~ produced a virtual image that actually runs. But httpd wasn't up.
+
+I did a few things wrong within ~httpd.conf~. I put mod_fcgi.so before mod_proxy, did not correctly label ~fcgi_module~, had pid saved to a directory that didn't already exist, and used ~ProxyPassMatch~ incorrectly.
+
+Discovering and debugging these was slow!
+
+I'd like to edit the config and inspect the errors using httpd in foreground debug mode like
+#+begin_src bash
+vim /etc/httpd/httpd.conf
+httpd -X -f /etc/httpd/httpd.conf
+#+end_src
+
+But a guix managed config brings in extra steps.
+
+** Edit/Debug with extra steps
+
+In the VM we have an immutable httpd.conf somewhere in ~/gnu/store/*http.conf~. There are a bunch (generations of trial and error) and ~ls /gnu/store~ (9p mount) hangs in the VM.
+
+~herd status~ shows the httpd server failed but doesn't have a lot of info, and I can't see a way to get the command arguments, especially the path to what config file is specified.
+
+Instead, I grep all of ~/gnu/store/*httpd.config~ for a recent change.
+
+You, like me, might try ~ls -lt~ to sort the configs by modification time. But guix is reproducible, so all timestamps are ~Dec 31  1969~.
+
+#+begin_src shell
+grep "$recent_change" /gnu/store/*httpd.conf # find config
+
+$(guix system vm http-system.scm)                # run VM
+cp $httpconf_from_above httpd.conf               # get writable file
+# edit debug rerun
+  httpd -X -f /etc/httpd/httpd.conf              # get errors
+  vim /etc/httpd/httpd.conf                      # try to fix
+shutdown                                         # leave VM
+
+vim http-system.scm                              # port changse to guile
+guix system vm http-system.scm                   # generate config
+# try again
+#+end_src
+
+The additional parts are:
+1. getting a writable copy to iterate on within the VM
+2. porting "raw" ~httpd.conf~ changes to ~(httpd-config-file)~ for ~(service httpd-service-type ...)~
+3. checking the guile version of config works for the vm+herd+httpd
+
+
+** Notes
+ * ~guix system vm~ is overkill for testing a config. Maybe I could have abstracted the config definition as a new package and tried like ~guix shell -f httpd.scm -- httpd_debug~. But that'd require admitting debugging will take longer than a few iterations -- enough to justify the refactor.
+ * I think the system config can take an external ~http.conf~ file (or subset?). The generated config is useful for setting the correct ServerRoot of current httpd, pid expected by herd, etc
+ * inspecting guile/guix config code can take advantage of a proper REPL
+ #+begin_src
+guix repl --listen=unix:/tmp/guile-guix
+M-x geiser-connect-local /tmp/guile-guix
+ #+end_src
+   * for quickly getting source files, on REPL use ~(search-path %load-path "gnu/services/ssh.scm")~ and then evil mode ~gf~ to open.
+
+* sshd
+
+Secrets with in reproducible definitions push at the boundary; ~--expose~ is the escape hatch. Providing a secure shell daemon is a good illustration.
+
+Were this not a reproducible/functional build, ~ssh-keygen -A~ once in the VM would be sufficient. guix even defaults to running ~ssh-keygen -A~ for every provision. But the changing host keys defeat the point: we'll blindly accept any connection with no good way to confirm the new key is correct.
+
+~-oStrictHostCheck=no~ is a nice hack for development, but not sufficient for production. I got to a fix in a round about way:
+
+Including the necessary files with ~(file-local)~ would reveal the host key secret in /gnu/store. Biding a file like ~--expose=/path/to/key=/etc/ssh/host_..._key~ might work for a container but not for a VM using 9p mount -- expose must be a directory. ~gnu/services/ssh.scm~ provides a ~(extra-content)~ record and ~man sshd_config~ documents the ~HostKey~ option. For me, this took many ~guix system vm~, ~ssh -v~, ~shutdown~ cycles to get working.
+
+
+[fn:extraconfig]  ~(httpd-config-file (extra-config '(("text appended directly to config file")))~ ~(service openssh-service-type (openssh-configuration (extra-content "text appeneded directly to file")))~
+
+[fn:systemd] I might have discounted this too quickly. We'd just need two service files shelling out to guix: fpm and httpd. Configuring both could even happen in the same scm file.
+
+[fn:nographc] ~--no-graphic~ **within** the ~guix system vm~ args was a critical step to getting a shell for debugging without port forwarding across the intranet for a VNC server: ~$(guix ... vm) -display vnc=:4; ssh -L 5904:localhost:5904 -N vm-host; vncviewer 127.0.0.1:5904~
+
+[fn:share] I forgot to set ~$share~. VM fails with a cryptic message: "cannot initialize fsdev 'TAGh3s6nnfq2msvx7xzkyayscx5qbyj': failed"
